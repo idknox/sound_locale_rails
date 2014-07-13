@@ -8,6 +8,19 @@
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
   <link href="style.css" rel="stylesheet" type="text/css"/>
   <link rel="shortcut icon" href="images/icon.ico">
+  <script src="https://maps.googleapis.com/maps/api/js"></script>
+  <script>
+    function initialize() {
+      var map_canvas = document.getElementById('map_container');
+      var map_options = {
+        center: new google.maps.LatLng(39.740009,-104.992302),
+        zoom: 11,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+      var map = new google.maps.Map(map_canvas, map_options)
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
 </head>
 <body>
 <div class="wrapper">
@@ -25,12 +38,12 @@
   <div id="nav">
     <ul>
       <li><a href="http://blog.iandknox.com" class="link" id="icon">Blog</a></h2></li>
-      <li><a href="/about" class="link" id="icon">Login</a></h2></li>
+      <li><a href="/about" class="link" id="icon">About</a></h2></li>
       <li><a href="" class="link" id="icon">Res</a></li>
     </ul>
   </div>
   <div class="content">
-      <%= yield %>
+    <%= yield %>
   </div>
 </div>
 </body>
