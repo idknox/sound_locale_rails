@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Ian Knox - Denver, CO</title>
+  <title>Colorado Sound</title>
   <link rel="stylesheet" type="text/css"
         href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
@@ -13,7 +13,7 @@
     function initialize() {
       var map_canvas = document.getElementById('map_container');
       var map_options = {
-        center: new google.maps.LatLng(39.740009,-104.992302),
+        center: new google.maps.LatLng(39.740009, -104.992302),
         zoom: 11,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
@@ -26,13 +26,31 @@
 <div class="wrapper">
   <div id="header">
     <div id="title">
-      <a href="http://iandknox.com" class="link" id="icon">Ian Knox</a>
+      <a href="/" class="link" id="icon">Colorado Sound</a>
     </div>
-    <div id="icons">
-      <a href="http://www.github.com/idknox" class="link" id="icon"><i class="fa fa-github"></i></a>
-      <a href="http://www.twitter.com/idknox" class="link" id="icon"><i class="fa fa-twitter"></i></a>
-      <a href="https://www.linkedin.com/profile/view?id=253022916" class="link" id="icon"><i class="fa fa-linkedin"></i></a>
-      <a href="mailto:knoxid@gmail.com" class="link" id="icon"><i class="fa fa-envelope-o"></i></a>
+    <div class="container">
+      <div>
+        <form method="post" action="/" id="login">
+          <ul>
+            <li>
+              <label for="email">Email
+              <input type="text" name="username" class="fields"/>
+              </label>
+            </li>
+            <li>
+              <label>Password
+                <input type="password" name="password" class="fields"/>
+              </label>
+            </li>
+            <li>
+              <span id="reg">Not a member?
+              <button type="submit" class="button">Register</button>
+                </span>
+              <input type="submit" value="Login" class="button" id="logbutton"/>
+            </li>
+          </ul>
+        </form>
+      </div>
     </div>
   </div>
   <div id="nav">

@@ -14,11 +14,26 @@ class App < Sinatra::Application
   end
 
   get "/" do
-    erb :home
+    login_check
   end
 
   get "/about" do
     erb :about
   end
 
+  post "/" do
+    erb :loggedin
+  end
+
+  private
+
+  def login_check(id)
+    if params[:register]
+      erb :register
+    elsif session[:id]
+      erb :loggedin {:cur_user => cur}
+    else
+      erb :home
+    end
+  end
 end
