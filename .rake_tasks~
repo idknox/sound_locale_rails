@@ -1,0 +1,5 @@
+db:create
+db:create_migration
+db:drop
+db:migrate
+db:rollback

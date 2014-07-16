@@ -1,0 +1,37 @@
+<% content_for :main do %>
+  <div class="form">
+    <table>
+      <tbody>
+      <tr>
+        <form method="post" action="/pw">
+          <td><label for="old_pw">Old Password: </label></td>
+          <td><input type="password" name="old_pw" class="fields"/></td>
+          <tr>
+            <td><label for="new_pw">New Password: </label></td>
+            <td><input type="password" name="new_pw" class="fields"/></td>
+          </tr>
+          <tr>
+            <td><label for="new_conf">Confirm New Password: </label></td>
+            <td><input type="password" name="new_conf" class="fields"/></td>
+          </tr>
+      </tbody>
+    </table>
+    <input type="submit" value="Submit" class="button"/>
+    </form>
+
+    <% if flash[:notice] %>
+      <p><%= flash[:notice] %></p>
+    <% end %>
+
+  </div>
+
+<% end %>
+
+<% content_for :loggedin do %>
+
+  <p>Welcome, User</p>
+  <form method="get" action="/logout">
+    <button type="submit" name="logout" class="button">Logout</button>
+  </form>
+
+<% end %>

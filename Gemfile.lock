@@ -16,6 +16,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
+    backports (3.6.0)
     builder (3.2.2)
     capybara (2.3.0)
       mime-types (>= 1.16)
@@ -27,6 +28,9 @@ GEM
       timers (~> 1.1.0)
     diff-lcs (1.2.5)
     ffi (1.9.3)
+    gschool_database_connection (1.0.0)
+      activerecord
+      pg (~> 0.17.1)
     i18n (0.6.9)
     json (1.8.1)
     launchy (2.4.2)
@@ -38,8 +42,10 @@ GEM
     mime-types (2.3)
     mini_portile (0.6.0)
     minitest (5.4.0)
+    multi_json (1.10.1)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
+    pg (0.17.1)
     rack (1.5.2)
     rack-flash3 (1.0.5)
       rack
@@ -69,6 +75,13 @@ GEM
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
+    sinatra-contrib (1.4.2)
+      backports (>= 2.0)
+      multi_json
+      rack-protection
+      rack-test
+      sinatra (~> 1.4.0)
+      tilt (~> 1.3)
     thread_safe (0.3.4)
     tilt (1.4.1)
     timers (1.1.0)
@@ -83,9 +96,12 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   capybara
+  gschool_database_connection (~> 1.0.0)
   launchy
+  pg (~> 0.17.1)
   rack-flash3
   rake
   rerun
   rspec
   sinatra
+  sinatra-contrib

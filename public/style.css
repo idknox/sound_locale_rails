@@ -11,7 +11,6 @@
 .wrapper {
     margin: auto;
     width: 980px;
-    background-color: #5996FF;
 }
 
 * {
@@ -24,7 +23,8 @@ a {
 }
 
 body {
-    background-color: #fff;
+    background-image: url("images/back.jpg");
+    /*background-color: #fff;*/
     color: #fff;
 }
 
@@ -35,6 +35,7 @@ li {
 #header {
     width: 980px;
     height: 120px;
+    margin-top: 20px;
 }
 
 #title {
@@ -47,68 +48,93 @@ li {
 }
 
 .container {
-    /*border: 1px solid black;*/
+    background-color: #fff;
+    color: #5996FF;
     border-radius: 10px;
     float: right;
-    height: 100px;
-    width: 350px;
-    padding-right: 20px;
-    text-align: right;
+    width: 320px;
+    padding: 10px;
+    margin: 20px 0 50px 0;
+    display: block;
 }
 
-#login {
-    font-size: 18px;
-    padding-top: 10px;
-    border-radius: 10px;
-    padding-right: 40px;
-}
-
-#login li {
-    margin: 0 0 20px 0;
-    width: 300px;
-    text-align: left;
-
+#email {
+    width: 310px;
+    margin-bottom: 7px;
 }
 
 .fields {
-    float: right;
-    color: #000000;
-    border: 0;
+    font-size: 20px;
+    color: #717273;
+    border: 1px solid grey;
     border-radius: 5px;
-    padding: 2px;
+    padding: 5px;
+
 }
 
-#reg {
-    /*float: left;*/
-    border: 0;
-    outline: none;
+#rem {
+    float: left;
+}
+
+table {
+    margin-bottom: 10px;
+}
+
+.reg {
+    float: right;
+}
+
+.regbutton {
+    color: #4879CF;
+}
+
+#regform input {
+    float: right;
+    text-align: right;
 }
 
 .button {
+    background-color: #4879CF;
+    width: 80px;
+    margin-left: 5px;
+    float: right;
+    padding: 5px;
     font-size: 20px;
-    padding: 2px;
-    background-color: #5996FF;
-    border: 0;
-    outline: none;
+    color: #fff;
+    border: 1px solid grey;
     border-radius: 5px;
 }
 
 .button:hover {
-    background-color: #fff;
-    color: #5996FF;
+    background-color: #5996FF;
+    color: #fff;
 }
 
-#logbutton {
+.main_button {
+    background-color: #fff;
+    width: 80px;
+    margin-left: 5px;
     float: right;
+    padding: 5px;
+    font-size: 20px;
+    color: #5996FF;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+.main_button:hover {
+    background-color: #5996FF;
+    color: #fff;
+}
+
+input[type=checkbox] {
+    font-size: 20px;
 }
 
 #nav {
-    width: 980px;
-    display: inline-block;
-    padding-top: 10px;
     text-align: center;
-    margin-bottom: 30px;
-    margin-top: -20px;
+    margin-bottom: 50px;
+    margin-top: -10px;
 }
 
 #nav ul {
@@ -121,12 +147,8 @@ li {
     list-style-type: none;
     float: left;
     font-size: 30px;
-    margin-left: 100px;
-}
-
-.content {
-    width: 980px;
-    display: block;
+    margin-left: 70px;
+    margin-top: 10px;
 }
 
 .main {
@@ -154,11 +176,6 @@ img {
     margin: 2px;
 }
 
-    /*.main {*/
-        /*width: 500px;*/
-        /*margin: auto;*/
-    /*}*/
-
 .about {
     text-align: center;
     background-color: #000;
@@ -177,10 +194,51 @@ img {
     color: #5996FF;
 }
 
+.content {
+    margin-top: 70px;
+}
 
 #map_container {
-    width: 800px;
+    width: 980px;
     height: 600px;
     margin: auto;
     border-radius: 10px;
+}
+
+#users {
+    margin: auto;
+    width: 980px;
+    height: 600px;
+    background-color: #4879CF;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+
+.form td {
+    padding: 15px;
+    border: 1px solid #fff;
+}
+
+.regform {
+    margin: auto;
+    width: 980px;
+    height: 600px;
+    background-color: #4879CF;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+
+.regform td {
+    /*border: 1px solid #fff;*/
+    padding: 15px;
+
+}
+
+.regform table {
+    margin: 50px 0 50px 300px;
+
+}
+
+.regform button {
+    margin-left: 450px;
 }

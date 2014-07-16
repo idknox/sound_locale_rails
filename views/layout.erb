@@ -24,45 +24,32 @@
 </head>
 <body>
 <div class="wrapper">
-  <div id="header">
-    <div id="title">
-      <a href="/" class="link" id="icon">Colorado Sound</a>
-    </div>
-    <div class="container">
-      <div>
-        <form method="post" action="/" id="login">
-          <ul>
-            <li>
-              <label for="email">Email
-              <input type="text" name="username" class="fields"/>
-              </label>
-            </li>
-            <li>
-              <label>Password
-                <input type="password" name="password" class="fields"/>
-              </label>
-            </li>
-            <li>
-              <span id="reg">Not a member?
-              <button type="submit" class="button">Register</button>
-                </span>
-              <input type="submit" value="Login" class="button" id="logbutton"/>
-            </li>
-          </ul>
-        </form>
-      </div>
-    </div>
+<div id="header">
+  <div id="title">
+    <a href="/" class="link" id="icon">Colorado Sound</a>
   </div>
-  <div id="nav">
-    <ul>
-      <li><a href="http://blog.iandknox.com" class="link" id="icon">Blog</a></h2></li>
-      <li><a href="/about" class="link" id="icon">About</a></h2></li>
-      <li><a href="" class="link" id="icon">Res</a></li>
-    </ul>
+  <div class="container">
+    <% if session[:id] %>
+      <%= yield_content :loggedin %>
+    <% else %>
+      <%= yield_content :loggedout %>
+    <% end %>
   </div>
-  <div class="content">
-    <%= yield %>
   </div>
+<div id="nav">
+  <ul>
+    <li><a href="/about" class="link" id="icon">About</a></h2></li>
+    <li><a href="http://blog.ianknox.me" class="link" id="icon">Blog</a></h2></li>
+    <li><a href="" class="link" id="icon">How It Works</a></li>
+  </ul>
+</div>
+<div class="content">
+  <div>
+    <% if flash[:notice] %>
+      <p><%= flash[:notice] %></p>
+    <% end %>
+  </div>
+  <%= yield_content :main %>
 </div>
 </body>
 </html>

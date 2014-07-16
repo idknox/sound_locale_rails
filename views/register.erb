@@ -1,21 +1,88 @@
-<div>
-  <form method="post" action="/" id="login">
-    <label for="first_name">First Name</label>
-    <input type="text" name="first_name" class="fields"/>
+<% content_for :main do %>
 
-    <label for="last_name">Last Name</label>
-    <input type="text" name="last_name" class="fields"/>
-
-    <label for="email">Email</label>
-    <input type="email" name="email" class="fields"/>
-
-    <label for="password">Password</label>
-    <input type="password" name="password" class="fields"/>
-
-    <label for="password">Confirm Password</label>
-    <input type="password" name="pass_conf" class="fields"/>
-
-    <label for="birthday">Birthday</label>
-    <input type="date" name="birthday" class="fields"/>
-  </form>
+  <div>
+      <form method="post" action="/register" class="regform">
+        <table>
+          <tbody>
+          <tr>
+            <td>
+              <label for="first_name">First Name</label>
+            </td>
+            <td>
+              <input type="text" name="first_name" class="fields"/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="last_name">Last Name</label>
+            </td>
+            <td>
+              <input type="text" name="last_name" class="fields"/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="email">Email</label>
+            </td>
+            <td>
+              <input type="email" name="email" class="fields"/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="password">Password</label>
+            </td>
+            <td>
+              <input type="password" name="password" class="fields"/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="password">Confirm<br>Password</label>
+            </td>
+            <td>
+              <input type="password" name="pass_conf" class="fields"/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="birthday">Birthday</label>
+            </td>
+            <td>
+              <input type="date" name="birthdate" class="fields"/>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <button type="submit" class="button">Submit</button>
+      </form>
 </div>
+<% end %>
+
+<% content_for :loggedout do %>
+
+  <form method="post" action="/">
+    <input type="text" name="email" class="fields" id="email" placeholder="email"/>
+    <table>
+      <tbody>
+      <tr>
+        <td>
+          <input type="password" name="password" class="fields" placeholder="password"/>
+        </td>
+        <td>
+          <button type="submit" class="button" id="logbutton">Sign In</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div id="rem">
+      <input type="checkbox" value="remem" class="vlad"/>
+      Remember me
+    </div>
+    <div class="reg">
+      Not a member?
+      <a href="/register" type="submit" class="regbutton">Register</a>
+    </div>
+  </form>
+
+<% end %>

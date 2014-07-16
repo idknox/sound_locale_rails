@@ -1,3 +1,43 @@
-<div id="map_container">
-  <!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d196281.64169563094!2d-104.85511145!3d39.76433894999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876b80aa231f17cf%3A0x118ef4f8278a36d6!2sDenver%2C+CO!5e0!3m2!1sen!2sus!4v1405224674323" width="800" height="800" frameborder="0" style="border:0"></iframe>-->
-</div>
+<% content_for :main do %>
+
+  <div id="map_container">
+  </div>
+
+<% end %>
+
+<% content_for :loggedout do %>
+
+  <form method="post" action="/">
+    <input type="text" name="email" class="fields" id="email" placeholder="email"/>
+    <table>
+      <tbody>
+      <tr>
+        <td>
+          <input type="password" name="password" class="fields" placeholder="password"/>
+        </td>
+        <td>
+          <button type="submit" class="button">Sign In</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div id="rem">
+      <input type="checkbox" value="remem" class="vlad"/>
+      Remember me
+    </div>
+    <div class="reg">
+      Not a member?
+      <a href="/register" type="submit" class="regbutton">Register</a>
+    </div>
+  </form>
+
+<% end %>
+
+<% content_for :loggedin do %>
+
+  <p>Welcome, <%= cur_user %></p>
+  <form method="get" action="/logout">
+    <button type="submit" name="logout" class="logbutton">Logout</button>
+  </form>
+
+<% end %>
