@@ -133,7 +133,7 @@ class App < Sinatra::Application
   end
 
   def delete_user(id)
-    @database_conenction.sql(
+    @database_connection.sql(
       "DELETE from users WHERE id=#{id}"
     )
   end
