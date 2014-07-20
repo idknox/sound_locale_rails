@@ -1,25 +1,28 @@
 <% content_for :loggedin do %>
 
-  <p>Welcome, Ian</p>
-  <form method="get" action="/logout">
-    <button type="submit" name="logout" class="button">Logout</button>
-  </form>
-
-  <p><a href="/pw">Change Password</a></p>
-
+  <div class="nav_left">
+    Welcome, Admin
+    <br>
+    <a href="/pw" class="button" id="change">Change Password</a>
+    <br>
+    <a href="/logout" class="button">Logout</a>
+  </div>
+<div class="nav_right">
+  <a href="/admin/add_venue">Add Venue</a>
+</div>
 <% end %>
 
 <% content_for :main do %>
 <div id="users">
-  <table class="form">
+  <table class="table_list">
     <tbody>
-    <tr>
+    <thead>
       <th>Name</th>
       <th>Email</th>
       <th>Password</th>
       <th>Birthday</th>
       <th>Join Date</th>
-    </tr>
+    </thead>
     <% users.each do |user| %>
       <tr>
         <td><%= user["first_name"] + " " + user["last_name"] %></td>
@@ -30,7 +33,7 @@
         <td>
           <form method="post" action="/admin/<%= user["id"] %>"/>
           <input type="hidden" name="_method" value="delete"/>
-          <input type="submit" class="main_button" value="Delete"/>
+          <input type="submit" class="button" value="Delete"/>
           </form>
         </td>
       </tr>

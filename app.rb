@@ -13,15 +13,17 @@ class App < Sinatra::Application
   def initialize
     super
     @database_connection = GschoolDatabaseConnection::DatabaseConnection.establish(ENV["RACK_ENV"])
+
   end
 
   get "/" do
-    if session[:id] && get_email(session[:id]) == "knoxid@gmail.com"
+    if session[:id] == 1
       erb :admin, :locals => {:users => get_users(session[:id])}
-    elsif session[:id]
-      erb :home, :locals => {:cur_user => get_name(session[:id])}
     else
-      erb :home
+      erb :home, :locals => {
+        :cur_user => get_name(session[:id]),
+        :venues => get_venues
+      }
     end
   end
 
@@ -32,20 +34,9 @@ class App < Sinatra::Application
   get "/pw" do
     erb :pw
   end
-  post "/" do
-    check_login(params[:email], params[:password])
-  end
-
-  post "/register" do
-    check_reg
-  end
 
   get "/about" do
     erb :about
-  end
-
-  post "/register" do
-    check_reg
   end
 
   get "/logout" do
@@ -53,10 +44,12 @@ class App < Sinatra::Application
     redirect "/"
   end
 
-  delete "/admin/:id" do
-    flash[:notice] = "#{get_name(params[:id])} deleted"
-    delete_user(params[:id])
-    redirect "/"
+  post "/" do
+    check_login(params[:email], params[:password])
+  end
+
+  post "/register" do
+    check_reg
   end
 
   post "/pw" do
@@ -71,6 +64,12 @@ class App < Sinatra::Application
       flash[:notice] = "Password changed"
       redirect "/"
     end
+  end
+
+  delete "/admin/:id" do
+    flash[:notice] = "#{get_name(params[:id])} deleted"
+    delete_user(params[:id])
+    redirect "/"
   end
 
   private
@@ -97,7 +96,7 @@ class App < Sinatra::Application
       flash[:notice] = "Incorrect password"
       redirect back
     else
-      session[:id] = user_exists(email)["id"]
+      session[:id] = user_exists(email)["id"].to_i
       redirect "/"
     end
   end
@@ -121,9 +120,17 @@ class App < Sinatra::Application
   end
 
   def get_name(id)
+    if id
+      @database_connection.sql(
+        "SELECT first_name FROM users WHERE id=#{id}"
+      )[0]["first_name"]
+    end
+  end
+
+  def get_id(email)
     @database_connection.sql(
-      "SELECT first_name FROM users WHERE id=#{id}"
-    )[0]["first_name"]
+      "SELECT id FROM users WHERE email='#{email}'"
+    )[0]["id"]
   end
 
   def get_users(id)
@@ -139,10 +146,12 @@ class App < Sinatra::Application
   end
 
   def get_email(id)
-    @database_connection.sql(
-      "SELECT email from users WHERE id=#{id}"
-    )[0]["email"]
+    if id
+      @database_connection.sql(
+        "SELECT email from users WHERE id=#{id}"
+      )
     end
+  end
 
   def check_pw(pw1, pw2)
     pw1 == pw2
@@ -163,4 +172,9 @@ class App < Sinatra::Application
     )
   end
 
+  def get_venues
+    @database_connection.sql(
+      "SELECT * FROM venues"
+    )
+  end
 end

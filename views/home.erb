@@ -1,45 +1,40 @@
-<% content_for :main do %>
-
-  <div id="map_container">
-  </div>
-
-<% end %>
-
 <% content_for :loggedout do %>
+  <div class="nav_left">
+    <form method="post" action="/">
+      <input type="text" name="email" class="field" id="email" placeholder="email"/>
 
-  <form method="post" action="/">
-    <input type="text" name="email" class="fields" id="email" placeholder="email"/>
-    <table>
-      <tbody>
-      <tr>
-        <td>
-          <input type="password" name="password" class="fields" placeholder="password"/>
-        </td>
-        <td>
-          <button type="submit" class="button">Sign In</button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+      <div id="bottom">
+        <input type="password" name="password" class="field"
+               id="password" placeholder="password"/>
+        <button type="submit" class="button">Sign In</button>
+      </div>
+    </form>
+  </div>
+  <div class="nav_right">
+    <div id="reg">Not a member?<a href="/register" id="reg_button"> Register</a>
+    </div>
     <div id="rem">
-      <input type="checkbox" value="remem" class="vlad"/>
-      Remember me
-    </div>
-    <div class="reg">
-      Not a member?
-      <a href="/register" type="submit" class="regbutton">Register</a>
-    </div>
-  </form>
-
+      <% if flash[:notice] %>
+        <%= flash[:notice] %>
+      <% else %>
+        <input type="checkbox" value="remem" id="rem"/>
+        <label for="rem">Remember me</label></div>
+      <% end %>
+      </div>
 <% end %>
 
 <% content_for :loggedin do %>
 
-  <p>Welcome, <%= cur_user %></p>
-  <form method="get" action="/logout">
-    <button type="submit" name="logout" class="button">Logout</button>
-  </form>
+  <div class="nav_left">
+    Welcome, <%= cur_user %>
+    <br>
+    <a href="/pw" class="button" id="change">Change Password</a>
+    <br>
+    <a href="/logout" class="button">Logout</a>
+  </div>
+<% end %>
 
-  <p><a href="/pw">Change Password</a></p>
-
+<% content_for :main do %>
+  <div id="map_container">
+  </div>
 <% end %>
