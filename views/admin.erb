@@ -7,38 +7,40 @@
     <br>
     <a href="/logout" class="button">Logout</a>
   </div>
-<div class="nav_right">
-  <a href="/admin/add_venue">Add Venue</a>
-</div>
+  <div class="nav_right">
+    <form method="post" action="/admin/add_venue">
+      <button type="submit" class="button">Add Venue</button>
+    </form>
+  </div>
 <% end %>
 
 <% content_for :main do %>
-<div id="users">
-  <table class="table_list">
-    <tbody>
-    <thead>
+  <div id="users">
+    <table class="table_list">
+      <tbody>
+      <thead>
       <th>Name</th>
       <th>Email</th>
       <th>Password</th>
       <th>Birthday</th>
       <th>Join Date</th>
-    </thead>
-    <% users.each do |user| %>
-      <tr>
-        <td><%= user["first_name"] + " " + user["last_name"] %></td>
-        <td><%= user["email"] %></td>
-        <td><%= user["password"] %></td>
-        <td><%= Date.parse(user["birthday"]).strftime("%m-%d-%Y") %></td>
-        <td><%= Date.parse(user["join_date"]).strftime("%m-%d-%Y") %></td>
-        <td>
-          <form method="post" action="/admin/<%= user["id"] %>"/>
-          <input type="hidden" name="_method" value="delete"/>
-          <input type="submit" class="button" value="Delete"/>
-          </form>
-        </td>
-      </tr>
-    <% end %>
+      </thead>
+      <% users.each do |user| %>
+        <tr>
+          <td><%= user["first_name"] + " " + user["last_name"] %></td>
+          <td><%= user["email"] %></td>
+          <td><%= user["password"] %></td>
+          <td><%= Date.parse(user["birthday"]).strftime("%m-%d-%Y") %></td>
+          <td><%= Date.parse(user["join_date"]).strftime("%m-%d-%Y") %></td>
+          <td>
+            <form method="post" action="/admin/<%= user["id"] %>"/>
+            <input type="hidden" name="_method" value="delete"/>
+            <input type="submit" class="button" value="Delete"/>
+            </form>
+          </td>
+        </tr>
+      <% end %>
       </tbody>
-      </table>
-</div>
+    </table>
+  </div>
 <% end %>
