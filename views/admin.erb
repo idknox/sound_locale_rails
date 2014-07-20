@@ -75,20 +75,24 @@
       </thead>
       <% venues.each do |venue| %>
         <tr>
-          <td><a href="/ven_<%= venue["marker_name"] %>" class="sorter">
-            <%= venue["title"] %></a></td>
           <td>
-            <%= venue["address"].split(", ")[0] %><br>
+            <a href="/ven_<%= venue["marker_name"] %>" class="sorter">
+              <%= venue["title"] %></a>
+          </td>
+          <td>
+            <%= venue["address"].split(", ")[0] %>
+            <br>
             <%= venue["address"].split(", ")[1] %>
           </td>
           <td>
-            <%= venue["position"].split(",")[0] %><br>
+            <%= venue["position"].split(",")[0] %>
+            <br>
             <%= venue["position"].split(",")[1] %>
           </td>
           <td><%= venue["marker_name"] %></td>
           <td><%= venue["size"] %></td>
           <td><%= venue["price"] %></td>
-          <td id="desc"><%= venue["description"] %></td>
+          <td id="venues_desc"><%= venue["description"] %></td>
           <td>
             <form method="post" action="/admin/del_venue<%= venue["marker_name"] %>"/>
             <input type="hidden" name="_method" value="delete"/>

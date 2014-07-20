@@ -6,9 +6,10 @@ class UsersVenues < ActiveRecord::Migration
       t.string :icon
       t.string :marker_name
       t.string :address
-      t.integer :size
+      t.string :size
       t.string :description
       t.string :price
+      t.string :map
     end
 
     create_table :users do |t|
@@ -16,7 +17,7 @@ class UsersVenues < ActiveRecord::Migration
       t.string :last_name
       t.string :email
       t.string :password
-      t.string :birthday
+      t.date :birthday
       t.date :join_date
     end
 

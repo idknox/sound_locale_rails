@@ -39,8 +39,8 @@ class App < Sinatra::Application
     erb :pw
   end
 
-  get "/about" do
-    erb :about
+  get "/add_venue" do
+    erb :add_venue
   end
 
   get "/logout" do
@@ -48,9 +48,11 @@ class App < Sinatra::Application
     redirect "/"
   end
 
-  get "ven_:marker" do
-    erb :venue, :locals => {:venues => @db.get_venue(params[:marker])}
+  get "/ven_:marker" do
+    erb :venue, :locals => {:venue => @db.get_venue(params[:marker])[0]}
   end
+
+
   post "/" do
     check_login(params[:email], params[:password])
   end
@@ -71,10 +73,6 @@ class App < Sinatra::Application
       flash[:notice] = "Password changed"
       redirect "/"
     end
-  end
-
-  get "/add_venue" do
-    erb :add_venue
   end
 
   post "/add_venue" do

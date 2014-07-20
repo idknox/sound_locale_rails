@@ -64,6 +64,7 @@ a {
 
 body {
     background-image: url("images/back.jpg");
+    color: #F29721;
 }
 
 li {
@@ -94,7 +95,7 @@ li {
     width: 210px;
     padding: 6px;
     text-align: right;
-    color: #F29721;
+    /*color: #F29721;*/
     float: right;
     /*border: 1px solid black;*/
 }
@@ -124,7 +125,7 @@ li {
 
 .button {
     background-color: #1C3C5B;
-    color: #F29721;
+    /*color: #F29721;*/
     font-size: 17px;
     border: none;
     border-radius: 5px;
@@ -138,7 +139,7 @@ li {
 }
 
 .nav_right {
-    color: #F29721;
+    /*color: #F29721;*/
     font-size: 13px;
     border-radius: 5px;
     display: inline-block;
@@ -227,6 +228,9 @@ li {
 
 }
 
+.table_list {
+    margin: 4px;
+}
 
 .table_list thead {
     color: #A3540B;
@@ -234,13 +238,9 @@ li {
 
 .table_list tr {
     border-bottom: 1px solid #A3540B;
-    color: #F29721;
+    /*color: #F29721;*/
     border-right: 1px solid #A3540B;
     border-left: 1px solid #A3540B;
-}
-
-.table_list {
-    margin: 5px;
 }
 
 #delete {
@@ -250,21 +250,54 @@ li {
 /* --- Add Venue --- */
 
 #address {
-    width: 300px;
-}
-#venue_desc {
-    height: 100px;
-    width: 400px;
+    width: 100px;
 }
 
-#desc {
+
+#venues_desc {
     width: 150px;
+    height: 50px;
 }
 
 /* --- VENUE --- */
 
-.small_map {
+.icon {
+
+}
+
+#small_map {
     float: right;
     width: 495px;
-    height: 350px;
+    height: 400px;
+    margin-top: -30px;
+    border-radius: 10px;
 }
+
+#venue_name {
+    font-size: 40px;
+    margin: 20px 0 0 20px;
+    width: 300px;
+    text-align: left;
+    display: inline-block;
+
+}
+
+#venue_info {
+    width: 450px;
+    /*color: #F29721;*/
+    float: left;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#venue_info td {
+    font-size: 20px;
+    padding: 30px 0 0 20px;
+
+}
+
+#venue_desc {
+    display: block;
+}
+
+

@@ -6,19 +6,9 @@
   <script>
     var denver = new google.maps.LatLng(39.740009, -104.992302)
 
-    var venues = [
-      new google.maps.LatLng(39.733536, -104.992615),
-      new google.maps.LatLng(39.715093, -104.983796),
-      new google.maps.LatLng(39.740398, -104.975266),
-      new google.maps.LatLng(39.760044, -104.983940)
-    ];
-
-    var markers = [];
-    var iterator = 0;
-
     function initialize() {
 
-      var mapCanvas = document.getElementById('map_container');
+      var mapCanvas = document.getElementById('small_map');
       var mapOptions = {
         center: denver,
         zoom: 12,
@@ -27,23 +17,8 @@
 
       var map = new google.maps.Map(mapCanvas, mapOptions);
 
-      var home = new google.maps.Marker({
-        position: new google.maps.LatLng(39.715093, -104.983796),
-        title: "Home",
-        animation: google.maps.Animation.DROP,
-        map: map
-      });
-
-      var galv = new google.maps.Marker({
-        position: new google.maps.LatLng(39.733536, -104.992615),
-        title: "Galvanize",
-        animation: google.maps.Animation.DROP,
-        icon: "images/galv.png",
-        map: map
-      });
-
-      <% venues.each do |venue| %>
-      var <%= venue["marker_name"] %> = new google.maps.Marker({
+      var <%= venue["marker_name"] %> =
+      new google.maps.Marker({
         position: new google.maps.LatLng(<%= venue["position"] %>),
         title: '<%= venue["title"] %>',
         animation: google.maps.Animation.DROP,
@@ -53,7 +28,7 @@
 
       <%= venue["marker_name"] %>.
       setMap(map);
-      <% end %>
+
 
       home.setMap(map);
       galv.setMap(map);
@@ -65,6 +40,31 @@
 <% end %>
 
 <% content_for :main do %>
-  <div class=small_map" id="map_container">
-  </div>
+    <div id="venue_name">
+      <img src="<%= venue["icon"] %>">
+    </div>
+
+    <br>
+    <table id="venue_info">
+      <tr>
+        <td>
+          Address:
+        </td>
+        <td><%= venue["address"] %></td>
+      </tr>
+      <tr>
+        <td>Size:</td>
+        <td><%= venue["size"] %></td>
+      </tr>
+      <tr>
+        <td>Price:</td>
+        <td><%= venue["price"] %></td>
+      </tr>
+      <tr>
+        <td>Description:</td>
+        <td><%= venue["description"] %></td>
+      </tr>
+    </table>
+    <div id="small_map">
+    </div>
 <% end %>
