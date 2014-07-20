@@ -4,14 +4,14 @@
   </script>
 
   <script>
-    var denver = new google.maps.LatLng(39.740009, -104.992302)
+    var denver = new google.maps.LatLng(<%= venue["position"] %>)
 
     function initialize() {
 
       var mapCanvas = document.getElementById('small_map');
       var mapOptions = {
         center: denver,
-        zoom: 12,
+        zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
 
@@ -22,7 +22,6 @@
         position: new google.maps.LatLng(<%= venue["position"] %>),
         title: '<%= venue["title"] %>',
         animation: google.maps.Animation.DROP,
-        icon: "<%= venue["icon"] %>",
         map: <%= venue["map"] %>
       });
 
@@ -41,7 +40,7 @@
 
 <% content_for :main do %>
     <div id="venue_name">
-      <img src="<%= venue["icon"] %>">
+    <img src="<%= venue["logo"] %>">
     </div>
 
     <br>

@@ -15,17 +15,18 @@ class App < Sinatra::Application
   end
 
   get "/" do
-    venues = sort_list(@db.get_venue, params[:sort_venues])
+    venues = filter_list(sort_list(@db.get_venue, params[:sort_venues]), params[:filter])
     users = sort_list(@db.get_users(session[:id]), params[:sort_users])
-
+    user = @db.get_name(session[:id])
     if session[:id] == 1
       erb :admin, :locals => {
         :users => users,
-        :venues => venues
+        :venues => venues,
+        :list => params[:list]
       }
     else
       erb :home, :locals => {
-        :cur_user => @db.get_name(session[:id]),
+        :cur_user => user,
         :venues => venues
       }
     end
@@ -52,6 +53,9 @@ class App < Sinatra::Application
     erb :venue, :locals => {:venue => @db.get_venue(params[:marker])[0]}
   end
 
+  get "/venues" do
+    erb :venues, :locals => {:venues => sort_list(@db.get_venue, "title")}
+  end
 
   post "/" do
     check_login(params[:email], params[:password])
@@ -81,13 +85,13 @@ class App < Sinatra::Application
     redirect "/"
   end
 
-  delete "/admin/del_user:id" do
+  delete "/admin/del_user_:id" do
     flash[:notice] = "#{@db.get_name(params[:id])} deleted"
     @db.delete_user(params[:id])
     redirect "/"
   end
 
-  delete "/admin/del_venue:marker" do
+  delete "/admin/del_venue_:marker" do
     flash[:notice] = "#{@db.get_venue(params[:marker])["title"]} deleted"
     @db.delete_venue(params[:marker])
     redirect "/"
@@ -121,6 +125,7 @@ class App < Sinatra::Application
       redirect back
     else
       session[:id] = @db.user_exists(email)["id"].to_i
+      flash[:notice] = nil
       redirect "/"
     end
   end
@@ -138,4 +143,13 @@ class App < Sinatra::Application
       array
     end
   end
+
+  def filter_list(array, param)
+    if param
+      array.select { |item| item[param.split(": ")[0]] == param.split(": ")[1] }
+    else
+      array
+    end
+  end
+
 end

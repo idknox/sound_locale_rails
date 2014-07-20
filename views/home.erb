@@ -27,7 +27,7 @@
       var mapCanvas = document.getElementById('map_container');
       var mapOptions = {
         center: denver,
-        zoom: 12,
+        zoom: 11,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
 
@@ -53,7 +53,6 @@
         position: new google.maps.LatLng(<%= venue["position"] %>),
         title: '<%= venue["title"] %>',
         animation: google.maps.Animation.DROP,
-        icon: "<%= venue["icon"] %>",
         map: <%= venue["map"] %>
       });
 

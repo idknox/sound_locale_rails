@@ -3,13 +3,15 @@ class UsersVenues < ActiveRecord::Migration
     create_table :venues do |t|
       t.string :title
       t.string :position
-      t.string :icon
       t.string :marker_name
       t.string :address
       t.string :size
       t.string :description
       t.string :price
       t.string :map
+      t.string :icon
+      t.string :logo
+      t.string :background
     end
 
     create_table :users do |t|

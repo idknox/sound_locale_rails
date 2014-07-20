@@ -1,7 +1,7 @@
 <% content_for :main do %>
-  <div class="form" class="one_fourth">
+  <div class="form">
     <form method="post" action="/add_venue">
-      <ol>
+      <ul>
         <li>
           <label for="name">Name</label>
         </li>
@@ -31,23 +31,10 @@
         </li>
         <br>
         <li>
-          <label for="icon">Icon</label>
+          <label for="icon">Background</label>
         </li>
         <li>
-          <input type="text" name="icon" class="field"/>
-        </li>
-        <br>
-        <li>
-          <label for="size">Size</label>
-        </li>
-        <li>
-          <select name="size" class="field">
-            <option value="sml">< 100</option>
-            <option value="med">100 - 500</option>
-            <option value="lge">500 - 1000</option>
-            <option value="lgr">1000 - 5000</option>
-            <option value="lgt">5000+</option>
-          </select>
+          <input type="text" name="background" class="field"/>
         </li>
         <br>
         <li>
@@ -59,10 +46,23 @@
         </li>
         <br>
         <li>
+          <label for="size">Size</label>
+        </li>
+        <li>
+          <select name="size" class="field">
+            <option value="Warehouse/Art Space">Warehouse/Art Space</option>
+            <option value="Bar">Bar</option>
+            <option value="Small Venue">Small Venue</option>
+            <option value="Mid-sized Venue">Mid-sized Venue</option>
+            <option value="Large Venue/Auditorium">Large Venue/Auditorium</option>
+          </select>
+        </li>
+        <br>
+        <li>
           <label for="price">Price</label>
         </li>
         <li>
-          <select name="price" class="field">
+          <select name="filter" class="field">
             <option value="$">$</option>
             <option value="$$">$$</option>
             <option value="$$$">$$$</option>
@@ -78,7 +78,7 @@
           </select>
         </li>
         <br>
-      </ol>
+      </ul>
       <button type="submit" class="button" id="reg_submit">Add Venue</button>
     </form>
   </div>

@@ -79,10 +79,10 @@ class Table_connection
 
   def add_venue(venue)
     @database_connection.sql(
-      "INSERT INTO venues (title, position, icon, " +
+      "INSERT INTO venues (title, position, background, " +
         "marker_name, address, size, description, price, map) " +
         "VALUES ('#{venue[:name]}', '#{venue[:position]}', " +
-        "'#{venue[:icon]}', '#{venue[:marker_name]}', " +
+        "'#{venue[:background]}', '#{venue[:marker_name]}', " +
         "'#{venue[:address]}', '#{venue[:size]}', " +
         "'#{venue[:description]}', '#{venue[:price]}', '#{venue[:map]}')"
     )

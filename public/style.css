@@ -16,7 +16,7 @@
 
 article {
     position: relative;
-    margin-left: 20px;
+    margin-left: 5px;
     float: left;
     box-sizing: border-box;
 
@@ -64,6 +64,7 @@ a {
 
 body {
     background-image: url("images/back.jpg");
+    background-attachment: fixed;
     color: #F29721;
 }
 
@@ -73,31 +74,64 @@ li {
 
 /* --- Nav --- */
 
-#title {
-    color: #F0E66C;
-    text-align: center;
-    font-size: 60px;
-    margin-top: 5px;
-    float: left;
+#header {
+    padding: 5px;
 }
 
+#logo_container {
+
+    width: 88px;
+    height: 88px;
+    float: left;
+    margin: 5px 10px 5px 0;
+}
+#title {
+    color: #F0E66C;
+    text-align: left;
+    font-size: 60px;
+    display: inline;
+    margin-left: -20px;
+}
+
+
 #logo:hover {
-    color: #F29721;
+    color: #A3540B;
+}
+#nav {
+    margin: 0;
+}
+
+#nav ul {
+    margin: 0;
+    padding: 0;
+}
+#nav li {
+    display: list-item;
+    list-style-type: none;
+    float: left;
+    margin-left: 45px;
+}
+
+#nav li:hover {
+    text-decoration: underline;
 }
 
 #right_nav {
-    margin-top: 3px;
+    margin-top: 7px;
     border-radius: 5px;
 }
 
 .nav_left {
     display: inline-block;
-    width: 210px;
+    width: 220px;
     padding: 6px;
     text-align: right;
-    /*color: #F29721;*/
     float: right;
-    /*border: 1px solid black;*/
+    margin-right: 0;
+}
+
+.nav_left input {
+    float: left;
 }
 
 #email {
@@ -107,9 +141,8 @@ li {
 }
 
 #password {
-    width: 130px;
-    display: inline-block;
-    margin-right: 0;
+    width: 125px;
+    display: inline;
 }
 
 .field {
@@ -118,20 +151,20 @@ li {
     border: none;
     border-radius: 5px;
     font-size: 17px;
-    margin: 3px;
+    margin: 5px;
     padding: 3px;
     vertical-align: top;
+    float: left
 }
 
 .button {
     background-color: #1C3C5B;
-    /*color: #F29721;*/
-    font-size: 17px;
+    font-size: 18px;
     border: none;
     border-radius: 5px;
     display: inline-block;
-    padding: 3px;
-    margin: 3px;
+    padding: 4px;
+    margin: 3px 10px 0 0;
 }
 
 .button:hover {
@@ -145,8 +178,8 @@ li {
     display: inline-block;
     float: right;
     padding: 4px;
-    text-align: center;
-    margin: 5px 0 0 20px;
+    text-align: left;
+    margin: 5px -30px 0 0;
 }
 
 #rem, #reg {
@@ -168,48 +201,62 @@ li {
 }
 
 #main {
-    height: 768px;
+    height: auto;
+    padding: 40px;
+}
+
+#main p {
+    margin: 20px;
+    text-align: center;
+    font-size: 50px;
 }
 
 #map_container {
-    width: 980px;
-    height: 700px;
+    width: 900px;
+    height: 600px;
+    border-radius: 5%;
 }
 
 /* --- Reg Page --- */
 
 .form {
-    text-align: center;
+    text-align: ceter;
     color: #A3540B;
     margin: 0 auto;
-    padding: 20px;
+    padding: 30px;
 }
 
-.form ol {
-    margin: 20px 0 20px 0;
+.form ul {
     padding: 0;
+    margin: 0;
 }
 
 .form button {
     margin: 0 auto;
 }
 
-/* --- Admin Page --- */
-
-#users, #venues {
-    display: inline-block;
-    text-align: center;
+.form .field {
+    float: none;
 }
 
-#users p, #venues p {
+/* --- Admin Page --- */
+
+.table_list {
+    margin: 0 auto;
+}
+.table_list th, td {
+    padding: 10px;
+    font-size: 15px;
+}
+
+.table_list thead {
     color: #A3540B;
 }
 
-#users {
-    float: left;
-}
-#venues {
-    float: right;
+.table_list tr {
+    border-bottom: 1px solid #A3540B;
+    border-right: 1px solid #A3540B;
+    border-left: 1px solid #A3540B;
 }
 
 .sorter {
@@ -222,27 +269,6 @@ li {
     text-decoration: underline;
 }
 
-.table_list th, td {
-    padding: 4px;
-    font-size: 10px;
-
-}
-
-.table_list {
-    margin: 4px;
-}
-
-.table_list thead {
-    color: #A3540B;
-}
-
-.table_list tr {
-    border-bottom: 1px solid #A3540B;
-    /*color: #F29721;*/
-    border-right: 1px solid #A3540B;
-    border-left: 1px solid #A3540B;
-}
-
 #delete {
     font-size: 10px;
 }
@@ -250,16 +276,16 @@ li {
 /* --- Add Venue --- */
 
 #address {
-    width: 100px;
+    width: 200px;
 }
 
 
 #venues_desc {
-    width: 150px;
+    width: 200px;
     height: 50px;
 }
 
-/* --- VENUE --- */
+/* --- VENUE PAGE --- */
 
 .icon {
 
@@ -269,21 +295,22 @@ li {
     float: right;
     width: 495px;
     height: 400px;
-    margin-top: -30px;
+    margin: -140px 40px 0 0;
     border-radius: 10px;
 }
 
 #venue_name {
     font-size: 40px;
     margin: 20px 0 0 20px;
-    width: 300px;
+    width: 400px;
+    height: 150px;
     text-align: left;
     display: inline-block;
 
 }
 
 #venue_info {
-    width: 450px;
+    width: 400px;
     /*color: #F29721;*/
     float: left;
     margin: 0 auto;
@@ -298,6 +325,32 @@ li {
 
 #venue_desc {
     display: block;
+}
+
+/* --- Venues --- */
+
+.page_title {
+    margin: 0 auto;
+    font-size: 40px;
+    text-align: center  ;
+}
+.grid {
+    width: 980px;
+    height: auto;
+}
+.thumb {
+    line-height:1.5em;
+    float:left;
+    display:inline;
+    width: 200px;
+    height: 200px;
+    margin: 13px;
+    border-radius: 40%;
+    border: 5px solid #1C3C5B;
+}
+
+.thumb:hover {
+    border: 5px solid #000;
 }
 
 

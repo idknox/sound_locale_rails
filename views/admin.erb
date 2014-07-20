@@ -1,108 +1,110 @@
 <% content_for :main do %>
-
-  <div id="users">
+  <% if list == "users" %>
     <p>Users</p>
-    <table class="table_list">
-      <thead>
-      <form method="get" action="/">
-        <th>
-          <button type="submit" class="sorter" name="sort_users" value="user_name">Name</button>
-        </th>
-        <th>
-          <button type="submit" class="sorter" name="sort_users" value="email">Email</button>
-        </th>
-        <th>
-          <button type="submit" class="sorter" name="sort_users" value="password">Password</button>
-        </th>
-        <th>
-          <button type="submit" class="sorter" name="sort_users" value="birthdate">Birthday</button>
-        </th>
-        <th>
-          <button type="submit" class="sorter" name="sort_users" value="join_date">Join Date</button>
-        </th>
-        <th>&nbsp</th>
-      </form>
-      </thead>
-      <tbody>
-      <% users.each do |user| %>
-        <tr>
-          <td><%= user["first_name"] + " " + user["last_name"] %></td>
-          <td><%= user["email"] %></td>
-          <td><%= user["password"] %></td>
-          <td><%= Date.parse(user["birthday"]).strftime("%m-%d-%Y") %></td>
-          <td><%= Date.parse(user["join_date"]).strftime("%m-%d-%Y") %></td>
-          <td>
-            <form method="post" action="/admin/del_user_<%= user["id"] %>"/>
-            <input type="hidden" name="_method" value="delete"/>
-            <button class="button" id="delete">del</button>
-            </form>
-          </td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
+    <div id="users">
+      <table class="table_list">
+        <thead>
+        <form method="get" action="/">
+          <th>
+            <button type="submit" class="sorter" name="sort_users" value="user_name">Name</button>
+          </th>
+          <th>
+            <button type="submit" class="sorter" name="sort_users" value="email">Email</button>
+          </th>
+          <th>
+            <button type="submit" class="sorter" name="sort_users" value="password">Password</button>
+          </th>
+          <th>
+            <button type="submit" class="sorter" name="sort_users" value="birthdate">Birthday</button>
+          </th>
+          <th>
+            <button type="submit" class="sorter" name="sort_users" value="join_date">Join Date</button>
+          </th>
+          <th>&nbsp</th>
+        </form>
+        </thead>
+        <tbody>
+        <% users.each do |user| %>
+          <tr>
+            <td><%= user["first_name"] + " " + user["last_name"] %></td>
+            <td><%= user["email"] %></td>
+            <td><%= user["password"] %></td>
+            <td><%= Date.parse(user["birthday"]).strftime("%m-%d-%Y") %></td>
+            <td><%= Date.parse(user["join_date"]).strftime("%m-%d-%Y") %></td>
+            <td>
+              <form method="post" action="/admin/del_user_<%= user["id"] %>"/>
+              <input type="hidden" name="_method" value="delete"/>
+              <button class="button" id="delete">del</button>
+              </form>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
 
-  <div id="venues">
+  <% elsif list == "venues" %>
     <p>Venues</p>
-    <table class="table_list">
-      <tbody>
-      <thead>
-      <th>
-        <button type="submit" class="sorter" name="sort_venues" value="title">Name</button>
-      </th>
-      <th>
-        <button type="submit" class="sorter" name="sort_venues" value="address">Address</button>
-      </th>
-      <th>
-        <button type="submit" class="sorter" name="sort_venues" value="position">Position</button>
-      </th>
-      <th>
-        <button type="submit" class="sorter" name="sort_venues" value="marker_name">Marker Name</button>
-      </th>
-      <th>
-        <button type="submit" class="sorter" name="sort_venues" value="size">Size</button>
-      </th>
-      <th>
-        <button type="submit" class="sorter" name="sort_venues" value="price">Price</button>
-      </th>
-      <th>
-        <button type="submit" class="sorter" name="sort_venues" value="description">Description</button>
-      </th>
-      <th>
-        &nbsp
-      </th>
-      </thead>
-      <% venues.each do |venue| %>
-        <tr>
-          <td>
-            <a href="/ven_<%= venue["marker_name"] %>" class="sorter">
-              <%= venue["title"] %></a>
-          </td>
-          <td>
-            <%= venue["address"].split(", ")[0] %>
-            <br>
-            <%= venue["address"].split(", ")[1] %>
-          </td>
-          <td>
-            <%= venue["position"].split(",")[0] %>
-            <br>
-            <%= venue["position"].split(",")[1] %>
-          </td>
-          <td><%= venue["marker_name"] %></td>
-          <td><%= venue["size"] %></td>
-          <td><%= venue["price"] %></td>
-          <td id="venues_desc"><%= venue["description"] %></td>
-          <td>
-            <form method="post" action="/admin/del_venue<%= venue["marker_name"] %>"/>
-            <input type="hidden" name="_method" value="delete"/>
-            <button type="submit" class="button" id="delete">del</button>
-            </form>
-          </td>
-        </tr>
+    <div id="venues">
+      <table class="table_list">
+        <tbody>
+        <thead>
+        <th>
+          <button type="submit" class="sorter" name="sort_venues" value="title">Name</button>
+        </th>
+        <th>
+          <button type="submit" class="sorter" name="sort_venues" value="address">Address</button>
+        </th>
+        <th>
+          <button type="submit" class="sorter" name="sort_venues" value="position">Position</button>
+        </th>
+        <th>
+          <button type="submit" class="sorter" name="sort_venues" value="marker_name">Marker Name</button>
+        </th>
+        <th>
+          <button type="submit" class="sorter" name="sort_venues" value="size">Size</button>
+        </th>
+        <th>
+          <button type="submit" class="sorter" name="sort_venues" value="price">Price</button>
+        </th>
+        <th>
+          <button type="submit" class="sorter" name="sort_venues" value="description">Description</button>
+        </th>
+        <th>
+          &nbsp
+        </th>
+        </thead>
+        <% venues.each do |venue| %>
+          <tr>
+            <td>
+              <a href="/ven_<%= venue["marker_name"] %>" class="sorter">
+                <%= venue["title"] %></a>
+            </td>
+            <td>
+              <%= venue["address"].split(", ")[0] %>
+              <br>
+              <%= venue["address"].split(", ")[1] %>
+            </td>
+            <td>
+              <%= venue["position"].split(",")[0] %>
+              <br>
+              <%= venue["position"].split(",")[1] %>
+            </td>
+            <td><%= venue["marker_name"] %></td>
+            <td><%= venue["size"] %></td>
+            <td><%= venue["price"] %></td>
+            <td id="venues_desc"><%= venue["description"] %></td>
+            <td>
+              <form method="post" action="/admin/del_venue_<%= venue["marker_name"] %>"/>
+              <input type="hidden" name="_method" value="delete"/>
+              <button type="submit" class="button" id="delete">del</button>
+              </form>
+            </td>
+          </tr>
 
-      <% end %>
-      </tbody>
-    </table>
-  </div>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
 <% end %>

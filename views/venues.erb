@@ -1,0 +1,14 @@
+<% content_for :main do %>
+  <div class="page_title">
+    Venues
+  </div>
+  <div class="grid">
+    <% venues.each do |venue| %>
+      <a href="/ven_<%= venue["marker_name"] %>">
+        <div class="thumb" style="background-image:url(<%= venue["background"] %>)">
+        </div>
+      </a>
+
+    <% end %>
+  </div>
+<% end %>
