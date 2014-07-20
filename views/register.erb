@@ -1,88 +1,80 @@
 <% content_for :main do %>
 
-  <div>
-      <form method="post" action="/register" class="regform">
-        <table>
-          <tbody>
-          <tr>
-            <td>
-              <label for="first_name">First Name</label>
-            </td>
-            <td>
-              <input type="text" name="first_name" class="fields"/>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="last_name">Last Name</label>
-            </td>
-            <td>
-              <input type="text" name="last_name" class="fields"/>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="email">Email</label>
-            </td>
-            <td>
-              <input type="email" name="email" class="fields"/>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="password">Password</label>
-            </td>
-            <td>
-              <input type="password" name="password" class="fields"/>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="password">Confirm<br>Password</label>
-            </td>
-            <td>
-              <input type="password" name="pass_conf" class="fields"/>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="birthday">Birthday</label>
-            </td>
-            <td>
-              <input type="date" name="birthdate" class="fields"/>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-        <button type="submit" class="button">Submit</button>
-      </form>
-</div>
+  <div id="reg_form" class="one_fourth">
+    <form method="post" action="/register" class="regform">
+      <ol>
+        <li>
+          <label for="first_name">First Name</label>
+        </li>
+        <li>
+          <input type="text" name="first_name" class="field"/>
+        </li>
+        <br>
+        <li>
+          <label for="last_name">Last Name</label>
+        </li>
+        <li>
+          <input type="text" name="last_name" class="field"/>
+        </li>
+        <br>
+        <li>
+          <label for="email">Email</label>
+        </li>
+        <li>
+          <input type="email" name="email" class="field"/>
+        </li>
+        <br>
+        <li>
+          <label for="password">Password</label>
+        </li>
+        <li>
+          <input type="password" name="password" class="field"/>
+        </li>
+        <br>
+        <li>
+          <label for="password">Confirm Password</label>
+        </li>
+        <li>
+          <input type="password" name="pass_conf" class="field"/>
+        </li>
+        <br>
+        <li>
+          <label for="birthday">Birthday</label>
+        </li>
+        <li>
+          <input type="date" name="birthdate" class="field"/>
+        </li>
+        <br>
+      </ol>
+      <button type="submit" class="button" id="reg_submit">Register</button>
+    </form>
+  </div>
 <% end %>
 
 <% content_for :loggedout do %>
+  <div class="nav_left">
+    <form method="post" action="/">
+      <input type="text" name="email" class="field" id="email"
+             <% if flash[:notice] %>
+             placeholder="<%= flash[:notice] %>"
+             <% else %>
+             placeholder="email"
+             <% end %>
+             />
 
-  <form method="post" action="/">
-    <input type="text" name="email" class="fields" id="email" placeholder="email"/>
-    <table>
-      <tbody>
-      <tr>
-        <td>
-          <input type="password" name="password" class="fields" placeholder="password"/>
-        </td>
-        <td>
-          <button type="submit" class="button" id="logbutton">Sign In</button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+      <div id="bottom">
+        <input type="password" name="password" class="field"
+               id="password" placeholder="password"/>
+        <button type="submit" class="button">Sign In</button>
+      </div>
+    </form>
+  </div>
+  <div class="nav_right">
+    <div id="reg">
+      Not a member?<a href="/register" id="reg_button"> Register</a>
+    </div>
     <div id="rem">
-      <input type="checkbox" value="remem" class="vlad"/>
-      Remember me
-    </div>
-    <div class="reg">
-      Not a member?
-      <a href="/register" type="submit" class="regbutton">Register</a>
-    </div>
-  </form>
-
+      <input type="checkbox" value="remem" id="rem"/>
+      <label for="rem">Remember me</label></div>
+  </div>
 <% end %>

@@ -80,6 +80,10 @@ li {
     float: left;
 }
 
+#logo:hover {
+    color: #F29721;
+}
+
 #right_nav {
     margin-top: 3px;
     border-radius: 5px;
@@ -154,19 +158,43 @@ li {
     text-decoration: underline;
 }
 
+#login_error {
+    color: red;
+}
+
 #map_container {
     width: 980px;
     height: 700px;
 }
 
+/* --- Reg Page --- */
+
+#reg_form ol {
+    margin: 20px 0 20px 0;
+    padding: 0;
+}
+
+#reg_form {
+    text-align: center;
+    color: #A3540B;
+    margin: 0 auto;
+}
+
+#reg_form button {
+    margin: 0 auto;
+}
+
+/* --- Admin Page --- */
+
 .table_list th, td {
- padding: 10px;
- font-size: 20px;
+    padding: 10px;
+    font-size: 20px;
 }
 
 .table_list thead {
     color: #A3540B;
 }
+
 .table_list tr {
     border-bottom: 1px solid #A3540B;
     color: #F29721;
