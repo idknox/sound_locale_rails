@@ -1,8 +1,7 @@
+require "date"
 require "sinatra"
 require "sinatra/content_for"
-require "active_record"
 require "rack-flash"
-require "date"
 require_relative "lib/model/table_connection"
 
 class App < Sinatra::Application
@@ -16,12 +15,18 @@ class App < Sinatra::Application
   end
 
   get "/" do
+    venues = sort_list(@db.get_venue, params[:sort_venues])
+    users = sort_list(@db.get_users(session[:id]), params[:sort_users])
+
     if session[:id] == 1
-      erb :admin, :locals => {:users => @db.get_users(session[:id])}
+      erb :admin, :locals => {
+        :users => users,
+        :venues => venues
+      }
     else
       erb :home, :locals => {
         :cur_user => @db.get_name(session[:id]),
-        :venues => @db.get_venues
+        :venues => venues
       }
     end
   end
@@ -43,12 +48,15 @@ class App < Sinatra::Application
     redirect "/"
   end
 
+  get "ven_:marker" do
+    erb :venue, :locals => {:venues => @db.get_venue(params[:marker])}
+  end
   post "/" do
     check_login(params[:email], params[:password])
   end
 
   post "/register" do
-    check_reg
+    check_reg(params)
   end
 
   post "/pw" do
@@ -65,30 +73,49 @@ class App < Sinatra::Application
     end
   end
 
-  delete "/admin/:id" do
+  get "/add_venue" do
+    erb :add_venue
+  end
+
+  post "/add_venue" do
+    @db.add_venue(params)
+    flash[:notice] = "#{params["name"]} added"
+    redirect "/"
+  end
+
+  delete "/admin/del_user:id" do
     flash[:notice] = "#{@db.get_name(params[:id])} deleted"
     @db.delete_user(params[:id])
     redirect "/"
   end
 
+  delete "/admin/del_venue:marker" do
+    flash[:notice] = "#{@db.get_venue(params[:marker])["title"]} deleted"
+    @db.delete_venue(params[:marker])
+    redirect "/"
+  end
+
   private
 
-  def check_reg
+  def check_reg(params)
     if !check_pw(params[:password], params[:pass_conf])
       flash[:notice] = "Passwords must match"
       redirect back
-    elsif user_exists(params[:email])
+    elsif @db.user_exists(params[:email])
       flash[:notice] = "User already exists"
       redirect back
     else
-      add_user
+      @db.add_user(params)
       flash[:notice] = "Thank you for registering"
       redirect "/"
     end
   end
 
   def check_login(email, password)
-    if !@db.user_exists(email)
+    if email == "" || password == ""
+      flash[:notice] = "email and password are required"
+      redirect back
+    elsif !@db.user_exists(email)
       flash[:notice] = "No account exists"
       redirect back
     elsif @db.user_exists(email)["password"] != password
@@ -104,4 +131,13 @@ class App < Sinatra::Application
     pw1 == pw2
   end
 
+  def sort_list(array, param)
+    if param == "user_name"
+      array.sort_by! { |user| user["last_name"] }.sort_by! { |user| user["first_name"] }
+    elsif param
+      array.sort_by! { |item| item[param] }
+    else
+      array
+    end
+  end
 end

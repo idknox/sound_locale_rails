@@ -5,6 +5,10 @@ class UsersVenues < ActiveRecord::Migration
       t.string :position
       t.string :icon
       t.string :marker_name
+      t.string :address
+      t.integer :size
+      t.string :description
+      t.string :price
     end
 
     create_table :users do |t|

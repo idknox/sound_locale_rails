@@ -18,10 +18,8 @@ article {
     position: relative;
     margin-left: 20px;
     float: left;
-}
-
-article {
     box-sizing: border-box;
+
 }
 
 section {
@@ -72,6 +70,8 @@ li {
     list-style-type: none;
 }
 
+/* --- Nav --- */
+
 #title {
     color: #F0E66C;
     text-align: center;
@@ -91,11 +91,12 @@ li {
 
 .nav_left {
     display: inline-block;
-    width: 200px;
+    width: 210px;
     padding: 6px;
-    /*border: 1px solid black;*/
-    margin-left: 40px;
+    text-align: right;
     color: #F29721;
+    float: right;
+    /*border: 1px solid black;*/
 }
 
 #email {
@@ -105,8 +106,9 @@ li {
 }
 
 #password {
-    width: 100px;
+    width: 130px;
     display: inline-block;
+    margin-right: 0;
 }
 
 .field {
@@ -117,6 +119,7 @@ li {
     font-size: 17px;
     margin: 3px;
     padding: 3px;
+    vertical-align: top;
 }
 
 .button {
@@ -127,6 +130,7 @@ li {
     border-radius: 5px;
     display: inline-block;
     padding: 3px;
+    margin: 3px;
 }
 
 .button:hover {
@@ -135,17 +139,17 @@ li {
 
 .nav_right {
     color: #F29721;
+    font-size: 13px;
     border-radius: 5px;
     display: inline-block;
     float: right;
     padding: 4px;
     text-align: center;
-    margin-top: 5px;
+    margin: 5px 0 0 20px;
 }
 
 #rem, #reg {
-    margin: 7px;
-    font-size: 15px;
+    margin: 8px;
 }
 
 #reg_button {
@@ -162,6 +166,10 @@ li {
     color: red;
 }
 
+#main {
+    height: 768px;
+}
+
 #map_container {
     width: 980px;
     height: 700px;
@@ -169,27 +177,56 @@ li {
 
 /* --- Reg Page --- */
 
-#reg_form ol {
+.form {
+    text-align: center;
+    color: #A3540B;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form ol {
     margin: 20px 0 20px 0;
     padding: 0;
 }
 
-#reg_form {
-    text-align: center;
-    color: #A3540B;
-    margin: 0 auto;
-}
-
-#reg_form button {
+.form button {
     margin: 0 auto;
 }
 
 /* --- Admin Page --- */
 
-.table_list th, td {
-    padding: 10px;
-    font-size: 20px;
+#users, #venues {
+    display: inline-block;
+    text-align: center;
 }
+
+#users p, #venues p {
+    color: #A3540B;
+}
+
+#users {
+    float: left;
+}
+#venues {
+    float: right;
+}
+
+.sorter {
+    border: none;
+    background-color: inherit;
+    margin: 0;
+}
+
+.sorter:hover {
+    text-decoration: underline;
+}
+
+.table_list th, td {
+    padding: 4px;
+    font-size: 10px;
+
+}
+
 
 .table_list thead {
     color: #A3540B;
@@ -198,8 +235,36 @@ li {
 .table_list tr {
     border-bottom: 1px solid #A3540B;
     color: #F29721;
+    border-right: 1px solid #A3540B;
+    border-left: 1px solid #A3540B;
 }
 
 .table_list {
-    margin: 0 auto
+    margin: 5px;
+}
+
+#delete {
+    font-size: 10px;
+}
+
+/* --- Add Venue --- */
+
+#address {
+    width: 300px;
+}
+#venue_desc {
+    height: 100px;
+    width: 400px;
+}
+
+#desc {
+    width: 150px;
+}
+
+/* --- VENUE --- */
+
+.small_map {
+    float: right;
+    width: 495px;
+    height: 350px;
 }

@@ -19,15 +19,58 @@
         <div id="title"><a href="/" id="logo"><span class="fa fa-search"></span></a> Sound Locale</div>
       </article>
       <article class="one_half" id="right_nav">
-        <% if session[:id] %>
-          <%= yield_content :loggedin %>
+        <% if session[:id] == 1 %>
+          <div class="nav_left">
+            <div>Welcome, Admin</div>
+            <a href="/pw" class="button">Change Password</a>
+            <br>
+            <a href="/logout" class="button">Logout</a>
+          </div>
+          <div class="nav_right">
+            <a href="/add_venue" type="submit" class="button">Add Venue</a>
+          </div>
+        <% elsif session[:id] %>
+          <div class="nav_left">
+            Welcome, <%= cur_user %>
+            <br>
+            <a href="/pw" class="button">Change Password</a>
+            <br>
+            <a href="/logout" class="button">Logout</a>
+          </div>
         <% else %>
-          <%= yield_content :loggedout %>
+          <div class="nav_right">
+            <div id="reg">
+              Not a member?<a href="/register" id="reg_button"> Register</a>
+            </div>
+            <div id="rem">
+              <input type="checkbox" value="remem" id="rem"/>
+              <label for="rem">Remember me</label></div>
+          </div>
+          <div class="nav_left">
+            <form method="post" action="/">
+              <input type="text" name="email" class="field" id="email"
+                     <% if flash[:notice] %>
+                     placeholder="<%= flash[:notice] %>"
+                     <% else %>
+                     placeholder="email"
+                     <% end %>
+                     />
+
+              <div id="bottom">
+                <input type="password" name="password" class="field"
+                       id="password" placeholder="password"/>
+                <button type="submit" class="button">Sign In</button>
+              </div>
+            </form>
+          </div>
+
         <% end %>
       </article>
     </section>
   </div>
-  <%= yield_content :main %>
+  <div id="main">
+    <%= yield_content :main %>
+  </div>
 </div>
 </body>
 </html>

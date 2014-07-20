@@ -1,4 +1,5 @@
 require "gschool_database_connection"
+require "date"
 
 class Table_connection
 
@@ -15,12 +16,13 @@ class Table_connection
     end
   end
 
-  def add_user
+  def add_user(user)
+
     @database_connection.sql(
       "INSERT INTO users (first_name, last_name, email" +
-        ", password, birthday, join_date) VALUES ('#{params[:first_name]}'" +
-        ", '#{params[:last_name]}', '#{params[:email]}', '#{params[:password]}'," +
-        " '#{params[:birthdate]}', '#{Date.today.strftime("%m-%e-%Y")}')"
+        ", password, birthday, join_date) VALUES ('#{user[:first_name]}'" +
+        ", '#{user[:last_name]}', '#{user[:email]}', '#{user[:password]}'," +
+        " '#{Date.parse(user[:birthday]).strftime("%m-%d-%Y")}', '#{Date.today.strftime("%m-%d-%Y")}')"
     )
   end
 
@@ -39,9 +41,11 @@ class Table_connection
   end
 
   def get_users(id)
-    @database_connection.sql(
-      "SELECT * FROM users WHERE id <> #{id}"
-    )
+    if id
+      @database_connection.sql(
+        "SELECT * FROM users WHERE id <> #{id}"
+      )
+    end
   end
 
   def delete_user(id)
@@ -73,11 +77,33 @@ class Table_connection
     )
   end
 
-  def get_venues
+  def add_venue(venue)
     @database_connection.sql(
-      "SELECT * FROM venues"
+      "INSERT INTO venues (title, position, icon, " +
+        "marker_name, address, size, description, price, map) " +
+        "VALUES ('#{venue[:name]}', '#{venue[:position]}', " +
+        "'#{venue[:icon]}', '#{venue[:marker_name]}', " +
+        "'#{venue[:address]}', '#{venue[:size]}', " +
+        "'#{venue[:description]}', '#{venue[:price]}', '#{venue[:map]}')"
     )
   end
 
+  def get_venue(marker=nil)
+    if marker
+      @database_connection.sql(
+        "SELECT * FROM venues WHERE marker_name='#{marker}'"
+      )
+    else
+      @database_connection.sql(
+        "SELECT * FROM venues"
+      )
+    end
+  end
+
+  def delete_venue(marker)
+    @database_connection.sql(
+      "DELETE FROM venues WHERE marker_name='#{marker}'"
+    )
+  end
 end
 
