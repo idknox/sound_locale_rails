@@ -201,7 +201,7 @@ li {
 
 #main {
     height: 1024px;
-    padding: 40px;
+    padding: 10px;
 }
 
 #main p {
@@ -211,9 +211,10 @@ li {
 }
 
 #map_container {
-    width: 900px;
+    width: 940px;
     height: 600px;
     border-radius: 5%;
+    margin: 0 auto;
 }
 
 /* --- Reg Page --- */
