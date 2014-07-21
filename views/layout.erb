@@ -15,7 +15,7 @@
   <div id="header">
     <section class="clearfix">
       <article class="one_half">
-        <div id="logo_container"><img src="images/logo.png"></div>
+        <a href="/"><div id="logo_container"><img src="images/logo.png"></div></a>
         <div id="title"> Sound Locale</div>
         <div id="nav">
         <ul>
@@ -55,15 +55,7 @@
             <a href="/logout" class="button">Logout</a>
           </div>
           <div class="nav_left">
-            <form method="get" action="/">
-              <select name="filter" class="field">
-                <option value="price: $">$</option>
-                <option value="price: $$">$$</option>
-                <option value="price: $$$">$$$</option>
-              </select>
-              <br>
-              <input type="submit" class="button" value="Filter"/>
-            </form>
+            <%= yield_content :filter %>
           </div>
         <% else %>
           <div class="nav_right">

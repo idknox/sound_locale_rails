@@ -1,22 +1,18 @@
 <% content_for :main do %>
   <div class="form">
-    <table>
-      <tbody>
-      <tr>
-        <form method="post" action="/pw">
-          <td><label for="old_pw">Old Password: </label></td>
-          <td><input type="password" name="old_pw" class="fields"/></td>
-          <tr>
-            <td><label for="new_pw">New Password: </label></td>
-            <td><input type="password" name="new_pw" class="fields"/></td>
-          </tr>
-          <tr>
-            <td><label for="new_conf">Confirm New Password: </label></td>
-            <td><input type="password" name="new_conf" class="fields"/></td>
-          </tr>
-      </tbody>
-    </table>
-    <input type="submit" value="Submit" class="button"/>
+    <form method="post" action="/pw">
+      <ul>
+        <li><label for="old_pw">Old Password: </label></li>
+        <li><input type="password" name="old_pw" class="field"/></li>
+        <br>
+        <li><label for="new_pw">New Password: </label></li>
+        <li><input type="password" name="new_pw" class="field"/></li>
+        <br>
+        <li><label for="new_conf">Confirm New Password: </label></li>
+        <li><input type="password" name="new_conf" class="field"/></li>
+        <br>
+        <input type="submit" value="Submit" class="button"/>
+        </ul>
     </form>
 
     <% if flash[:notice] %>

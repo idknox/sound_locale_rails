@@ -50,11 +50,17 @@ class App < Sinatra::Application
   end
 
   get "/ven_:marker" do
-    erb :venue, :locals => {:venue => @db.get_venue(params[:marker])[0]}
+    erb :venue, :locals => {
+      :venue => @db.get_venue(params[:marker])[0],
+      :cur_user => @db.get_name(session[:id])
+    }
   end
 
   get "/venues" do
-    erb :venues, :locals => {:venues => sort_list(@db.get_venue, "title")}
+    erb :venues, :locals => {
+      :venues => sort_list(@db.get_venue, "title"),
+      :cur_user => @db.get_name(session[:id])
+    }
   end
 
   post "/" do
@@ -69,7 +75,7 @@ class App < Sinatra::Application
     if !@db.get_pw(session[:id], params[:old_pw])
       flash[:notice] = "Incorrect Password"
       redirect back
-    elsif check_pw(params[:new_pw], params[:new_conf])
+    elsif !check_pw(params[:new_pw], params[:new_conf])
       flash[:notice] = "Passwords don't match"
       redirect back
     else
@@ -92,7 +98,7 @@ class App < Sinatra::Application
   end
 
   delete "/admin/del_venue_:marker" do
-    flash[:notice] = "#{@db.get_venue(params[:marker])["title"]} deleted"
+    # flash[:notice] = "#{@db.get_venue(params[:marker].to_i)["title"]} deleted"
     @db.delete_venue(params[:marker])
     redirect "/"
   end

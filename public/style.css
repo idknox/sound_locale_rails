@@ -130,8 +130,8 @@ li {
     margin-right: 0;
 }
 
-.nav_left input {
-    float: left;
+#filter {
+    margin: 0 auto;
 }
 
 #email {
@@ -154,7 +154,6 @@ li {
     margin: 5px;
     padding: 3px;
     vertical-align: top;
-    float: left
 }
 
 .button {
@@ -201,7 +200,7 @@ li {
 }
 
 #main {
-    height: auto;
+    height: 1024px;
     padding: 40px;
 }
 
@@ -220,7 +219,7 @@ li {
 /* --- Reg Page --- */
 
 .form {
-    text-align: ceter;
+    text-align: center;
     color: #A3540B;
     margin: 0 auto;
     padding: 30px;
@@ -344,7 +343,7 @@ li {
     display:inline;
     width: 200px;
     height: 200px;
-    margin: 13px;
+    margin: 8px;
     border-radius: 40%;
     border: 5px solid #1C3C5B;
 }
