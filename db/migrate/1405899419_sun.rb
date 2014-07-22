@@ -11,7 +11,6 @@ class Sun < ActiveRecord::Migration
       t.string :map
       t.string :icon
       t.string :logo
-      t.string :background
     end
 
     create_table :users do |t|
