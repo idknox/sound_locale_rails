@@ -1,0 +1,53 @@
+<% content_for :main do %>
+  <div class="form">
+    <form method="post" action="/users/<%= user["id"] %>" class="form">
+      <input type="hidden" name="_method" value="patch"/>
+      <ul>
+        <li>
+          <label for="first_name">First Name</label>
+        </li>
+        <li>
+          <input type="text" name="first_name"
+                 value="<%= user["first_name"] %>"
+                 class="field"
+          />
+        </li>
+        <br>
+        <li>
+          <label for="last_name">Last Name</label>
+        </li>
+        <li>
+          <input type="text"
+                 name="last_name"
+                 value="<%= user["last_name"] %>"
+                 class="field"
+          />
+        </li>
+        <br>
+        <li>
+          <label for="email">Email</label>
+        </li>
+        <li>
+          <input type="email"
+                 name="email"
+                 value="<%= user["email"] %>"
+                 class="field"
+          />
+        </li>
+        <br>
+        <li>
+          <label for="birthday">Birthday</label>
+        </li>
+        <li>
+          <input type="date"
+                 name="birthday"
+                 value="<%= user["birthday"] %>"
+                 class="field"
+          />
+        </li>
+        <br>
+      </ul>
+      <button type="submit" class="button" id="reg_submit">Update</button>
+    </form>
+  </div>
+<% end %>

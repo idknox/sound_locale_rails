@@ -17,7 +17,6 @@ class Table_connection
   end
 
   def add_user(user)
-
     @database_connection.sql(
       "INSERT INTO users (first_name, last_name, email" +
         ", password, birthday, join_date) VALUES ('#{user[:first_name]}'" +
@@ -77,6 +76,17 @@ class Table_connection
     )
   end
 
+  def update_user(user)
+    @database_connection.sql(
+      "UPDATE users SET first_name='#{user[:first_name]}', " +
+      "last_name='#{user[:last_name]}', " +
+      "email='#{user[:email]}', " +
+      "birthday='#{Date.parse(user[:birthday]).strftime("%m-%d-%Y")}', " +
+      "join_date='#{Date.today.strftime("%m-%d-%Y")}'"
+    )
+  end
+
+
   def add_venue(venue)
     @database_connection.sql(
       "INSERT INTO venues (title, position, background, " +
@@ -88,16 +98,27 @@ class Table_connection
     )
   end
 
-  def get_venue(marker=nil)
-    if marker
+  def get_venue(id)
       @database_connection.sql(
-        "SELECT * FROM venues WHERE marker_name='#{marker}'"
-      )
-    else
-      @database_connection.sql(
-        "SELECT * FROM venues"
-      )
-    end
+        "SELECT * FROM venues WHERE id =#{id}"
+      )[0]
+  end
+
+  def get_venues
+    @database_connection.sql(
+      "SELECT * FROM venues"
+    )
+  end
+
+  def update_venue(venue)
+    @database_connection.sql(
+      "UPDATE venues set title='#{venue[:name]}', " +
+      "position='#{venue[:position]}', background='#{venue[:background]}', " +
+      "icon='#{venue[:icon]}', marker_name='#{venue[:marker_name]}', " +
+      "address='#{venue[:address]}', size='#{venue[:size]}', " +
+      "description='#{venue[:description]}', price='#{venue[:price]}', " +
+      "map='#{venue[:map]}' WHERE id=#{venue[:id]}"
+    )
   end
 
   def delete_venue(marker)

@@ -1,40 +1,48 @@
 <% content_for :main do %>
   <div class="form">
-    <form method="post" action="/venues">
+    <form method="post" action="/venues/<%= venue["id"] %>">
+      <input type="hidden" name="_method" value="patch"/>
       <ul>
         <li>
           <label for="name">Name</label>
         </li>
         <li>
-          <input type="text" name="name" class="field"/>
+          <input type="text" name="name" class="field" value="<%= venue["title"] %>"/>
         </li>
         <br>
         <li>
           <label for="address">Address</label>
         </li>
         <li>
-          <input type="text" name="address" class="field" id="address"/>
+          <input type="text" name="address" class="field" id="address" value="<%= venue["address"] %>"/>
         </li>
         <br>
         <li>
           <label for="position">Position</label>
         </li>
         <li>
-          <input type="text" name="position" class="field"/>
+          <input type="text" name="position" class="field" value="<%= venue["position"] %>"/>
         </li>
         <br>
         <li>
           <label for="marker_name">Marker Name</label>
         </li>
         <li>
-          <input type="text" name="marker_name" class="field"/>
+          <input type="text" name="marker_name" class="field" value="<%= venue["marker_name"] %>"/>
         </li>
         <br>
         <li>
-          <label for="icon">Background</label>
+          <label for="background">Background</label>
         </li>
         <li>
-          <input type="text" name="background" class="field"/>
+          <input type="text" name="background" class="field" value="<%= venue["background"] %>"/>
+        </li>
+        <br>
+        <li>
+          <label for="icon">Icon</label>
+        </li>
+        <li>
+          <input type="text" name="icon" class="field" value="<%= venue["icon"] %>"/>
         </li>
         <br>
         <li>
@@ -42,7 +50,7 @@
         </li>
         <li>
           <input type="text" name="description" class="field"
-                 id="venues_desc"/>
+                 id="venues_desc" value="<%= venue["description"] %>"/>
         </li>
         <br>
         <li>
@@ -62,7 +70,7 @@
           <label for="price">Price</label>
         </li>
         <li>
-          <select name="filter" class="field">
+          <select name="price" class="field">
             <option value="$">$</option>
             <option value="$$">$$</option>
             <option value="$$$">$$$</option>
@@ -79,7 +87,7 @@
         </li>
         <br>
       </ul>
-      <button type="submit" class="button" id="reg_submit">Add Venue</button>
+      <button type="submit" class="button" id="reg_submit">Update Venue</button>
     </form>
   </div>
 <% end %>

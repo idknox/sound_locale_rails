@@ -4,7 +4,7 @@
   </div>
   <div class="grid">
     <% venues.each do |venue| %>
-      <a href="/ven_<%= venue["marker_name"] %>">
+      <a href="/venues/<%= venue["id"] %>">
         <div class="thumb" style="background-image:url(<%= venue["background"] %>)">
         </div>
       </a>

@@ -15,7 +15,7 @@ class App < Sinatra::Application
   end
 
   get "/" do
-    venues = filter_list(sort_list(@db.get_venue, params[:sort_venues]), params[:filter])
+    venues = filter_list(sort_list(@db.get_venues, params[:sort_venues]), params[:filter])
     users = sort_list(@db.get_users(session[:id]), params[:sort_users])
     user = @db.get_user(session[:id])
     if session[:id] == 1
@@ -32,8 +32,17 @@ class App < Sinatra::Application
     end
   end
 
+  get "/logout" do
+    session.delete(:id)
+    redirect "/"
+  end
+
   get "/users/new" do
     erb :register
+  end
+
+  get "/users/:id/edit" do
+    erb :user_edit, :locals => {:user => @db.get_user(params[:id])}
   end
 
   get "/users/:id/pw/edit" do
@@ -44,30 +53,29 @@ class App < Sinatra::Application
     erb :add_venue
   end
 
-  get "/logout" do
-    session.delete(:id)
-    redirect "/"
-  end
-
-  get "/ven_:marker" do
+  get "/venues/:id" do
     erb :venue, :locals => {
-      :venue => @db.get_venue(params[:marker])[0],
+      :venue => @db.get_venue(params[:id]),
       :cur_user => @db.get_user(session[:id])
     }
   end
 
   get "/venues" do
     erb :venues, :locals => {
-      :venues => sort_list(@db.get_venue, "title"),
+      :venues => sort_list(@db.get_venues, "title"),
       :cur_user => @db.get_user(session[:id])
     }
+  end
+
+  get "/venues/:id/edit" do
+    erb :venue_edit, :locals => {:venue => @db.get_venue(params[:id])}
   end
 
   post "/" do
     check_login(params[:email], params[:password])
   end
 
-  post "/users/new" do
+  post "/users" do
     check_reg(params)
   end
 
@@ -85,7 +93,7 @@ class App < Sinatra::Application
     end
   end
 
-  post "/add_venue" do
+  post "/venues" do
     desc = params[:description].length
     if desc > 255
       flash[:notice] = "Description is #{desc-255} chars too long"
@@ -96,16 +104,27 @@ class App < Sinatra::Application
       redirect "/"
     end
   end
-  delete "/admin/del_user_:id" do
+
+  patch "/venues/:id" do
+    @db.update_venue(params)
+    redirect "/venues/#{params[:id]}"
+  end
+
+  patch "/users/:id" do
+    @db.update_user(params)
+    redirect "/"
+  end
+
+  delete "/users/:id" do
     flash[:notice] = "#{@db.get_name(params[:id])} deleted"
     @db.delete_user(params[:id])
     redirect "/"
   end
 
-  delete "/admin/del_venue_:marker" do
-    # flash[:notice] = "#{@db.get_venue(params[:marker].to_i)["title"]} deleted"
-    @db.delete_venue(params[:marker])
-    redirect "/"
+  delete "/venues/:id" do
+    flash[:notice] = "#{@db.get_venue(params[:id])["title"]} deleted"
+    @db.delete_venue(params[:id])
+    redirect "/venues"
   end
 
   private
