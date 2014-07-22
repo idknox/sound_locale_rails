@@ -33,21 +33,23 @@
       var map = new google.maps.Map(mapCanvas, mapOptions);
 
       <% venues.each do |venue| %>
-      var <%= venue["marker_name"] %> =
-      new google.maps.Marker({
+      var <%= venue["marker_name"] %> = new google.maps.Marker({
         position: new google.maps.LatLng(<%= venue["position"] %>),
         title: '<%= venue["title"] %>',
         animation: google.maps.Animation.DROP,
         map: <%= venue["map"] %>
       });
 
-      <%= venue["marker_name"] %>.
-      setMap(map);
+      var <%= venue["marker_name"] %>_info = '<div class="info_window"><%= venue["description"] %></div>'
+
+      var <%= venue["marker_name"] %>_window = new google.maps.InfoWindow({
+        content: <%= venue["marker_name"] %>_info
+      })
+
+      <%= venue["marker_name"] %>.setMap(map);
 
       google.maps.event.addListener(<%= venue["marker_name"] %>, 'click', function () {
-        new google.maps.InfoWindow({
-          content: '<div class="info_window"><%= venue["description"] %></div>'
-        }).open(map, <%= venue["marker_name"] %>);
+        <%= venue["marker_name"] %>_window.open(map, <%= venue["marker_name"] %>);
       });
       <% end %>
     }
@@ -69,6 +71,4 @@
   </form>
 <% end %>
 
-<% content_for :nav do %>
 
-<% end %>

@@ -17,16 +17,11 @@ class App < Sinatra::Application
   get "/" do
     venues = filter_list(sort_list(@db.get_venues, params[:sort_venues]), params[:filter])
     user = @db.get_user(session[:id])
-    if is_admin?
-      erb :admin, :locals => {
-        :venues => venues,
-      }
-    else
-      erb :home, :locals => {
-        :cur_user => user,
-        :venues => venues
-      }
-    end
+
+    erb :home, :locals => {
+      :cur_user => user,
+      :venues => venues
+    }
   end
 
   before "/admin/*" do

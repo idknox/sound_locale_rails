@@ -4,11 +4,13 @@
   </div>
   <div class="grid">
     <% venues.each do |venue| %>
+
       <a href="/venues/<%= venue["id"] %>">
-        <div class="thumb" style="background-image:url(<%= venue["background"] %>)">
-        </div>
+        <img class="thumb" src="<%= venue["background"] %>">
       </a>
 
     <% end %>
   </div>
+
+  <div class="clearfix"></div>
 <% end %>

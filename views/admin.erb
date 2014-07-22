@@ -40,13 +40,16 @@
         map: <%= venue["map"] %>
       });
 
-      <%= venue["marker_name"] %>.
-      setMap(map);
+      var <%= venue["marker_name"] %>_info = '<div class="info_window"><%= venue["description"] %></div>'
+
+      var <%= venue["marker_name"] %>_window = new google.maps.InfoWindow({
+        content: <%= venue["marker_name"] %>_info
+      })
+
+        <%= venue["marker_name"] %>.setMap(map);
 
       google.maps.event.addListener(<%= venue["marker_name"] %>, 'click', function () {
-        new google.maps.InfoWindow({
-          content: '<div class="info_window"><%= venue["description"] %></div>'
-        }).open(map, <%= venue["marker_name"] %>);
+        <%= venue["marker_name"] %>_window.open(map, <%= venue["marker_name"] %>);
       });
       <% end %>
     }

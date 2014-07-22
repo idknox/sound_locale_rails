@@ -117,7 +117,7 @@ class Table_connection
       "icon='#{venue[:icon]}', marker_name='#{venue[:marker_name]}', " +
       "address='#{venue[:address]}', size='#{venue[:size]}', " +
       "description='#{venue[:description]}', price='#{venue[:price]}', " +
-      "map='#{venue[:map]}' WHERE id=#{venue[:id]}"
+      "map='#{venue[:map]}', logo='#{venue[:logo]}' WHERE id=#{venue[:id]}"
     )
   end
 

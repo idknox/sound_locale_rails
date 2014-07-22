@@ -75,7 +75,7 @@ li {
 /* --- Nav --- */
 
 #header {
-    padding: 5px;
+    padding: 10px;
 }
 
 #logo_container {
@@ -184,7 +184,7 @@ li {
 }
 
 #rem, #reg {
-    margin: 8px;
+    margin: 10px;
 }
 
 #reg_button {
@@ -202,7 +202,7 @@ li {
 }
 
 #main {
-    padding: 10px;
+    padding: 0 10px 10px 10px;
 }
 
 #main p {
@@ -212,10 +212,10 @@ li {
 }
 
 #map_container {
-    width: 940px;
-    height: 600px;
+    width: 950px;
+    height: 625px;
     border-radius: 5%;
-    margin: 0 auto;
+    margin: 0 5px 0 5px;
 }
 
 .info_window {
@@ -297,29 +297,30 @@ li {
 }
 
 #small_map {
-    float: right;
     width: 495px;
     height: 400px;
     margin: -140px 40px 0 0;
     border-radius: 10px;
+float: right;
 }
 
 #venue_name {
     font-size: 40px;
-    margin: 20px 0 0 20px;
-    width: 400px;
+    margin: 20px;
+    width: 350px;
     height: 150px;
-    text-align: left;
-    display: inline-block;
+    float: right;
+}
 
+#venue_name img {
+    margin: 0 auto;
 }
 
 #venue_info {
     width: 400px;
-    /*color: #F29721;*/
-    float: left;
     margin: 0 auto;
     padding: 0;
+    display: inline-block;
 }
 
 #venue_info td {
@@ -341,21 +342,27 @@ li {
 }
 
 .grid {
-    /*width: 980px;*/
+    margin: 0 auto;
 }
 
-.thumb {
+#grid_item {
+    width: 25%;
+    display: inline-block;
+}
+
+img.thumb {
     /*line-height: 1.5em;*/
-    display: inline;
     width: 200px;
     height: 200px;
-    margin: 8px;
-    border-radius: 40%;
+    margin: 15px;
     border: 5px solid #1C3C5B;
+    border-radius: 40%;
+    float: left;
 }
 
 .thumb:hover {
     border: 5px solid #000;
 }
+
 
 
