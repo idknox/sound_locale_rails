@@ -33,7 +33,8 @@
       var map = new google.maps.Map(mapCanvas, mapOptions);
 
       <% venues.each do |venue| %>
-      var <%= venue["marker_name"] %> = new google.maps.Marker({
+      var <%= venue["marker_name"] %> =
+      new google.maps.Marker({
         position: new google.maps.LatLng(<%= venue["position"] %>),
         title: '<%= venue["title"] %>',
         animation: google.maps.Animation.DROP,
@@ -66,4 +67,8 @@
     <br>
     <input type="submit" class="button" value="Filter"/>
   </form>
+<% end %>
+
+<% content_for :nav do %>
+
 <% end %>

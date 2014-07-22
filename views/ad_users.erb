@@ -1,0 +1,53 @@
+<% content_for :main do %>
+
+  <p>Users</p>
+<div id="users">
+  <table class="table_list">
+    <thead>
+    <form method="get" action="/admin/users">
+      <th>
+        <button type="submit" class="sorter" name="sort" value="user_name">Name</button>
+      </th>
+      <th>
+        <button type="submit" class="sorter" name="sort" value="email">Email</button>
+      </th>
+      <th>
+        <button type="submit" class="sorter" name="sort" value="password">Password</button>
+      </th>
+      <th>
+        <button type="submit" class="sorter" name="sort" value="birthdate">Birthday</button>
+      </th>
+      <th>
+        <button type="submit" class="sorter" name="sort" value="join_date">Join Date</button>
+      </th>
+      <th>&nbsp</th>
+      <th>&nbsp</th>
+    </form>
+    </thead>
+    <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= user["first_name"] + " " + user["last_name"] %></td>
+        <td><%= user["email"] %></td>
+        <td><%= user["password"] %></td>
+        <td><%= Date.parse(user["birthday"]).strftime("%m-%d-%Y") %></td>
+        <td><%= Date.parse(user["join_date"]).strftime("%m-%d-%Y") %></td>
+        <td>
+          <a href="/admin/users/<%= user["id"] %>/edit"
+             class="button" id="delete">
+            edit
+          </a>
+        </td>
+        <td>
+          <form method="post" action="/users/<%= user["id"] %>">
+            <input type="hidden" name="_method" value="delete"/>
+            <button class="button" id="delete">del</button>
+          </form>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<% end %>

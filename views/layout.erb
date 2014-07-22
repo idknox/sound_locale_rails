@@ -15,20 +15,23 @@
   <div id="header">
     <section class="clearfix">
       <article class="one_half">
-        <a href="/"><div id="logo_container"><img src="/./images/logo.png"></div></a>
+        <a href="/">
+          <div id="logo_container"><img src="/./images/logo.png"></div>
+        </a>
+
         <div id="title"> Sound Locale</div>
         <div id="nav">
-        <ul>
-        <li>
-        Events
-        </li>
-        <li>
-        Bands
-        </li>
-        <li>
-        <a href="/venues">Venues</a>
-        </li>
-        </ul>
+          <ul>
+            <li>
+              Events
+            </li>
+            <li>
+              Bands
+            </li>
+            <li>
+              <a href="/venues">Venues</a>
+            </li>
+          </ul>
         </div>
       </article>
       <article class="one_half" id="right_nav">
@@ -39,12 +42,11 @@
             <a href="/logout" class="button">Logout</a>
           </div>
           <div class="nav_right">
-            <form method="get" action="/">
-              <button type="submit" class="button" name="list" value="users">Users</button>
-              <br>
-              <button type="submit" class="button" name="list" value="venues">Venues</button>
-              </form>
-              <a href="/venues/new" class="button">Add Venue</a>
+            <a href="/admin/users" class="button">Users</a>
+            <br>
+            <a href="/admin/venues" class="button">Venues</a>
+            </form>
+            <a href="/admin/venues/new" class="button">Add Venue</a>
           </div>
         <% elsif session[:id] %>
           <div class="nav_right">
@@ -83,7 +85,6 @@
               </div>
             </form>
           </div>
-
         <% end %>
       </article>
     </section>

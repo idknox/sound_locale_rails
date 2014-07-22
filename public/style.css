@@ -341,12 +341,11 @@ li {
 }
 
 .grid {
-    width: 980px;
+    /*width: 980px;*/
 }
 
 .thumb {
-    line-height: 1.5em;
-    float: left;
+    /*line-height: 1.5em;*/
     display: inline;
     width: 200px;
     height: 200px;

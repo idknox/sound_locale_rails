@@ -1,6 +1,6 @@
 <% content_for :main do %>
   <div class="form">
-    <form method="post" action="/users/<%= user["id"] %>/pw">
+    <form method="post" action="/users/<%= cur_user["id"] %>/pw">
       <ul>
         <li><label for="old_pw">Old Password: </label></li>
         <li><input type="password" name="old_pw" class="field"/></li>
@@ -25,7 +25,7 @@
 
 <% content_for :loggedin do %>
 
-  <p>Welcome, User</p>
+  <p>Welcome, <%= cur_user["first_name"] %></p>
   <form method="get" action="/logout">
     <button type="submit" name="logout" class="button">Logout</button>
   </form>
