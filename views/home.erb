@@ -1,4 +1,3 @@
-
 <% content_for :main do %>
   <div id="map_container">
   </div>
@@ -43,6 +42,12 @@
 
       <%= venue["marker_name"] %>.
       setMap(map);
+
+      google.maps.event.addListener(<%= venue["marker_name"] %>, 'click', function () {
+        new google.maps.InfoWindow({
+          content: '<div class="info_window"><%= venue["description"] %></div>'
+        }).open(map, <%= venue["marker_name"] %>);
+      });
       <% end %>
     }
 
@@ -52,13 +57,13 @@
 <% end %>
 
 <% content_for :filter do %>
-<form method="get" action="/">
-  <select name="filter" class="field">
-    <option value="price: $">$</option>
-    <option value="price: $$">$$</option>
-    <option value="price: $$$">$$$</option>
-  </select>
-  <br>
-  <input type="submit" class="button" value="Filter"/>
-</form>
+  <form method="get" action="/">
+    <select name="filter" class="field">
+      <option value="price: $">$</option>
+      <option value="price: $$">$$</option>
+      <option value="price: $$$">$$$</option>
+    </select>
+    <br>
+    <input type="submit" class="button" value="Filter"/>
+  </form>
 <% end %>

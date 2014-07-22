@@ -85,6 +85,7 @@ li {
     float: left;
     margin: 5px 10px 5px 0;
 }
+
 #title {
     color: #F0E66C;
     text-align: left;
@@ -93,10 +94,10 @@ li {
     margin-left: -20px;
 }
 
-
 #logo:hover {
     color: #A3540B;
 }
+
 #nav {
     margin: 0;
 }
@@ -105,6 +106,7 @@ li {
     margin: 0;
     padding: 0;
 }
+
 #nav li {
     display: list-item;
     list-style-type: none;
@@ -200,7 +202,6 @@ li {
 }
 
 #main {
-    height: 1024px;
     padding: 10px;
 }
 
@@ -215,6 +216,10 @@ li {
     height: 600px;
     border-radius: 5%;
     margin: 0 auto;
+}
+
+.info_window {
+    width: 500px;
 }
 
 /* --- Reg Page --- */
@@ -244,6 +249,7 @@ li {
 .table_list {
     margin: 0 auto;
 }
+
 .table_list th, td {
     padding: 10px;
     font-size: 15px;
@@ -278,7 +284,6 @@ li {
 #address {
     width: 200px;
 }
-
 
 #venues_desc {
     width: 200px;
@@ -332,16 +337,17 @@ li {
 .page_title {
     margin: 0 auto;
     font-size: 40px;
-    text-align: center  ;
+    text-align: center;
 }
+
 .grid {
     width: 980px;
-    height: auto;
 }
+
 .thumb {
-    line-height:1.5em;
-    float:left;
-    display:inline;
+    line-height: 1.5em;
+    float: left;
+    display: inline;
     width: 200px;
     height: 200px;
     margin: 8px;
