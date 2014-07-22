@@ -1,4 +1,4 @@
-class MapVars < ActiveRecord::Migration
+class Sites < ActiveRecord::Migration
   def change
     add_column :venues, :site, :string
   end
