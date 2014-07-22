@@ -89,9 +89,9 @@ class Table_connection
 
   def add_venue(venue)
     @database_connection.sql(
-      "INSERT INTO venues (title, position, background, " +
+      "INSERT INTO venues (title, site, position, background, " +
         "marker_name, address, size, description, price, map) " +
-        "VALUES ('#{venue[:name]}', '#{venue[:position]}', " +
+        "VALUES ('#{venue[:name]}', '#{venue[:site]}', '#{venue[:position]}', " +
         "'#{venue[:background]}', '#{venue[:marker_name]}', " +
         "'#{venue[:address]}', '#{venue[:size]}', " +
         "'#{venue[:description]}', '#{venue[:price]}', '#{venue[:map]}')"
@@ -117,7 +117,8 @@ class Table_connection
       "icon='#{venue[:icon]}', marker_name='#{venue[:marker_name]}', " +
       "address='#{venue[:address]}', size='#{venue[:size]}', " +
       "description='#{venue[:description]}', price='#{venue[:price]}', " +
-      "map='#{venue[:map]}', logo='#{venue[:logo]}' WHERE id=#{venue[:id]}"
+      "map='#{venue[:map]}', logo='#{venue[:logo]}', site='#{venue[:site]}' " +
+      "WHERE id=#{venue[:id]}"
     )
   end
 

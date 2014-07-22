@@ -54,7 +54,7 @@ section {
 }
 
 * {
-    font-family: Helvetica, sans-serif;
+    font-family: Helvetica HelveticaNeue-Light, sans-serif;
 }
 
 a {
@@ -111,7 +111,8 @@ li {
     display: list-item;
     list-style-type: none;
     float: left;
-    margin-left: 45px;
+    margin-left: 35px;
+    font-size: 20px;
 }
 
 #nav li:hover {
@@ -148,7 +149,7 @@ li {
 }
 
 .field {
-    color: #1C3C5B;
+    color: #F29721;
     background-color: #2D628E;
     border: none;
     border-radius: 5px;
@@ -212,15 +213,27 @@ li {
 }
 
 #map_container {
-    width: 950px;
-    height: 625px;
+    width: 960px;
+    height: 635px;
     border-radius: 5%;
-    margin: 0 5px 0 5px;
+    margin: 0;
 }
+/* --- Infowindow --- */
 
 .info_window {
     width: 500px;
+    color: #F29721;
+    border-radius: 10px;
+    background-color: #1C3C5B;
+    padding: 20px;
 }
+
+.info_window img {
+    width: 100px;
+    margin: 10px;
+}
+
+
 
 /* --- Reg Page --- */
 
@@ -301,7 +314,7 @@ li {
     height: 400px;
     margin: -140px 40px 0 0;
     border-radius: 10px;
-float: right;
+    display: inline-block;
 }
 
 #venue_name {

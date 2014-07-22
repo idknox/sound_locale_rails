@@ -1,6 +1,6 @@
 class MapVars < ActiveRecord::Migration
-  def up
-    # add migration code here
+  def change
+    add_column :venues, :site, :string
   end
 
   def down

@@ -40,7 +40,12 @@
         map: <%= venue["map"] %>
       });
 
-      var <%= venue["marker_name"] %>_info = '<div class="info_window"><%= venue["description"] %></div>'
+      var <%= venue["marker_name"] %>_info = '<div class="info_window">' +
+        '<img src="<%= venue["logo"] %>">' +
+        '<%= venue["description"] %>' +
+        '<br>' +
+        '<a href="<%= venue["site"] %>" class="button">Website</a>' +
+        '</div>'
 
       var <%= venue["marker_name"] %>_window = new google.maps.InfoWindow({
         content: <%= venue["marker_name"] %>_info
@@ -65,6 +70,15 @@
       <option value="price: $">$</option>
       <option value="price: $$">$$</option>
       <option value="price: $$$">$$$</option>
+      <option value="size: Warehouse/Art Space">Warehouse/Art Space</option>
+      <option value="size: Bar">Bar</option>
+      <option value="size: Small Venue">Small Venue</option>
+      <option value="size: Mid-size Venue">Mid-size Venue</option>
+      <option value="size: Large Venue/Auditorum">Large Venue/Auditorum</option>
+      <option value="size: Outdoor Venue">Outdoor Venue</option>
+      <option value="size: $$$">$$$</option>
+      <option value="size: $$$">$$$</option>
+
     </select>
     <br>
     <input type="submit" class="button" value="Filter"/>
