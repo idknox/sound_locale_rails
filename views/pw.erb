@@ -1,6 +1,6 @@
 <% content_for :main do %>
   <div class="form">
-    <form method="post" action="/pw">
+    <form method="post" action="/users/<%= user["id"] %>/pw">
       <ul>
         <li><label for="old_pw">Old Password: </label></li>
         <li><input type="password" name="old_pw" class="field"/></li>

@@ -2,7 +2,7 @@ require "date"
 require "sinatra"
 require "sinatra/content_for"
 require "rack-flash"
-require_relative "lib/model/table_connection"
+require_relative './lib/model/table_connection'
 
 class App < Sinatra::Application
   helpers Sinatra::ContentFor
@@ -17,7 +17,7 @@ class App < Sinatra::Application
   get "/" do
     venues = filter_list(sort_list(@db.get_venue, params[:sort_venues]), params[:filter])
     users = sort_list(@db.get_users(session[:id]), params[:sort_users])
-    user = @db.get_name(session[:id])
+    user = @db.get_user(session[:id])
     if session[:id] == 1
       erb :admin, :locals => {
         :users => users,
@@ -32,15 +32,15 @@ class App < Sinatra::Application
     end
   end
 
-  get "/register" do
+  get "/users/new" do
     erb :register
   end
 
-  get "/pw" do
-    erb :pw
+  get "/users/:id/pw/edit" do
+    erb :pw, :locals => {:user => @db.get_user(params[:id])}
   end
 
-  get "/add_venue" do
+  get "/venues/new" do
     erb :add_venue
   end
 
@@ -52,14 +52,14 @@ class App < Sinatra::Application
   get "/ven_:marker" do
     erb :venue, :locals => {
       :venue => @db.get_venue(params[:marker])[0],
-      :cur_user => @db.get_name(session[:id])
+      :cur_user => @db.get_user(session[:id])
     }
   end
 
   get "/venues" do
     erb :venues, :locals => {
       :venues => sort_list(@db.get_venue, "title"),
-      :cur_user => @db.get_name(session[:id])
+      :cur_user => @db.get_user(session[:id])
     }
   end
 
@@ -67,11 +67,11 @@ class App < Sinatra::Application
     check_login(params[:email], params[:password])
   end
 
-  post "/register" do
+  post "/users/new" do
     check_reg(params)
   end
 
-  post "/pw" do
+  post "/users/:id/pw" do
     if !@db.get_pw(session[:id], params[:old_pw])
       flash[:notice] = "Incorrect Password"
       redirect back
@@ -86,11 +86,16 @@ class App < Sinatra::Application
   end
 
   post "/add_venue" do
-    @db.add_venue(params)
-    flash[:notice] = "#{params["name"]} added"
-    redirect "/"
+    desc = params[:description].length
+    if desc > 255
+      flash[:notice] = "Description is #{desc-255} chars too long"
+      redirect back
+    else
+      @db.add_venue(params)
+      flash[:notice] = "#{params["name"]} added"
+      redirect "/"
+    end
   end
-
   delete "/admin/del_user_:id" do
     flash[:notice] = "#{@db.get_name(params[:id])} deleted"
     @db.delete_user(params[:id])

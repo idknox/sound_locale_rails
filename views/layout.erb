@@ -6,8 +6,8 @@
   <link rel="stylesheet" type="text/css"
         href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
-  <link href="style.css" rel="stylesheet" type="text/css"/>
-  <link rel="shortcut icon" href="images/icon.ico">
+  <link href="/./style.css" rel="stylesheet" type="text/css"/>
+  <link rel="shortcut icon" href="/./images/icon.ico">
   <%= yield_content :script %>
 </head>
 <body>
@@ -15,7 +15,7 @@
   <div id="header">
     <section class="clearfix">
       <article class="one_half">
-        <a href="/"><div id="logo_container"><img src="images/logo.png"></div></a>
+        <a href="/"><div id="logo_container"><img src="/./images/logo.png"></div></a>
         <div id="title"> Sound Locale</div>
         <div id="nav">
         <ul>
@@ -35,7 +35,7 @@
         <% if session[:id] == 1 %>
           <div class="nav_left">
             <div class="button">Welcome, Admin</div>
-            <a href="/pw" class="button">Change Password</a>
+            <a href="/users/1/pw/edit" class="button">Change Password</a>
             <a href="/logout" class="button">Logout</a>
           </div>
           <div class="nav_right">
@@ -44,13 +44,13 @@
               <br>
               <button type="submit" class="button" name="list" value="venues">Venues</button>
               </form>
-              <a href="/add_venue" class="button">Add Venue</a>
+              <a href="/venues/new" class="button">Add Venue</a>
           </div>
         <% elsif session[:id] %>
           <div class="nav_right">
-            Welcome, <%= cur_user %>
+            Welcome, <%= cur_user["first_name"] %>
             <br>
-            <a href="/pw" class="button">Change Password</a>
+            <a href="/users/<%= cur_user["id"] %>/pw/edit" class="button">Change Password</a>
             <br>
             <a href="/logout" class="button">Logout</a>
           </div>
@@ -60,7 +60,7 @@
         <% else %>
           <div class="nav_right">
             <div id="reg">
-              Not a member?<a href="/register" id="reg_button"> Register</a>
+              Not a member?<a href="/users/new" id="reg_button"> Register</a>
             </div>
             <div id="rem">
               <input type="checkbox" value="remem" id="rem"/>

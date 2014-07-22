@@ -26,11 +26,11 @@ class Table_connection
     )
   end
 
-  def get_name(id)
+  def get_user(id)
     if id
       @database_connection.sql(
-        "SELECT first_name FROM users WHERE id=#{id}"
-      )[0]["first_name"]
+        "SELECT * FROM users WHERE id=#{id}"
+      )[0]
     end
   end
 
