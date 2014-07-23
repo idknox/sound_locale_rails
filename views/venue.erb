@@ -39,21 +39,25 @@
 <% end %>
 
 <% content_for :main do %>
-  <div id="venue_info">
-    <div id="venue_logo">
-      <img src="<%= venue["logo"] %>">
-    </div>
-    <ul>
-      <li><%= venue["title"] %></li>
-      <li><%= venue["address"] %></li>
-      <li><%= venue["size"] %></li>
-      <li><%= venue["price"] %></li>
-      <li><%= venue["description"] %></li>
-    </ul>
-    </div>
-    <div id="small_map">
-    </div>
-
-  <div class="clearfix"></div>
+  <section class="clearfix">
+    <article class="one_half">
+      <div id="venue_info">
+        <div id="venue_logo">
+          <img src="<%= venue["logo"] %>">
+        </div>
+        <ul>
+          <li><%= venue["title"] %></li>
+          <li><%= venue["address"] %></li>
+          <li><%= venue["size"] %></li>
+          <li><%= venue["price"] %></li>
+          <li><%= venue["description"] %></li>
+        </ul>
+      </div>
+    </article>
+    <article class="one_half">
+      <div id="small_map">
+      </div>
+    </article>
+  </section>
 
 <% end %>
