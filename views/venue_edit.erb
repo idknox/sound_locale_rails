@@ -7,7 +7,14 @@
           <label for="name">Name</label>
         </li>
         <li>
-          <input type="text" name="name" class="field" value="<%= venue["title"] %>"/>
+          <input type="text" name="name" class="field" value="<%= venue["name"] %>"/>
+        </li>
+        <br>
+        <li>
+          <label for="title">Title</label>
+        </li>
+        <li>
+          <input type="text" name="title" class="field" value="<%= venue["title"] %>"/>
         </li>
         <br>
         <li>
@@ -75,8 +82,9 @@
             <option value="Warehouse/Art Space">Warehouse/Art Space</option>
             <option value="Bar">Bar</option>
             <option value="Small Venue">Small Venue</option>
-            <option value="Mid-sized Venue">Mid-sized Venue</option>
+            <option value="Mid-size Venue">Mid-sized Venue</option>
             <option value="Large Venue/Auditorium">Large Venue/Auditorium</option>
+            <option value="Outdoor Venue">Outdoor Venue</option>
           </select>
         </li>
         <br>

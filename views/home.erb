@@ -76,13 +76,26 @@
       <option value="size: Mid-size Venue">Mid-size Venue</option>
       <option value="size: Large Venue/Auditorum">Large Venue/Auditorum</option>
       <option value="size: Outdoor Venue">Outdoor Venue</option>
-      <option value="size: $$$">$$$</option>
-      <option value="size: $$$">$$$</option>
-
     </select>
     <br>
     <input type="submit" class="button" value="Filter"/>
   </form>
 <% end %>
 
+
+<% content_for :nav do %>
+  <div id="nav">
+    <ul>
+      <li>
+        Events
+      </li>
+      <li>
+        Bands
+      </li>
+      <li>
+        <a href="/venues">Venues</a>
+      </li>
+    </ul>
+  </div>
+<% end %>
 

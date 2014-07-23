@@ -1,16 +1,32 @@
 <% content_for :main do %>
-  <div class="page_title">
-    Venues
-  </div>
+
   <div class="grid">
     <% venues.each do |venue| %>
 
       <a href="/venues/<%= venue["id"] %>">
-        <img class="thumb" src="<%= venue["background"] %>">
+        <div style="background-image: url(<%= venue["background"] %>)"
+             class="thumb">
+          <p class="ven_name"><%= venue["name"] %></p>
+             </div>
       </a>
-
     <% end %>
   </div>
 
   <div class="clearfix"></div>
+<% end %>
+
+<% content_for :nav do %>
+  <div id="nav">
+    <ul>
+      <li>
+        Events
+      </li>
+      <li>
+        Bands
+      </li>
+      <li id="nav_ven">
+        <a href="/venues">Venues</a>
+      </li>
+    </ul>
+  </div>
 <% end %>

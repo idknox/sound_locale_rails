@@ -18,8 +18,8 @@
         <a href="/">
           <div id="logo_container"><img src="/./images/logo.png"></div>
         </a>
-
         <div id="title"> Sound Locale</div>
+        <div id="sub">Find local music</div>
         <div id="nav">
           <ul>
             <li>
@@ -37,16 +37,18 @@
       <article class="one_half" id="right_nav">
         <% if session[:id] == 1 %>
           <div class="nav_left">
-            <div class="button">Welcome, Admin</div>
-            <a href="/users/1/pw/edit" class="button">Change Password</a>
-            <a href="/logout" class="button">Logout</a>
-          </div>
-          <div class="nav_right">
-            <a href="/admin/users" class="button">Users</a>
+            <div class="button" id="admin">Welcome, Admin</div>
+            <a href="/users/1/pw/edit" class="button" id="admin">Change Password</a>
             <br>
-            <a href="/admin/venues" class="button">Venues</a>
+            <a href="/logout" class="button" id="admin">Logout</a>
+          </div>
+          <div class="nav_right" id="admin_nav">
+            <a href="/admin/users" class="button" id="admin">Users</a>
+            <br>
+            <a href="/admin/venues" class="button" id="admin">Venues</a>
             </form>
-            <a href="/admin/venues/new" class="button">Add Venue</a>
+            <br>
+            <a href="/admin/venues/new" class="button" id="admin">Add Venue</a>
           </div>
         <% elsif session[:id] %>
           <div class="nav_right">
@@ -70,13 +72,7 @@
           </div>
           <div class="nav_left">
             <form method="post" action="/">
-              <input type="text" name="email" class="field" id="email"
-                     <% if flash[:notice] %>
-                     placeholder="<%= flash[:notice] %>"
-                     <% else %>
-                     placeholder="email"
-                     <% end %>
-                     />
+              <input type="text" name="email" class="field" id="email" placeholder="email"/>
 
               <div id="bottom">
                 <input type="password" name="password" class="field"
@@ -89,6 +85,9 @@
       </article>
     </section>
   </div>
+  <% if flash[:notice] %>
+    <div><%= flash[:notice] %></div>
+    <% end %>
   <div id="main">
     <%= yield_content :main %>
   </div>

@@ -1,6 +1,6 @@
-class Sites < ActiveRecord::Migration
+class Name < ActiveRecord::Migration
   def change
-    add_column :venues, :site, :string
+    add_column :venues, :name, :string
   end
 
   def down

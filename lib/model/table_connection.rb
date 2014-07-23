@@ -89,9 +89,9 @@ class Table_connection
 
   def add_venue(venue)
     @database_connection.sql(
-      "INSERT INTO venues (title, site, position, background, " +
+      "INSERT INTO venues (name, title, site, position, background, " +
         "marker_name, address, size, description, price, map) " +
-        "VALUES ('#{venue[:name]}', '#{venue[:site]}', '#{venue[:position]}', " +
+        "VALUES ('#{venue[:name]}', '#{venue[:title]}' '#{venue[:site]}', '#{venue[:position]}', " +
         "'#{venue[:background]}', '#{venue[:marker_name]}', " +
         "'#{venue[:address]}', '#{venue[:size]}', " +
         "'#{venue[:description]}', '#{venue[:price]}', '#{venue[:map]}')"
@@ -112,19 +112,19 @@ class Table_connection
 
   def update_venue(venue)
     @database_connection.sql(
-      "UPDATE venues set title='#{venue[:name]}', " +
+      "UPDATE venues set title='#{venue[:title]}', " +
       "position='#{venue[:position]}', background='#{venue[:background]}', " +
       "icon='#{venue[:icon]}', marker_name='#{venue[:marker_name]}', " +
       "address='#{venue[:address]}', size='#{venue[:size]}', " +
       "description='#{venue[:description]}', price='#{venue[:price]}', " +
-      "map='#{venue[:map]}', logo='#{venue[:logo]}', site='#{venue[:site]}' " +
-      "WHERE id=#{venue[:id]}"
+      "map='#{venue[:map]}', logo='#{venue[:logo]}', site='#{venue[:site]}', " +
+      "name='#{venue[:name]}' WHERE id=#{venue[:id]}"
     )
   end
 
-  def delete_venue(marker)
+  def delete_venue(id)
     @database_connection.sql(
-      "DELETE FROM venues WHERE marker_name='#{marker}'"
+      "DELETE FROM venues WHERE id=#{id}"
     )
   end
 end
