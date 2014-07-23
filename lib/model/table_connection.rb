@@ -114,7 +114,7 @@ class Table_connection
     @database_connection.sql(
       "UPDATE venues set title='#{venue[:title]}', " +
       "position='#{venue[:position]}', background='#{venue[:background]}', " +
-      "icon='#{venue[:icon]}', marker_name='#{venue[:marker_name]}', " +
+      "marker_name='#{venue[:marker_name]}', " +
       "address='#{venue[:address]}', size='#{venue[:size]}', " +
       "description='#{venue[:description]}', price='#{venue[:price]}', " +
       "map='#{venue[:map]}', logo='#{venue[:logo]}', site='#{venue[:site]}', " +

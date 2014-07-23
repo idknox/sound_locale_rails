@@ -123,7 +123,7 @@ li {
     display: list-item;
     list-style-type: none;
     float: left;
-    margin-left: 5px;
+    margin-left: 11px;
     font-size: 15px;
     padding: 5px;
     /*color: #F29721;*/
@@ -145,7 +145,7 @@ li {
 }
 
 #right_nav {
-    margin-top: 7px;
+    margin-top: 9px;
     border-radius: 5px;
 }
 
@@ -182,6 +182,7 @@ li {
     margin: 5px;
     padding: 3px;
     vertical-align: top;
+    text-align: center;
 }
 
 .button {
@@ -224,7 +225,7 @@ li {
 }
 
 #admin {
-    font-size: 15px;
+    font-size: 13px;
 }
 
 #login_error {
@@ -267,7 +268,6 @@ li {
 
 .form {
     text-align: center;
-    color: #A3540B;
     margin: 0 auto;
     padding: 30px;
 }
@@ -292,18 +292,19 @@ li {
 }
 
 .table_list th, td {
-    padding: 10px;
+    padding: 15px;
     font-size: 15px;
+    text-align: center;
 }
 
 .table_list thead {
-    color: #A3540B;
+    color: #F29721;
 }
 
 .table_list tr {
     border-bottom: 1px solid #A3540B;
-    border-right: 1px solid #A3540B;
-    border-left: 1px solid #A3540B;
+    /*border-right: 1px solid #A3540B;*/
+    /*border-left: 1px solid #A3540B;*/
 }
 
 .sorter {
@@ -327,8 +328,7 @@ li {
 }
 
 #venues_desc {
-    width: 200px;
-    height: 50px;
+    width: 400px;
 }
 
 /* --- VENUE PAGE --- */

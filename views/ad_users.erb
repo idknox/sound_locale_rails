@@ -20,8 +20,7 @@
       <th>
         <button type="submit" class="sorter" name="sort" value="join_date">Join Date</button>
       </th>
-      <th>&nbsp</th>
-      <th>&nbsp</th>
+      <th>Tasks</th>
     </form>
     </thead>
     <tbody>
@@ -37,8 +36,6 @@
              class="button" id="delete">
             edit
           </a>
-        </td>
-        <td>
           <form method="post" action="/users/<%= user["id"] %>">
             <input type="hidden" name="_method" value="delete"/>
             <button class="button" id="delete">del</button>

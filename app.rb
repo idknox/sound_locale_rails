@@ -117,11 +117,13 @@ class App < Sinatra::Application
 
   patch "/venues/:id" do
     @db.update_venue(params)
+    flash[:notice] = "Venue Updated"
     redirect back
   end
 
   patch "/users/:id" do
     @db.update_user(params)
+    flash[:notice] = "User updated"
     redirect back
   end
 

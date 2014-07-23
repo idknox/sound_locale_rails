@@ -28,10 +28,7 @@
       <button type="submit" class="sorter" name="sort" value="description">Description</button>
     </th>
     <th>
-      &nbsp
-    </th>
-    <th>
-      &nbsp
+      Tasks
     </th>
       </form>
     </thead>
@@ -61,8 +58,6 @@
              class="button" id="delete">
             edit
           </a>
-        </td>
-        <td>
           <form method="post" action="/venues/<%= venue["id"] %>">
             <input type="hidden" name="_method" value="delete"/>
             <button type="submit" class="button" id="delete">del</button>
