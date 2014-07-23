@@ -91,7 +91,7 @@ class Table_connection
     @database_connection.sql(
       "INSERT INTO venues (name, title, site, position, background, " +
         "marker_name, address, size, description, price, map) " +
-        "VALUES ('#{venue[:name]}', '#{venue[:title]}' '#{venue[:site]}', '#{venue[:position]}', " +
+        "VALUES ('#{venue[:name]}', '#{venue[:title]}', '#{venue[:site]}', '#{venue[:position]}', " +
         "'#{venue[:background]}', '#{venue[:marker_name]}', " +
         "'#{venue[:address]}', '#{venue[:size]}', " +
         "'#{venue[:description]}', '#{venue[:price]}', '#{venue[:map]}')"
