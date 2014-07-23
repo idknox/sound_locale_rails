@@ -100,11 +100,11 @@ li {
 
 #sub {
     float: right;
-    margin: -12px 10px 0 0;
+    margin: -14px 10px 0 0;
     background-color: #1C3C5B;
-    width: 115px;
+    /*width: 115px;*/
     text-align: center;
-    padding: 2px;
+    padding: 4px;
     z-index: 1;
     position: relative;
 }
@@ -123,8 +123,8 @@ li {
     display: list-item;
     list-style-type: none;
     float: left;
-    margin-left: 11px;
-    font-size: 15px;
+    margin-left: 3px;
+    font-size: 13px;
     padding: 5px;
     /*color: #F29721;*/
 
