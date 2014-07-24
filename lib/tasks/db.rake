@@ -71,3 +71,14 @@ end
     puts "migration created: #{migration_file_name}"
   end
 end
+
+namespace :event do
+  task :get_events do
+    dc = GschoolDatabaseConnection::DatabaseConnection.establish(ENV["RACK_ENV"])
+    file = open(
+      "http://www.ticketfly.com/api/events/upcoming.json?orgId=1"
+    ) { |f| f.read }
+    hash=JSON.parse(file)
+    locals = hash.select
+  end
+end

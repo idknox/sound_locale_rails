@@ -11,9 +11,6 @@
         <button type="submit" class="sorter" name="sort" value="email">Email</button>
       </th>
       <th>
-        <button type="submit" class="sorter" name="sort" value="password">Password</button>
-      </th>
-      <th>
         <button type="submit" class="sorter" name="sort" value="birthdate">Birthday</button>
       </th>
       <th>
@@ -27,7 +24,6 @@
       <tr>
         <td><%= user["first_name"] + " " + user["last_name"] %></td>
         <td><%= user["email"] %></td>
-        <td><%= user["password"] %></td>
         <td><%= Date.parse(user["birthday"]).strftime("%m-%d-%Y") %></td>
         <td><%= Date.parse(user["join_date"]).strftime("%m-%d-%Y") %></td>
         <td>
