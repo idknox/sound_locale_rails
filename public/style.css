@@ -25,7 +25,7 @@ article {
 section {
     box-sizing: border-box;
     border-bottom: 3px solid #C6F1FF;
-    padding: 0 5px 10px 10px;
+    padding: 0 5px 0px 10px;
 }
 
 /* ----- =columns ----- */
@@ -73,7 +73,7 @@ li {
     list-style-type: none;
 }
 
-/* --- Nav --- */
+/* --- Header --- */
 
 #header {
     padding: 10px;
@@ -101,18 +101,18 @@ li {
 
 #sub {
     float: right;
-    margin: -14px 10px 0 0;
+    margin: -13px 10px 0 0;
     background-color: #1C3C5B;
-    /*width: 115px;*/
     text-align: center;
     padding: 4px;
     z-index: 1;
     position: relative;
+    font-size: 13px;
 }
 
 #nav {
     margin: 0;
-    padding-top: 12px;
+    padding-top: 5px;
 
 }
 
@@ -124,7 +124,7 @@ li {
     display: list-item;
     list-style-type: none;
     float: left;
-    margin-left: 5px;
+    margin-left: 4px;
     font-size: 13px;
     padding: 5px;
     /*color: #F29721;*/
@@ -144,7 +144,22 @@ li {
     -webkit-border-top-right-radius: 5px;
     -webkit-border-top-left-radius: 5px;
 }
+/* --- Social --- */
 
+#social {
+    width: 960px;
+    padding-left: 10px;
+    margin-bottom: 8px;
+}
+
+#social div {
+    display: inline-block;
+}
+
+#fb {
+    position: relative;
+    top: -3px;
+}
 #right_nav {
     margin-top: 9px;
     border-radius: 5px;
@@ -152,11 +167,10 @@ li {
 
 .nav_left {
     display: inline-block;
-    width: 220px;
     padding: 6px;
     text-align: right;
     float: right;
-    margin-right: 0;
+    margin-left: 40px;
 }
 
 #filter {
@@ -234,14 +248,9 @@ li {
 }
 
 #main {
+    /*float: left;*/
     padding: 0 10px 10px 10px;
 }
-
-/*#main p {*/
-    /*margin: 20px;*/
-    /*text-align: center;*/
-    /*font-size: 50px;*/
-/*}*/
 
 #map_container {
     width: 960px;

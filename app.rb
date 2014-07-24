@@ -152,6 +152,9 @@ class App < Sinatra::Application
     elsif @db.user_exists(params[:email])
       flash[:notice] = "User already exists"
       redirect back
+    elsif get_age(params[:birthday]) < 13
+      flash[:notice] = "You must be at least 13 years old"
+      redirect back
     else
       @db.add_user(params)
       flash[:notice] = "Thank you for registering"
@@ -196,6 +199,12 @@ class App < Sinatra::Application
     else
       array
     end
+  end
+
+  def get_age(bday)
+    bday = Date.parse(bday)
+    now = Time.now.utc.to_date
+    now.year - bday.year - ((now.month > bday.month || (now.month == bday.month && now.day >= bday.day)) ? 0 : 1)
   end
 
 end

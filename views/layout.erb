@@ -9,6 +9,15 @@
   <link href="/./style.css" rel="stylesheet" type="text/css"/>
   <link rel="shortcut icon" href="/./images/icon.ico">
   <%= yield_content :script %>
+  <script>!function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }
+  }(document, "script", "twitter-wjs");</script>
 </head>
 <body>
 <div class="wrapper">
@@ -18,6 +27,7 @@
         <a href="/">
           <div id="logo_container"><img src="/./images/logo.png"></div>
         </a>
+
         <div id="title"> Sound Locale</div>
         <div id="sub">enhance your ear holes</div>
         <div id="nav">
@@ -37,7 +47,8 @@
       <article class="one_half" id="right_nav">
         <% if session[:id] == 1 %>
           <div class="nav_left">
-            <div class="button" id="admin">Welcome, Admin</div>
+            <a href="" class="button" id="admin">Welcome, Admin</a>
+            <br>
             <a href="/users/1/pw/edit" class="button" id="admin">Change Password</a>
             <br>
             <a href="/logout" class="button" id="admin">Logout</a>
@@ -87,10 +98,29 @@
   </div>
   <% if flash[:notice] %>
     <div><%= flash[:notice] %></div>
-    <% end %>
+  <% end %>
+  <div id="social">
+    <div id="twitter">
+      <a href="https://twitter.com/soundlocale" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow</a>
+    </div>
+    <div id="fb">
+      <div class="fb-like" data-href="https://facebook.com/soundlocale" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
+    </div>
+  </div>
   <div id="main">
     <%= yield_content :main %>
+    <div class="clearfix">&nbsp;</div>
+
   </div>
 </div>
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 </body>
 </html>
