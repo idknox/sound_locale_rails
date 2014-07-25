@@ -1,4 +1,3 @@
-require "gschool_database_connection"
 
 class VenueTable
 

@@ -1,7 +1,6 @@
-require "gschool_database_connection"
 require "date"
 
-class EventTable
+class TflyTable
 
   def initialize(db)
     @db = db
@@ -13,7 +12,7 @@ class EventTable
     )
   end
 
-  def insert_tf(events)
+  def create(events)
     events.each do |event|
       event["name"].gsub!("'", "''")
       event["venue"]["name"].gsub!("'", "''")

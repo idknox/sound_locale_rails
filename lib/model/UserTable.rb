@@ -1,4 +1,3 @@
-require "gschool_database_connection"
 require "date"
 
 class UserTable
@@ -8,12 +7,15 @@ class UserTable
   end
 
   def user_exists(email)
-    user = @db.sql(
-      "SELECT * from users where email ='#{email}'"
-    )
-    if user != []
-      user[0]
-    end
+    @db.sql(
+      "SELECT * from users where email='#{email}'"
+    ) != []
+  end
+
+  def find_by_email(email)
+    @db.sql(
+      "SELECT * from users WHERE email='#{email}'"
+    )[0]
   end
 
   def add_user(user)

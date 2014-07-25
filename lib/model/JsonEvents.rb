@@ -7,7 +7,6 @@ class JsonEvents
   end
 
   def get_tf
-
     events = []
     url = "http://www.ticketfly.com/api/events/list.json?orgId=1&" +
       "maxResults=200&city=Denver" +

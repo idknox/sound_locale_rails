@@ -2,10 +2,9 @@ require "date"
 require "sinatra"
 require "sinatra/content_for"
 require "rack-flash"
-require_relative "./lib/model/UserTable"
-require_relative "./lib/model/EventTable"
-require_relative "./lib/model/VenueTable"
-require_relative "./lib/model/JsonEvents"
+require "gschool_database_connection"
+
+Dir[File.dirname(__FILE__) + "/lib/model/*.rb"].each { |file| require_relative file }
 
 class App < Sinatra::Application
   helpers Sinatra::ContentFor
@@ -17,7 +16,7 @@ class App < Sinatra::Application
     @db = GschoolDatabaseConnection::DatabaseConnection.establish(ENV["RACK_ENV"])
     @users = UserTable.new(@db)
     @venues = VenueTable.new(@db)
-    @events = EventTable.new(@db)
+    @tf = TflyTable.new(@db)
     @jsonevents = JsonEvents.new
   end
 
@@ -102,11 +101,11 @@ class App < Sinatra::Application
   end
 
   get "/admin/ticketfly" do
-    erb :ad_events, :locals => {:events => @events.all}
+    erb :ad_events, :locals => {:events => @tf.all}
   end
 
   post "/admin/ticketfly" do
-    @events.insert_tf(@jsonevents.get_tf)
+    @tf.create(@jsonevents.get_tf)
     redirect "/admin/ticketfly"
   end
 
@@ -185,11 +184,11 @@ class App < Sinatra::Application
     elsif !@users.user_exists(email)
       flash[:notice] = "No account exists"
       redirect back
-    elsif @users.user_exists(email)["password"] != password
+    elsif @users.find_by_email(email)["password"] != password
       flash[:notice] = "Incorrect password"
       redirect back
     else
-      session[:id] = @users.user_exists(email)["id"].to_i
+      session[:id] = @users.find_by_email(email)["id"].to_i
       flash[:notice] = nil
       redirect "/"
     end
