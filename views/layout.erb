@@ -24,12 +24,13 @@
   <div id="header">
     <section class="clearfix">
       <a href="/">
-      <article class="one_half">
+        <article class="one_half">
           <div id="logo_container"><img src="/./images/logo.png"></div>
-        <div id="title"> Sound Locale</div>
-        <div id="sub">Music sounds for your ear holes</div>
+          <div id="title"> Sound Locale</div>
+          <div id="sub">Music sounds for your ear holes</div>
 
-      </article></a>
+        </article>
+      </a>
       <article class="one_half" id="right_nav">
         <% if session[:id] == 1 %>
           <div class="nav_left">
@@ -43,10 +44,14 @@
             <a href="/admin/users" class="button" id="admin">Users</a>
             <br>
             <a href="/admin/venues" class="button" id="admin">Venues</a>
-            </form>
             <br>
             <a href="/admin/venues/new" class="button" id="admin">Add Venue</a>
-            <a href="/admin/ticketfly" class="button" id="admin">Ticketfly</a>
+          </div>
+          <div class="nav_right" id="admin_nav">
+            <form method="post" action="/admin/ticketfly">
+              <input type="submit" class="button" id="admin" value="Ticketfly"/>
+            </form>
+            <a href="/admin/ticketfly">TF Events</a>
           </div>
         <% elsif session[:id] %>
           <div class="nav_right">

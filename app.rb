@@ -2,7 +2,9 @@ require "date"
 require "sinatra"
 require "sinatra/content_for"
 require "rack-flash"
-require_relative "./lib/model/TableConnection"
+require_relative "./lib/model/UserTable"
+require_relative "./lib/model/EventTable"
+require_relative "./lib/model/VenueTable"
 require_relative "./lib/model/JsonEvents"
 
 class App < Sinatra::Application
@@ -12,13 +14,16 @@ class App < Sinatra::Application
 
   def initialize
     super
-    @db = TableConnection.new
-    @events = JsonEvents.new
+    @db = GschoolDatabaseConnection::DatabaseConnection.establish(ENV["RACK_ENV"])
+    @users = UserTable.new(@db)
+    @venues = VenueTable.new(@db)
+    @events = EventTable.new(@db)
+    @jsonevents = JsonEvents.new
   end
 
   get "/" do
-    venues = filter_list(sort_list(@db.get_venues, params[:sort_venues]), params[:filter])
-    user = @db.get_user(session[:id])
+    venues = filter_list(sort_list(@venues.all, params[:sort_venues]), params[:filter])
+    user = @users.get_user(session[:id])
 
     erb :home, :locals => {
       :cur_user => user,
@@ -42,18 +47,18 @@ class App < Sinatra::Application
   end
 
   get "/users/:id/pw/edit" do
-    erb :pw, :locals => {:cur_user => @db.get_user(params[:id])}
+    erb :pw, :locals => {:cur_user => @users.get_user(params[:id])}
   end
 
   post "/users/:id/pw" do
-    if !@db.get_pw(session[:id], params[:old_pw])
+    if !@users.get_pw(session[:id], params[:old_pw])
       flash[:notice] = "Incorrect Password"
       redirect back
     elsif !check_pw(params[:new_pw], params[:new_conf])
       flash[:notice] = "Passwords don't match"
       redirect back
     else
-      @db.change_pw(session[:id], params[:new_pw])
+      @users.change_pw(session[:id], params[:new_pw])
       flash[:notice] = "Password changed"
       redirect "/"
     end
@@ -64,41 +69,45 @@ class App < Sinatra::Application
   end
 
   get "/admin/venues" do
-    venues = filter_list(sort_list(@db.get_venues, params[:sort]), params[:filter])
+    venues = filter_list(sort_list(@venues.all, params[:sort]), params[:filter])
 
     erb :ad_venues, :locals => {:venues => venues}
   end
 
   get "/admin/users" do
-    users = sort_list(@db.get_users(session[:id]), params[:sort])
+    users = sort_list(@users.get_users(session[:id]), params[:sort])
     erb :ad_users, :locals => {:users => users}
   end
 
   get "/venues" do
     erb :venues, :locals => {
-      :venues => sort_list(@db.get_venues, "title"),
-      :cur_user => @db.get_user(session[:id])
+      :venues => sort_list(@venues.all, "title"),
+      :cur_user => @users.get_user(session[:id])
     }
   end
 
   get "/venues/:id" do
     erb :venue, :locals => {
-      :venue => @db.get_venue(params[:id]),
-      :cur_user => @db.get_user(session[:id])
+      :venue => @venues.get_venue(params[:id]),
+      :cur_user => @users.get_user(session[:id])
     }
   end
 
   get "/admin/users/:id/edit" do
-    erb :user_edit, :locals => {:user => @db.get_user(params[:id])}
+    erb :user_edit, :locals => {:user => @users.get_user(params[:id])}
   end
 
   get "/admin/venues/:id/edit" do
-    erb :venue_edit, :locals => {:venue => @db.get_venue(params[:id])}
+    erb :venue_edit, :locals => {:venue => @venues.get_venue(params[:id])}
   end
 
   get "/admin/ticketfly" do
-    @db.insert_tf(@events.get_tf)
-    redirect "/"
+    erb :ad_events, :locals => {:events => @events.all}
+  end
+
+  post "/admin/ticketfly" do
+    @events.insert_tf(@jsonevents.get_tf)
+    redirect "/admin/ticketfly"
   end
 
   post "/" do
@@ -116,33 +125,33 @@ class App < Sinatra::Application
       flash[:notice] = "Description is #{desc-255} chars too long"
       redirect back
     else
-      @db.add_venue(params)
+      @venues.add_venue(params)
       flash[:notice] = "#{params["name"]} added"
       redirect "/"
     end
   end
 
   patch "/venues/:id" do
-    @db.update_venue(params)
+    @venues.update_venue(params)
     flash[:notice] = "Venue Updated"
     redirect back
   end
 
   patch "/users/:id" do
-    @db.update_user(params)
+    @users.update_user(params)
     flash[:notice] = "User updated"
     redirect back
   end
 
   delete "/users/:id" do
-    flash[:notice] = "#{@db.get_user(params[:id])["first_name"]} deleted"
-    @db.delete_user(params[:id])
+    flash[:notice] = "#{@users.get_user(params[:id])["first_name"]} deleted"
+    @users.delete_user(params[:id])
     redirect back
   end
 
   delete "/venues/:id" do
-    flash[:notice] = "#{@db.get_venue(params[:id])["title"]} deleted"
-    @db.delete_venue(params[:id])
+    flash[:notice] = "#{@venues.get_venue(params[:id])["title"]} deleted"
+    @venues.delete_venue(params[:id])
     redirect back
   end
 
@@ -156,14 +165,14 @@ class App < Sinatra::Application
     if !check_pw(params[:password], params[:pass_conf])
       flash[:notice] = "Passwords must match"
       redirect back
-    elsif @db.user_exists(params[:email])
+    elsif @users.user_exists(params[:email])
       flash[:notice] = "User already exists"
       redirect back
     elsif get_age(params[:birthday]) < 13
       flash[:notice] = "You must be at least 13 years old"
       redirect back
     else
-      @db.add_user(params)
+      @users.add_user(params)
       flash[:notice] = "Thank you for registering"
       redirect "/"
     end
@@ -173,14 +182,14 @@ class App < Sinatra::Application
     if email == "" || password == ""
       flash[:notice] = "email and password are required"
       redirect back
-    elsif !@db.user_exists(email)
+    elsif !@users.user_exists(email)
       flash[:notice] = "No account exists"
       redirect back
-    elsif @db.user_exists(email)["password"] != password
+    elsif @users.user_exists(email)["password"] != password
       flash[:notice] = "Incorrect password"
       redirect back
     else
-      session[:id] = @db.user_exists(email)["id"].to_i
+      session[:id] = @users.user_exists(email)["id"].to_i
       flash[:notice] = nil
       redirect "/"
     end

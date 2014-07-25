@@ -1,0 +1,52 @@
+<% content_for :main do %>
+
+  <div id="venues">
+    <table class="table_list">
+      <thead>
+      <form method="get" action="/admin/venues">
+
+        <th>
+          <button type="submit" class="sorter" name="sort" value="title">Name</button>
+        </th>
+        <th>
+          <button type="submit" class="sorter" name="sort" value="address">Venue</button>
+        </th>
+        <th>
+          <button type="submit" class="sorter" name="sort" value="position">Date</button>
+        </th>
+        <th>
+          <button type="submit" class="sorter" name="sort" value="marker_name">Price</button>
+        </th>
+        <th>
+          <button type="submit" class="sorter" name="sort" value="size">Tickets</button>
+        </th>
+        <th>
+          Tasks
+        </th>
+      </form>
+      </thead>
+      <tbody>
+      <% events.each do |event| %>
+        <tr>
+          <td>
+            <%= event["name"] %>
+          </td>
+          <td>
+            <%= event["venue"] %>
+          </td>
+          <td>
+            <%= Date.parse(event["date"]).strftime("%m-%d-%Y") %>
+          </td>
+          <td>
+            <%= event["price"] %>
+          </td>
+          <td>
+            <a href="<%= event["url"] %>">Tickets</a>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+<% end %>

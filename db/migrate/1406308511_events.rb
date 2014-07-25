@@ -5,7 +5,7 @@ class Events < ActiveRecord::Migration
       t.string :headliner
       t.date :date
       t.string :tickets
-      t.float :price
+      t.string :price
       t.string :url
       t.string :twitter
     end
