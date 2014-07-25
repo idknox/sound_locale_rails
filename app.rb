@@ -3,8 +3,10 @@ require "sinatra"
 require "sinatra/content_for"
 require "rack-flash"
 require "gschool_database_connection"
-
-Dir[File.dirname(__FILE__) + "/lib/model/*.rb"].each { |file| require_relative file }
+require_relative "lib/model/JsonEvents"
+require_relative "lib/model/TflyTable"
+require_relative "lib/model/UserTable"
+require_relative "lib/model/VenueTable"
 
 class App < Sinatra::Application
   helpers Sinatra::ContentFor
