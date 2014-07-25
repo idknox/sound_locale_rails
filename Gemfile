@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+ruby "2.1.2"
+
 gem "sinatra"
 gem "rack-flash3"
 gem "rerun"
@@ -12,4 +14,3 @@ gem "launchy"
 gem "sinatra-contrib"
 gem "gschool_database_connection", "~> 1.0.0"
 gem "capistrano", "~> 3.2.0"
-gem "json", "~> 1.8.1"
