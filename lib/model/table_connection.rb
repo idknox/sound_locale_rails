@@ -1,7 +1,7 @@
 require "gschool_database_connection"
 require "date"
 
-class Table_connection
+class TableConnection
 
   def initialize
     @database_connection = GschoolDatabaseConnection::DatabaseConnection.establish(ENV["RACK_ENV"])

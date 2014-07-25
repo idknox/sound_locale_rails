@@ -11,7 +11,7 @@ class App < Sinatra::Application
 
   def initialize
     super
-    @db = Table_connection.new
+    @db = TableConnection.new
   end
 
   get "/" do

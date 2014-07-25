@@ -98,7 +98,7 @@ li {
 
 #sub {
     float: right;
-    margin: -13px 10px 0 0;
+    margin: -13px 15px 0 0;
     background-color: #1C3C5B;
     text-align: center;
     padding: 4px;
@@ -208,7 +208,7 @@ li {
 
 #fb {
     position: relative;
-    top: -3px;
+    top: -4px;
 }
 
 #nav {

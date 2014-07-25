@@ -1,6 +1,9 @@
 require "active_record"
 require "yaml"
 require "gschool_database_connection"
+require "open-uri"
+require "JSON"
+require "pp"
 
 def env
   ENV["RACK_ENV"] || "development"
@@ -72,13 +75,12 @@ end
   end
 end
 
-namespace :event do
-  task :get_events do
-    dc = GschoolDatabaseConnection::DatabaseConnection.establish(ENV["RACK_ENV"])
+namespace :events do
+  task :ticketfly do
     file = open(
       "http://www.ticketfly.com/api/events/upcoming.json?orgId=1"
     ) { |f| f.read }
-    hash=JSON.parse(file)
-    locals = hash.select
+    locals = JSON.parse(file)["events"].select {|event| event["venue"]["timeZone"] == "America/Denver"}
+    pp locals[0]
   end
 end
