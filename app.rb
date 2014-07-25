@@ -2,7 +2,8 @@ require "date"
 require "sinatra"
 require "sinatra/content_for"
 require "rack-flash"
-require_relative './lib/model/table_connection'
+require_relative "./lib/model/TableConnection"
+require_relative "./lib/model/JsonEvents"
 
 class App < Sinatra::Application
   helpers Sinatra::ContentFor
@@ -12,6 +13,7 @@ class App < Sinatra::Application
   def initialize
     super
     @db = TableConnection.new
+    @events = JsonEvents.new
   end
 
   get "/" do
@@ -92,6 +94,11 @@ class App < Sinatra::Application
 
   get "/admin/venues/:id/edit" do
     erb :venue_edit, :locals => {:venue => @db.get_venue(params[:id])}
+  end
+
+  get "/admin/ticketfly" do
+    @db.insert_tf(@events.get_tf)
+    redirect "/"
   end
 
   post "/" do

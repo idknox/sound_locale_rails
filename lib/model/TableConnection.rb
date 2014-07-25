@@ -7,6 +7,8 @@ class TableConnection
     @database_connection = GschoolDatabaseConnection::DatabaseConnection.establish(ENV["RACK_ENV"])
   end
 
+  # USERS
+
   def user_exists(email)
     user = @database_connection.sql(
       "SELECT * from users where email ='#{email}'"
@@ -79,13 +81,14 @@ class TableConnection
   def update_user(user)
     @database_connection.sql(
       "UPDATE users SET first_name='#{user[:first_name]}', " +
-      "last_name='#{user[:last_name]}', " +
-      "email='#{user[:email]}', " +
-      "birthday='#{Date.parse(user[:birthday]).strftime("%m-%d-%Y")}', " +
-      "join_date='#{Date.today.strftime("%m-%d-%Y")}'"
+        "last_name='#{user[:last_name]}', " +
+        "email='#{user[:email]}', " +
+        "birthday='#{Date.parse(user[:birthday]).strftime("%m-%d-%Y")}', " +
+        "join_date='#{Date.today.strftime("%m-%d-%Y")}'"
     )
   end
 
+  # VENUES
 
   def add_venue(venue)
     @database_connection.sql(
@@ -99,9 +102,9 @@ class TableConnection
   end
 
   def get_venue(id)
-      @database_connection.sql(
-        "SELECT * FROM venues WHERE id =#{id}"
-      )[0]
+    @database_connection.sql(
+      "SELECT * FROM venues WHERE id =#{id}"
+    )[0]
   end
 
   def get_venues
@@ -113,12 +116,12 @@ class TableConnection
   def update_venue(venue)
     @database_connection.sql(
       "UPDATE venues set title='#{venue[:title]}', " +
-      "position='#{venue[:position]}', background='#{venue[:background]}', " +
-      "marker_name='#{venue[:marker_name]}', " +
-      "address='#{venue[:address]}', size='#{venue[:size]}', " +
-      "description='#{venue[:description]}', price='#{venue[:price]}', " +
-      "map='#{venue[:map]}', logo='#{venue[:logo]}', site='#{venue[:site]}', " +
-      "name='#{venue[:name]}' WHERE id=#{venue[:id]}"
+        "position='#{venue[:position]}', background='#{venue[:background]}', " +
+        "marker_name='#{venue[:marker_name]}', " +
+        "address='#{venue[:address]}', size='#{venue[:size]}', " +
+        "description='#{venue[:description]}', price='#{venue[:price]}', " +
+        "map='#{venue[:map]}', logo='#{venue[:logo]}', site='#{venue[:site]}', " +
+        "name='#{venue[:name]}' WHERE id=#{venue[:id]}"
     )
   end
 
@@ -127,5 +130,38 @@ class TableConnection
       "DELETE FROM venues WHERE id=#{id}"
     )
   end
-end
+
+  # EVENTS - TICKETFLY
+
+  def insert_tf(events)
+    events.each do |event|
+      event["name"].gsub!("'", "''")
+      event["venue"]["name"].gsub!("'", "''")
+      event["headlinersName"].gsub!("'", "''")
+      @database_connection.sql(
+        "INSERT INTO events (name, venue, headliner, date, tickets, price, url, twitter) VALUES " +
+          "('#{event["name"]}', '#{event["venue"]["name"]}', '#{event["headlinersName"]}', " +
+          "'#{Date.parse(event["startDate"]).strftime("%m-%d-%Y")}', " +
+          "'#{event["ticketPurchaseUrl"]}', '#{event["ticketPrice"]}', " +
+          "'#{event["urlOfficialWebsite"]}', '#{event["urlTwitter"]}')"
+      )
+    end
+  end
+
+  def get_tf(venue=nil)
+    if venue
+      @database_connection.sql(
+        "SELECT * FROM events" +
+          "INNER JOIN venues ON venues.title=events.venue" +
+          "WHERE events.venue = '#{venue}'"
+      )
+    else
+      @database_connection.sql(
+        "SELECT * FROM events"
+      )
+    end
+  end
+
+  def
+  end
 

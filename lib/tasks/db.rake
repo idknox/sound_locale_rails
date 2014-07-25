@@ -1,9 +1,7 @@
 require "active_record"
 require "yaml"
 require "gschool_database_connection"
-require "open-uri"
-require "JSON"
-require "pp"
+
 
 def env
   ENV["RACK_ENV"] || "development"
@@ -72,15 +70,5 @@ end
     TEMPLATE
     file.close
     puts "migration created: #{migration_file_name}"
-  end
-end
-
-namespace :events do
-  task :ticketfly do
-    file = open(
-      "http://www.ticketfly.com/api/events/upcoming.json?orgId=1&maxResults=200&city=Denver&fields=name,venue.name"
-    ) { |f| f.read }
-    locals = JSON.parse(file)
-    pp locals["events"]
   end
 end
