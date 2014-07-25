@@ -1,5 +1,5 @@
 require "open-uri"
-require "JSON"
+require "json"
 require "date"
 
 class JsonEvents
