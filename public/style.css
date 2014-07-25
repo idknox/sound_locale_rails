@@ -198,7 +198,7 @@ li {
 
 #social {
     padding-left: 10px;
-    margin: 0 10px 8px 280px;
+    margin: 0 10px 8px 275px;
     display: inline-block;
 }
 
@@ -253,8 +253,8 @@ li {
 #filter {
     float: left;
     position: absolute;
-    top: 155px;
-    left: 580px;
+    top: 120px;
+    left: 600px;
     z-index: 3;
     text-align: right;
 }
