@@ -39,14 +39,12 @@
 <% end %>
 
 <% content_for :main do %>
-  <section class="clearfix">
     <article class="one_half">
       <div id="venue_info">
         <div id="venue_logo">
           <img src="<%= venue["logo"] %>">
         </div>
         <ul>
-          <li><%= venue["title"] %></li>
           <li><%= venue["address"] %></li>
           <li><%= venue["size"] %></li>
           <li><%= venue["price"] %></li>
@@ -58,6 +56,5 @@
       <div id="small_map">
       </div>
     </article>
-  </section>
 
 <% end %>

@@ -25,7 +25,7 @@ article {
 section {
     box-sizing: border-box;
     border-bottom: 3px solid #C6F1FF;
-    padding: 0 10px 0 10px;
+    /*padding: 0 10px 0 10px;*/
 }
 
 /* ----- =columns ----- */
@@ -108,7 +108,7 @@ li {
 }
 
 #right_nav {
-    margin: 5px 5px 0 0;
+    margin: 5px 0 0 0;
     border-radius: 5px;
 }
 
@@ -198,7 +198,7 @@ li {
 
 #social {
     padding-left: 10px;
-    margin-bottom: 8px;
+    margin: 0 10px 8px 280px;
     display: inline-block;
 }
 
@@ -208,20 +208,19 @@ li {
 
 #fb {
     position: relative;
-    top: -4px;
+    top: -3px;
 }
 
 #nav {
     display: inline-block;
-    margin-right: 100px;
-    float: right;
+    margin-left: 75px;
 }
 
 
 #nav a {
-    margin-left: 100px;
-    padding: 8px 5px 5px 5px;
-    font-size: 20px;
+    margin-left: 50px;
+    padding: 10px 5px 5px 5px;
+    font-size: 19px;
     position: relative;
     top: -3px;
 }
@@ -249,6 +248,15 @@ li {
     height: 593px;
     border-radius: 5%;
     margin: 0;
+}
+
+#filter {
+    float: left;
+    position: absolute;
+    top: 118px;
+    left: 920px;
+    z-index: 3;
+    text-align: right;
 }
 
 /* --- Infowindow --- */
@@ -333,45 +341,6 @@ li {
     width: 400px;
 }
 
-/* --- VENUE PAGE --- */
-
-.icon {
-
-}
-
-#small_map {
-    width: 475px;
-    height: 475px;
-    border-radius: 10px;
-    /*float: right;*/
-}
-
-#venue_logo {
-    font-size: 40px;
-    margin: 0 auto;
-    width: 150px;
-    height: 100px;
-
-}
-
-/*#venue_info {*/
-    /*width: 350px;*/
-    /*margin: 20px 0 0 60px;*/
-    /*padding: 0;*/
-    /*display: inline-block;*/
-    /*font-size: 30px;*/
-/*}*/
-
-#venue_info ul {
-    margin: 0 auto;
-    padding: 0;
-}
-#venue_info li {
-    text-align: center;
-    padding: 15px;
-}
-
-
 /* --- Venues --- */
 
 .page_title {
@@ -391,16 +360,16 @@ li {
 
 .thumb {
     /*line-height: 1.5em;*/
-    width: 200px;
-    height: 200px;
+    width: 210px;
+    height: 210px;
     margin: 15px;
-    border: 5px solid #1C3C5B;
+    /*border: 5px solid #1C3C5B;*/
     border-radius: 40%;
     float: left;
 }
 
 .thumb:hover {
-    border: 5px solid #000;
+    /*border: 5px solid #000;*/
 }
 
 .ven_name {
@@ -411,12 +380,48 @@ a:hover .ven_name {
     display: block;
     text-align: center;
     color: #fff;
-    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: #000;
     font-size: 40px;
     margin: 0 auto;
     vertical-align: middle;
-    line-height: 200px;
+    line-height: 210px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 40%;
+}
+
+/* --- VENUE PAGE --- */
+
+#small_map {
+    width: 475px;
+    height: 475px;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+#venue_logo {
+    font-size: 40px;
+    margin: 0 auto;
+    width: 150px;
+    height: 100px;
+    text-align: center;
+}
+
+/*#venue_info {*/
+/*width: 350px;*/
+/*margin: 20px 0 0 60px;*/
+/*padding: 0;*/
+/*display: inline-block;*/
+/*font-size: 30px;*/
+/*}*/
+
+#venue_info ul {
+    margin: 0 auto;
+    padding: 0;
+}
+#venue_info li {
+    text-align: center;
+    padding: 15px;
 }
 
 

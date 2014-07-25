@@ -1,6 +1,22 @@
 <% content_for :main do %>
   <div id="map_container">
   </div>
+  <div id="filter">
+    <form method="get" action="/">
+      <select name="filter" class="field">
+        <option value="price: $">$</option>
+        <option value="price: $$">$$</option>
+        <option value="price: $$$">$$$</option>
+        <option value="size: Warehouse/Art Space">Warehouse/Art Space</option>
+        <option value="size: Bar">Bar</option>
+        <option value="size: Small Venue">Small Venue</option>
+        <option value="size: Mid-size Venue">Mid-size Venue</option>
+        <option value="size: Large Venue/Auditorum">Large Venue/Auditorum</option>
+        <option value="size: Outdoor Venue">Outdoor Venue</option>
+      </select>
+      <input type="submit" class="button" value="Filter"/>
+    </form>
+  </div>
 <% end %>
 
 <% content_for :script do %>
@@ -63,25 +79,6 @@
   </script>
 
 <% end %>
-
-<% content_for :filter do %>
-  <form method="get" action="/">
-    <select name="filter" class="field">
-      <option value="price: $">$</option>
-      <option value="price: $$">$$</option>
-      <option value="price: $$$">$$$</option>
-      <option value="size: Warehouse/Art Space">Warehouse/Art Space</option>
-      <option value="size: Bar">Bar</option>
-      <option value="size: Small Venue">Small Venue</option>
-      <option value="size: Mid-size Venue">Mid-size Venue</option>
-      <option value="size: Large Venue/Auditorum">Large Venue/Auditorum</option>
-      <option value="size: Outdoor Venue">Outdoor Venue</option>
-    </select>
-    <br>
-    <input type="submit" class="button" value="Filter"/>
-  </form>
-<% end %>
-
 
 <% content_for :nav do %>
   <div id="nav">
