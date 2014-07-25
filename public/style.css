@@ -173,7 +173,7 @@ li {
 }
 
 #rem, #reg {
-    margin: 10px;
+    margin: 9px;
 }
 
 #reg_button {
@@ -253,8 +253,8 @@ li {
 #filter {
     float: left;
     position: absolute;
-    top: 118px;
-    left: 920px;
+    top: 155px;
+    left: 580px;
     z-index: 3;
     text-align: right;
 }
@@ -392,6 +392,10 @@ a:hover .ven_name {
 
 /* --- VENUE PAGE --- */
 
+#venue_page {
+    margin-top: 20px;
+}
+
 #small_map {
     width: 475px;
     height: 475px;
@@ -406,14 +410,6 @@ a:hover .ven_name {
     height: 100px;
     text-align: center;
 }
-
-/*#venue_info {*/
-/*width: 350px;*/
-/*margin: 20px 0 0 60px;*/
-/*padding: 0;*/
-/*display: inline-block;*/
-/*font-size: 30px;*/
-/*}*/
 
 #venue_info ul {
     margin: 0 auto;

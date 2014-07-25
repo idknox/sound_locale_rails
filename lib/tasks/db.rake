@@ -78,9 +78,9 @@ end
 namespace :events do
   task :ticketfly do
     file = open(
-      "http://www.ticketfly.com/api/venues/list.json?city=Denver"
+      "http://www.ticketfly.com/api/events/upcoming.json?orgId=1&maxResults=200&city=Denver&fields=name,venue.name"
     ) { |f| f.read }
     locals = JSON.parse(file)
-    locals["venues"].each {|venue| puts venue["name"] }
+    pp locals["events"]
   end
 end
