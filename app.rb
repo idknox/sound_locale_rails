@@ -24,7 +24,7 @@ class App < Sinatra::Application
 
   get "/" do
     venues = filter_list(sort_list(@venues.all, params[:sort_venues]), params[:filter])
-    user = @users.get_user(session[:id])
+    user = @users.find(session[:id])
 
     erb :home, :locals => {
       :cur_user => user,
@@ -48,7 +48,7 @@ class App < Sinatra::Application
   end
 
   get "/users/:id/pw/edit" do
-    erb :pw, :locals => {:cur_user => @users.get_user(params[:id])}
+    erb :pw, :locals => {:cur_user => @users.find(params[:id])}
   end
 
   post "/users/:id/pw" do
@@ -76,34 +76,40 @@ class App < Sinatra::Application
   end
 
   get "/admin/users" do
-    users = sort_list(@users.get_users(session[:id]), params[:sort])
+    users = sort_list(@users.all(session[:id]), params[:sort])
     erb :ad_users, :locals => {:users => users}
   end
 
   get "/venues" do
     erb :venues, :locals => {
       :venues => sort_list(@venues.all, "title"),
-      :cur_user => @users.get_user(session[:id])
+      :cur_user => @users.find(session[:id])
     }
   end
 
   get "/venues/:id" do
+    venue = @venues.find(params[:id])
     erb :venue, :locals => {
-      :venue => @venues.get_venue(params[:id]),
-      :cur_user => @users.get_user(session[:id])
+      :venue => venue,
+      :cur_user => @users.find(session[:id]),
+      :events => @tf.find_by_venue(venue["title"])
     }
   end
 
   get "/admin/users/:id/edit" do
-    erb :user_edit, :locals => {:user => @users.get_user(params[:id])}
+    erb :user_edit, :locals => {:user => @users.find(params[:id])}
   end
 
   get "/admin/venues/:id/edit" do
-    erb :venue_edit, :locals => {:venue => @venues.get_venue(params[:id])}
+    erb :venue_edit, :locals => {:venue => @venues.find(params[:id])}
   end
 
   get "/admin/ticketfly" do
-    erb :ad_events, :locals => {:events => @tf.all}
+    erb :ad_events, :locals => {:events => sort_list(@tf.all, params[:sort])}
+  end
+
+  get "/admin/ticketfly/:id/edit" do
+    erb :tf_edit, :locals => {:event => @tf.find(params[:id])}
   end
 
   post "/admin/ticketfly" do
@@ -126,33 +132,45 @@ class App < Sinatra::Application
       flash[:notice] = "Description is #{desc-255} chars too long"
       redirect back
     else
-      @venues.add_venue(params)
+      @venues.create(params)
       flash[:notice] = "#{params["name"]} added"
       redirect "/"
     end
   end
 
   patch "/venues/:id" do
-    @venues.update_venue(params)
+    @venues.update(params)
     flash[:notice] = "Venue Updated"
     redirect back
   end
 
   patch "/users/:id" do
-    @users.update_user(params)
+    @users.update(params)
     flash[:notice] = "User updated"
     redirect back
   end
 
+  patch "/ticketfly/:id" do
+    @tf.update(params)
+    flash[:notice] = "Event updated"
+    redirect back
+  end
+
   delete "/users/:id" do
-    flash[:notice] = "#{@users.get_user(params[:id])["first_name"]} deleted"
-    @users.delete_user(params[:id])
+    flash[:notice] = "#{@users.find(params[:id])["first_name"]} deleted"
+    @users.delete(params[:id])
     redirect back
   end
 
   delete "/venues/:id" do
-    flash[:notice] = "#{@venues.get_venue(params[:id])["title"]} deleted"
-    @venues.delete_venue(params[:id])
+    flash[:notice] = "#{@venues.find(params[:id])["title"]} deleted"
+    @venues.delete(params[:id])
+    redirect back
+  end
+
+  delete "/ticketfly/:id" do
+    flash[:notice] = "Event deleted"
+    @tf.delete(params[:id])
     redirect back
   end
 
@@ -173,7 +191,7 @@ class App < Sinatra::Application
       flash[:notice] = "You must be at least 13 years old"
       redirect back
     else
-      @users.add_user(params)
+      @users.create(params)
       flash[:notice] = "Thank you for registering"
       redirect "/"
     end

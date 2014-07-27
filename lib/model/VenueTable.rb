@@ -11,7 +11,7 @@ class VenueTable
     )
   end
   
-  def add_venue(venue)
+  def create(venue)
     @db.sql(
       "INSERT INTO venues (name, title, site, position, background, " +
         "marker_name, address, size, description, price, map) " +
@@ -22,13 +22,13 @@ class VenueTable
     )
   end
 
-  def get_venue(id)
+  def find(id)
     @db.sql(
       "SELECT * FROM venues WHERE id =#{id}"
     )[0]
   end
 
-  def update_venue(venue)
+  def update(venue)
     @db.sql(
       "UPDATE venues set title='#{venue[:title]}', " +
         "position='#{venue[:position]}', background='#{venue[:background]}', " +
@@ -40,7 +40,7 @@ class VenueTable
     )
   end
 
-  def delete_venue(id)
+  def delete(id)
     @db.sql(
       "DELETE FROM venues WHERE id=#{id}"
     )

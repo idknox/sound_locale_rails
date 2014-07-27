@@ -18,7 +18,7 @@ class UserTable
     )[0]
   end
 
-  def add_user(user)
+  def create(user)
     @db.sql(
       "INSERT INTO users (first_name, last_name, email" +
         ", password, birthday, join_date) VALUES ('#{user[:first_name]}'" +
@@ -27,7 +27,7 @@ class UserTable
     )
   end
 
-  def get_user(id)
+  def find(id)
     if id
       @db.sql(
         "SELECT * FROM users WHERE id=#{id}"
@@ -35,13 +35,7 @@ class UserTable
     end
   end
 
-  def get_id(email)
-    @db.sql(
-      "SELECT id FROM users WHERE email='#{email}'"
-    )[0]["id"]
-  end
-
-  def get_users(id)
+  def all(id)
     if id
       @db.sql(
         "SELECT * FROM users WHERE id <> #{id}"
@@ -49,27 +43,10 @@ class UserTable
     end
   end
 
-  def delete_user(id)
+  def delete(id)
     @db.sql(
       "DELETE from users WHERE id=#{id}"
     )
-  end
-
-  def get_email(id)
-    if id
-      @db.sql(
-        "SELECT email from users WHERE id=#{id}"
-      )
-    end
-  end
-
-  def get_pw(id, pw)
-    output = @db.sql(
-      "SELECT password FROM users WHERE id=#{id} and password='#{pw}'"
-    )
-    if output != []
-      output[0]["password"]
-    end
   end
 
   def change_pw(id, pw)
@@ -78,7 +55,7 @@ class UserTable
     )
   end
 
-  def update_user(user)
+  def update(user)
     @db.sql(
       "UPDATE users SET first_name='#{user[:first_name]}', " +
         "last_name='#{user[:last_name]}', " +

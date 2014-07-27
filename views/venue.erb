@@ -39,22 +39,31 @@
 <% end %>
 
 <% content_for :main do %>
-    <article class="one_half" id="venue_page">
-      <div id="venue_info">
-        <div id="venue_logo">
-          <img src="<%= venue["logo"] %>">
-        </div>
-        <ul>
-          <li><%= venue["address"] %></li>
-          <li><%= venue["size"] %></li>
-          <li><%= venue["price"] %></li>
-          <li><%= venue["description"] %></li>
-        </ul>
+  <article class="one_half" id="venue_page">
+    <div id="venue_info">
+      <div id="venue_logo">
+        <img src="<%= venue["logo"] %>">
       </div>
-    </article>
-    <article class="one_half">
-      <div id="small_map">
-      </div>
-    </article>
+      <ul>
+        <li><%= venue["address"] %></li>
+        <li><%= venue["size"] %></li>
+        <li><%= venue["price"] %></li>
+        <li><%= venue["description"] %></li>
+      </ul>
+    </div>
+  </article>
+  <article class="one_half">
+    <div id="small_map">
+    </div>
+  </article>
+
+  <div>
+    <ul>
+      <% events.each do |event| %>
+        <li><%= event["name"] %></li>
+        <li><%= event["date"] %></li>
+      <% end %>
+    </ul>
+  </div>
 
 <% end %>

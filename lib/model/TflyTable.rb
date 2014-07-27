@@ -8,7 +8,7 @@ class TflyTable
 
   def all
     @db.sql(
-      "SELECT * FROM events"
+      "SELECT * FROM events WHERE date >= '#{Date.today.strftime("%Y-%m-%d")}'"
     )
   end
 
@@ -27,11 +27,38 @@ class TflyTable
     end
   end
 
-  def get_tf(venue)
-      @db.sql(
-        "SELECT * FROM events" +
-          "INNER JOIN venues ON venues.title=events.venue" +
-          "WHERE events.venue = '#{venue}'"
-      )
+  def find(id)
+    @db.sql(
+      "SELECT * FROM events WHERE id=#{id}"
+    )[0]
   end
+
+  def find_by_venue(venue)
+    @db.sql(
+      "SELECT * FROM events WHERE venue = '#{venue}' and " +
+        "date >= '#{Date.today.strftime("%Y-%m-%d")}'"
+    )
+  end
+
+  def find_by_date(date)
+    @db.sql(
+      "SELECT * FROM events WHERE date='#{Date.parse(date).strftime("%m-%d-%Y")}'"
+    )
+  end
+
+  def update(event)
+    @db.sql(
+      "UPDATE events set name='#{event[:name]}', venue='#{event[:venue]}', " +
+        "headliner='#{event[:headliner]}', price='#{event[:price]}', " +
+        "date='#{Date.parse(event[:date]).strftime("%m-%d-%Y")}', " +
+        "tickets='#{event[:tickets]}' WHERE id=#{event[:id]}"
+    )
+  end
+
+  def delete(id)
+    @db.sql(
+      "DELETE FROM events WHERE id=#{id}"
+    )
+  end
+
 end
