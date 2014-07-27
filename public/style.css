@@ -66,6 +66,7 @@ a {
 body {
     background-image: url("images/back.jpg");
     background-attachment: fixed;
+    background-size: center;
     color: #F29721;
 }
 
