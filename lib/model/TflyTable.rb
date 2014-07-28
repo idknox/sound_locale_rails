@@ -25,11 +25,11 @@ class TflyTable
       event["headlinersName"].gsub!("'", "")
       unless event_exists(event["id"])
         @db.sql(
-          "INSERT INTO events (tf_id, name, venue, headliner, date, tickets, price, url, twitter, image) VALUES " +
+          "INSERT INTO events (tf_id, name, venue, headliner, date, tickets, price, url, twitter) VALUES " +
             "(#{event["id"]}, '#{event["name"]}', '#{event["venue"]["name"]}', '#{event["headlinersName"]}', " +
             "'#{Date.parse(event["startDate"]).strftime("%m-%d-%Y")}', " +
             "'#{event["ticketPurchaseUrl"]}', '#{event["ticketPrice"]}', " +
-            "'#{event["urlOfficialWebsite"]}', '#{event["urlTwitter"]}', '#{event["image"]["xlarge"]["path"]}')"
+            "'#{event["urlOfficialWebsite"]}', '#{event["urlTwitter"]}')"
         )
       end
     end
@@ -48,10 +48,20 @@ class TflyTable
     )
   end
 
-  def find_by_date(date)
-    @db.sql(
-      "SELECT * FROM events WHERE date='#{Date.parse(date).strftime("%m-%d-%Y")}'"
-    )
+  def find_by_date(date=nil)
+    if date
+      @db.sql(
+        "SELECT events.*, venues.position, venues.marker_name FROM events " +
+          "INNER JOIN venues ON venues.title=events.venue " +
+          "WHERE events.date='#{Date.parse(date).strftime("%m-%d-%Y")}'"
+      )
+    else
+      @db.sql(
+        "SELECT events.*, venues.position, venues.marker_name FROM events " +
+          "INNER JOIN venues ON venues.title=events.venue " +
+          "WHERE date='#{Date.today.strftime("%m-%d-%Y")}'"
+      )
+    end
   end
 
   def update(event)

@@ -260,9 +260,15 @@ li {
 
 #map_container {
     width: 960px;
-    height: 600px;
+    height: 510px;
     border-radius: 5%;
     margin: 0;
+}
+
+#map_date {
+    height: 1.3em;
+    position: relative;
+    top: -3px;
 }
 
 .filter {

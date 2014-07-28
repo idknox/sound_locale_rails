@@ -3,17 +3,7 @@
   </div>
   <div class="filter">
     <form method="get" action="/">
-      <select name="filter" class="field">
-        <option value="price: $">$</option>
-        <option value="price: $$">$$</option>
-        <option value="price: $$$">$$$</option>
-        <option value="size: Warehouse/Art Space">Warehouse/Art Space</option>
-        <option value="size: Bar">Bar</option>
-        <option value="size: Small Venue">Small Venue</option>
-        <option value="size: Mid-size Venue">Mid-size Venue</option>
-        <option value="size: Large Venue/Auditorum">Large Venue/Auditorum</option>
-        <option value="size: Outdoor Venue">Outdoor Venue</option>
-      </select>
+    <input type="date" class="field" name="date" id="map_date"/>
       <input type="submit" class="button" value="Filter"/>
     </form>
   </div>
@@ -26,16 +16,6 @@
 
   <script>
     var denver = new google.maps.LatLng(39.740009, -104.992302)
-
-    var venues = [
-      new google.maps.LatLng(39.733536, -104.992615),
-      new google.maps.LatLng(39.715093, -104.983796),
-      new google.maps.LatLng(39.740398, -104.975266),
-      new google.maps.LatLng(39.760044, -104.983940)
-    ];
-
-    var markers = [];
-    var iterator = 0;
 
     function initialize() {
 
@@ -50,26 +30,25 @@
 
       var window = new google.maps.InfoWindow({})
 
-      <% venues.each do |venue| %>
-      var <%= venue["marker_name"] %> = new google.maps.Marker({
-        position: new google.maps.LatLng(<%= venue["position"] %>),
-        title: '<%= venue["title"] %>',
+      <% events.each do |event| %>
+      var <%= event["marker_name"] %> = new google.maps.Marker({
+        position: new google.maps.LatLng(<%= event["position"] %>),
+        title: '<%= event["name"] %>',
         animation: google.maps.Animation.DROP,
-        map: <%= venue["map"] %>
+        map: map
       });
 
-      var <%= venue["marker_name"] %>_info = '<div class="info_window">' +
-        '<img src="<%= venue["logo"] %>">' +
-        '<%= venue["description"] %>' +
-        '<br>' +
-        '<a href="<%= venue["site"] %>" class="button">Website</a>' +
+      var <%= event["marker_name"] %>_info = '<div class="info_window">' +
+        '<p><%= event["name"] %></p><br>' +
+        '<p><%= event["venue"] %></p><br>' +
+        '<a href="<%= event["tickets"] %>" class="button">Tickets</a>' +
         '</div>'
 
-      <%= venue["marker_name"] %>.setMap(map);
+      <%= event["marker_name"] %>.setMap(map);
 
-      google.maps.event.addListener(<%= venue["marker_name"] %>, 'click', function () {
-        window.setContent(<%= venue["marker_name"] %>_info);
-        window.open(map, <%= venue["marker_name"] %>);
+      google.maps.event.addListener(<%= event["marker_name"] %>, 'click', function () {
+        window.setContent(<%= event["marker_name"] %>_info);
+        window.open(map, <%= event["marker_name"] %>);
       });
       <% end %>
     }

@@ -23,17 +23,15 @@ class App < Sinatra::Application
   end
 
   get "/" do
-    venues = filter_list(sort_list(@venues.all, params[:sort_venues]), params[:filter])
-    user = @users.find(session[:id])
-
-    erb :home, :locals => {
-      :cur_user => user,
-      :venues => venues
-    }
+    events = @tf.find_by_date(params[:date])
+    p "*" * 80
+    p events
+    p "*" * 80
+    erb :home, :locals => {:events => events}
   end
 
   before "/admin/*" do
-    unless is_admin?
+    unless is_admin
       redirect "/"
     end
   end
@@ -185,7 +183,7 @@ class App < Sinatra::Application
 
   private
 
-  def is_admin?
+  def is_admin
     session[:id] == 1
   end
 
