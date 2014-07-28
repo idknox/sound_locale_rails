@@ -14,9 +14,9 @@ class TflyTable
 
   def create(events)
     events.each do |event|
-      event["name"].gsub!("'", "''")
-      event["venue"]["name"].gsub!("'", "''")
-      event["headlinersName"].gsub!("'", "''")
+      event["name"].gsub!("'", "")
+      event["venue"]["name"].gsub!("'", "")
+      event["headlinersName"].gsub!("'", "")
       @db.sql(
         "INSERT INTO events (name, venue, headliner, date, tickets, price, url, twitter) VALUES " +
           "('#{event["name"]}', '#{event["venue"]["name"]}', '#{event["headlinersName"]}', " +

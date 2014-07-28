@@ -57,11 +57,14 @@
     </div>
   </article>
 
-  <div>
+  <div class="venue_events">
     <ul>
       <% events.each do |event| %>
-        <li><%= event["name"] %></li>
-        <li><%= event["date"] %></li>
+        <li>
+          <a href="<%= event["tickets"] %>">
+            <%= event["name"] %> - <%= event["date"] %>
+          </a>
+        </li>
       <% end %>
     </ul>
   </div>
