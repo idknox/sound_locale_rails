@@ -12,20 +12,9 @@
     <% end %>
   </div>
 
-<% end %>
-
-<% content_for :nav do %>
-  <div id="nav">
-    <ul>
-      <li>
-        Events
-      </li>
-      <li>
-        Bands
-      </li>
-      <li id="nav_ven">
-        <a href="/venues">Venues</a>
-      </li>
-    </ul>
+  <div class="filter">
+    <form method="get" action="/venues">
+    <input type="submit" class="button" name="map" value="Map"/>
+    </form>
   </div>
 <% end %>

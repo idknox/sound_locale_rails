@@ -81,10 +81,13 @@ class App < Sinatra::Application
   end
 
   get "/venues" do
-    erb :venues, :locals => {
-      :venues => sort_list(@venues.all, "title"),
-      :cur_user => @users.find(session[:id])
-    }
+    venues = filter_list(sort_list(@venues.all, params[:sort_venues]), params[:filter])
+
+    if params[:map]
+      erb :venues_map, :locals => {:venues => venues}
+    else
+      erb :venues, :locals => {:venues => venues}
+    end
   end
 
   get "/venues/:id" do

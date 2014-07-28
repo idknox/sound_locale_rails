@@ -65,7 +65,7 @@
         '<a href="<%= venue["site"] %>" class="button">Website</a>' +
         '</div>'
 
-      <%= venue["marker_name"] %>.setMap(map);
+          <%= venue["marker_name"] %>.setMap(map);
 
       google.maps.event.addListener(<%= venue["marker_name"] %>, 'click', function () {
         window.setContent(<%= venue["marker_name"] %>_info);

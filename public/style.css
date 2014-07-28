@@ -265,7 +265,7 @@ li {
     margin: 0;
 }
 
-#filter {
+.filter {
     float: left;
     position: absolute;
     top: 120px;
