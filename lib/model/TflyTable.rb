@@ -25,11 +25,11 @@ class TflyTable
       event["headlinersName"].gsub!("'", "")
       unless event_exists(event["id"])
         @db.sql(
-          "INSERT INTO events (tf_id, name, venue, headliner, date, tickets, price, url, twitter) VALUES " +
+          "INSERT INTO events (tf_id, name, venue, headliner, date, tickets, price, url, twitter, image) VALUES " +
             "(#{event["id"]}, '#{event["name"]}', '#{event["venue"]["name"]}', '#{event["headlinersName"]}', " +
             "'#{Date.parse(event["startDate"]).strftime("%m-%d-%Y")}', " +
             "'#{event["ticketPurchaseUrl"]}', '#{event["ticketPrice"]}', " +
-            "'#{event["urlOfficialWebsite"]}', '#{event["urlTwitter"]}')"
+            "'#{event["urlOfficialWebsite"]}', '#{event["urlTwitter"]}', '#{event["image"]["xlarge"]["path"]}')"
         )
       end
     end

@@ -13,7 +13,7 @@ class JsonEvents
       "maxResults=200&city=Denver" +
       "&fromDate=#{Date.today.strftime("%Y-%m-%d")}" +
       "&fields=id,name,venue.name,headlinersName,startDate," +
-      "ticketPurchaseUrl,ticketPrice,urlTwitter,urlFacebook"
+      "ticketPurchaseUrl,ticketPrice,urlTwitter,urlFacebook,image.xlarge.path"
 
     file = open(url) { |f| f.read }
     page = JSON.parse(file)["totalPages"]

@@ -48,6 +48,8 @@
 
       var map = new google.maps.Map(mapCanvas, mapOptions);
 
+      var window = new google.maps.InfoWindow({})
+
       <% venues.each do |venue| %>
       var <%= venue["marker_name"] %> = new google.maps.Marker({
         position: new google.maps.LatLng(<%= venue["position"] %>),
@@ -63,14 +65,11 @@
         '<a href="<%= venue["site"] %>" class="button">Website</a>' +
         '</div>'
 
-      var <%= venue["marker_name"] %>_window = new google.maps.InfoWindow({
-        content: <%= venue["marker_name"] %>_info
-      })
-
       <%= venue["marker_name"] %>.setMap(map);
 
       google.maps.event.addListener(<%= venue["marker_name"] %>, 'click', function () {
-        <%= venue["marker_name"] %>_window.open(map, <%= venue["marker_name"] %>);
+        window.setContent(<%= venue["marker_name"] %>_info);
+        window.open(map, <%= venue["marker_name"] %>);
       });
       <% end %>
     }
@@ -80,19 +79,4 @@
 
 <% end %>
 
-<% content_for :nav do %>
-  <div id="nav">
-    <ul>
-      <li>
-        Events
-      </li>
-      <li>
-        Bands
-      </li>
-      <li>
-        <a href="/venues">Venues</a>
-      </li>
-    </ul>
-  </div>
-<% end %>
 
