@@ -12,7 +12,7 @@ class JsonEvents
     url = "http://www.ticketfly.com/api/events/list.json?orgId=1&" +
       "maxResults=200&city=Denver" +
       "&fromDate=#{Date.today.strftime("%Y-%m-%d")}" +
-      "&fields=name,venue.name,headlinersName,startDate," +
+      "&fields=id,name,venue.name,headlinersName,startDate," +
       "ticketPurchaseUrl,ticketPrice,urlTwitter,urlFacebook"
 
     file = open(url) { |f| f.read }

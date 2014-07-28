@@ -174,6 +174,12 @@ class App < Sinatra::Application
     redirect back
   end
 
+  delete "/admin/ticketfly" do
+    @tf.del_all
+    flash[:notice] = "All events deleted"
+    redirect back
+  end
+
   private
 
   def is_admin?

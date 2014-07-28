@@ -53,7 +53,11 @@
             <form method="post" action="/admin/ticketfly">
               <input type="submit" class="button" id="admin" value="Ticketfly"/>
             </form>
-            <a href="/admin/ticketfly" class="button">Events</a>
+            <a href="/admin/ticketfly" class="button" id="admin">Events</a>
+            <form method="post" action="/admin/ticketfly">
+              <input type="hidden" name="_method" value="delete"/>
+              <button type="submit" class="button" id="admin">Delete All</button>
+            </form>
           </div>
         <% elsif session[:id] %>
           <div class="nav_right">

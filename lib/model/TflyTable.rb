@@ -12,18 +12,26 @@ class TflyTable
     )
   end
 
+  def get_ids
+    @db.sql(
+      "SELECT tf_id FROM events"
+    )
+  end
+
   def create(events)
     events.each do |event|
       event["name"].gsub!("'", "")
       event["venue"]["name"].gsub!("'", "")
       event["headlinersName"].gsub!("'", "")
-      @db.sql(
-        "INSERT INTO events (name, venue, headliner, date, tickets, price, url, twitter) VALUES " +
-          "('#{event["name"]}', '#{event["venue"]["name"]}', '#{event["headlinersName"]}', " +
-          "'#{Date.parse(event["startDate"]).strftime("%m-%d-%Y")}', " +
-          "'#{event["ticketPurchaseUrl"]}', '#{event["ticketPrice"]}', " +
-          "'#{event["urlOfficialWebsite"]}', '#{event["urlTwitter"]}')"
-      )
+      unless event_exists(event["id"])
+        @db.sql(
+          "INSERT INTO events (tf_id, name, venue, headliner, date, tickets, price, url, twitter) VALUES " +
+            "(#{event["id"]}, '#{event["name"]}', '#{event["venue"]["name"]}', '#{event["headlinersName"]}', " +
+            "'#{Date.parse(event["startDate"]).strftime("%m-%d-%Y")}', " +
+            "'#{event["ticketPurchaseUrl"]}', '#{event["ticketPrice"]}', " +
+            "'#{event["urlOfficialWebsite"]}', '#{event["urlTwitter"]}')"
+        )
+      end
     end
   end
 
@@ -59,6 +67,18 @@ class TflyTable
     @db.sql(
       "DELETE FROM events WHERE id=#{id}"
     )
+  end
+
+  def del_all
+    @db.sql(
+      "DELETE FROM events"
+    )
+  end
+
+  def event_exists(id)
+    @db.sql(
+      "SELECT * FROM events where tf_id=#{id}"
+    ) != []
   end
 
 end
