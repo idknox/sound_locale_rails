@@ -4,9 +4,9 @@ require "sinatra/content_for"
 require "rack-flash"
 require "gschool_database_connection"
 require_relative "lib/model/events"
-require_relative "lib/model/tfly"
-require_relative "lib/model/user"
-require_relative "lib/model/venue"
+require_relative "lib/model/ticketfly"
+require_relative "lib/model/users"
+require_relative "lib/model/venues"
 
 class App < Sinatra::Application
   helpers Sinatra::ContentFor
