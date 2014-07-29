@@ -1,8 +1,7 @@
-<% content_for :script do %>
+<% content_for :map_script do %>
   <script type="text/javascript"
           src="https://maps.googleapis.com/maps/api/js?v=3.exp">
   </script>
-
   <script>
     var denver = new google.maps.LatLng(<%= venue.position %>)
 
@@ -25,8 +24,7 @@
         map: <%= venue.map %>
       });
 
-      <%= venue.marker_name %>.
-      setMap(map);
+      <%= venue.marker_name %>.setMap(map);
 
     }
 

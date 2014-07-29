@@ -78,7 +78,6 @@ class App < Sinatra::Application
     venue = Venue.find(params[:id])
     erb :venue, :locals => {
       :venue => venue,
-      :cur_user => User.find(session[:id]),
       :events => @tf.find_by_venue(venue.title)
     }
   end
