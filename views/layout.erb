@@ -64,9 +64,9 @@
           </div>
         <% elsif session[:id] %>
           <div class="nav_right">
-            Welcome, <%= cur_user["first_name"] %>
+            Welcome, <%= cur_user.first_name %>
             <br>
-            <a href="/users/<%= cur_user["id"] %>/pw/edit" class="button">Change Password</a>
+            <a href="/users/<%= cur_user.id %>/pw/edit" class="button">Change Password</a>
             <br>
             <a href="/logout" class="button">Logout</a>
           </div>

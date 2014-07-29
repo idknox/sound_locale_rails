@@ -1,6 +1,6 @@
 <% content_for :main do %>
   <div class="form">
-    <form method="post" action="/users/<%= user["id"] %>" class="form">
+    <form method="post" action="/users/<%= user.id %>" class="form">
       <input type="hidden" name="_method" value="patch"/>
       <ul>
         <li>
@@ -8,7 +8,7 @@
         </li>
         <li>
           <input type="text" name="first_name"
-                 value="<%= user["first_name"] %>"
+                 value="<%= user.first_name %>"
                  class="field"
           />
         </li>
@@ -19,7 +19,7 @@
         <li>
           <input type="text"
                  name="last_name"
-                 value="<%= user["last_name"] %>"
+                 value="<%= user.last_name %>"
                  class="field"
           />
         </li>
@@ -30,7 +30,7 @@
         <li>
           <input type="email"
                  name="email"
-                 value="<%= user["email"] %>"
+                 value="<%= user.email %>"
                  class="field"
           />
         </li>
@@ -41,7 +41,7 @@
         <li>
           <input type="date"
                  name="birthday"
-                 value="<%= user["birthday"] %>"
+                 value="<%= user.birthday %>"
                  class="field"
           />
         </li>

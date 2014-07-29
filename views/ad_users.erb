@@ -22,16 +22,16 @@
     <tbody>
     <% users.each do |user| %>
       <tr>
-        <td><%= user["first_name"] + " " + user["last_name"] %></td>
-        <td><%= user["email"] %></td>
-        <td><%= Date.parse(user["birthday"]).strftime("%m-%d-%Y") %></td>
-        <td><%= Date.parse(user["join_date"]).strftime("%m-%d-%Y") %></td>
+        <td><%= user.first_name + " " + user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.birthday.strftime("%m-%d-%Y") %></td>
+        <td><%= user.join_date.strftime("%m-%d-%Y") %></td>
         <td>
-          <a href="/admin/users/<%= user["id"] %>/edit"
+          <a href="/admin/users/<%= user.id %>/edit"
              class="button" id="delete">
             edit
           </a>
-          <form method="post" action="/users/<%= user["id"] %>">
+          <form method="post" action="/users/<%= user.id %>">
             <input type="hidden" name="_method" value="delete"/>
             <button class="button" id="delete">del</button>
           </form>

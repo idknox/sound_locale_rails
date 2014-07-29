@@ -3,10 +3,10 @@ require "sinatra"
 require "sinatra/content_for"
 require "rack-flash"
 require "gschool_database_connection"
-require_relative "lib/model/JsonEvents"
-require_relative "lib/model/TflyTable"
-require_relative "lib/model/User"
-require_relative "lib/model/Venue"
+require_relative "lib/model/jsonevents"
+require_relative "lib/model/tfly"
+require_relative "lib/model/user"
+require_relative "lib/model/venue"
 
 class App < Sinatra::Application
   helpers Sinatra::ContentFor
@@ -15,19 +15,24 @@ class App < Sinatra::Application
 
   def initialize
     super
-    @db = GschoolDatabaseConnection::DatabaseConnection.establish(ENV["RACK_ENV"])
-    @users = User.new(@db)
-    @tf = TflyTable.new(@db)
+    db = GschoolDatabaseConnection::DatabaseConnection.establish(ENV["RACK_ENV"])
+    @tf = Tfly.new(db)
     @jsonevents = JsonEvents.new
   end
 
   get "/" do
+    if session[:id]
+      user = User.find(session[:id])
+    end
     events = @tf.find_by_date(params[:date])
-    erb :home, :locals => {:events => events}
+    erb :home, :locals => {
+      :events => events,
+      :cur_user => user
+    }
   end
 
   before "/admin/*" do
-    unless is_admin
+    unless User.is_admin(session[:id])
       redirect "/"
     end
   end
@@ -42,18 +47,18 @@ class App < Sinatra::Application
   end
 
   get "/users/:id/pw/edit" do
-    erb :pw, :locals => {:cur_user => @users.find(params[:id])}
+    erb :pw, :locals => {:cur_user => User.find(params[:id])}
   end
 
   post "/users/:id/pw" do
-    if !@users.get_pw(session[:id], params[:old_pw])
+    if User.find(session[:id]).password != params[:old_pw]
       flash[:notice] = "Incorrect Password"
       redirect back
     elsif !check_pw(params[:new_pw], params[:new_conf])
       flash[:notice] = "Passwords don't match"
       redirect back
     else
-      @users.change_pw(session[:id], params[:new_pw])
+      User.find(session[:id]).update(password: params[:new_pw])
       flash[:notice] = "Password changed"
       redirect "/"
     end
@@ -69,7 +74,7 @@ class App < Sinatra::Application
   end
 
   get "/admin/users" do
-    users = sort_list(@users.all(session[:id]), params[:sort])
+    users = sort_list(User.all, params[:sort])
     erb :ad_users, :locals => {:users => users}
   end
 
@@ -87,13 +92,13 @@ class App < Sinatra::Application
     venue = Venue.find(params[:id])
     erb :venue, :locals => {
       :venue => venue,
-      :cur_user => @users.find(session[:id]),
+      :cur_user => User.find(session[:id]),
       :events => @tf.find_by_venue(venue.title)
     }
   end
 
   get "/admin/users/:id/edit" do
-    erb :user_edit, :locals => {:user => @users.find(params[:id])}
+    erb :user_edit, :locals => {:user => User.find(params[:id])}
   end
 
   get "/admin/venues/:id/edit" do
@@ -135,9 +140,6 @@ class App < Sinatra::Application
   end
 
   patch "/venues/:id" do
-    puts "*" * 80
-    p params
-    puts "*" * 80
     params.delete("_method")
     params.delete("splat")
     params.delete("captures")
@@ -147,7 +149,10 @@ class App < Sinatra::Application
   end
 
   patch "/users/:id" do
-    @users.update(params)
+    params.delete("_method")
+    params.delete("splat")
+    params.delete("captures")
+    User.find(params[:id]).update(params)
     flash[:notice] = "User updated"
     redirect back
   end
@@ -159,8 +164,8 @@ class App < Sinatra::Application
   end
 
   delete "/users/:id" do
-    flash[:notice] = "#{@users.find(params[:id])["first_name"]} deleted"
-    @users.delete(params[:id])
+    flash[:notice] = "#{User.find(params[:id]).first_name} deleted"
+    User.destroy(params[:id])
     redirect back
   end
 
@@ -184,22 +189,23 @@ class App < Sinatra::Application
 
   private
 
-  def is_admin
-    session[:id] == 1
-  end
-
   def check_reg(params)
-    if !check_pw(params[:password], params[:pass_conf])
+    if params.values.include?("")
+      flash[:notice] = "Please fill in all fields"
+      redirect back
+    elsif !check_pw(params[:password], params[:pass_conf])
       flash[:notice] = "Passwords must match"
       redirect back
-    elsif @users.user_exists(params[:email])
+    elsif User.find_by(:email => params[:email])
       flash[:notice] = "User already exists"
       redirect back
     elsif get_age(params[:birthday]) < 13
       flash[:notice] = "You must be at least 13 years old"
       redirect back
     else
-      @users.create(params)
+      params.delete("pass_conf")
+      params[:join_date] = Date.today.strftime("%Y-%m-%d")
+      User.create(params)
       flash[:notice] = "Thank you for registering"
       redirect "/"
     end
@@ -209,14 +215,14 @@ class App < Sinatra::Application
     if email == "" || password == ""
       flash[:notice] = "email and password are required"
       redirect back
-    elsif !@users.user_exists(email)
+    elsif !User.find_by(:email => email)
       flash[:notice] = "No account exists"
       redirect back
-    elsif @users.find_by_email(email)["password"] != password
+    elsif User.find_by(:email => email).password != password
       flash[:notice] = "Incorrect password"
       redirect back
     else
-      session[:id] = @users.find_by_email(email)["id"].to_i
+      session[:id] = User.find_by(:email => email).id
       flash[:notice] = nil
       redirect "/"
     end

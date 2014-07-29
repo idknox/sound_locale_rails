@@ -1,6 +1,6 @@
 require "date"
 
-class TflyTable
+class Tfly
 
   def initialize(db)
     @db = db
