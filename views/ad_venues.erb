@@ -68,4 +68,20 @@
   </table>
 </div>
 
+  <div class="filter">
+    <form method="get" action="/admin/venues">
+      <select name="filter" class="field">
+        <a href="/admin/venues"><option value="price: $">$</option></a>
+        <option value="price: $$">$$</option>
+        <option value="price: $$$">$$$</option>
+        <option value="size: Warehouse/Art Space">Warehouse/Art Space</option>
+        <option value="size: Bar">Bar</option>
+        <option value="size: Small Venue">Small Venue</option>
+        <option value="size: Mid-size Venue">Mid-size Venue</option>
+        <option value="size: Large Venue/Auditorum">Large Venue/Auditorum</option>
+        <option value="size: Outdoor Venue">Outdoor Venue</option>
+      </select>
+      <input type="submit" class="button" value="Filter"/>
+    </form>
+  </div>
 <% end %>
