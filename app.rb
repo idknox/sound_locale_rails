@@ -50,20 +50,6 @@ class App < Sinatra::Application
     erb :pw, :locals => {:cur_user => User.find(params[:id])}
   end
 
-  post "/users/:id/pw" do
-    if User.find(session[:id]).password != params[:old_pw]
-      flash[:notice] = "Incorrect Password"
-      redirect back
-    elsif !check_pw(params[:new_pw], params[:new_conf])
-      flash[:notice] = "Passwords don't match"
-      redirect back
-    else
-      User.find(session[:id]).update(password: params[:new_pw])
-      flash[:notice] = "Password changed"
-      redirect "/"
-    end
-  end
-
   get "/admin/venues/new" do
     erb :add_venue
   end
@@ -126,6 +112,19 @@ class App < Sinatra::Application
     check_reg(params)
   end
 
+  post "/users/:id/pw" do
+    if User.find(session[:id]).password != params[:old_pw]
+      flash[:notice] = "Incorrect Password"
+      redirect back
+    elsif !check_pw(params[:new_pw], params[:new_conf])
+      flash[:notice] = "Passwords don't match"
+      redirect back
+    else
+      User.find(session[:id]).update(password: params[:new_pw])
+      flash[:notice] = "Password changed"
+      redirect "/"
+    end
+  end
 
   post "/venues" do
     desc = params[:description].length
