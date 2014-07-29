@@ -2,7 +2,7 @@
   <div id="map_container">
   </div>
   <div class="filter">
-    <form method="get" action="/">
+    <form method="get" action="/venues/map">
       <select name="filter" class="field">
         <option value="price: $">$</option>
         <option value="price: $$">$$</option>
@@ -19,7 +19,7 @@
   </div>
 <% end %>
 
-<% content_for :script do %>
+<% content_for :map_script do %>
   <script type="text/javascript"
           src="https://maps.googleapis.com/maps/api/js?v=3.exp">
   </script>
@@ -51,25 +51,25 @@
       var window = new google.maps.InfoWindow({})
 
       <% venues.each do |venue| %>
-      var <%= venue["marker_name"] %> = new google.maps.Marker({
-        position: new google.maps.LatLng(<%= venue["position"] %>),
-        title: '<%= venue["title"] %>',
+      var <%= venue.marker_name %> = new google.maps.Marker({
+        position: new google.maps.LatLng(<%= venue.position %>),
+        title: '<%= venue.title %>',
         animation: google.maps.Animation.DROP,
-        map: <%= venue["map"] %>
+        map: <%= venue.map %>
       });
 
-      var <%= venue["marker_name"] %>_info = '<div class="info_window">' +
-        '<img src="<%= venue["logo"] %>">' +
-        '<%= venue["description"] %>' +
+      var <%= venue.marker_name %>_info = '<div class="info_window">' +
+        '<img src="<%= venue.logo %>">' +
+        '<%= venue.description %>' +
         '<br>' +
-        '<a href="<%= venue["site"] %>" class="button">Website</a>' +
+        '<a href="<%= venue.site %>" class="button">Website</a>' +
         '</div>'
 
-          <%= venue["marker_name"] %>.setMap(map);
+          <%= venue.marker_name %>.setMap(map);
 
-      google.maps.event.addListener(<%= venue["marker_name"] %>, 'click', function () {
-        window.setContent(<%= venue["marker_name"] %>_info);
-        window.open(map, <%= venue["marker_name"] %>);
+      google.maps.event.addListener(<%= venue.marker_name %>, 'click', function () {
+        window.setContent(<%= venue.marker_name %>_info);
+        window.open(map, <%= venue.marker_name %>);
       });
       <% end %>
     }

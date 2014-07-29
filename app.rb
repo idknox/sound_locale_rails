@@ -5,8 +5,8 @@ require "rack-flash"
 require "gschool_database_connection"
 require_relative "lib/model/JsonEvents"
 require_relative "lib/model/TflyTable"
-require_relative "lib/model/UserTable"
-require_relative "lib/model/VenueTable"
+require_relative "lib/model/User"
+require_relative "lib/model/Venue"
 
 class App < Sinatra::Application
   helpers Sinatra::ContentFor
@@ -16,17 +16,13 @@ class App < Sinatra::Application
   def initialize
     super
     @db = GschoolDatabaseConnection::DatabaseConnection.establish(ENV["RACK_ENV"])
-    @users = UserTable.new(@db)
-    @venues = VenueTable.new(@db)
+    @users = User.new(@db)
     @tf = TflyTable.new(@db)
     @jsonevents = JsonEvents.new
   end
 
   get "/" do
     events = @tf.find_by_date(params[:date])
-    p "*" * 80
-    p events
-    p "*" * 80
     erb :home, :locals => {:events => events}
   end
 
@@ -68,8 +64,7 @@ class App < Sinatra::Application
   end
 
   get "/admin/venues" do
-    venues = filter_list(sort_list(@venues.all, params[:sort]), params[:filter])
-
+    venues = filter_list(sort_list(Venue.all, params[:sort]), params[:filter])
     erb :ad_venues, :locals => {:venues => venues}
   end
 
@@ -79,21 +74,21 @@ class App < Sinatra::Application
   end
 
   get "/venues" do
-    venues = filter_list(sort_list(@venues.all, params[:sort_venues]), params[:filter])
+    venues = sort_list(Venue.all, params[:sort_venues])
+    erb :venues, :locals => {:venues => venues}
+  end
 
-    if params[:map]
-      erb :venues_map, :locals => {:venues => venues}
-    else
-      erb :venues, :locals => {:venues => venues}
-    end
+  get "/venues/map" do
+    venues = filter_list(sort_list(Venue.all, params[:sort_venues]), params[:filter])
+    erb :venues_map, :locals => {:venues => venues}
   end
 
   get "/venues/:id" do
-    venue = @venues.find(params[:id])
+    venue = Venue.find(params[:id])
     erb :venue, :locals => {
       :venue => venue,
       :cur_user => @users.find(session[:id]),
-      :events => @tf.find_by_venue(venue["title"])
+      :events => @tf.find_by_venue(venue.title)
     }
   end
 
@@ -102,7 +97,7 @@ class App < Sinatra::Application
   end
 
   get "/admin/venues/:id/edit" do
-    erb :venue_edit, :locals => {:venue => @venues.find(params[:id])}
+    erb :venue_edit, :locals => {:venue => Venue.find(params[:id])}
   end
 
   get "/admin/ticketfly" do
@@ -133,14 +128,20 @@ class App < Sinatra::Application
       flash[:notice] = "Description is #{desc-255} chars too long"
       redirect back
     else
-      @venues.create(params)
-      flash[:notice] = "#{params["name"]} added"
+      Venue.create(params)
+      flash[:notice] = "#{params[:name]} added"
       redirect "/"
     end
   end
 
   patch "/venues/:id" do
-    @venues.update(params)
+    puts "*" * 80
+    p params
+    puts "*" * 80
+    params.delete("_method")
+    params.delete("splat")
+    params.delete("captures")
+    Venue.find(params[:id]).update(params)
     flash[:notice] = "Venue Updated"
     redirect back
   end
@@ -164,8 +165,8 @@ class App < Sinatra::Application
   end
 
   delete "/venues/:id" do
-    flash[:notice] = "#{@venues.find(params[:id])["title"]} deleted"
-    @venues.delete(params[:id])
+    flash[:notice] = "#{Venue.find(params[:id]).title} deleted"
+    Venue.destroy(params[:id])
     redirect back
   end
 
@@ -227,19 +228,19 @@ class App < Sinatra::Application
 
   def sort_list(array, param)
     if param == "user_name"
-      array.sort_by! { |user| user["last_name"] }.sort_by! { |user| user["first_name"] }
+      array.order(:last_name).order(:first_name)
     elsif param
-      array.sort_by! { |item| item[param] }
+      array.order(param)
     else
       array
     end
   end
 
-  def filter_list(array, param)
+  def filter_list(relation, param)
     if param
-      array.select { |item| item[param.split(": ")[0]] == param.split(": ")[1] }
+      relation.where("#{param.split(': ')[0]}" => "#{param.split(': ')[1]}")
     else
-      array
+      relation
     end
   end
 

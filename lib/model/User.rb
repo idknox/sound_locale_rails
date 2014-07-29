@@ -1,7 +1,7 @@
 require "date"
+require "active_record"
 
-class UserTable
-
+class User
   def initialize(db)
     @db = db
   end

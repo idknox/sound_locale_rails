@@ -132,7 +132,7 @@ li {
     padding: 6px;
     text-align: right;
     float: right;
-    margin-left: 10px;
+    margin: 5px 0 0 10px;
 }
 
 #filter {
@@ -177,12 +177,10 @@ li {
 }
 
 .nav_right {
-    /*color: #F29721;*/
-    font-size: 14px;
     border-radius: 5px;
     display: inline-block;
     float: right;
-    padding: 4px;
+    padding: 6px;
     text-align: left;
     margin: 5px -30px 0 40px;
 }
@@ -212,7 +210,7 @@ li {
 /* --- Nav --- */
 
 #social {
-    padding-left: 85px;
+    padding-left: 115px;
     margin: 0 10px 8px 275px;
     display: inline-block;
 }
@@ -260,7 +258,7 @@ li {
 
 #map_container {
     width: 960px;
-    height: 510px;
+    height: 515px;
     border-radius: 5%;
     margin: 0;
 }

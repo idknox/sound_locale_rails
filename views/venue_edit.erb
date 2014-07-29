@@ -1,62 +1,62 @@
 <% content_for :main do %>
   <div class="form">
-    <form method="post" action="/venues/<%= venue["id"] %>">
+    <form method="post" action="/venues/<%= venue.id %>">
       <input type="hidden" name="_method" value="patch"/>
       <ul>
         <li>
           <label for="name">Name</label>
         </li>
         <li>
-          <input type="text" name="name" class="field" value="<%= venue["name"] %>"/>
+          <input type="text" name="name" class="field" value="<%= venue.name %>"/>
         </li>
         <br>
         <li>
           <label for="title">Title</label>
         </li>
         <li>
-          <input type="text" name="title" class="field" value="<%= venue["title"] %>"/>
+          <input type="text" name="title" class="field" value="<%= venue.title %>"/>
         </li>
         <br>
         <li>
           <label for="address">Address</label>
         </li>
         <li>
-          <input type="text" name="address" class="field" id="address" value="<%= venue["address"] %>"/>
+          <input type="text" name="address" class="field" id="address" value="<%= venue.address %>"/>
         </li>
         <br>
         <li>
           <label for="site">Website</label>
         </li>
         <li>
-          <input type="text" name="site" class="field" value="<%= venue["site"] %>"/>
+          <input type="text" name="site" class="field" value="<%= venue.site %>"/>
         </li>
         <br>
         <li>
           <label for="position">Position</label>
         </li>
         <li>
-          <input type="text" name="position" class="field" value="<%= venue["position"] %>"/>
+          <input type="text" name="position" class="field" value="<%= venue.position %>"/>
         </li>
         <br>
         <li>
           <label for="marker_name">Marker Name</label>
         </li>
         <li>
-          <input type="text" name="marker_name" class="field" value="<%= venue["marker_name"] %>"/>
+          <input type="text" name="marker_name" class="field" value="<%= venue.marker_name %>"/>
         </li>
         <br>
         <li>
           <label for="background">Background</label>
         </li>
         <li>
-          <input type="text" name="background" class="field" value="<%= venue["background"] %>"/>
+          <input type="text" name="background" class="field" value="<%= venue.background %>"/>
         </li>
         <br>
         <li>
           <label for="logo">Logo</label>
         </li>
         <li>
-          <input type="text" name="logo" class="field" value="<%= venue["logo"] %>"/>
+          <input type="text" name="logo" class="field" value="<%= venue.logo %>"/>
         </li>
         <br>
         <li>
@@ -64,7 +64,7 @@
         </li>
         <li>
           <textarea name="description" class="field" rows="6"
-                 id="venues_desc"><%= venue["description"] %></textarea>
+                 id="venues_desc"><%= venue.description %></textarea>
         </li>
         <br>
         <li>

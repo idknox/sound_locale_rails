@@ -35,29 +35,29 @@
     <% venues.each do |venue| %>
       <tr>
         <td>
-          <a href="/ven_<%= venue["marker_name"] %>" class="sorter">
-            <%= venue["title"] %></a>
+          <a href="/ven_<%= venue.marker_name %>" class="sorter">
+            <%= venue.title %></a>
         </td>
         <td>
-          <%= venue["address"].split(", ")[0] %>
+          <%= venue.address.split(", ")[0] %>
           <br>
-          <%= venue["address"].split(", ")[1] %>
+          <%= venue.address.split(", ")[1] %>
         </td>
         <td>
-          <%= venue["position"].split(",")[0] %>
+          <%= venue.position.split(",")[0] %>
           <br>
-          <%= venue["position"].split(",")[1] %>
+          <%= venue.position.split(",")[1] %>
         </td>
-        <td><%= venue["marker_name"] %></td>
-        <td><%= venue["size"] %></td>
-        <td><%= venue["price"] %></td>
-        <td id="venues_desc"><%= venue["description"] %></td>
+        <td><%= venue.marker_name %></td>
+        <td><%= venue.size %></td>
+        <td><%= venue.price %></td>
+        <td id="venues_desc"><%= venue.description %></td>
         <td>
-          <a href="/admin/venues/<%= venue["id"] %>/edit"
+          <a href="/admin/venues/<%= venue.id %>/edit"
              class="button" id="delete">
             edit
           </a>
-          <form method="post" action="/venues/<%= venue["id"] %>">
+          <form method="post" action="/venues/<%= venue.id %>">
             <input type="hidden" name="_method" value="delete"/>
             <button type="submit" class="button" id="delete">del</button>
           </form>

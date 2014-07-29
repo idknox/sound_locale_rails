@@ -4,7 +4,7 @@
   </script>
 
   <script>
-    var denver = new google.maps.LatLng(<%= venue["position"] %>)
+    var denver = new google.maps.LatLng(<%= venue.position %>)
 
     function initialize() {
 
@@ -17,20 +17,17 @@
 
       var map = new google.maps.Map(mapCanvas, mapOptions);
 
-      var <%= venue["marker_name"] %> =
+      var <%= venue.marker_name %> =
       new google.maps.Marker({
-        position: new google.maps.LatLng(<%= venue["position"] %>),
-        title: '<%= venue["title"] %>',
+        position: new google.maps.LatLng(<%= venue.position %>),
+        title: '<%= venue.title %>',
         animation: google.maps.Animation.DROP,
-        map: <%= venue["map"] %>
+        map: <%= venue.map %>
       });
 
-      <%= venue["marker_name"] %>.
+      <%= venue.marker_name %>.
       setMap(map);
 
-
-      home.setMap(map);
-      galv.setMap(map);
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
@@ -42,13 +39,13 @@
   <article class="one_half" id="venue_page">
     <div id="venue_info">
       <div id="venue_logo">
-        <img src="<%= venue["logo"] %>">
+        <img src="<%= venue.logo %>">
       </div>
       <ul>
-        <li><%= venue["address"] %></li>
-        <li><%= venue["size"] %></li>
-        <li><%= venue["price"] %></li>
-        <li><%= venue["description"] %></li>
+        <li><%= venue.address %></li>
+        <li><%= venue.size %></li>
+        <li><%= venue.price %></li>
+        <li><%= venue.description %></li>
       </ul>
     </div>
   </article>
