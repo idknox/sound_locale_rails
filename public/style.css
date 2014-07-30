@@ -430,6 +430,11 @@ a:hover .ven_name {
     text-align: center;
 }
 
+#venue_logo img {
+    max-width:100%;
+    max-height:100%;
+}
+
 #venue_info ul {
     margin: 0 auto;
     padding: 0;
