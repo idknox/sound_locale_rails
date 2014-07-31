@@ -27,7 +27,6 @@
         <article class="one_half">
           <div id="logo_container"><img src="/./images/logo.png"></div>
           <div id="title"> Sound Locale</div>
-          <div id="sub">Music sounds for your ear holes</div>
           <% if flash[:notice] %>
             <div id="flash"><%= flash[:notice] %></div>
           <% end %>
@@ -35,63 +34,50 @@
       </a>
       <article class="one_half" id="right_nav">
         <% if session[:id] == 1 %>
-          <div class="nav_left">
-            <a href="" class="button" id="admin">Welcome, Admin</a>
+          <div class="nav_right">
+            <a href="/users/1/pw/edit" class="button" id="menu">Change Password</a>
             <br>
-            <a href="/users/1/pw/edit" class="button" id="admin">Change Password</a>
-            <br>
-            <a href="/logout" class="button" id="admin">Logout</a>
+            <a href="/logout" class="button" id="menu">Logout</a>
           </div>
-          <div class="nav_right" id="admin_nav">
-            <a href="/admin/users" class="button" id="admin">Users</a>
+          <div class="nav_right">
+            <a href="/admin/users" class="button" id="menu">Users</a>
             <br>
-            <a href="/admin/venues" class="button" id="admin">Venues</a>
-            <br>
-            <a href="/admin/venues/new" class="button" id="admin">Add Venue</a>
+            <a href="/admin/venues" class="button" id="menu">Venues</a>
           </div>
-          <div class="nav_right" id="admin_nav">
-            <form method="post" action="/admin/ticketfly">
-              <input type="submit" class="button" id="admin" value="Ticketfly"/>
-            </form>
-            <a href="/admin/ticketfly" class="button" id="admin">Events</a>
+          <div class="nav_right">
+            <a href="/admin/venues/new" class="button" id="menu">Add Venue</a>
+            <br>
+
             <form method="post" action="/admin/ticketfly">
               <input type="hidden" name="_method" value="delete"/>
-              <button type="submit" class="button" id="admin">Delete All</button>
+              <button type="submit" class="button" id="menu">Delete Events</button>
             </form>
+          </div>
+          <div class="nav_right">
+            <form method="post" action="/admin/ticketfly">
+              <input type="submit" class="button" id="menu" value="Ticketfly"/>
+            </form>
+            <br>
+            <a href="/admin/ticketfly" class="button" id="menu">Events</a>
           </div>
           <div class="nav_right" id="admin_nav">
 
           </div>
         <% elsif session[:id] %>
           <div class="nav_right">
-            Welcome, <%= cur_user.first_name %>
-            <br>
-            <a href="/users/<%= cur_user.id %>/pw/edit" class="button">Change Password</a>
-            <br>
-            <a href="/logout" class="button">Logout</a>
-          </div>
-          <div class="nav_left">
+          <a href="/users/<%= cur_user.id %>/pw/edit" class="button" id="menu">Change Password</a>
+          <br>
+          <a href="/logout" class="button" id="menu">Logout</a>
             <%= yield_content :filter %>
-          </div>
         <% else %>
           <div class="nav_right">
-            <div id="reg">
-              Not a member?<a href="/users/new" id="reg_button"> Register</a>
-            </div>
-            <div id="rem">
-              <input type="checkbox" value="remem" id="rem"/>
-              <label for="rem">Remember me</label></div>
-          </div>
-          <div class="nav_left">
             <form method="post" action="/">
               <input type="text" name="email" class="field" id="email" placeholder="email"/>
-
-              <div id="bottom">
-                <input type="password" name="password" class="field"
-                       id="password" placeholder="password"/>
-                <button type="submit" class="button">Sign In</button>
-              </div>
+              <input type="password" name="password" class="field"
+                     id="password" placeholder="password"/>
+              <button type="submit" class="button">Sign In</button>
             </form>
+            <a href="/users/new" id="reg_button"> Register</a>
           </div>
         <% end %>
       </article>
@@ -113,7 +99,6 @@
   </div>
   <div id="main">
     <%= yield_content :main %>
-    <div class="clearfix">&nbsp;</div>
   </div>
 </div>
 <div id="fb-root"></div>

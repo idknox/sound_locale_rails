@@ -16,7 +16,6 @@
 
 article {
     position: relative;
-    margin-left: 5px;
     float: left;
     box-sizing: border-box;
 
@@ -24,14 +23,12 @@ article {
 
 section {
     box-sizing: border-box;
-    border-bottom: 3px solid #C6F1FF;
-    /*padding: 0 10px 0 10px;*/
 }
 
 /* ----- =columns ----- */
 
 .one_half {
-    width: 460px;
+    width: 480px;
 }
 
 .one_third {
@@ -77,40 +74,35 @@ li {
 /* --- Header --- */
 
 #header {
-    padding: 10px;
+    padding: 5px 5px 0 5px;
+    border-bottom: 3px solid #C6F1FF;
 }
 
 #logo_container {
     float: left;
-    margin: 5px 10px 5px -5px;
+    /*margin: 5px 10px 5px -5px;*/
+    height: 25px;
+    width: 25px;
+}
+
+#logo_container img {
+    width: 100%;
+    height: 100%;
 }
 
 #title {
     color: #F0E66C;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #000;
-    /*text-align: left;*/
-    font-size: 60px;
-    display: inline-block;
-    margin-left: -5px;
-    border-bottom: 1px solid #C6F1FF;
-
-}
-
-#sub {
-    float: right;
-    margin: -13px 15px 0 0;
-    background-color: #1C3C5B;
-    text-align: center;
-    padding: 4px;
-    z-index: 1;
+    font-size: 30px;
     position: relative;
-    font-size: 13px;
+    top: -4px;
+    right: -5px;
 }
 
 #flash {
     background-color: #C6F1FF;
-    color: #1C3C5B;
+    color: red;
     width: 300px;
     height: 1em;
     position: relative;
@@ -119,35 +111,19 @@ li {
     text-align: left;
     -webkit-border-top-right-radius: 10px;
     -webkit-border-top-left-radius: 10px;
-    margin-right: 0;
-}
-
-#right_nav {
-    margin: 5px 0 0 0;
-    border-radius: 5px;
 }
 
 .nav_left {
     display: inline-block;
-    padding: 6px;
     text-align: right;
-    float: right;
-    margin: 5px 0 0 10px;
 }
 
-#filter {
-    margin: 0 auto;
+.nav_right form {
+    display: inline-block;
 }
 
-#email {
-    width: 200px;
-    display: block;
-
-}
-
-#password {
-    width: 125px;
-    display: inline;
+.nav_right input {
+    width: 150px;
 }
 
 .field {
@@ -155,21 +131,18 @@ li {
     background-color: #2D628E;
     border: none;
     border-radius: 5px;
-    font-size: 17px;
-    margin: 5px;
+    font-size: 15px;
     padding: 3px;
-    vertical-align: top;
-    text-align: center;
+    margin-left: 5px;
 }
 
 .button {
     background-color: #1C3C5B;
-    font-size: 18px;
+    font-size: 15px;
     border: none;
     border-radius: 5px;
     display: inline-block;
     padding: 4px;
-    margin: 3px 10px 0 0;
 }
 
 .button:hover {
@@ -177,41 +150,39 @@ li {
 }
 
 .nav_right {
-    border-radius: 5px;
     display: inline-block;
     float: right;
-    padding: 6px;
-    text-align: left;
-    margin: 5px -30px 0 40px;
 }
 
-#rem, #reg {
-    margin: 9px;
+.nav_right * {
+    margin-left: 5px;
 }
 
 #reg_button {
     color: #F0E66C;
-    padding: 1px;
     text-align: center;
+    display: inline-block;
+    font-size: 15px;
 }
 
 #reg_button:hover {
     text-decoration: underline;
 }
 
-#admin {
-    font-size: 13px;
+#menu {
+    font-size: 10px;
+    width: auto;
 }
 
-#login_error {
-    color: red;
+#admin_nav * {
+    float: right;
 }
 
 /* --- Nav --- */
 
 #social {
     padding-left: 290px;
-    margin: 0 10px 8px 0;
+    margin: 3px 0 0 110px;
     display: inline-block;
 }
 
@@ -226,16 +197,15 @@ li {
 
 #nav {
     display: inline-block;
-    margin-left: -30px;
+    margin-left: 0px;
 }
 
 
 #nav a {
     margin-left: 50px;
-    padding: 10px 5px 5px 5px;
-    font-size: 19px;
+    font-size: 15px;
     position: relative;
-    top: -3px;
+    top: -5px;
 }
 
 #nav a:hover {
@@ -258,24 +228,26 @@ li {
 
 #map_container {
     width: 960px;
-    height: 515px;
+    height: 600px;
     border-radius: 5%;
     margin: 0;
 }
 
 #map_date {
-    height: 1.3em;
-    position: relative;
-    top: -3px;
+    height: 1em;
 }
 
 .filter {
     float: left;
     position: absolute;
-    top: 120px;
-    left: 550px;
+    top: 45px;
+    left: 540px;
     z-index: 3;
     text-align: right;
+}
+
+#filter_map {
+    padding: 0;
 }
 
 /* --- Infowindow --- */
