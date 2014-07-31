@@ -7,16 +7,11 @@
         <div style="background-image: url(<%= venue["background"] %>)"
              class="thumb">
           <p class="ven_name"><%= venue.name %></p>
-             </div>
+        </div>
       </a>
     <% end %>
   </div>
-
-  <!--<div class="filter">-->
-    <!--<form method="get" action="/venues">-->
-    <!--<input type="submit" class="button" name="map" value="Map"/>-->
-    <!--</form>-->
-  <!--</div>-->
+  <div class="clearfix">&nbsp;</div>
 <% end %>
 
 <% content_for :map do %>

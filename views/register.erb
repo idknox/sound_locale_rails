@@ -34,7 +34,7 @@
           <label for="password">Confirm Password</label>
         </li>
         <li>
-          <input type="password" name="pass_conf" class="field"/>
+          <input type="password" name="password_confirmation" class="field"/>
         </li>
         <br>
         <li>
@@ -50,30 +50,3 @@
   </div>
 <% end %>
 
-<% content_for :loggedout do %>
-  <div class="nav_left">
-    <form method="post" action="/">
-      <input type="text" name="email" class="field" id="email"
-             <% if flash[:notice] %>
-             placeholder="<%= flash[:notice] %>"
-             <% else %>
-             placeholder="email"
-             <% end %>
-             />
-
-      <div id="bottom">
-        <input type="password" name="password" class="field"
-               id="password" placeholder="password"/>
-        <button type="submit" class="button">Sign In</button>
-      </div>
-    </form>
-  </div>
-  <div class="nav_right">
-    <div id="reg">
-      Not a member?<a href="/register" id="reg_button"> Register</a>
-    </div>
-    <div id="rem">
-      <input type="checkbox" value="remem" id="rem"/>
-      <label for="rem">Remember me</label></div>
-  </div>
-<% end %>

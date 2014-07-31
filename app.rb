@@ -21,9 +21,7 @@ class App < Sinatra::Application
   end
 
   get "/" do
-    if session[:id]
-      user = User.find(session[:id])
-    end
+    user = User.find(session[:id]) if session[:id]
     events = @tf.find_by_date(params[:date])
     erb :home, :locals => {
       :events => events,
@@ -32,7 +30,7 @@ class App < Sinatra::Application
   end
 
   before "/admin/*" do
-    unless User.is_admin(session[:id])
+    unless User.is_admin?(session[:id])
       redirect "/"
     end
   end
@@ -108,7 +106,16 @@ class App < Sinatra::Application
   end
 
   post "/users" do
-    check_reg(params)
+    user = User.new(params)
+    user.join_date = Date.today.strftime("%Y-%m-%d")
+
+    if user.save
+      flash[:notice] = "Thanks for registering"
+      redirect "/"
+    else
+      flash[:notice] = user.errors.full_messages.first
+      redirect back
+    end
   end
 
   post "/users/:id/pw" do
@@ -187,27 +194,27 @@ class App < Sinatra::Application
 
   private
 
-  def check_reg(params)
-    if params.values.include?("")
-      flash[:notice] = "Please fill in all fields"
-      redirect back
-    elsif !check_pw(params[:password], params[:pass_conf])
-      flash[:notice] = "Passwords must match"
-      redirect back
-    elsif User.find_by(:email => params[:email])
-      flash[:notice] = "User already exists"
-      redirect back
-    elsif get_age(params[:birthday]) < 13
-      flash[:notice] = "You must be at least 13 years old"
-      redirect back
-    else
-      params.delete("pass_conf")
-      params[:join_date] = Date.today.strftime("%Y-%m-%d")
-      User.create(params)
-      flash[:notice] = "Thank you for registering"
-      redirect "/"
-    end
-  end
+  # def check_reg(params)
+  #   if params.values.include?("")
+  #     flash[:notice] = "Please fill in all fields"
+  #     redirect back
+  #   elsif !User.check_pw(params[:password], params[:pass_conf])
+  #     flash[:notice] = "Passwords must match"
+  #     redirect back
+  #   elsif User.find_by(:email => params[:email])
+  #     flash[:notice] = "User already exists"
+  #     redirect back
+  #   elsif get_age(params[:birthday]) < 13
+  #     flash[:notice] = "You must be at least 13 years old"
+  #     redirect back
+  #   else
+  #     params.delete("pass_conf")
+  #     params[:join_date] = Date.today.strftime("%Y-%m-%d")
+  #     User.create(params)
+  #     flash[:notice] = "Thank you for registering"
+  #     redirect "/"
+  #   end
+  # end
 
   def check_login(email, password)
     if email == "" || password == ""
@@ -226,9 +233,6 @@ class App < Sinatra::Application
     end
   end
 
-  def check_pw(pw1, pw2)
-    pw1 == pw2
-  end
 
   def sort_list(array, param)
     if param == "user_name"
@@ -248,10 +252,5 @@ class App < Sinatra::Application
     end
   end
 
-  def get_age(bday)
-    bday = Date.parse(bday)
-    now = Time.now.utc.to_date
-    now.year - bday.year - ((now.month > bday.month || (now.month == bday.month && now.day >= bday.day)) ? 0 : 1)
-  end
 
 end

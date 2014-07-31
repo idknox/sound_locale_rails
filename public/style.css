@@ -103,12 +103,10 @@ li {
 #flash {
     background-color: #C6F1FF;
     color: red;
-    width: 300px;
-    height: 1em;
+    width: 200px;
     position: relative;
-    top: 16px;
-    left: 655px;
-    text-align: left;
+    left: 260px;
+    top: -45px;
     -webkit-border-top-right-radius: 10px;
     -webkit-border-top-left-radius: 10px;
 }
