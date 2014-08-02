@@ -51,11 +51,12 @@
             </form>
           </div>
           <div class="nav_right">
-            <form method="post" action="/admin/ticketfly">
-              <input type="submit" class="button" id="menu" value="Ticketfly"/>
+            <form method="post" action="/admin/events">
+              <input type="submit" class="button" id="menu" name="tf" value="Ticketfly"/>
+              <input type="submit" class="button" id="menu" name="sh" value="Stubhub"/>
             </form>
             <br>
-            <a href="/admin/ticketfly" class="button" id="menu">Events</a>
+            <a href="/admin/events" class="button" id="menu">Events</a>
           </div>
           <div class="nav_right" id="admin_nav">
 
@@ -99,6 +100,7 @@
       <div id="flash"><%= flash[:notice] %></div>
     <% end %>
     <%= yield_content :main %>
+    <div class="clearfix">&nbsp;</div>
   </div>
 </div>
 <div id="fb-root"></div>

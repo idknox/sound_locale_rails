@@ -103,6 +103,7 @@ li {
 #flash {
     background-color: #C6F1FF;
     color: red;
+    text-align: center;
     width: 200px;
     position: relative;
     left: 260px;
@@ -179,8 +180,8 @@ li {
 /* --- Nav --- */
 
 #social {
-    padding-left: 290px;
-    margin: 3px 0 0 110px;
+    padding-left: 200px;
+    margin: 3px 0 0 50px;
     display: inline-block;
 }
 
@@ -195,7 +196,6 @@ li {
 
 #nav {
     display: inline-block;
-    margin-left: 0px;
 }
 
 
@@ -203,6 +203,7 @@ li {
     margin-left: 50px;
     font-size: 15px;
     position: relative;
+    padding: 5px;
     top: -5px;
 }
 
@@ -238,14 +239,14 @@ li {
 .filter {
     float: left;
     position: absolute;
-    top: 45px;
+    top: 80px;
     left: 540px;
     z-index: 3;
     text-align: right;
 }
 
 #filter_map {
-    padding: 0;
+    padding: 3px;
 }
 
 /* --- Infowindow --- */
@@ -365,7 +366,7 @@ li {
     display: none;
 }
 
-a:hover .ven_name {
+.ven_name {
     display: block;
     text-align: center;
     color: #fff;
@@ -375,7 +376,7 @@ a:hover .ven_name {
     margin: 0 auto;
     vertical-align: middle;
     line-height: 210px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
     border-radius: 40%;
 }
 
@@ -415,7 +416,25 @@ a:hover .ven_name {
 }
 
 .venue_events {
+    float: left;
+}
+
+.venue_events td {
+    padding: 5px;
+    text-align: left;
+    width: 980px;
+}
+
+.venue_events tr:nth-child(even) {
+    background-color: #234A70;
+}
+
+.event_date {
+    color: #C6F1FF;
+    margin-top: 10px;
     display: block;
 }
 
+.event_price {
 
+}

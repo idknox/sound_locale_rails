@@ -3,8 +3,8 @@ require "sinatra"
 require "sinatra/content_for"
 require "rack-flash"
 require "gschool_database_connection"
+require_relative "lib/model/jsonevents"
 require_relative "lib/model/events"
-require_relative "lib/model/ticketfly"
 require_relative "lib/model/users"
 require_relative "lib/model/venues"
 
@@ -15,20 +15,19 @@ class App < Sinatra::Application
 
   def initialize
     super
-    db = GschoolDatabaseConnection::DatabaseConnection.establish(ENV["RACK_ENV"])
-    @tf = Tfly.new(db)
+    GschoolDatabaseConnection::DatabaseConnection.establish(ENV["RACK_ENV"])
     @jsonevents = JsonEvents.new
   end
 
   get "/" do
     user = User.find(session[:id]) if session[:id]
-    events = @tf.find_by_date(params[:date])
+    events = Event.find_by(:date => params[:date]) || []
+
     erb :home, :locals => {
       :events => events,
       :cur_user => user
     }
   end
-
   before "/admin/*" do
     unless User.is_admin?(session[:id])
       redirect "/"
@@ -76,7 +75,7 @@ class App < Sinatra::Application
     venue = Venue.find(params[:id])
     erb :venue, :locals => {
       :venue => venue,
-      :events => @tf.find_by_venue(venue.title)
+      :events => Event.where(:venue => venue.title)
     }
   end
 
@@ -88,21 +87,34 @@ class App < Sinatra::Application
     erb :venue_edit, :locals => {:venue => Venue.find(params[:id])}
   end
 
-  get "/admin/ticketfly" do
-    erb :ad_events, :locals => {:events => sort_list(@tf.all, params[:sort])}
+  get "/admin/events" do
+    erb :ad_events, :locals => {:events => sort_list(Event.all, params[:sort])}
   end
 
-  get "/admin/ticketfly/:id/edit" do
-    erb :tf_edit, :locals => {:event => @tf.find(params[:id])}
+  get "/admin/events/:id/edit" do
+    erb :event_edit, :locals => {:event => Event.find(params[:id])}
   end
 
-  post "/admin/ticketfly" do
-    @tf.create(@jsonevents.get_tf)
-    redirect "/admin/ticketfly"
+  post "/admin/events" do
+    if params[:tf]
+    @jsonevents.get_tf.each { |event| Event.create(event) }
+    elsif params[:sh]
+      @jsonevents.get_sh.each { |event| Event.create(event) }    end
+    redirect "/admin/events"
   end
 
   post "/" do
-    check_login(params[:email], params[:password])
+    user = User.find_by(
+      :email => params[:email],
+      :password => params[:password]
+    )
+    if user
+      session[:id] = User.find_by(:email => params[:email]).id
+      flash[:notice] = nil
+    else
+      flash[:notice] = "Invalid credentials"
+    end
+    redirect "/"
   end
 
   post "/users" do
@@ -163,7 +175,7 @@ class App < Sinatra::Application
   end
 
   patch "/ticketfly/:id" do
-    @tf.update(params)
+    Event.update(params)
     flash[:notice] = "Event updated"
     redirect back
   end
@@ -182,56 +194,17 @@ class App < Sinatra::Application
 
   delete "/ticketfly/:id" do
     flash[:notice] = "Event deleted"
-    @tf.delete(params[:id])
+    Event.destroy(params[:id])
     redirect back
   end
 
   delete "/admin/ticketfly" do
-    @tf.del_all
+    Event.destroy_all
     flash[:notice] = "All events deleted"
     redirect back
   end
 
   private
-
-  # def check_reg(params)
-  #   if params.values.include?("")
-  #     flash[:notice] = "Please fill in all fields"
-  #     redirect back
-  #   elsif !User.check_pw(params[:password], params[:pass_conf])
-  #     flash[:notice] = "Passwords must match"
-  #     redirect back
-  #   elsif User.find_by(:email => params[:email])
-  #     flash[:notice] = "User already exists"
-  #     redirect back
-  #   elsif get_age(params[:birthday]) < 13
-  #     flash[:notice] = "You must be at least 13 years old"
-  #     redirect back
-  #   else
-  #     params.delete("pass_conf")
-  #     params[:join_date] = Date.today.strftime("%Y-%m-%d")
-  #     User.create(params)
-  #     flash[:notice] = "Thank you for registering"
-  #     redirect "/"
-  #   end
-  # end
-
-  def check_login(email, password)
-    if email == "" || password == ""
-      flash[:notice] = "email and password are required"
-      redirect back
-    elsif !User.find_by(:email => email)
-      flash[:notice] = "No account exists"
-      redirect back
-    elsif User.find_by(:email => email).password != password
-      flash[:notice] = "Incorrect password"
-      redirect back
-    else
-      session[:id] = User.find_by(:email => email).id
-      flash[:notice] = nil
-      redirect "/"
-    end
-  end
 
 
   def sort_list(array, param)

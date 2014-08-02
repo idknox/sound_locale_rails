@@ -53,15 +53,24 @@
   </article>
 
   <div class="venue_events">
-    <ul>
+    <table>
       <% events.each do |event| %>
-        <li>
-          <a href="<%= event["tickets"] %>">
-            <%= event["name"] %> - <%= event["date"] %>
-          </a>
-        </li>
+        <tr class="event_date">
+          <td>
+            <%= event.date.strftime("%A, %b %d") %>
+          </td>
+          </tr>
+        <tr>
+          <td>
+          <a href="<%= event["tickets"] %>"><%= event["name"] %></a>
+        </td>
+          <td class="event_price">
+            <%= event["price"] %>
+          </td>
+        </tr>
+        <!--<tr><td>&nbsp;</td></tr>-->
       <% end %>
-    </ul>
+    </table>
   </div>
 
 <% end %>
