@@ -28,7 +28,7 @@ class App < Sinatra::Application
   after do
     ActiveRecord::Base.clear_active_connections!
   end
-  
+
   get "/" do
     user = User.find(session[:id]) if session[:id]
     events = Event.find_by(:date => params[:date]) || []
