@@ -19,6 +19,16 @@ class App < Sinatra::Application
     @jsonevents = JsonEvents.new
   end
 
+  before "/admin/*" do
+    unless User.is_admin?(session[:id])
+      redirect "/"
+    end
+  end
+
+  after do
+    ActiveRecord::Base.clear_active_connections!
+  end
+  
   get "/" do
     user = User.find(session[:id]) if session[:id]
     events = Event.find_by(:date => params[:date]) || []
@@ -27,11 +37,6 @@ class App < Sinatra::Application
       :events => events,
       :cur_user => user
     }
-  end
-  before "/admin/*" do
-    unless User.is_admin?(session[:id])
-      redirect "/"
-    end
   end
 
   get "/logout" do
