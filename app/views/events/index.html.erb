@@ -1,0 +1,66 @@
+<% if params[:list] %>
+  <% content_for :main do %>
+    <div>
+      <table class="table-borders">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Headliner</th>
+          <th>Venue</th>
+          <th>Price</th>
+          <th>Date</th>
+          <th>Time</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%= @events.each do |event| %>
+          <tr>
+            <td><%= event.name %></td>
+            <td><%= event.headliner %></td>
+            <td><%= event.venue %></td>
+            <td><%= event.price %></td>
+            <td><%= event.date %></td>
+            <td><%= event.time %></td>
+            <td>
+              <%= button_to "Edit", edit_event_path %>
+              <%= button_to "Delete", destroy_event_path %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+<% else %>
+  <% content_for :map_script do %>
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?v=3.exp">
+    </script>
+
+    <script>
+      var denver = new google.maps.LatLng(39.740009, -104.992302)
+
+      function initialize() {
+
+        var mapCanvas = document.getElementById('mapContainer');
+        var mapOptions = {
+          center: denver,
+          zoom: 12,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+
+
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    </script>
+  <% end %>
+
+  <% content_for :main do %>
+    <div id="mapContainer">
+    </div>
+  <% end %>
+<% end %>
