@@ -14,3 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require refills
+//= require jquery-ui
+
+
+$(document).ready(function () {
+  $(function () {
+    $('.cal-date').datepicker({ dateFormat: "yy-mm-dd"});
+  });
+});

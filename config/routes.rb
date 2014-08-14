@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :venues do
     resources :events
   end
+
+  resources :users
 end

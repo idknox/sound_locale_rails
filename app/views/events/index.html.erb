@@ -51,7 +51,30 @@
 
         var map = new google.maps.Map(mapCanvas, mapOptions);
 
+        var window = new google.maps.InfoWindow({})
 
+        <% @events.each do |event| %>
+        var <%= @venue.marker_name %> =
+        new google.maps.Marker({
+          position: new google.maps.LatLng(<%= @venue.position %>),
+          title: '<%= event.name %>',
+          animation: google.maps.Animation.DROP,
+          map: map
+        });
+
+        var <%= @venue.marker_name %>_info = '<div class="info_window">' +
+          '<p><%= event.name %></p><br>' +
+          '<p><%= event.venue %></p><br>' +
+          '<a href="<%= event.tickets %>" class="button">Tickets</a>' +
+          '</div>'
+
+            <%= @venue.marker_name %>.setMap(map);
+
+        google.maps.event.addListener(<%= @venue.marker_name %>, 'click', function () {
+          window.setContent(<%= @venue.marker_name %>_info);
+          window.open(map, <%= @venue.marker_name %>);
+        });
+        <% end %>
       }
 
       google.maps.event.addDomListener(window, 'load', initialize);

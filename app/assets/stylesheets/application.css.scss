@@ -1,10 +1,22 @@
 @import 'refills';
+@import 'jquery-ui';
 
 #mapContainer {
   width: 100%;
-  height: 550px;
+  height: 575px;
 }
 
 body {
-  background-color: #2D628E;
+  background-color: #1C3C5B;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  padding: 0;
+}
+
+.user-form {
+  width: 15em;
+  margin: 0 auto;
+  padding: 1em;
+  text-align: center;
+
 }

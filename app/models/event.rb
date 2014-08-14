@@ -41,7 +41,8 @@ class Event < ActiveRecord::Base
   def self.rename_tf_columns(event)
     {
       "name" => event["name"],
-      "venue" => event["venue"]["name"],
+      "venue_id" => 1,
+      "venue_name" => event["venue"]["name"],
       "vendor_id" => event["id"],
       # "image" => event["image"]["xlarge"]["path"],
       "headliner" => event["headlinersName"],

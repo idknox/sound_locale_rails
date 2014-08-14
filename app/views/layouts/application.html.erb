@@ -12,6 +12,7 @@
 <header class="navigation">
   <div class="navigation-wrapper">
     <a href="" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
+
     <div class="nav">
       <ul id="navigation-menu">
         <li class="nav-link events_list"><%= link_to "Event List" %></li>
@@ -23,61 +24,34 @@
     <div class="navigation-tools">
       <div class="search-bar">
         <div class="search-and-submit">
-          <input type="search" placeholder="Search Events" />
+          <input type="search" placeholder="Search Events"/>
           <button type="submit">
             <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" alt="">
           </button>
         </div>
       </div>
-      <a href="javascript:void(0)" class="sign-up">Register</a>
-      <a href="javascript:void(0)" class="sign-up">Sign In</a>
+      <%= link_to "Sign Up", new_user_path, class: "sign-up" %>
+      <a href="javascript:void(0)" class="sign-up">Log In</a>
     </div>
   </div>
 </header>
-<button type="button" class="js-menu-trigger sliding-menu-button">
-  <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/menu.png" alt="">
-</button>
-
-<nav class="js-menu sliding-menu-content">
-  <ul>
-    <li><%= link_to "TicketFly", ticketfly_path %></li>
-    <li><a href="javascript:void(0)">StubHub</a></li>
-    <li><a href="javascript:void(0)">AXS</a></li>
-    <li><%= link_to "Delete All", all_events_path, method: :delete %></li>
-  </ul>
-</nav>
-
+<% if session[:user_id] == 1 %>
+  <button type="button" class="js-menu-trigger sliding-menu-button">
+    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/menu.png" alt="">
+  </button>
+  <nav class="js-menu sliding-menu-content">
+    <ul>
+      <li><%= link_to "TicketFly", ticketfly_path %></li>
+      <li><a href="javascript:void(0)">StubHub</a></li>
+      <li><a href="javascript:void(0)">AXS</a></li>
+      <li><%= link_to "Delete All", all_events_path, method: :delete %></li>
+    </ul>
+  </nav>
+<% end %>
 <div class="js-menu-screen menu-screen"></div>
 <div class="wrapper-for-content-outside-of-footer">
-<%= yield :main %>
-<footer class="footer-2">
-  <div class="footer-logo">
-    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="">
-  </div>
-  <ul>
-    <li><a href="javascript:void(0)">About</a></li>
-    <li><a href="javascript:void(0)">Contact</a></li>
-    <li><a href="javascript:void(0)">Products</a></li>
-  </ul>
-
-  <div class="footer-secondary-links">
-    <ul>
-      <li><a href="javascript:void(0)">Terms and Conditions</a></li>
-      <li><a href="javascript:void(0)">Privacy Policy</a></li>
-    </ul>
-
-    <ul class="footer-social">
-      <li><a href="https://www.facebook.com/soundlocale">
-        <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png" alt="">
-      </a></li>
-      <li><a href="https://twitter.com/SoundLocale">
-        <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png" alt="">
-      </a></li>
-    </ul>
-  </div>
-</footer>
-
-
+  <%= yield :main %>
 </body>
 </html>
+
 

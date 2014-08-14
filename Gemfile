@@ -16,6 +16,7 @@ gem 'bourbon'
 gem 'neat'
 gem 'bcrypt', '~> 3.1.7'
 gem 'rails_12factor'
+gem 'jquery-ui-rails'
 
 group :development, :test do
   gem "rspec-rails", "3.0.1"
