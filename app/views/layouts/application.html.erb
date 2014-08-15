@@ -6,7 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= yield :map_script %>
-  <link rel="shortcut icon" href="/./images/icon.ico">
+  <link rel="shortcut icon" href="images/icon.ico">
 </head>
 <body>
 <header class="navigation">
@@ -15,8 +15,8 @@
 
     <div class="nav">
       <ul id="navigation-menu">
-        <li class="nav-link events_list"><%= link_to "Event List" %></li>
-        <li class="nav-link events_map"><%= link_to "Event Map" %></li>
+        <li class="nav-link"><%= link_to "Event List", events_list_path %></li>
+        <li class="nav-link events_map"><%= link_to "Event Map", root_path %></li>
         <li class="nav-link"><%= link_to "Venue List" %></li>
         <li class="nav-link"><%= link_to "Venue Map" %></li>
       </ul>
@@ -35,7 +35,6 @@
     </div>
   </div>
 </header>
-<% if session[:user_id] == 1 %>
   <button type="button" class="js-menu-trigger sliding-menu-button">
     <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/menu.png" alt="">
   </button>
@@ -47,9 +46,11 @@
       <li><%= link_to "Delete All", all_events_path, method: :delete %></li>
     </ul>
   </nav>
-<% end %>
 <div class="js-menu-screen menu-screen"></div>
 <div class="wrapper-for-content-outside-of-footer">
+  <% if flash[:notice] %>
+    <div class="flash"><%= flash[:notice] %></div>
+  <% end %>
   <%= yield :main %>
 </body>
 </html>

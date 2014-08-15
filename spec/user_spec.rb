@@ -5,7 +5,7 @@ feature "Home Page" do
   scenario "User can register" do
     visit "/"
 
-    click_on "Register"
+    click_on "Sign Up"
 
     fill_in "First name", :with => "Ian"
     fill_in "Last name", :with => "Knox"
@@ -14,6 +14,6 @@ feature "Home Page" do
     fill_in "Birthdate", :with => "08-08-1984"
     click_on "Sign Up"
 
-    expect(page).to have_content "Thank you for registering"
+    expect(page).to have_content "Thanks for signing up!"
   end
 end

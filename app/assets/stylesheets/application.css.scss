@@ -13,10 +13,34 @@ body {
   padding: 0;
 }
 
+.flash {
+  width: 100%;
+  height: 2.5em;
+  text-align: center;
+  background-color: #e6efc2;
+  color: #1C3C5B;
+  line-height: 2.5em;
+  vertical-align: middle;
+}
+
+.flash span {
+  margin: 0 auto;
+}
+
 .user-form {
   width: 15em;
   margin: 0 auto;
-  padding: 1em;
+  padding: 2em;
   text-align: center;
 
+}
+
+.table-container {
+  width: 75%;
+  margin: 0 auto;
+  color: #1C3C5B;
+}
+
+td, th {
+  text-align: center;
 }

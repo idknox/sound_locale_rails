@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   post "/signin" => "sessions#create"
   get "/ticketfly" => "ticketfly#create", as: :ticketfly
   delete "/events" => "events#destroy_all", as: :all_events
-  resources :venues do
-    resources :events
-  end
+  get "/events/list" => "events#list", as: :events_list
+
+  resources :venues
+  resources :events
 
   resources :users
 end

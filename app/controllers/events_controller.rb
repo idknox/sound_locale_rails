@@ -1,8 +1,10 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.where(:venue_name => Venue.find(1).name)
-    @venue = Venue.find(1)
-    @user = User.new
+    @events = Event.where(:date_time => Date.today)
+  end
+
+  def list
+    @events = Event.all
   end
 
   def destroy_all

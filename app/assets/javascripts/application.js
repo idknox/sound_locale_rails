@@ -16,9 +16,14 @@
 //= require refills
 //= require jquery-ui
 
-
 $(document).ready(function () {
-  $(function () {
-    $('.cal-date').datepicker({ dateFormat: "yy-mm-dd"});
-  });
+
+//  --- FLASH ---
+
+  var stopFlash = function () {
+    $('.flash').slideUp()
+  };
+
+  window.setTimeout(stopFlash, 4000);
+
 });
