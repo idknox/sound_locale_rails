@@ -6,26 +6,26 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Venue.create(
-  title: "",
-  name: "",
-  marker_name: "",
-  address: "",
-  position: "",
-  background: "",
-  icon: "",
-  logo: "",
-  size: "",
-  price: "",
-  map: "",
-  site: "",
-  description: ""
-)
+# Venue.create(
+#   title: "",
+#   name: "",
+#   marker_name: "",
+#   address: "",
+#   position: "",
+#   background: "",
+#   icon: "",
+#   logo: "",
+#   size: "",
+#   price: "",
+#   map: "",
+#   site: "",
+#   description: ""
+# )
 
 Venue.create(
   title: "Bar Standard",
   name: "Bar Standard",
-  marker_name: "bs",
+  marker_name: "barstandard",
   address: "1037 Broadway, Denver, CO 80203",
   position: "39.732738,-104.987396",
   background: "",
@@ -41,7 +41,7 @@ Venue.create(
 Venue.create(
   title: "Beauty Bar",
   name: "Beauty Bar Denver",
-  marker_name: "bb",
+  marker_name: "beautybar",
   address: "608 E 13th Ave, Denver, CO",
   position: "39.736868,-104.979653",
   background: "http://i.imgur.com/rw18Wm9.png?1",
@@ -89,7 +89,7 @@ Venue.create(
 Venue.create(
   title: "Cervantes'",
   name: "Cervantes' Masterpiece Ballroom",
-  marker_name: "cer",
+  marker_name: "cervantes",
   address: "2637 Welton St, Denver, CO 80205",
   position: "39.754169,-104.978830",
   background: "http://i.imgur.com/VJRK8fY.jpg",
@@ -105,7 +105,7 @@ Venue.create(
 Venue.create(
   title: "Cervantes' Other Side",
   name: "Cervantes' Other Side",
-  marker_name: "cer",
+  marker_name: "cerotherside",
   address: "2637 Welton St, Denver, CO 80205",
   position: "39.754169,-104.978830",
   background: "http://i.imgur.com/VJRK8fY.jpg",
@@ -121,7 +121,7 @@ Venue.create(
 Venue.create(
   title: "City Hall",
   name: "City Hall",
-  marker_name: "ch",
+  marker_name: "cityhall",
   address: "1144 Broadway, Denver, CO 80203",
   position: "39.734699,-104.987045",
   background: "http://i.imgur.com/TddyDTi.jpg?1",
@@ -153,7 +153,7 @@ Venue.create(
 Venue.create(
   title: "Herman's Hideaway",
   name: "Herman's Hideaway",
-  marker_name: "hh",
+  marker_name: "hideaway",
   address: "1578 S Broadway, Denver, CO 80210",
   position: "39.687908,-104.987114",
   background: "",
@@ -201,7 +201,7 @@ Venue.create(
 Venue.create(
   title: "Soiled Dove",
   name: "Soiled Dove Underground",
-  marker_name: "sdu",
+  marker_name: "dove",
   address: "7401 E 1st Ave, Denver, CO 80230",
   position: "39.718990,-104.901245",
   background: "http://i.imgur.com/ZQXUU8J.jpg",
@@ -217,7 +217,7 @@ Venue.create(
 Venue.create(
   title: "",
   name: "Sports Authority Field At Mile High Stadium",
-  marker_name: "sa",
+  marker_name: "sports",
   address: "1701 Bryant St, Denver, CO 80204",
   position: "39.743556,-105.017253",
   background: "http://i.imgur.com/RPS2eaL.jpg?1",
@@ -265,7 +265,7 @@ Venue.create(
 Venue.create(
   title: "The Living Room",
   name: "The Living Room - Denver",
-  marker_name: "lr",
+  marker_name: "livingroom",
   address: "1055 Broadway, Denver, CO 80203",
   position: "39.733018,-104.987395",
   background: "http://i.imgur.com/f6lLjfe.jpg?1",
@@ -281,7 +281,7 @@ Venue.create(
 Venue.create(
   title: "Walnut Room - Walnut St",
   name: "The Walnut Room - Walnut Street Location",
-  marker_name: "wrw",
+  marker_name: "walnut",
   address: "3131 Walnut Street, Denver, Colorado 80205",
   position: "39.764209,-104.979771",
   background: "http://i.imgur.com/n05CK6a.jpg?1",
@@ -297,7 +297,7 @@ Venue.create(
 Venue.create(
   title: "Walnut Room - Bway",
   name: "The Walnut Room Broadway Location",
-  marker_name: "wrb",
+  marker_name: "walnutbway",
   address: "2 Broadway Denver, Colorado 80203",
   position: "39.716751,-104.987122",
   background: "http://i.imgur.com/n05CK6a.jpg?1",
@@ -329,7 +329,7 @@ Venue.create(
 Venue.create(
   title: "Denver Botanic Gardens",
   name: "Denver Botanic Gardens - York Street",
-  marker_name: "dbg",
+  marker_name: "gardens",
   address: "1007 York St, Denver, CO 80206",
   position: "39.732369,-104.959856",
   background: "http://i.imgur.com/NnqwnTV.jpg",
@@ -345,7 +345,7 @@ Venue.create(
 Venue.create(
   title: "Funky Buddha",
   name: "Funky Buddha",
-  marker_name: "fbu",
+  marker_name: "buddha",
   address: "776 Lincoln St, Denver, CO 80203",
   position: "39.728653,-104.985771",
   background: "http://i.imgur.com/i0TFKKk.jpg",
@@ -359,17 +359,17 @@ Venue.create(
 )
 
 Venue.create(
-  title: "",
+  title: "Sculpture Park",
   name: "Sculpture Park at the Denver Performing Arts Complex",
-  marker_name: "",
-  address: "",
-  position: "",
-  background: "",
+  marker_name: "sculpture",
+  address: "1400 Curtis St, Denver, CO 80202",
+  position: "39.745407,-104.997064",
+  background: "http://i.imgur.com/EEMoPmA.jpg?1",
   icon: "",
   logo: "",
   size: "",
   price: "",
-  map: "",
+  map: "map",
   site: "",
   description: ""
 )
@@ -377,15 +377,15 @@ Venue.create(
 Venue.create(
   title: "",
   name: "Various Denver Venues",
-  marker_name: "",
+  marker_name: "denverven",
   address: "",
-  position: "",
+  position: "39.745407,-104.997064",
   background: "",
   icon: "",
   logo: "",
   size: "",
   price: "",
-  map: "",
+  map: "map",
   site: "",
   description: ""
 )

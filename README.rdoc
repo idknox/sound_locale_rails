@@ -1,28 +1,9 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Sound Locale is a work-in-progress, the end-goal being a responsive app that displays local event information on a google map and list, fully filterable and sortable.
 
-Things you may want to cover:
+Plans are to eventually include social media sharing.
 
-* Ruby version
+Currently implementing event data from Ticketfly and Stubhub.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Currently using Ruby 2.1.1 and Rails 4.1.4

@@ -19,26 +19,26 @@
 
       var window = new google.maps.InfoWindow({})
 
-      <% @events.each do |event| %>
-      var <%= event.venue.marker_name %> =
+      <% @venues.each do |venue| %>
+      var <%= venue.marker_name %> =
       new google.maps.Marker({
-        position: new google.maps.LatLng(<%= event.venue.position %>),
-        title: '<%= event.name %>',
+        position: new google.maps.LatLng(<%= venue.position %>),
+        title: '<%= venue.name %>',
         animation: google.maps.Animation.DROP,
         map: map
       });
 
-      var <%= event.venue.marker_name %>_info = '<div class="info_window">' +
-        '<p><%= event.name %></p><br>' +
-        '<p><%= event.venue.name %></p><br>' +
-        '<a href="<%= event.tickets %>" class="button">Tickets</a>' +
+      var <%= venue.marker_name %>_info = '<div class="info-window" texture-normal>' +
+        '<img src="<%= venue.logo %>"/>' +
+        '<p><%= venue.size %></p><p><%= venue.price %></p>' +
+        '<a href="<%= venue.site %>" class="button">Tickets</a>' +
         '</div>'
 
-          <%= event.venue.marker_name %>.setMap(map);
+          <%= venue.marker_name %>.setMap(map);
 
-      google.maps.event.addListener(<%= event.venue.marker_name %>, 'click', function () {
-        window.setContent(<%= event.venue.marker_name %>_info);
-        window.open(map, <%= event.venue.marker_name %>);
+      google.maps.event.addListener(<%= venue.marker_name %>, 'click', function () {
+        window.setContent(<%= venue.marker_name %>_info);
+        window.open(map, <%= venue.marker_name %>);
       });
       <% end %>
     }

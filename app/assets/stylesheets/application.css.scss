@@ -44,3 +44,14 @@ body {
 td, th {
   text-align: center;
 }
+
+.info-window {
+  width: 300px;
+  color: #1C3C5B;
+  padding: 20px;
+}
+
+.info-window h3, .info-window img {
+  margin-bottom: 10px;
+  display: inline-block;
+}

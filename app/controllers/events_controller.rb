@@ -1,6 +1,11 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.where(:date_time => Date.today)
+
+    @events = Event.where(:date_time => Date.today.strftime("%Y-%m-%d %H:%M:%S %z"))
+    puts "*" * 80
+    puts Event.where(:venue_name => "Beauty Bar Denver").first.date_time
+    puts Date.today.strftime("%Y-%m-%d %H:%M:%S")
+    puts "*" * 80
   end
 
   def list

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/ticketfly" => "ticketfly#create", as: :ticketfly
   delete "/events" => "events#destroy_all", as: :all_events
   get "/events/list" => "events#list", as: :events_list
+  get "/venues/map" => "venues#map", as: :venues_map
 
   resources :venues
   resources :events

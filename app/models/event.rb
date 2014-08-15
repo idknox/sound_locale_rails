@@ -41,13 +41,6 @@ class Event < ActiveRecord::Base
   private
 
   def self.rename_tf_columns(event)
-
-    if Venue.find_by(:name => event["venue"]["name"]) == nil
-      puts "*" * 80
-      p event
-      puts "*" * 80
-
-    end
     {
       "name" => event["name"],
       "venue_id" => Venue.find_by(:name => event["venue"]["name"]).id,
@@ -55,7 +48,7 @@ class Event < ActiveRecord::Base
       "vendor_id" => event["id"],
       # "image" => event["image"]["xlarge"]["path"],
       "headliner" => event["headlinersName"],
-      "date_time" => event["startDate"],
+      "date_time" => DateTime.parse(event["startDate"]).strftime("%Y-%m-%d %H:%M:%S"),
       "tickets" => event["ticketPurchaseUrl"],
       "url" => event["ticketPurchaseUrl"],
       "twitter" => event["urlTwitter"],
