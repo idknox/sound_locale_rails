@@ -1,22 +1,22 @@
 <% content_for :map_script do %>
   <script type="text/javascript"
           src="https://maps.googleapis.com/maps/api/js?v=3.exp">
-  </script>
 
+  </script>
   <script>
+
     var denver = new google.maps.LatLng(39.740009, -104.992302)
 
     function initialize() {
-
       var mapCanvas = document.getElementById('mapContainer');
       var mapOptions = {
         center: denver,
         zoom: 12,
+        disableDefaultUI: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
 
       var map = new google.maps.Map(mapCanvas, mapOptions);
-
       var window = new google.maps.InfoWindow({})
 
       <% @venues.each do |venue| %>
@@ -28,8 +28,8 @@
         map: map
       });
 
-      var <%= venue.marker_name %>_info = '<div class="info-window" texture-normal>' +
-        '<img src="<%= venue.logo %>"/>' +
+      var <%= venue.marker_name %>_info = '<div class="info-window texture-normal">' +
+        '<h3><%= venue.name %></h3>' +
         '<p><%= venue.size %></p><p><%= venue.price %></p>' +
         '<a href="<%= venue.site %>" class="button">Tickets</a>' +
         '</div>'
@@ -44,6 +44,7 @@
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
+
   </script>
 <% end %>
 

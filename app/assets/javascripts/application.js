@@ -16,7 +16,10 @@
 //= require refills
 //= require jquery-ui
 
+
+
 $(document).ready(function () {
+
 
 //  --- FLASH ---
 
@@ -24,6 +27,24 @@ $(document).ready(function () {
     $('.flash').slideUp()
   };
 
-  window.setTimeout(stopFlash, 4000);
+  window.setTimeout(stopFlash, 5000);
+
+//  --- EVENT FILTER ---
+
+// Custom case-insensitive :contains
+  jQuery.expr[':'].containsCaseInsensitive = function(a, i, m) {
+    return jQuery(a).text().toUpperCase()
+      .indexOf(m[3].toUpperCase()) >= 0;
+  };
+
+  $('.search').on('keyup', function () {
+  var search = $(this).val();
+  var events = $('.event-row');
+  var results = $('.event-row:containsCaseInsensitive(' + search + ')');
+
+    events.hide();
+    results.show();
+  })
+
 
 });

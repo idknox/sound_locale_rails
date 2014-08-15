@@ -876,13 +876,13 @@ header.navigation {
 }
 
 .texture-normal {
-  @include texture(180deg, lighten(#1C3C5B, 1), darken(#1C3C5B, 10), 51, 1); // gradient color 1, gradient color 2, gradient angle, texture-number, 0=inverted or 1=normal
+  @include texture(180deg, lighten(#1C3C5B, 1), darken(#1C3C5B, 10), 11, 1); // gradient color 1, gradient color 2, gradient angle, texture-number, 0=inverted or 1=normal
   float: left;
   width: 50%;
 }
 
 .texture-inverted {
-  @include texture(180deg, lighten(#1C3C5B, 1), darken(#1C3C5B, 10), 51, 0); // gradient color 1, gradient color 2, gradient angle, texture-number, 0=inverted or 1=normal
+  @include texture(180deg, lighten(#1C3C5B, 1), darken(#1C3C5B, 10), 11, 0); // gradient color 1, gradient color 2, gradient angle, texture-number, 0=inverted or 1=normal
   float: left;
   width: 50%;
 }

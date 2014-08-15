@@ -4,8 +4,8 @@
   <title>SoundLocale</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
   <%= yield :map_script %>
+  <%= csrf_meta_tags %>
   <link rel="shortcut icon" href="icon.ico">
 </head>
 <body>
@@ -24,10 +24,7 @@
     <div class="navigation-tools">
       <div class="search-bar">
         <div class="search-and-submit">
-          <input type="search" placeholder="Search Events"/>
-          <button type="submit">
-            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" alt="">
-          </button>
+          <input class="search" type="search" placeholder="Search Events"/>
         </div>
       </div>
       <%= link_to "Sign Up", new_user_path, class: "sign-up" %>
