@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20140827192648) do
     t.integer  "venue_id"
     t.string   "venue_name"
     t.string   "description"
-    t.datetime "date"
+    t.date "date"
     t.time     "time"
   end
 
