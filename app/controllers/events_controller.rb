@@ -1,15 +1,17 @@
 class EventsController < ApplicationController
   def index
 
-    @events = Event.where(:date_time => Date.today.strftime("%Y-%m-%d %H:%M:%S %z"))
-    puts "*" * 80
-    # puts Event.where(:venue_name => "Beauty Bar Denver").first.date_time
-    puts Date.today.strftime("%Y-%m-%d %H:%M:%S")
-    puts "*" * 80
+    @events = Event.where(:date => Date.today)
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @events.to_json(:include => [:venue])}
+    end
   end
 
   def list
-    @events = Event.all
+    @events = Event.all.order(:date)
+
   end
 
   def destroy_all

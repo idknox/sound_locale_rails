@@ -17,10 +17,10 @@
         <tr class="event-row">
           <td><%= event.name %></td>
           <td><%= event.headliner %></td>
-          <td><%= event.venue.name %></td>
+          <td><%= event.venue_name %></td>
           <td><%= event.price %></td>
-          <td><%= event.date_time.strftime("%A, %b %d") %></td>
-          <td><%= event.date_time.strftime("%l:%M %p") %></td>
+          <td><%= event.date.strftime("%A, %b %d") %></td>
+          <td><%= event.time.strftime("%l:%M %p") %></td>
           <td>
             <%= button_to "Edit", edit_event_path(event.id) %>
             <%= button_to "Delete", event_path(event.id), method: :delete %>

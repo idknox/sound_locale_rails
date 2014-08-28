@@ -4,7 +4,7 @@
   </script>
 
   <script>
-    var denver = new google.maps.LatLng(39.740009, -104.992302)
+    var denver = new google.maps.LatLng(39.740009, -104.992302);
 
     function initialize() {
 
@@ -12,35 +12,45 @@
       var mapOptions = {
         center: denver,
         zoom: 12,
+        disableDefaultUI: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP
-      }
+      };
 
       var map = new google.maps.Map(mapCanvas, mapOptions);
 
-      var window = new google.maps.InfoWindow({})
 
-      <% @events.each do |event| %>
-      var <%= event.venue.marker_name %> =
-      new google.maps.Marker({
-        position: new google.maps.LatLng(<%= event.venue.position %>),
-        title: '<%= event.name %>',
-        animation: google.maps.Animation.DROP,
-        map: map
-      });
+      var promiseOfResult = $.getJSON("/events");
+          var infowindow = new google.maps.InfoWindow({});
 
-      var <%= event.venue.marker_name %>_info = '<div class="info_window">' +
-        '<p><%= event.name %></p><br>' +
-        '<p><%= event.venue.name %></p><br>' +
-        '<a href="<%= event.tickets %>" class="button">Tickets</a>' +
-        '</div>'
+      var generateMarkers = function (music_events) {
+        $.each(music_events, function (i, music_event) {
 
-          <%= event.venue.marker_name %>.setMap(map);
+          var lat = music_event.venue.location.split(",")[0];
+          var lng = music_event.venue.location.split(",")[1];
 
-      google.maps.event.addListener(<%= event.venue.marker_name %>, 'click', function () {
-        window.setContent(<%= event.venue.marker_name %>_info);
-        window.open(map, <%= event.venue.marker_name %>);
-      });
-      <% end %>
+          var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(lat, lng),
+            title: music_event.name,
+            animation: google.maps.Animation.DROP,
+            map: map
+          });
+
+
+          var eventInfo = '<div class="info_window">' +
+            '<p>' + music_event.name + '</p><br>' +
+            '<p>' + music_event.venue.name + '</p><br>' +
+            '<a href="' + music_event.tickets + '" class="button">Tickets</a>' +
+            '</div>';
+
+
+          google.maps.event.addListener(marker, 'click', function () {
+            infowindow.setContent(eventInfo);
+            infowindow.open(map, marker);
+          });
+        });
+      };
+
+      promiseOfResult.success(generateMarkers);
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);

@@ -3,10 +3,10 @@
 <head>
   <title>SoundLocale</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
   <%= yield :map_script %>
   <%= csrf_meta_tags %>
-  <link rel="shortcut icon" href="icon.ico">
+  <%= favicon_link_tag '/images/icon.ico'%>
 </head>
 <body>
 <header class="navigation">
@@ -17,16 +17,18 @@
       <ul id="navigation-menu">
         <li class="nav-link"><%= link_to "Event List", events_list_path %></li>
         <li class="nav-link events_map"><%= link_to "Event Map", root_path %></li>
-        <li class="nav-link"><%= link_to "Venue List" %></li>
+        <li class="nav-link"><%= link_to "Venue List", venues_list_path %></li>
         <li class="nav-link"><%= link_to "Venue Map", venues_map_path %></li>
       </ul>
     </div>
+
     <div class="navigation-tools">
       <div class="search-bar">
         <div class="search-and-submit">
           <input class="search" type="search" placeholder="Search Events"/>
         </div>
       </div>
+
       <%= link_to "Sign Up", new_user_path, class: "sign-up" %>
       <a href="javascript:void(0)" class="sign-up">Log In</a>
     </div>
@@ -37,8 +39,8 @@
   </button>
   <nav class="js-menu sliding-menu-content">
     <ul>
-      <li><%= link_to "TicketFly", ticketfly_path %></li>
-      <li><a href="javascript:void(0)">StubHub</a></li>
+      <li><%= button_to "TicketFly", ticketflyevent_path, method: "post" %></li>
+      <li><%= link_to "Stubhub", stubhub_path %></li>
       <li><a href="javascript:void(0)">AXS</a></li>
       <li><%= link_to "Delete All", all_events_path, method: :delete %></li>
     </ul>

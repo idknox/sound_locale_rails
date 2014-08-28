@@ -1,0 +1,9 @@
+<% content_for :main do %>
+  <div class="venue-grid">
+      <% @venues.each do |venue| %>
+          <div style="background-image: url(<%= venue.background %>)" class="venue-tile" id="<%=venue.id %>">
+            <span class="venue-tile-overlay"><%= venue.title %></span>
+          </div>
+      <% end %>
+  </div>
+<% end %>
