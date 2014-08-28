@@ -34,18 +34,6 @@
     </div>
   </div>
 </header>
-  <button type="button" class="js-menu-trigger sliding-menu-button">
-    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/menu.png" alt="">
-  </button>
-  <nav class="js-menu sliding-menu-content">
-    <ul>
-      <li><%= button_to "TicketFly", ticketflyevent_path, method: "post" %></li>
-      <li><%= link_to "Stubhub", stubhub_path %></li>
-      <li><a href="javascript:void(0)">AXS</a></li>
-      <li><%= link_to "Delete All", all_events_path, method: :delete %></li>
-    </ul>
-  </nav>
-<div class="js-menu-screen menu-screen"></div>
 <div class="wrapper-for-content-outside-of-footer">
   <% if flash[:notice] %>
     <div class="flash"><%= flash[:notice] %></div>
