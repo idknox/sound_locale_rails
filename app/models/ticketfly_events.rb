@@ -14,11 +14,7 @@ class TicketflyEvents
     events = all_event_pages(url)
     venue_names = Venue.all.to_a.map { |venue| venue.name }
 
-    events.map do |event|
-      if event_venue_exists?(venue_names, event)
-        rename_columns(event)
-      end
-    end
+    events.map { |event| rename_columns(event) if event_venue_exists?(venue_names, event) }
   end
 
   private
@@ -48,26 +44,19 @@ class TicketflyEvents
   end
 
   def rename_columns(event)
-     if event["startDate"]
-       date = Date.parse(event["startDate"]).strftime("%Y-%m-%d")
-       time = Time.parse(event["startDate"]).strftime("%H:%M:%S")
-    else
-      date = Date.today.strftime("%Y-%m-%d")
-      time = Time.now.strftime("%H:%M:%S")
-    end
-
     {
-      "name" => event["name"],
-      "venue_id" => Venue.find_by(:name => event["venue"]["name"]).id,
-      "venue_name" => event["venue"]["name"],
-      "vendor_id" => event["id"],
-      "headliner" => event["headlinersName"],
-      "date" => date,
-      "time" => time,
-      "tickets" => event["ticketPurchaseUrl"],
-      "url" => event["ticketPurchaseUrl"],
-      "twitter" => event["urlTwitter"],
-      "price" => event["ticketPrice"]
+      :name => event["name"],
+      :venue_id => Venue.find_by(:name => event["venue"]["name"]).id,
+      :venue_name => event["venue"]["name"],
+      :vendor_id => event["id"],
+      :headliner => event["headlinersName"],
+      :date => Date.parse(event["startDate"]).strftime("%Y-%m-%d"),
+      :time => Time.parse(event["startDate"]).strftime("%H:%M:%S"),
+      :tickets => event["ticketPurchaseUrl"],
+      :url => event["ticketPurchaseUrl"],
+      :twitter => event["urlTwitter"],
+      :price => event["ticketPrice"]
     }
   end
+
 end
