@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "events#index"
+  root "events#map"
   get "/signin" => "sessions#new", as: :signin
   get "/signout" => "sessions#destroy", as: :signout
   post "/signin" => "sessions#create"

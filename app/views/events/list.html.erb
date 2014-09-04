@@ -19,8 +19,19 @@
           <td><%= event.headliner %></td>
           <td><%= event.venue_name %></td>
           <td><%= event.price %></td>
-          <td><%= event.date.strftime("%A, %b %d") %></td>
-          <td><%= event.time.strftime("%l:%M %p") %></td>
+          <% if event.date && !event.time %>
+            <td><%= event.date.strftime("%A, %b %d") %></td>
+            <td>TBD</td>
+          <% elsif event.time && !event.date %>
+            <td>TBD</td>
+            <td><%= event.time.strftime("%l:%M %p") %></td>
+          <% elsif !event.date && !event.time %>
+            <td>TBD</td>
+            <td>TBD</td>
+          <% else %>
+            <td><%= event.date.strftime("%A, %b %d") %></td>
+            <td><%= event.time.strftime("%l:%M %p") %></td>
+          <% end %>
           <td>
             <%= button_to "Edit", edit_event_path(event.id) %>
             <%= button_to "Delete", event_path(event.id), method: :delete %>

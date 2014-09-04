@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require refills
 //= require jquery-ui
-
+//= require event-map
 
 $(document).ready(function () {
 
@@ -30,16 +30,16 @@ $(document).ready(function () {
 //  --- EVENT FILTER ---
 
 // Custom case-insensitive :contains
-  $.expr[':'].containsCaseInsensitive = function(a, i, m) {
+  $.expr[':'].containsCaseInsensitive = function (a, i, m) {
     return $(a).text().toUpperCase()
       .indexOf(m[3].toUpperCase()) >= 0;
   };
 
   $('.search').on('keyup', function () {
 
-  var search = $(this).val();
-  var events = $('.event-row');
-  var results = $('.event-row:containsCaseInsensitive(' + search + ')');
+    var search = $(this).val();
+    var events = $('.event-row');
+    var results = $('.event-row:containsCaseInsensitive(' + search + ')');
     events.hide();
     results.show();
   });
@@ -50,4 +50,5 @@ $(document).ready(function () {
 //      url: "/venues/" + id,
 //      method: 'get'
 //    });
+  initialize();
 });

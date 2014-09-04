@@ -1,0 +1,9 @@
+<% content_for :map_script do %>
+  </script>
+  <%= javascript_include_tag 'event_map.js.erb' %>
+<% end %>
+
+<% content_for :main do %>
+  <div id="mapContainer">
+  </div>
+<% end %>
