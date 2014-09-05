@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 about
 assets:clean[keep]
 assets:clobber
@@ -40,10 +39,3 @@ test:all:db
 time:zones:all
 tmp:clear
 tmp:create
-=======
-db:create
-db:create_migration
-db:drop
-db:migrate
-db:rollback
->>>>>>> 6686e0b65921397e24f0db37b049d2e7d88a3c8a
