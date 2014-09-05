@@ -1,5 +1,5 @@
 class EventsMailer < ActionMailer::Base
-  default from: "Sound Locale"
+  default from: "admin@sound-locale.com"
 
   def ticketfly_pull(event_count)
     @event_count = event_count
