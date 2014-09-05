@@ -1,6 +1,8 @@
 function initialize() {
-  var mapCanvas = document.getElementById('mapContainer');
-  if(!mapCanvas) return;
+  var mapCanvas = document.getElementById('venues-map-container');
+  if (!mapCanvas) {
+    return;
+  }
 
   var denver = new google.maps.LatLng(39.740009, -104.992302);
 
@@ -9,41 +11,38 @@ function initialize() {
     zoom: 12,
     disableDefaultUI: true,
     mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
+  }
 
   var map = new google.maps.Map(mapCanvas, mapOptions);
 
-
-  var promiseOfResult = $.getJSON("/");
   var infowindow = new google.maps.InfoWindow({});
 
-  var generateMarkers = function (music_events) {
-    $.each(music_events, function (i, music_event) {
+  var promiseOfResult = $.getJSON("/venues/map");
 
-      var lat = music_event.venue.location.split(",")[0];
-      var lng = music_event.venue.location.split(",")[1];
+  var generateMarkers = function (venues) {
+    $.each(venues, function (i, venue) {
+
+      var lat = venue.location.split(",")[0];
+      var lng = venue.location.split(",")[1];
 
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(lat, lng),
-        title: music_event.name,
+        title: venue.name,
         animation: google.maps.Animation.DROP,
         map: map
       });
 
-
-      var eventInfo = '<div class="info_window">' +
-        '<p>' + music_event.name + '</p><br>' +
-        '<p>' + music_event.venue.name + '</p><br>' +
-        '<a href="' + music_event.tickets + '" class="button">Tickets</a>' +
+      var venueInfo = '<div class="info-window">' +
+        '<img src="' + venue.logo + '"/>' +
+        '<p>' + venue.size + '</p><p>' + venue.price + '</p>' +
+        '<a href="' + venue.site + '" class="button">Tickets</a>' +
         '</div>';
 
-
       google.maps.event.addListener(marker, 'click', function () {
-        infowindow.setContent(eventInfo);
+        infowindow.setContent(venueInfo);
         infowindow.open(map, marker);
       });
     });
   };
-
   promiseOfResult.success(generateMarkers);
 }

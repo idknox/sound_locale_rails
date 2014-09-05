@@ -5,11 +5,11 @@
   <script type="text/javascript"
           src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application' %>
   <%= yield :map_script %>
   <%= csrf_meta_tags %>
-  <%= favicon_link_tag '/images/icon.ico'%>
+  <%= favicon_link_tag '/images/icon.ico' %>
 </head>
 <body>
 <header class="navigation">

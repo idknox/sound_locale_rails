@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require refills
 //= require jquery-ui
-//= require event-map
+
 
 $(document).ready(function () {
 
