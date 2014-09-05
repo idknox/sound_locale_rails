@@ -8,6 +8,7 @@ namespace :events do
     puts "*" * 80
     puts "#{count} EVENTS PULLED"
     puts "*" * 80
+    EventsMailer.ticketfly_pull(count).deliver
   end
 
   desc "Destroy all events"
