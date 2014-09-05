@@ -4,13 +4,14 @@ class VenuesController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render :json => @venues }
+    end
   end
 
   def list
     @venues = Venue.all
-    end
   end
 
   def show
+    @venue = Venue.find(params[:id])
   end
 end

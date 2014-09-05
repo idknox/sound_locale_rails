@@ -1,9 +1,11 @@
 <% content_for :main do %>
   <div class="venue-grid">
-      <% @venues.each do |venue| %>
-          <div style="background-image: url(<%= venue.background %>)" class="venue-tile" id="<%=venue.id %>">
-            <span class="venue-tile-overlay"><%= venue.title %></span>
-          </div>
+    <% @venues.each do |venue| %>
+      <%= link_to venue_path(venue.id), class: "venue-tile" do %>
+        <div style="background-image: url(<%= venue.background %>)" id="<%= venue.id %>" class="venue-tile-background">
+          <span class="venue-tile-overlay"><%= venue.title %></span>
+        </div>
       <% end %>
+    <% end %>
   </div>
 <% end %>

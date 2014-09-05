@@ -1,13 +1,13 @@
 @import 'refills';
 @import 'jquery-ui';
 
-#events-map-container, #venues-map-container {
+#mapContainer {
   width: 100%;
   height: 575px;
 }
 
 body {
-  background-color: #1C3C5B;
+  background-color: #2D628E;
   color: rgba(255, 255, 255, 0.7);
   margin: 0;
   padding: 0;
@@ -54,18 +54,21 @@ td, th {
   border-radius: 20px;
 }
 
-.venue-tile {
-}
-
 .venue-grid {
   @include outer-container;
+  margin-top: 1.5em;
 
   .venue-tile {
     @include span-columns(3);
     @include omega(4n);
     height: 253px;
     border-radius: 40%;
-    margin-top: 20px;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+  }
+
+  .venue-tile-background {
+    border-radius: 40%;
   }
 }
 

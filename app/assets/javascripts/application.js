@@ -43,12 +43,5 @@ $(document).ready(function () {
     events.hide();
     results.show();
   });
-
-//  $('.venue-tile').on('click', function () {
-//    var id = this.id;
-//    $.ajax({
-//      url: "/venues/" + id,
-//      method: 'get'
-//    });
   initialize();
 });

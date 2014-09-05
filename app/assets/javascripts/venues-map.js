@@ -11,7 +11,7 @@ function initialize() {
     zoom: 12,
     disableDefaultUI: true,
     mapTypeId: google.maps.MapTypeId.ROADMAP
-  }
+  };
 
   var map = new google.maps.Map(mapCanvas, mapOptions);
 

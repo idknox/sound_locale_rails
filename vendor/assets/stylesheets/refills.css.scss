@@ -363,7 +363,7 @@ header.navigation {
     $search-bar-background: lighten($search-bar-border-color, 10);
 
     padding: .85em .6em;
-    float: left;
+    float: right;
     .search-and-submit {
       position: relative;
 
@@ -886,7 +886,3 @@ header.navigation {
   float: left;
   width: 50%;
 }
-
-
-
-
