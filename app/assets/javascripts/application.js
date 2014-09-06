@@ -35,13 +35,42 @@ $(document).ready(function () {
       .indexOf(m[3].toUpperCase()) >= 0;
   };
 
+
   $('.search').on('keyup', function () {
+
 
     var search = $(this).val();
     var events = $('.event-row');
     var results = $('.event-row:containsCaseInsensitive(' + search + ')');
+
+//    if (search == '') {
+//      events.show();
+//    }
+
     events.hide();
+    events.addClass('hidden');
+
     results.show();
+    results.removeClass('hidden');
+
+    $('.event-date-container').each(function () {
+      if ($(this).find('.hidden').length == $(this).find('.event-row').length) {
+        $(this).hide();
+        $(this).addClass('hidden');
+      } else {
+        $(this).show();
+        $(this).removeClass('hidden');
+      }
+    });
+
+    if ($('.event-date-container.hidden').length == $('.event-date-container').length) {
+      $('.event-list-container').hide();
+      $('.no-events-container').show();
+    } else {
+      $('.event-list-container').show();
+      $('.no-events-container').hide();
+    }
+
   });
   initialize();
 });

@@ -10,10 +10,8 @@ class TicketflyEvents
   end
 
   def all
-    url = get_url
-    events = all_event_pages(url)
+    events = all_event_pages
     venue_names = Venue.all.to_a.map { |venue| venue.name }
-
     events.map { |event| rename_columns(event) if event_venue_exists?(venue_names, event) }
   end
 
@@ -27,14 +25,22 @@ class TicketflyEvents
       "ticketPurchaseUrl,ticketPrice,urlTwitter"
   end
 
-  def all_event_pages(url)
+  def all_event_pages
+    url = get_url
+    page_count = get_page_count(url)
+    get_all_events(url, page_count)
+  end
+
+  def get_page_count(url)
     file = open(url) { |f| f.read }
-    pages = JSON.parse(file)["totalPages"]
+    JSON.parse(file)["totalPages"]
+  end
+
+  def get_all_events(url, page_count)
     events = []
-    until pages == 0
-      file = open(url+"&pageNum=#{pages}") { |f| f.read }
+    (1..page_count).each do |page|
+      file = open(url+"&pageNum=#{page}") { |f| f.read }
       events += JSON.parse(file)["events"]
-      pages -= 1
     end
     events
   end
@@ -58,5 +64,4 @@ class TicketflyEvents
       :price => event["ticketPrice"]
     }
   end
-
 end

@@ -26,7 +26,7 @@ Venue.create(
   address: "1037 Broadway, Denver, CO 80203",
   location: "39.732738, -104.987396",
   background: "",
-  logo: "",
+  logo: "http://i.imgur.com/uDekpU4.jpg",
   size: "Club",
   price: "$$",
   map: "map",

@@ -13,12 +13,7 @@ class StubhubEvents
     url = get_url
     events = get_events(url)
     venue_names = Venue.all.to_a.map { |venue| venue.name }
-
-    events.map do |event|
-      if event_venue_exists?(venue_names, event)
-        rename_columns(event)
-      end
-    end
+    events.map { |event| rename_columns(event) if event_venue_exists?(venue_names, event) }
   end
 
   private
@@ -41,17 +36,17 @@ class StubhubEvents
 
   def rename_columns(event)
     {
-      "name" => event["name_secondary"],
-      "venue_id" => Venue.find_by(:name => event["venue_name"]).id,
-      "venue_name" => event["venue_name"],
-      "vendor_id" => event["id"].to_i,
-      "headliner" => event["name_secondary"],
-      "date" => Date.parse(event["date_confirm"]).strftime("%Y-%m-%d"),
-      "time" => Time.parse(event["date_confirm"]).strftime("%H:%M:%S"),
-      "tickets" => "",
-      "url" => "",
-      "twitter" => "",
-      "price" => ""
+      :name => event["name_secondary"],
+      :venue_id => Venue.find_by(:name => event["venue_name"]).id,
+      :venue_name => event["venue_name"],
+      :vendor_id => event["id"].to_i,
+      :headliner => event["name_secondary"],
+      :date => Date.parse(event["date_confirm"]).strftime("%Y-%m-%d"),
+      :time => Time.parse(event["date_confirm"]).strftime("%H:%M:%S"),
+      :tickets => "",
+      :url => "",
+      :twitter => "",
+      :price => ""
     }
   end
 end

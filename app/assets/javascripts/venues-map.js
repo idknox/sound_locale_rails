@@ -15,7 +15,27 @@ function initialize() {
 
   var map = new google.maps.Map(mapCanvas, mapOptions);
 
-  var infowindow = new google.maps.InfoWindow({});
+  var windowOptions = {
+    boxClass: 'info-window',
+    disableAutoPan: false,
+    maxWidth: 300,
+    maxHeight: 100,
+    content: '',
+    pixelOffset: new google.maps.Size(0, -190),
+    shadowStyle: 1,
+    padding: 20,
+    boxStyle: {
+      background: "#1C3C5B"
+    },
+    hideCloseButton: false,
+    arrowSize: 10,
+    arrowPosition: 30,
+    arrowStyle: 2,
+    closeBoxMargin: "5px 5px 2px 2px"
+//    closeBoxURL: 'http://iconizer.net/files/Brightmix/orig/monotone_close_exit_delete.png'
+  };
+
+  var infowindow = new InfoBox(windowOptions);
 
   var promiseOfResult = $.getJSON("/venues/map");
 
@@ -33,8 +53,8 @@ function initialize() {
       });
 
       var venueInfo = '<div class="info-window">' +
-        '<img src="' + venue.logo + '"/>' +
-        '<p>' + venue.size + '</p><p>' + venue.price + '</p>' +
+        '<div class="venue-logo"><img src="' + venue.logo + '"/></div>' +
+        '<p>'+ venue.address + '</p><p>' + venue.size + '</p><p>' + venue.price + '</p>' +
         '<a href="' + venue.site + '" class="button">Tickets</a>' +
         '</div>';
 

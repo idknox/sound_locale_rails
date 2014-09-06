@@ -1,44 +1,25 @@
 <% content_for :main do %>
-  <div class="table-container">
-    <table class="table-borders">
-      <thead>
-      <tr>
-        <th>Name</th>
-        <th>Headliner</th>
-        <th>Venue</th>
-        <th>Price</th>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Tasks</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @events.each do |event| %>
-        <tr class="event-row">
-          <td><%= event.name %></td>
-          <td><%= event.headliner %></td>
-          <td><%= event.venue_name %></td>
-          <td><%= event.price %></td>
-          <% if event.date && !event.time %>
-            <td><%= event.date.strftime("%A, %b %d") %></td>
-            <td>TBD</td>
-          <% elsif event.time && !event.date %>
-            <td>TBD</td>
-            <td><%= event.time.strftime("%l:%M %p") %></td>
-          <% elsif !event.date && !event.time %>
-            <td>TBD</td>
-            <td>TBD</td>
-          <% else %>
-            <td><%= event.date.strftime("%A, %b %d") %></td>
-            <td><%= event.time.strftime("%l:%M %p") %></td>
-          <% end %>
-          <td>
-            <%= button_to "Edit", edit_event_path(event.id) %>
-            <%= button_to "Delete", event_path(event.id), method: :delete %>
-          </td>
-        </tr>
+  <div class="event-list-container">
+    <ul>
+      <% @event_dates.keys.each do |date| %>
+        <li>
+          <div class="event-date-container">
+          <h2><%= date.strftime("%A, %b %d") %></h2>
+            <div class="events-per-date-container">
+            <ul>
+              <% @event_dates[date].each do |event| %>
+                <li class="event-row">
+                  <%= event.name %> @ <%= event.venue.title %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+            </div>
+        </li>
       <% end %>
-      </tbody>
-    </table>
+    </ul>
+  </div>
+  <div class="no-events-container">
+    <h1>NO EVENTS MATCH YOUR SEARCH</h1>
   </div>
 <% end %>

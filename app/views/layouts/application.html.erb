@@ -4,10 +4,10 @@
   <title>SoundLocale</title>
   <script type="text/javascript"
           src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-
+  <script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js" type="text/javascript"></script>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application' %>
-  <%= yield :map_script %>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <%= csrf_meta_tags %>
   <%= favicon_link_tag '/images/icon.ico' %>
 </head>
@@ -41,6 +41,7 @@
     <div class="flash"><%= flash[:notice] %></div>
   <% end %>
   <%= yield :main %>
+  <%= yield :map_script %>
 </body>
 </html>
 

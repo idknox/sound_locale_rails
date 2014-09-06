@@ -15,7 +15,43 @@ function initialize() {
 
   var map = new google.maps.Map(mapCanvas, mapOptions);
 
-  var infowindow = new google.maps.InfoWindow({});
+  var windowOptions = {
+    boxClass: 'info-window',
+    disableAutoPan: false,
+    maxWidth: 300,
+    content: '',
+    pixelOffset: new google.maps.Size(0, -190),
+    shadowStyle: 1,
+    padding: 20,
+    boxStyle: {
+      background: "#1C3C5B",
+    },
+    hideCloseButton: false,
+    arrowSize: 10,
+    arrowPosition: 30,
+    arrowStyle: 2,
+    closeBoxMargin: "5px 5px 2px 2px",
+//    closeBoxURL: 'http://iconizer.net/files/Brightmix/orig/monotone_close_exit_delete.png'
+  };
+
+//  disableAutoPan: false,
+//    maxWidth: 300,
+//    pixelOffset: new google.maps.Size(0, -150),
+//    zIndex: null,
+//    boxStyle: {
+//    background: "#1C3C5B",
+//      opacity: 1,
+//      width: "300px",
+//      height: "100px"
+//  },
+//  closeBoxMargin: "10px 2px 2px 2px",
+//    closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
+//    infoBoxClearance: new google.maps.Size(1, 1),
+//    isHidden: false,
+//    pane: "floatPane",
+//    enableEventPropagation: false
+
+  var infowindow = new InfoBox(windowOptions);
 
   var promiseOfResult = $.getJSON("/");
 
@@ -41,6 +77,7 @@ function initialize() {
       google.maps.event.addListener(marker, 'click', function () {
         infowindow.setContent(eventInfo);
         infowindow.open(map, marker);
+        $('.info-window').parent().parent().parent().addClass('info-window-all');
       });
     });
   };
