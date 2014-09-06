@@ -36,10 +36,8 @@
   <% if flash[:notice] %>
     <div class="flash"><%= flash[:notice] %></div>
   <% end %>
-  <div id="main">
   <%= yield :main %>
   <%= yield :script %>
-    </div>
 </body>
 </html>
 

@@ -1,4 +1,5 @@
 <% content_for :main do %>
+  <div id="main">
   <div class="event-list-container">
     <ul>
       <% @event_dates.keys.each do |date| %>
@@ -10,8 +11,7 @@
               <ul>
                 <% @event_dates[date].each do |event| %>
                   <li class="event-row">
-                    <b><%= event.venue.title %></b> -
-                    <span class="event-name"><%= event.name %></span>
+                    <b><%= event.venue.title %></b> - <span class="event-name"><%= event.name %></span>
                   </li>
                 <% end %>
               </ul>
@@ -35,6 +35,7 @@
       <button class="top">Back to top</button>
     </div>
   </div>
+    </div>
 <% end %>
 
 <% content_for :script do %>
