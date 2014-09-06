@@ -66,3 +66,5 @@ function initialize() {
   };
   promiseOfResult.success(generateMarkers);
 }
+
+initialize();

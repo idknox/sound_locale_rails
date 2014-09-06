@@ -16,21 +16,15 @@ function initialize() {
   var map = new google.maps.Map(mapCanvas, mapOptions);
 
   var windowOptions = {
-    boxClass: 'info-window',
     disableAutoPan: false,
-    maxWidth: 300,
     content: '',
-    pixelOffset: new google.maps.Size(-13, -175),
+    pixelOffset: new google.maps.Size(-11, -135),
     shadowStyle: 1,
-    padding: 20,
-    boxStyle: {
-      background: "#1C3C5B",
-    },
     hideCloseButton: false,
     arrowSize: 10,
     arrowPosition: 30,
     arrowStyle: 2,
-    closeBoxMargin: "5px 5px 2px 2px",
+    closeBoxMargin: "10px 15px 2px 2px"
 //    closeBoxURL: 'http://iconizer.net/files/Brightmix/orig/monotone_close_exit_delete.png'
   };
 
@@ -68,11 +62,11 @@ function initialize() {
         map: map
       });
 
-      var eventInfo = '<div class="info-window">' +
-        '<p>' + music_event.name + '</p><br>' +
-        '<p>' + music_event.venue.name + '</p><br>' +
-        '<a href="' + music_event.tickets + '" class="button">Tickets</a>' +
-        '</div>';
+      var eventInfo = '<div class="info-window texture-normal">' +
+        '<p>' + music_event.name + '</p>' +
+        '<span class="event-map-venue">' + music_event.venue.name + '</span>' +
+        '<p>' + music_event.venue.address + '</p>' +
+        '<a href="' + music_event.tickets + '">Tickets</a></div>';
 
       google.maps.event.addListener(marker, 'click', function () {
         infowindow.setContent(eventInfo);
@@ -83,3 +77,6 @@ function initialize() {
   };
   promiseOfResult.success(generateMarkers);
 }
+
+initialize();
+
