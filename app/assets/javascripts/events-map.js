@@ -20,7 +20,7 @@ function initialize() {
     disableAutoPan: false,
     maxWidth: 300,
     content: '',
-    pixelOffset: new google.maps.Size(0, -190),
+    pixelOffset: new google.maps.Size(-13, -175),
     shadowStyle: 1,
     padding: 20,
     boxStyle: {

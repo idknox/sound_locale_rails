@@ -6,6 +6,5 @@ require "net/http"
 class Event < ActiveRecord::Base
   belongs_to :venue
 
-  validates :vendor_id, :uniqueness => true
-
+  validates :date, :uniqueness => {:scope => :venue_id}
 end

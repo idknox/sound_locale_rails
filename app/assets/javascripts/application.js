@@ -19,6 +19,10 @@
 $(document).ready(function () {
 
 
+  $(function () {
+    $('.cal-date').datepicker({ dateFormat: "yy-mm-dd"});
+  });
+  
 //  --- FLASH ---
 
   var stopFlash = function () {
@@ -35,17 +39,11 @@ $(document).ready(function () {
       .indexOf(m[3].toUpperCase()) >= 0;
   };
 
-
+  $('.no-events-container').hide();
   $('.search').on('keyup', function () {
-
-
     var search = $(this).val();
     var events = $('.event-row');
     var results = $('.event-row:containsCaseInsensitive(' + search + ')');
-
-//    if (search == '') {
-//      events.show();
-//    }
 
     events.hide();
     events.addClass('hidden');
