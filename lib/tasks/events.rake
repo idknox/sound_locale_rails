@@ -21,7 +21,7 @@ namespace :events do
     count = 0
     SongkickEvents.all.each { |event| count += 1 if Event.new(event).save }
     print_count(count, "PULLED")
-    # EventsMailer.stubhub_pull(count).deliver
+    EventsMailer.songkick_pull(count).deliver
   end
 
   desc "Destroy all events"
