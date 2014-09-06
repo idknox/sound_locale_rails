@@ -8,6 +8,6 @@ class EventsController < ApplicationController
   end
 
   def list
-    @event_dates = Event.where("date >= ?", Date.today).order(:venue_name).group_by { |event| event.date }
+    @events_by_date = Event.where("date >= ?", Date.today).order(:date).order(:venue_name).group_by { |event| event.date }
   end
 end

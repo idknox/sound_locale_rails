@@ -2,16 +2,18 @@
   <div id="main">
   <div class="event-list-container">
     <ul>
-      <% @event_dates.keys.each do |date| %>
+      <% @events_by_date.keys.each do |date| %>
         <li>
           <div class="event-date-container" id="<%= date.strftime("%m%d%Y") %>">
             <h2><%= date.strftime("%A, %b %d") %></h2>
 
             <div class="events-per-date-container">
               <ul>
-                <% @event_dates[date].each do |event| %>
+                <% @events_by_date[date].each do |event| %>
                   <li class="event-row">
-                    <b><%= event.venue.title %></b> - <span class="event-name"><%= event.name %></span>
+                    <b><%= event.venue.name %></b>
+                    <br>
+                    <span class="event-name"><%= event.name %></span>
                   </li>
                 <% end %>
               </ul>

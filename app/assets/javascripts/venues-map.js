@@ -8,8 +8,8 @@ function initialize() {
 
   var mapOptions = {
     center: denver,
-    zoom: 12,
-    disableDefaultUI: true,
+    zoom: 11,
+    disableDefaultUI: false,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
 

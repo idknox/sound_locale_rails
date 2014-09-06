@@ -844,7 +844,7 @@ body .ui-tooltip {
 	font-size: 1em;
 }
 .ui-widget-content {
-	border: 1px solid #dddddd;
+	/*border: 1px solid #dddddd;*/
 	background: #2D628E url("../../../../../Downloads/jquery-ui-1.11.0%202/images/ui-bg_highlight-soft_100_eeeeee_1x100.png") 50% top repeat-x;
 	color: #eeeeee;
 }
@@ -902,8 +902,8 @@ body .ui-tooltip {
 .ui-state-active,
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
-	border: 1px solid #fbd850;
-	background: #F7F7F7 url("../../../../../Downloads/jquery-ui-1.11.0%202/images/ui-bg_glass_65_ffffff_1x400.png") 50% 50% repeat-x;
+	border: 1px solid #1C3C5B;
+	background: rgba(255, 255, 255, 0.7) url("../../../../../Downloads/jquery-ui-1.11.0%202/images/ui-bg_glass_65_ffffff_1x400.png") 50% 50% repeat-x;
 	font-weight: bold;
 	color: #1C3C5B;
 }

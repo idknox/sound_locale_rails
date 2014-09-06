@@ -152,11 +152,12 @@ td, th {
 
 #events-map-container, #venues-map-container {
   @include span-columns(12);
-    height: 620px;
+  height: 620px;
   border-radius: 5px;
-//  @include media($mobile) {
-//    @include span-columns(3);
-//  }
+
+  img {
+    max-width: none;
+  }
 }
 
 
