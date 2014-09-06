@@ -343,4 +343,18 @@ Venue.create(
   description: "The Boulder Theater produces events that span most musical genres. We also have clients who host corporate and private events. Therefore, regulations may vary from event to event to ensure the safety of our patrons, staff, licenses and historic building."
 )
 
+Venue.create(
+  title: "",
+  name: "",
+  address: "",
+  location: "",
+  background: "",
+  logo: "",
+  size: "",
+  price: "",
+  map: "",
+  site: "",
+  description: ""
+)
+
 

@@ -4,7 +4,8 @@
 
 #events-map-container, #venues-map-container {
   width: 100%;
-  height: 575px;
+  height: 60px;
+  @include box-sizing(border-box);
 }
 
 body {
@@ -118,10 +119,11 @@ td, th {
   @include main-container;
 }
 
-.cal-date {
+.event-tools {
   width: 200px;
   height: 200px;
-  display: inline-block;
+  float: right;
+  margin: 150px 190px 0 0;
 }
 
 

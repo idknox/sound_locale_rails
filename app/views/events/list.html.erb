@@ -3,18 +3,18 @@
     <ul>
       <% @event_dates.keys.each do |date| %>
         <li>
-          <div class="event-date-container">
-          <h2><%= date.strftime("%A, %b %d") %></h2>
+          <div class="event-date-container" id="<%= date.strftime("%m%d%Y") %>">
+            <h2><%= date.strftime("%A, %b %d") %></h2>
             <div class="events-per-date-container">
-            <ul>
-              <% @event_dates[date].each do |event| %>
-                <li class="event-row">
-                  <%= event.name %> @ <%= event.venue.title %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
+              <ul>
+                <% @event_dates[date].each do |event| %>
+                  <li class="event-row">
+                    <%= event.name %> @ <%= event.venue.title %>
+                  </li>
+                <% end %>
+              </ul>
             </div>
+          </div>
         </li>
       <% end %>
     </ul>
@@ -22,5 +22,11 @@
   <div class="no-events-container">
     <h1>NO EVENTS MATCH YOUR SEARCH</h1>
   </div>
-  <div class="cal-date"></div>
+  <div class="event-tools">
+    <div class="search-bar">
+      <div class="search-and-submit">
+        <input class="search" type="search" placeholder="Search Events"/>
+      </div>
+    <div class="cal-date"></div>
+  </div>
 <% end %>

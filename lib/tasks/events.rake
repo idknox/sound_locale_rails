@@ -1,7 +1,7 @@
 namespace :events do
 
   desc "Import events from Ticketfly"
-  task :import_ticketfly_events => :environment do
+  task :tf => :environment do
     count = 0
     TicketflyEvents.all.each { |event| count += 1 if Event.new(event).save }
     print_count(count, "PULLED")
@@ -9,7 +9,7 @@ namespace :events do
   end
 
   desc "Import events from Stubhub"
-  task :import_stubhub_events => :environment do
+  task :sh => :environment do
     count = 0
     StubhubEvents.all.each { |event| count += 1 if Event.new(event).save }
     print_count(count, "PULLED")
@@ -17,7 +17,7 @@ namespace :events do
   end
 
   desc "Import events from Songkick"
-  task :import_songkick_events => :environment do
+  task :sk => :environment do
     count = 0
     SongkickEvents.all.each { |event| count += 1 if Event.new(event).save }
     print_count(count, "PULLED")
@@ -25,7 +25,7 @@ namespace :events do
   end
 
   desc "Destroy all events"
-  task :destroy_all_events => :environment do
+  task :destroy => :environment do
     count = Event.all.length
     Event.destroy_all
     print_count(count, "DESTROYED")
