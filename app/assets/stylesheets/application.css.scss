@@ -114,6 +114,7 @@ td, th {
         padding: 10px;
         background-color: #336FA1;
         margin: 10px;
+        border: 1px solid #fed22f;
 
         .event-name {
           text-align: right;
@@ -153,11 +154,35 @@ td, th {
 #events-map-container, #venues-map-container {
   @include span-columns(12);
   height: 620px;
-  border-radius: 5px;
 
   img {
     max-width: none;
   }
+}
+
+.dropdown-container {
+  display: inline-block;
+  border-top: 1px solid #1c94c4;
+  background: #1C3C5B;
+  margin-right: 1em;
+  border-radius: 5px;
+
+  a {
+    height: 1em;
+  }
+
+  .dropdown-trigger {
+
+  }
+
+  .dropdown-item {
+    padding: 5px;
+    height: auto;
+  }
+}
+
+.event-container, .venue-container {
+//  position:
 }
 
 

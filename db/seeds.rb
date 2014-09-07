@@ -1,31 +1,9 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
-# Venue.create(
-#   title: "",
-#   name: "",
-#   address: "",
-#   location: "",
-#   background: "",
-#   logo: "",
-#   size: "",
-#   price: "",
-#   map: "",
-#   site: "",
-#   description: ""
-# )
-
 Venue.create(
   title: "Bar Standard",
   name: "Bar Standard",
   address: "1037 Broadway, Denver, CO 80203",
   location: "39.732738, -104.987396",
-  background: "",
+  background: "http://i.imgur.com/nCGohYT.jpg?1",
   logo: "http://i.imgur.com/uDekpU4.jpg",
   size: "Club",
   price: "$$",
@@ -137,10 +115,10 @@ Venue.create(
   name: "Herman's Hideaway",
   address: "1578 S Broadway, Denver, CO 80210",
   location: "39.687908, -104.987114",
-  background: "",
+  background: "http://i.imgur.com/E0gGIA8.jpg?1",
   logo: "http://i.imgur.com/4qJRTmD.jpg",
   size: "Small Venue",
-  price: "$",
+  price: "$$",
   map: "map",
   site: "http://www.hermanshideaway.com/",
   description: "Rockin’ Denver for almost 30 years and getting S. Broadway drunk since 1962! Herman’s has hosted +25,000 bands with 3-5 bands a night every Wed.-Sat. The Venue has helped launch the careers of groups such as Big Head Todd and the Monsters and Opie Gone Bad. The Hideaway stage has been rocked by the talents of Faith No More, 311, The Fray, Dave Matthews Band, Widespread Panic, Phish, Brett Dennen, Tab Benoit, Doug Kershaw… Today, newcomers get a chance to break into the scene in a weekly showcase of new talent on Wed., and on busy nights, the dance floor is a swirling mass of grooving chaos. On the weekends the only thing that you can count on is the music will be good and that the dance floor will be full of the happiest people in Denver!"
@@ -154,7 +132,7 @@ Venue.create(
   background: "http://i.imgur.com/F9nGjUA.jpg?1",
   logo: "http://i.imgur.com/F9nGjUA.jpg?1",
   size: "Small Bar/Venue",
-  price: "$",
+  price: "$$",
   map: "map",
   site: "http://www.hi-dive.com/",
   description: "The hi-dive opened November 19, 2003 when a young couple purchased the business. Inspired by years spent living in New York City and the amazing talent and creativity of Denver’s music scene, the hi-dive has quickly become one of the most important new venues in town and the only place for hip new bands to be heard and seen."
@@ -278,7 +256,7 @@ Venue.create(
   name: "1STBANK Center",
   address: "11450 Broomfield Ln, Broomfield, CO 80021",
   location: "39.904575,-105.085449",
-  background: "http://imgur.com/naeCYfl",
+  background: "http://i.imgur.com/naeCYfl.jpg?1",
   logo: "http://imgur.com/FrVi8lM",
   size: "Arena",
   price: "$$$",
@@ -344,10 +322,66 @@ Venue.create(
 )
 
 Venue.create(
-  title: "",
-  name: "",
-  address: "",
-  location: "",
+  title: "Red Rocks",
+  name: "Red Rocks Amphitheatre",
+  address: "18300 W Alameda Pkwy, Morrison, CO 80401",
+  location: "39.668320,-105.208939",
+  background: "http://i.imgur.com/KpK3VIT.jpg?1",
+  logo: "http://i.imgur.com/eYfpE0f.png?2",
+  size: "Outdoor Venue",
+  price: "$$$",
+  map: "map",
+  site: "http://redrocksonline.com/",
+  description: "Around you are 868 acres of deer, dinosaurs, pines and prairie, geological wonders and spectacular vistas. At 6,450 feet above sea level, Red Rocks Park is a unique transitional zone where the Great Plains meet the Rocky Mountains. The diverse environment allows visitors to see plants, birds and animals of both regions.  Red Rocks Amphitheatre is a geological phenomenon – the only naturally-occurring, acoustically perfect amphitheatre in the world. From Sting and The Beatles, to opera stars and U2, every artist aspires to play on this magical, spiritual and emotional stage."
+)
+
+Venue.create(
+  title: "Ogden",
+  name: "Ogden Theatre",
+  address: "935 E Colfax Ave, Denver, CO 80218",
+  location: "39.740398,-104.975266",
+  background: "http://i.imgur.com/Ur52s3Y.jpg?1",
+  logo: "http://i.imgur.com/gQ0Yd3p.png",
+  size: "Mid-sized Venue",
+  price: "$$",
+  map: "map",
+  site: "http://www.ogdentheatre.com/",
+  description: "The Ogden Theatre was built in 1919 by the same designer of the Bluebird Theater. The Ogden Theatre originally hosted live performances such as weekly organ recitals, dances, lectures and vaudeville acts - most notably, the legendary Harry Houdini. By 1937 it had been converted to a movie theater that featured everything from the classics to the avant garde."
+)
+
+Venue.create(
+  title: "Gothic",
+  name: "Gothic Theatre",
+  address: "3263 S Broadway, Englewood, CO 80113",
+  location: "39.657684,-104.988022",
+  background: "http://i.imgur.com/100nn6r.jpg?1",
+  logo: "http://i.imgur.com/w43rrmm.png",
+  size: "Mid-sized Venue",
+  price: "$$",
+  map: "map",
+  site: "http://www.gothictheatre.com/",
+  description: "The Gothic Theatre is a former movie theatre, the first in Denver to show “talkies,” turned music venue. Originally built in the 1920’s The Gothic Theatre’s grand art deco style provides an extraordinary and beautiful background. Though the front façade was altered in the 1940s to keep pace with modern tastes of the times, when renovated in 1998 the historic interior was kept as the venue was rebuilt from top to bottom and fitted to become a premier part of Colorado music."
+)
+
+Venue.create(
+  title: "Fiddler's Green",
+  name: "Fiddler's Green Amphitheatre",
+  address: "6350 Greenwood Plaza Blvd, Englewood, CO 80111",
+  location: "39.601279,-104.894763",
+  background: "http://i.imgur.com/sguQ0l1.jpg?1",
+  logo: "http://i.imgur.com/r5BlrpC.png",
+  size: "Outdoor Venue",
+  price: "$$$",
+  map: "map",
+  site: "http://www.fiddlersgreenamp.com/",
+  description: "With a seating capacity of 17,000 people, and optimum stage, sound and lighting systems available, Fiddler’s Green is unrivaled in Colorado for its ability to present the leading musical talent on the performing circuit. The amphitheater has grown to incorporate the Museum of Outdoor Arts mission of “making art a part of everyday life” through the merging of architectural, artistic and landscape development concepts."
+)
+
+Venue.create(
+  title: "Pepsi Center",
+  name: "Pepsi Center",
+  address: "1000 Chopper Cir, Denver, CO 80204",
+  location: "39.747372,-105.007926",
   background: "",
   logo: "",
   size: "",
@@ -357,4 +391,17 @@ Venue.create(
   description: ""
 )
 
+# Venue.create(
+#   title: "",
+#   name: "",
+#   address: "",
+#   location: "",
+#   background: "",
+#   logo: "",
+#   size: "",
+#   price: "",
+#   map: "",
+#   site: "",
+#   description: ""
+# )
 

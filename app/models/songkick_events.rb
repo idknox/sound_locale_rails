@@ -54,7 +54,7 @@ class SongkickEvents
 
   def rename_columns(event)
     {
-      :name => event["displayName"],
+      :name => event["performance"][0]["artist"]["displayName"],
       :venue_id => Venue.find_by(:name => event["venue"]["displayName"]).id,
       :venue_name => event["venue"]["displayName"],
       :vendor_id => event["id"].to_i,
