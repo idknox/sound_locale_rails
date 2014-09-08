@@ -1,0 +1,54 @@
+<% content_for :main do %>
+    <div class="title" data-id="<%= @venue.id %>">Venue Info</div>
+    <section class="venue-info-map-container">
+      <div class="venue-info-container">
+        <div class="venue-logo">
+          <img src="<%= @venue.logo %>"/>
+        </div>
+        <br>
+
+        <div class="venue-name-container">
+          <h1><%= @venue.name %></h1>
+        </div>
+        <br>
+
+        <div class="venue-address-container">
+          <%= @venue.address %>
+        </div>
+        <br>
+        <div class="venue-size-price-container">
+          <%= @venue.size %> - <%= @venue.price %>
+        </div>
+        <br>
+        <div class="venue-description-container">
+          <%= @venue.description %>
+        </div>
+      </div>
+      <div id="venue-map-container">
+      </div>
+    </section>
+    <section class="venue-events-container">
+        <ul>
+          <li class="venue-event-header"><div>Date</div><div>Event</div><div>Price</div></li>
+          <% @venue.events.each do |event| %>
+            <li>
+              <div>
+                <%= event.date.strftime("%A, %b %d") %>
+              </div>
+              <div>
+                <%= event.name %>
+              </div>
+              <div>
+                <%= event.price %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+    </section>
+<% end %>
+
+<% content_for :script do %>
+  <script type="text/javascript"
+          src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+  <%= javascript_include_tag 'venue-map' %>
+<% end %>

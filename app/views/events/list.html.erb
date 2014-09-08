@@ -1,46 +1,51 @@
 <% content_for :main do %>
-  <div id="main">
-  <div class="event-list-container">
-    <ul>
-      <% @events_by_date.keys.each do |date| %>
-        <li>
-          <div class="event-date-container" id="<%= date.strftime("%m%d%Y") %>">
-            <h2><%= date.strftime("%A, %b %d") %></h2>
-
-            <div class="events-per-date-container">
-              <ul>
-                <% @events_by_date[date].each do |event| %>
-                  <li class="event-row">
-                    <b><%= event.venue.name %></b>
-                    <br>
-                    <span class="event-name"><%= event.name %></span>
-                  </li>
-                <% end %>
-              </ul>
+  <div class="title">All Events</div>
+    <div class="event-list-container">
+      <ul>
+        <% @events_by_date.keys.each do |date| %>
+          <li>
+            <div class="date-events-container" id="<%= date.strftime("%m%d%Y") %>">
+              <h2><%= date.strftime("%A, %b %d") %></h2>
+              <div class="date-events">
+                <ul>
+                  <% @events_by_date[date].each do |event| %>
+                    <li class="date-event">
+                      <div class="date-event-info">
+                        <ul>
+                          <li><%= event.name %></li>
+                          <li><%= event.venue.name %></li>
+                        </ul>
+                      </div>
+                      <div class="date-event-buttons">
+                        <%= button_to "Map", "/venues/#{event.venue.id}" %>
+                      </div>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
             </div>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-  <div class="no-events-container">
-    <h1>NO EVENTS MATCH YOUR SEARCH</h1>
-  </div>
-  <div class="event-tools">
-    <div class="fixed">
-      <div class="search-bar">
-        <div class="search-and-submit">
-          <input class="search" type="search" placeholder="Search Events"/>
-        </div>
-      </div>
-      <div class="cal-date"></div>
-      <button class="top">Back to top</button>
-      <!--<button class="top">Show All</button>-->
+          </li>
+        <% end %>
+      </ul>
     </div>
-  </div>
+    <div class="no-events-container">
+      <h1>NO EVENTS MATCH YOUR SEARCH</h1>
+    </div>
+    <div class="event-tools">
+      <div class="fixed">
+        <div class="search-bar">
+          <div class="search-and-submit">
+            <input class="search" type="search" placeholder="Search Events"/>
+          </div>
+        </div>
+        <div class="cal-date"></div>
+        <button class="top">Back to top</button>
+        <!--<button class="top">Show All</button>-->
+      </div>
     </div>
 <% end %>
 
 <% content_for :script do %>
   <%= javascript_include_tag 'calendar' %>
+  <%= javascript_include_tag 'events-filter' %>
 <% end %>

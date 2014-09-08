@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SoundLocale</title>
+  <title>Sound Locale</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application' %>
   <link href='http://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>  <%= csrf_meta_tags %>
@@ -20,36 +20,37 @@
         <li class="nav-link"><%= link_to "Venue Map", venues_map_path %></li>
       </ul>
     </div>
-
     <!--<div class="nav">-->
-      <!--<ul id="navigation-menu">-->
-        <!--<div class="dropdown-container event-container">-->
-          <!--<li class="nav-link trigger-item"><%= link_to "Events", url: "javascript:void(0)", class: "dropdown-trigger" %></li>-->
-          <!--<li class="dropdown-item"><%= link_to "List", events_list_path %></li>-->
-          <!--<li class="dropdown-item"><%= link_to "Map", root_path %></li>-->
-        <!--</div>-->
-        <!--<div class="dropdown-container venue-container">-->
-          <!--<li class="nav-link trigger-item"><%= link_to "Venues", url: "javascript:void(0)", class: "dropdown-trigger" %></li>-->
-          <!--<li class="dropdown-item"><%= link_to "List", venues_list_path %></li>-->
-          <!--<li class="dropdown-item"><%= link_to "Map", venues_map_path %></li>-->
-        <!--</div>-->
-      <!--</ul>-->
+    <!--<ul id="navigation-menu">-->
+    <!--<li class="nav-link trigger-item">-->
+    <!--<%= link_to "Events", url: "javascript:void(0)", class: "dropdown-trigger" %>-->
+    <!--<ul>-->
+    <!--<li class="dropdown-item"><%= link_to "List", events_list_path %></li>-->
+    <!--<li class="dropdown-item"><%= link_to "Map", root_path %></li>-->
+    <!--</ul>-->
+    <!--</li>-->
+    <!--<li class="nav-link trigger-item">-->
+    <!--<%= link_to "Venues", url: "javascript:void(0)", class: "dropdown-trigger" %>-->
+    <!--<ul>-->
+    <!--<li class="dropdown-item"><%= link_to "List", venues_list_path %></li>-->
+    <!--<li class="dropdown-item"><%= link_to "Map", venues_map_path %></li>-->
+    <!--</ul>-->
+    <!--</li>-->
+    <!--</ul>-->
     <!--</div>-->
+    <%= link_to "Log In", signin_path, class: "sign-up" %>
+    <%= link_to "Sign Up", new_user_path, class: "sign-up" %>
 
-    <div class="navigation-tools">
-
-    </div>
-
-    <!--<%= link_to "Sign Up", new_user_path, class: "sign-up" %>-->
-    <!--<a href="javascript:void(0)" class="sign-up">Log In</a>-->
-  </div>
   </div>
 </header>
 <% if flash[:notice] %>
   <div class="flash"><%= flash[:notice] %></div>
 <% end %>
-<%= yield :main %>
+<div class="main">
+  <%= yield :main %>
+</div>
 <%= yield :script %>
+
 </body>
 </html>
 

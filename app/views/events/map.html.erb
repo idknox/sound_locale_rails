@@ -1,10 +1,20 @@
-<% content_for :script do %>
-  <%= javascript_include_tag 'events-map' %>
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp" type="text/javascript"></script>
-  <script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js" type="text/javascript"></script>
+<% content_for :main do %>
+  <% if params[:event_filter] %>
+    <div class="title">Events for <%= @events[0].date.strftime("%A, %b %d") %></div>
+  <% else %>
+    <div class="title">Events for Today</div>
+  <% end %>
+  <div class="event-map-filter">
+  <%= text_field_tag "event_filter", nil, placeholder: "Change Date", class: "cal-date" %>
+  </div>
+    <div id="events-map-container">
+  </div>
 <% end %>
 
-<% content_for :main do %>
-  <div id="events-map-container">
-  </div>
+<% content_for :script do %>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp" type="text/javascript"></script>
+  <script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js" type="text/javascript"></script>
+  <%= javascript_include_tag 'calendar' %>
+  <%= javascript_include_tag 'events-map' %>
+
 <% end %>

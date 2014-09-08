@@ -8,10 +8,14 @@ class VenuesController < ApplicationController
   end
 
   def list
-    @venues = Venue.all
+    @venues = Venue.all.order(:name)
   end
 
   def show
     @venue = Venue.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render :json => @venue }
+    end
   end
 end

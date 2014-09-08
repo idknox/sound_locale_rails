@@ -238,26 +238,12 @@ Venue.create(
 )
 
 Venue.create(
-  title: "Cervantes'",
-  name: "Cervantes' and The Other Side - DUAL VENUE",
-  address: "2637 Welton St, Denver, CO 80205",
-  location: "39.754169, -104.978830",
-  background: "http://i.imgur.com/VJRK8fY.jpg",
-  logo: "http://i.imgur.com/4VF6ILm.png",
-  size: "Mid-sized Venue",
-  price: "$$",
-  map: "map",
-  site: "http://www.cervantesmasterpiece.com/",
-  description: "Cervantes’ has two rooms that offer live music simultaneously, Cervantes’ and The Other Side. Each room operates independently of the other but they are connected giving our patrons the ability to venture back and forth between each room. Cervantes’ Masterpiece Ballroom separates itself from other Denver live music venues for a multitude of reasons, but the dual venue feature makes Cervantes’ stand out the most. Cervantes’ holds 900 people and includes a balcony that wraps around the entire room creating a very intimate setting. Cervantes’ incorporates a top of the line sound system, including a Meyer MICALine Array with four boxes per side and six Meyer 650P subs. This arrangement translates into full sound that can be heard throughout the venue from front to back. The Other Side holds 500 people and has equally impressive traits."
-)
-
-Venue.create(
   title: "1st Bank Center",
   name: "1STBANK Center",
   address: "11450 Broomfield Ln, Broomfield, CO 80021",
   location: "39.904575,-105.085449",
   background: "http://i.imgur.com/naeCYfl.jpg?1",
-  logo: "http://imgur.com/FrVi8lM",
+  logo: "http://i.imgur.com/FrVi8lM.png",
   size: "Arena",
   price: "$$$",
   map: "map",
@@ -382,14 +368,29 @@ Venue.create(
   name: "Pepsi Center",
   address: "1000 Chopper Cir, Denver, CO 80204",
   location: "39.747372,-105.007926",
-  background: "",
-  logo: "",
-  size: "",
-  price: "",
-  map: "",
-  site: "",
-  description: ""
+  background: "http://i.imgur.com/qKIbBeP.jpg?2",
+  logo: "http://i.imgur.com/aCEx7ZZ.png",
+  size: "Large Arena",
+  price: "$$$",
+  map: "map",
+  site: "http://www.pepsicenter.com/",
+  description: "Pepsi Center is home to the NBA Denver Nuggets, NHL Colorado Avalanche, NLL Colorado Mammoth and hosts a variety of concerts & events."
 )
+
+Venue.create(
+  title: "Fox",
+  name: "Fox Theatre",
+  address: "1135 13th St, Boulder, CO 80302",
+  location: "40.008018,-105.276573",
+  background: "http://i.imgur.com/WwzIqvw.jpg?1",
+  logo: "http://i.imgur.com/F6u7BrP.png",
+  size: "Mid-sized Venue",
+  price: "$$",
+  map: "map",
+  site: "http://www.foxtheatre.com/",
+  description: "Located on 'The Hill', The Fox Theatre is the premier live music club in Boulder, Colorado. Recently voted 4th best music venue in the country by Rolling Stone Magazine, the Fox offers top-notch talent, a world-class sound system, and an intimate 625 capacity atmosphere."
+)
+
 
 # Venue.create(
 #   title: "",

@@ -31,6 +31,13 @@ namespace :events do
     print_count(count, "DESTROYED")
   end
 
+  desc "Import all events"
+  task :all => :environment do
+    Rake::Task["events:tf"].invoke
+    Rake::Task["events:sh"].invoke
+    Rake::Task["events:sk"].invoke
+  end
+
   private
 
   def print_count(count, action)
