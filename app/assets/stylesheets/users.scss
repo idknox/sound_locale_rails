@@ -14,8 +14,6 @@
 }
 
 .user-form {
-  @include span-columns(8);
-  @include shift(5);
 
   .error-message {
     color: #E86375;
@@ -23,11 +21,12 @@
 
   li {
     @include span-columns(8);
+  @include shift(4);
     margin-bottom: 1em;
     display: block;
 
     input {
-      @include span-columns(5);
+      @include span-columns(4 of 8);
     }
 
     label {

@@ -32,7 +32,6 @@
 }
 
 .venue-info-map-container {
-  @include outer-container;
 
   > div {
     margin-bottom: 3em
@@ -50,6 +49,7 @@
     @include span-columns(6);
     height: 500px;
     border: 1px solid black;
+
 
     img {
       max-width: none;

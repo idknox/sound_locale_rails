@@ -70,6 +70,11 @@ var buildMap = function (music_events) {
       infowindow.open(map, marker);
     });
   });
+
+  google.maps.event.addDomListener(window, 'resize', function () {
+    map.setCenter(lat, lng);
+  });
+
 };
 
 var promiseOfResult = $.getJSON("/");

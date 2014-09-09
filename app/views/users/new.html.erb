@@ -4,7 +4,11 @@
       <ul>
         <% if f.object.errors.any? %>
           <li>
-            <div class="error-message">Please complete the form</div>
+            <div class="error-message">
+              <% f.object.errors.full_messages.each do |msg| %>
+                <%= msg %>
+              <% end %>
+            </div>
           </li>
         <% end %>
         <li>
