@@ -1,0 +1,30 @@
+#events-map-container, #venues-map-container {
+  @include span-columns(12);
+  height: 620px;
+
+  img {
+    max-width: none;
+  }
+}
+
+.info-window {
+  padding: 10px;
+  border-radius: 10px;
+  width: 300px;
+
+  .event-map-venue {
+    display: inline-block;
+  }
+
+  .venue-logo {
+    width: 150px;
+
+    img {
+      width: 100%
+    }
+  }
+}
+
+.info-window-all {
+  background-color: #1C3C5B;
+}

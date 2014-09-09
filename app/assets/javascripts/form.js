@@ -6,7 +6,7 @@ var isValid = function (input) {
   return (input.val() != '')
 };
 
-inputs.on('blur change keyup', function () {
+inputs.on('blur', function () {
   if (isValid($(this))) {
     $(this).removeClass('invalid');
     $(this).siblings('.input-error').hide();
@@ -16,11 +16,3 @@ inputs.on('blur change keyup', function () {
   }
 });
 
-$('#user-password-confirmation').on('blur', function () {
-  if ($(this).val() != $('#user_password').val()) {
-    $(this).siblings('.input-error').empty();
-    $(this).siblings('.input-error').append(' <- must match password');
-    $(this).siblings('.input-error').show();
-
-  }
-});

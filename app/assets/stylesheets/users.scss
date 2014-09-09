@@ -1,0 +1,50 @@
+.flash {
+  width: 100%;
+  height: 2.5em;
+  text-align: center;
+  background-color: #e6efc2;
+  color: #1C3C5B;
+  line-height: 2.5em;
+  vertical-align: middle;
+  float: right;
+}
+
+.flash span {
+  margin: 0 auto;
+}
+
+.user-form {
+  @include span-columns(8);
+  @include shift(5);
+
+  .error-message {
+    color: #E86375;
+  }
+
+  li {
+    @include span-columns(8);
+    margin-bottom: 1em;
+    display: block;
+
+    input {
+      @include span-columns(5);
+    }
+
+    label {
+    }
+
+    .input-error {
+      color: #E86375;
+      display: inline-block;
+      @include span-columns(4);
+    }
+  }
+
+  .invalid {
+    border: 1px solid #E86375;
+  }
+
+  input[type=submit] {
+    //    @include shift(4);
+  }
+}

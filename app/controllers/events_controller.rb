@@ -1,6 +1,14 @@
 class EventsController < ApplicationController
   def map
-    @events = Event.where(:date => Date.today)
+
+    @date = params[:date]
+    @date ||= Date.today
+
+    puts "*" * 80
+    puts @date
+    puts "*" * 80
+
+    @events = Event.where(:date => @date)
     respond_to do |format|
       format.html
       format.json { render :json => @events.to_json(:include => [:venue]) }

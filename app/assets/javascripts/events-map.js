@@ -1,4 +1,11 @@
-function initialize() {
+var filterDate = $('#events-map-container').data("date");
+
+console.log(filterDate);
+
+filterDate = {date: filterDate};
+var promiseOfResult = $.getJSON("/", filterDate);
+
+var buildMap = function (music_events) {
   var mapCanvas = document.getElementById('events-map-container');
   if (!mapCanvas) {
     return;
@@ -47,37 +54,40 @@ function initialize() {
 
   var infowindow = new InfoBox(windowOptions);
 
-  var promiseOfResult = $.getJSON("/");
+  $.each(music_events, function (i, music_event) {
 
-  var generateMarkers = function (music_events) {
-    $.each(music_events, function (i, music_event) {
+    var lat = music_event.venue.location.split(",")[0];
+    var lng = music_event.venue.location.split(",")[1];
 
-      var lat = music_event.venue.location.split(",")[0];
-      var lng = music_event.venue.location.split(",")[1];
-
-      var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(lat, lng),
-        title: music_event.name,
-        animation: google.maps.Animation.DROP,
-        map: map
-      });
-
-      var eventInfo = '<div class="info-window texture-normal">' +
-        '<p>' + music_event.name + '</p>' +
-        '<span class="event-map-venue">' + music_event.venue.name + '</span>' +
-        '<p>' + music_event.venue.address + '</p>' +
-        '<a href="' + music_event.tickets + '">Tickets</a></div>';
-
-      google.maps.event.addListener(marker, 'click', function () {
-        infowindow.setContent(eventInfo);
-        infowindow.open(map, marker);
-        $('.info-window').parent().parent().parent().addClass('info-window-all');
-      });
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(lat, lng),
+      title: music_event.name,
+      animation: google.maps.Animation.DROP,
+      map: map
     });
-  };
-  promiseOfResult.success(generateMarkers);
-}
 
-initialize();
+    var eventInfo = '<div class="info-window texture-normal">' +
+      '<p>' + music_event.name + '</p>' +
+      '<span class="event-map-venue">' + music_event.venue.name + '</span>' +
+      '<p>' + music_event.venue.address + '</p>' +
+      '<a href="' + music_event.tickets + '">Tickets</a></div>';
+
+    google.maps.event.addListener(marker, 'click', function () {
+      infowindow.setContent(eventInfo);
+      infowindow.open(map, marker);
+    });
+  });
+};
+
+promiseOfResult.success(buildMap);
+
+$('.cal-date').datepicker({
+  onSelect: function (dateText) {
+    var filteredDate = {date: dateText};
+    $.get('/', filteredDate);
+    var promiseOfResult = $.getJSON("/", filteredDate);
+    promiseOfResult.success(buildMap);
+  }
+});
 
 

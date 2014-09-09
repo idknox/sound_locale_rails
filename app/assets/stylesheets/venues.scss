@@ -1,0 +1,82 @@
+.venue-grid {
+  //  display: flex;
+  //  justify-content: space-between;
+
+  .venue-tile {
+    @include span-columns(3);
+    @include omega(4n);
+    height: 250px;
+    border-radius: 40%;
+    margin-bottom: 1.5em;
+  }
+
+  .venue-tile-background {
+    border-radius: 40%;
+  }
+}
+
+.venue-tile-overlay {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #000;
+  font-size: 40px;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, .5);
+  border-radius: 40%;
+  height: 253px;
+}
+
+.venue-info-map-container {
+  @include outer-container;
+
+  > div {
+    margin-bottom: 3em
+  }
+
+  .venue-info-container {
+    @include span-columns(6);
+
+    img {
+      width: 200px;
+    }
+
+  }
+  #venue-map-container {
+    @include span-columns(6);
+    height: 500px;
+    border: 1px solid black;
+
+    img {
+      max-width: none;
+    }
+  }
+}
+
+.venue-events-container {
+  @include span-columns(12);
+
+  ul {
+    li {
+
+      div {
+        @include span-columns(4);
+        text-align: center;
+      }
+    }
+
+    li:nth-child(even) {
+      background-color: #1C3C5B;
+    }
+    .venue-event-header {
+      div {
+        font-size: 1.5em;
+        margin-bottom: .5em;
+      }
+    }
+  }
+}

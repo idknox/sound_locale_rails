@@ -1,0 +1,57 @@
+.event-list-container {
+  @include span-columns(7);
+
+  h2:hover {
+    cursor: pointer;
+  }
+  .date-events {
+
+    .date-event {
+  @include span-columns(7 of 7);
+      background-color: #336FA1;
+      margin: 1em;
+      padding: .5em;
+
+      .date-event-info {
+        @include span-columns(6 of 7);
+        height: auto;
+
+        .date-event-venue {
+          font-weight: bold;
+        }
+
+        .date-event-price {
+          float: right;
+        }
+      }
+
+      .date-event-buttons {
+        @include span-columns(1 of 7);
+      }
+    }
+  }
+}
+
+.no-events-container {
+  @include span-columns(7);
+  @include omega();
+}
+
+.event-tools {
+  @include span-columns(4);
+  @include shift(1);
+  margin-top: 4.5em;
+
+  .fixed {
+    position: fixed;
+  }
+  .top {
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+
+.event-map-filter {
+  @include span-columns(2);
+  @include shift(5);
+}

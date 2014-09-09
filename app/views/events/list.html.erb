@@ -13,11 +13,12 @@
                       <div class="date-event-info">
                         <ul>
                           <li><%= event.name %></li>
-                          <li><%= event.venue.name %></li>
+                          <li><span class="date-event-venue"><%= event.venue.name %></span><span class="date-event-price"><%= event.price %></span></li>
                         </ul>
                       </div>
                       <div class="date-event-buttons">
                         <%= button_to "Map", "/venues/#{event.venue.id}", method: :get %>
+                        <%= button_to "RSVP", "javascript:void(0)", method: :get %>
                       </div>
                     </li>
                   <% end %>
@@ -46,6 +47,5 @@
 <% end %>
 
 <% content_for :script do %>
-  <%= javascript_include_tag 'calendar' %>
   <%= javascript_include_tag 'events-filter' %>
 <% end %>
