@@ -17,7 +17,7 @@
                         </ul>
                       </div>
                       <div class="date-event-buttons">
-                        <%= button_to "Map", "/venues/#{event.venue.id}" %>
+                        <%= button_to "Map", "/venues/#{event.venue.id}", method: :get %>
                       </div>
                     </li>
                   <% end %>

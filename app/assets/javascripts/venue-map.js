@@ -3,7 +3,7 @@ function initialize() {
   if (!mapCanvas) {
     return;
   }
-  var id = $('.main').data("id");
+  var id = $('.venue-info-container').data("id");
   var promiseOfResult = $.getJSON("/venues/" + id);
 
   var buildMap = function (venue) {

@@ -1,7 +1,7 @@
 <% content_for :main do %>
-    <div class="title" data-id="<%= @venue.id %>">Venue Info</div>
+    <div class="title">Venue Info</div>
     <section class="venue-info-map-container">
-      <div class="venue-info-container">
+      <div class="venue-info-container" data-id="<%= @venue.id %>">
         <div class="venue-logo">
           <img src="<%= @venue.logo %>"/>
         </div>
