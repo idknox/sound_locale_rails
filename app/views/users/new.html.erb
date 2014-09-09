@@ -1,22 +1,45 @@
 <% content_for :main do %>
- <div class="user-form">
-  <%= form_for @user do |f| %>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
+  <div class="user-form">
+    <%= form_for @user do |f| %>
+      <ul>
+        <% if f.object.errors.any? %>
+          <li>
+            <div class="error-message">Please complete the form</div>
+          </li>
+        <% end %>
+        <li>
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name, autofocus: true %>
+          <div class="input-error"> <- please complete</div>
+        </li>
+        <li>
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name %>
+          <div class="input-error"> <- please complete</div>
+        </li>
+        <li>
+          <%= f.label :email %>
+          <%= f.email_field :email %>
+          <div class="input-error"> <- please complete</div>
+        </li>
+        <li>
+          <%= f.label :password %>
+          <%= f.password_field :password %>
+          <div class="input-error"> <- please complete</div>
+        </li>
+        <li>
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation %>
+          <div class="input-error"> <- please complete</div>
+        </li>
+        <li>
+          <%= f.submit "Sign Up" %>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+<% end %>
 
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-
-    <%= f.submit "Sign Up" %>
-   <% end %>
- </div>
+<% content_for :script do %>
+  <%= javascript_include_tag 'form.js' %>
 <% end %>

@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Thanks for signing up!"
       redirect_to root_path
     else
-      redirect_to :back
+      render :new
     end
   end
 

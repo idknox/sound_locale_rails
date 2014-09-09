@@ -7,6 +7,7 @@ Rails.application.config.assets.precompile += %w( events-map.js )
 Rails.application.config.assets.precompile += %w( calendar.js )
 Rails.application.config.assets.precompile += %w( venue-map.js )
 Rails.application.config.assets.precompile += %w( events-filter.js )
+Rails.application.config.assets.precompile += %w( form.js )
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.

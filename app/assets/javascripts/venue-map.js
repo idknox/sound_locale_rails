@@ -21,7 +21,6 @@ function initialize() {
 
     var map = new google.maps.Map(mapCanvas, mapOptions);
 
-
     var marker = new google.maps.Marker({
       position: new google.maps.LatLng(lat, lng),
       title: venue.name,
@@ -31,7 +30,7 @@ function initialize() {
 
     marker.setMap(map);
   };
-  google.maps.event.addDomListener(window, 'resize', function() {
+  google.maps.event.addDomListener(window, 'resize', function () {
     map.setCenter(center);
   });
   promiseOfResult.success(buildMap);

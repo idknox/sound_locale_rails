@@ -39,11 +39,39 @@ input[type=text], input[type=password], input[type=email], input[type=search] {
 }
 
 .user-form {
-  width: 15em;
-  margin: 0 auto;
-  padding: 2em;
-  text-align: center;
+  @include span-columns(8);
+  @include shift(5);
 
+  .error-message {
+    color: red;
+  }
+
+  li {
+    @include span-columns(8);
+    margin-bottom: 1em;
+    display: block;
+
+    input {
+      @include span-columns(5);
+    }
+
+    label {
+    }
+
+    .input-error {
+      color: red;
+      display: inline-block;
+      @include span-columns(4);
+    }
+  }
+
+  .invalid {
+    border: 1px solid red;
+  }
+
+  input[type=submit] {
+    //    @include shift(4);
+  }
 }
 
 // VENUES AND EVENTS
@@ -139,7 +167,7 @@ input[type=text], input[type=password], input[type=email], input[type=search] {
     @include span-columns(6);
 
     img {
-      width: 300px;
+      width: 200px;
     }
 
   }
@@ -159,7 +187,7 @@ input[type=text], input[type=password], input[type=email], input[type=search] {
 
   ul {
     li {
-    
+
       div {
         @include span-columns(4);
         text-align: center;
@@ -200,7 +228,6 @@ input[type=text], input[type=password], input[type=email], input[type=search] {
       }
 
       .date-event-buttons {
-        //        float: right;
       }
     }
   }

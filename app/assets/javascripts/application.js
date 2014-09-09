@@ -35,7 +35,5 @@ $(document).ready(function () {
 
   window.setTimeout(stopFlash, 5000);
 
-//  --- EVENT FILTER ---
-
 
 });
