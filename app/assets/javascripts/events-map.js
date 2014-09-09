@@ -1,10 +1,3 @@
-var filterDate = $('#events-map-container').data("date");
-
-console.log(filterDate);
-
-filterDate = {date: filterDate};
-var promiseOfResult = $.getJSON("/", filterDate);
-
 var buildMap = function (music_events) {
   var mapCanvas = document.getElementById('events-map-container');
   if (!mapCanvas) {
@@ -79,12 +72,12 @@ var buildMap = function (music_events) {
   });
 };
 
+var promiseOfResult = $.getJSON("/");
 promiseOfResult.success(buildMap);
 
 $('.cal-date').datepicker({
   onSelect: function (dateText) {
     var filteredDate = {date: dateText};
-    $.get('/', filteredDate);
     var promiseOfResult = $.getJSON("/", filteredDate);
     promiseOfResult.success(buildMap);
   }
