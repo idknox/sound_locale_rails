@@ -226,7 +226,9 @@ button.ui-button::-moz-focus-inner {
 	width: 17em;
 	padding: .2em .2em 0;
 	display: none;
-    background-color: #2D628E;
+    background-color: #999;
+    border: 3px solid #333;
+    /*margin-top: 5px;*/
 }
 .ui-datepicker .ui-datepicker-header {
 	position: relative;
@@ -870,7 +872,7 @@ body .ui-tooltip {
 	border: 1px solid #cccccc;
 	background: #f6f6f6 url("../images/ui-bg_glass_100_f6f6f6_1x400.png") 50% 50% repeat-x;
 	font-weight: bold;
-	color: #1c94c4;
+	color: #333;
 }
 .ui-state-default a,
 .ui-state-default a:link,
@@ -887,7 +889,7 @@ body .ui-tooltip {
 	border: 1px solid #fbcb09;
 	background: #fdf5ce url("../images/ui-bg_glass_100_fdf5ce_1x400.png") 50% 50% repeat-x;
 	font-weight: bold;
-	color: #1C3C5B;
+	color: #333;
 }
 .ui-state-hover a,
 .ui-state-hover a:hover,
@@ -897,21 +899,21 @@ body .ui-tooltip {
 .ui-state-focus a:hover,
 .ui-state-focus a:link,
 .ui-state-focus a:visited {
-	color: #1C3C5B;
+	color: #333;
 	text-decoration: none;
 }
 .ui-state-active,
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
-	border: 1px solid #1C3C5B;
-	background: rgba(255, 255, 255, 0.7) url("../images/ui-bg_glass_65_ffffff_1x400.png") 50% 50% repeat-x;
+	border: 1px solid #333;
+	background-color: #999;
 	font-weight: bold;
-	color: #1C3C5B;
+	color: #333;
 }
 .ui-state-active a,
 .ui-state-active a:link,
 .ui-state-active a:visited {
-	color: #eb8f00;
+	color: #eb8f00  ;
 	text-decoration: none;
 }
 

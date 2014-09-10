@@ -1,41 +1,12 @@
-@import 'refills';
+@import 'bourbon/bourbon';
+@import "base/base";
+@import 'neat/neat';
+//@import 'refills';
 @import 'jquery-ui';
 @import 'mixins';
+@import 'header';
 @import 'users';
 @import 'maps';
 @import 'venues';
 @import 'events';
-
-*, h1, h2 {
-  font-family: 'Maven Pro', sans-serif;
-}
-
-body {
-  background-color: #2D628E;
-  color: rgba(255, 255, 255, 0.7);
-  margin: 0;
-  padding: 0;
-}
-
-input[type=text], input[type=password], input[type=email], input[type=search] {
-  background-color: rgba(255, 255, 255, 0.7);
-}
-
-::-webkit-input-placeholder {
-  color: #2D628E;
-}
-
-.main {
-  @include outer-container;
-  margin-top: 2em;
-  margin-bottom: 2em;
-  $mobile: new-breakpoint(max-width 500px 4);
-
-  .title {
-    @include span-columns(6);
-    @include shift(3);
-    text-align: center;
-    font-size: 3em;
-    margin-bottom: .5em;
-  }
-}
+@import 'stylesheet';

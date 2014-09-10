@@ -8,40 +8,21 @@
   <%= favicon_link_tag '/images/icon.ico' %>
 </head>
 <body>
-<header class="navigation">
-  <div class="navigation-wrapper">
-    <a href="" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
-
-    <div class="nav">
-      <ul id="navigation-menu">
-        <li class="nav-link"><%= link_to "Events", events_list_path %></li>
-        <li class="nav-link events_map"><%= link_to "Event Map", root_path %></li>
-        <li class="nav-link"><%= link_to "Venues", venues_list_path %></li>
-        <li class="nav-link"><%= link_to "Venue Map", venues_map_path %></li>
-      </ul>
+<header>
+  <div class="title">
+  <h1><%= link_to "BANDSTAND", root_path %></h1>
     </div>
-    <!--<div class="nav">-->
-    <!--<ul id="navigation-menu">-->
-    <!--<li class="nav-link trigger-item">-->
-    <!--<%= link_to "Events", url: "javascript:void(0)", class: "dropdown-trigger" %>-->
-    <!--<ul>-->
-    <!--<li class="dropdown-item"><%= link_to "List", events_list_path %></li>-->
-    <!--<li class="dropdown-item"><%= link_to "Map", root_path %></li>-->
-    <!--</ul>-->
-    <!--</li>-->
-    <!--<li class="nav-link trigger-item">-->
-    <!--<%= link_to "Venues", url: "javascript:void(0)", class: "dropdown-trigger" %>-->
-    <!--<ul>-->
-    <!--<li class="dropdown-item"><%= link_to "List", venues_list_path %></li>-->
-    <!--<li class="dropdown-item"><%= link_to "Map", venues_map_path %></li>-->
-    <!--</ul>-->
-    <!--</li>-->
-    <!--</ul>-->
-    <!--</div>-->
-    <%= link_to "Log In", signin_path, class: "sign-up" %>
-    <%= link_to "Sign Up", new_user_path, class: "sign-up" %>
-
-  </div>
+<nav>
+  <ul>
+      <li class="nav-link"><%= link_to "Events", events_list_path %></li>
+      <li class="nav-link"><%= link_to "Venues", venues_list_path %></li>
+      <li class="map-dropdown-trigger">Map
+        <ul>
+        <li><%= link_to "Events", root_path %></li>
+        <li><%= link_to "Venues", venues_map_path %></li>
+        </ul>
+  </ul>
+    </nav>
 </header>
 <% if flash[:notice] %>
   <div class="flash"><%= flash[:notice] %></div>

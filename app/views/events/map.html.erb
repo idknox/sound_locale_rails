@@ -1,13 +1,14 @@
 <% content_for :main do %>
-  <% if params[:event_filter] %>
-    <div class="title">Events for <%= @events[0].date.strftime("%A, %b %d") %></div>
-  <% else %>
-    <div class="title">Events for Today</div>
-  <% end %>
-  <div class="event-map-filter">
-  <%= text_field_tag "event_filter", nil, placeholder: "Change Date", class: "cal-date" %>
+  <div id="event-date-selector">
+    <ul>
+      <li><h1 id="today" class="active"><span>Today</span></h1></li>
+      <li><h1 id="tomorrow">Tomorrow</h1></li>
+      <li><h1 id="cal-date-trigger"><%= Date.today.strftime("%m.%d.%Y") %></h1>
+        <div id="cal-date"></div>
+      </li>
+    </ul>
   </div>
-    <div id="events-map-container">
+  <div id="events-map-container">
   </div>
 <% end %>
 

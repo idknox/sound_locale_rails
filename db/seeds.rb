@@ -196,7 +196,7 @@ Venue.create(
 )
 
 Venue.create(
-  title: "The Living Room",
+  title: "Living Room",
   name: "The Living Room - Denver",
   address: "1055 Broadway, Denver, CO 80203",
   location: "39.733018, -104.987395",
@@ -210,7 +210,7 @@ Venue.create(
 )
 
 Venue.create(
-  title: "Walnut Room Walnut St",
+  title: "Walnut Room",
   name: "The Walnut Room - Walnut Street Location",
   address: "3131 Walnut Street, Denver, Colorado 80205",
   location: "39.764209, -104.979771",
@@ -224,7 +224,7 @@ Venue.create(
 )
 
 Venue.create(
-  title: "Walnut Room Broadway",
+  title: "Walnut Room",
   name: "The Walnut Room Broadway Location",
   address: "2 Broadway Denver, Colorado 80203",
   location: "39.716751, -104.987122",
@@ -238,7 +238,7 @@ Venue.create(
 )
 
 Venue.create(
-  title: "1st Bank Center",
+  title: "1st Bank",
   name: "1STBANK Center",
   address: "11450 Broomfield Ln, Broomfield, CO 80021",
   location: "39.904575,-105.085449",
@@ -266,7 +266,7 @@ Venue.create(
 )
 
 Venue.create(
-  title: "Belly Up Aspen",
+  title: "Belly Up",
   name: "Belly Up Aspen",
   address: "450 S Galena St, Aspen, CO 81611",
   location: "39.187518,-106.819046",

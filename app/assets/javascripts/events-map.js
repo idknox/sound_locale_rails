@@ -18,7 +18,7 @@ var buildMap = function (music_events) {
   var windowOptions = {
     disableAutoPan: false,
     content: '',
-    pixelOffset: new google.maps.Size(-11, -135),
+    pixelOffset: new google.maps.Size(-144, -195),
     shadowStyle: 1,
     hideCloseButton: false,
     arrowSize: 10,
@@ -59,11 +59,11 @@ var buildMap = function (music_events) {
       map: map
     });
 
-    var eventInfo = '<div class="info-window texture-normal">' +
-      '<p>' + music_event.name + '</p>' +
-      '<span class="event-map-venue">' + music_event.venue.name + '</span>' +
-      '<p>' + music_event.venue.address + '</p>' +
-      '<a href="' + music_event.tickets + '">Tickets</a></div>';
+    var eventInfo = '<div class="info-window">' +
+      '<p class="title">' + music_event.name + '<br>' + music_event.venue.title + '</p>' +
+      '<p class="info">' + music_event.venue.address + '<br>' + music_event.time +
+      '<a href="' + music_event.tickets + '</p>' + '">Tickets</a>' +
+      '<div class="triangle"></div>';
 
     google.maps.event.addListener(marker, 'click', function () {
       infowindow.setContent(eventInfo);
@@ -80,12 +80,58 @@ var buildMap = function (music_events) {
 var promiseOfResult = $.getJSON("/");
 promiseOfResult.success(buildMap);
 
-$('.cal-date').datepicker({
-  onSelect: function (dateText) {
-    var filteredDate = {date: dateText};
-    var promiseOfResult = $.getJSON("/", filteredDate);
-    promiseOfResult.success(buildMap);
-  }
+// DATE SWITCH
+
+var today = $('#today');
+var tomorrow = $('#tomorrow');
+var calTrigger = $('#cal-date-trigger');
+var cal = $('#cal-date');
+
+today.on('click', function () {
+  var promiseOfResult = $.getJSON("/");
+  promiseOfResult.success(buildMap);
 });
 
+tomorrow.on('click', function () {
+  dateData = {date: 'tomorrow'};
+  var promiseOfResult = $.getJSON("/", dateData);
+  promiseOfResult.success(buildMap);
+});
 
+calTrigger.on('click', function () {
+  cal.show();
+  $('#cal-date').datepicker({
+    onSelect: function (dateText) {
+      cal.hide();
+      calTrigger.addClass('active');
+      calTrigger.parent().siblings().children().removeClass('active');
+      var filteredDate = {date: dateText};
+      var promiseOfResult = $.getJSON("/", filteredDate);
+      promiseOfResult.success(buildMap);
+    }
+  });
+});
+
+// ACTIVE BUTTONS
+
+today.on('click', function () {
+  cal.hide();
+  $(this).addClass('active');
+  $(this).parents().siblings().children().removeClass('active');
+});
+
+tomorrow.on('click', function () {
+  $('#cal-date').hide();
+  $(this).addClass('active');
+  $(this).parents().siblings().children().removeClass('active');
+});
+
+// HIDES CAL
+
+$('html').click(function () {
+  cal.hide();
+});
+
+calTrigger.click(function (event) {
+  event.stopPropagation();
+});

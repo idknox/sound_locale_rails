@@ -1,3 +1,4 @@
+
 .event-list-container {
   @include span-columns(7);
 
@@ -45,13 +46,17 @@
   .fixed {
     position: fixed;
   }
+
   .top {
     margin-top: 10px;
     width: 100%;
   }
 }
 
-.event-map-filter {
-  @include span-columns(2);
-  @include shift(5);
+.event-date-selector {
+  margin-bottom: 1em;
+  h1 {
+    display: inline-block;
+    margin-right: 1em;
+  }
 }

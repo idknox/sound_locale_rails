@@ -35,5 +35,4 @@ $(document).ready(function () {
 
   window.setTimeout(stopFlash, 5000);
 
-
 });
