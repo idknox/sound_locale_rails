@@ -15,7 +15,7 @@ Venue.create(
 Venue.create(
   title: "Beauty Bar",
   name: "Beauty Bar Denver",
-  address: "608 E 13th Ave, Denver, CO",
+  address: "608 E 13th Ave, Denver, CO 80203",
   location: "39.736868, -104.979653",
   background: "http://i.imgur.com/VrCLZb6.jpg",
   logo: "http://i.imgur.com/yLBocPe.png?1",

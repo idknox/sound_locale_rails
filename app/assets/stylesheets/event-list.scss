@@ -36,7 +36,7 @@
 
 .no-events-container {
   @include span-columns(7);
-  @include shift(1);
+  @include shift(.5);
 }
 
 .event-tools {

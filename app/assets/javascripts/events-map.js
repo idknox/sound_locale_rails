@@ -18,7 +18,7 @@ var buildMap = function (music_events) {
   var windowOptions = {
     disableAutoPan: false,
     content: '',
-    pixelOffset: new google.maps.Size(-144, -195),
+    pixelOffset: new google.maps.Size(-144, -225),
     shadowStyle: 1,
     hideCloseButton: false,
     arrowSize: 10,
@@ -44,7 +44,7 @@ var buildMap = function (music_events) {
 
     var eventInfo = '<div class="info-window">' +
       '<p class="title">' + music_event.name + '<br>' + music_event.venue.title + '</p>' +
-      '<p class="info">' + music_event.venue.address + '<br>' + music_event.time +
+      '<p class="info">' + music_event.venue.address + '<br>' + music_event.formatted_time +
       '<a href="' + music_event.tickets + '">Tickets</a></p>' +
       '<div class="triangle"></div>';
 

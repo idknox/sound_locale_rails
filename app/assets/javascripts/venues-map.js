@@ -18,7 +18,7 @@ function initialize() {
   var windowOptions = {
     disableAutoPan: false,
     content: '',
-    pixelOffset: new google.maps.Size(-144, -195),
+    pixelOffset: new google.maps.Size(-144, -240),
     shadowStyle: 1,
     hideCloseButton: false,
     arrowSize: 10,
