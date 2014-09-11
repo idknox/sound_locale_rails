@@ -8,7 +8,7 @@ class VenuesController < ApplicationController
   end
 
   def list
-    @venues = Venue.all.order(:name)
+    @venues = Venue.all.order(:title)
   end
 
   def show

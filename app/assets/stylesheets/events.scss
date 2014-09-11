@@ -1,35 +1,39 @@
 
 .event-list-container {
   @include span-columns(7);
+}
 
-  h2:hover {
-    cursor: pointer;
-  }
-  .date-events {
+.date-events {
 
-    .date-event {
-  @include span-columns(7 of 7);
-      background-color: #336FA1;
-      margin: 1em;
-      padding: .5em;
+  .date-event {
+    @include span-columns(7 of 7);
+    background-color: #DADADA;
+    margin: 1em;
+    padding: .5em 0 .5em 1.5em;
 
-      .date-event-info {
-        @include span-columns(6 of 7);
-        height: auto;
-
-        .date-event-venue {
-          font-weight: bold;
-        }
-
-        .date-event-price {
-          float: right;
-        }
-      }
-
-      .date-event-buttons {
-        @include span-columns(1 of 7);
-      }
+    .event-divider {
+      @include span-columns(2 of 7);
+      background-color: #333;
+      height: 1em;
+      margin: .5em 0 1em -1.5em;
+      display: block;
     }
+
+    .date-event-name {
+      @include span-columns(7 of 7);
+
+    }
+    .date-event-venue {
+      font-weight: bold;
+    }
+
+    .date-event-price {
+      float: right;
+    }
+  }
+
+  .date-event-buttons {
+    @include span-columns(1 of 7);
   }
 }
 

@@ -4,13 +4,13 @@
   .venue-tile {
     @include span-columns(4);
     @include omega(3n);
-//    @include media($mobile) {
-//      @include span-columns(12);
-//      font-size: 75%;
-//    }
+    border: 3px solid #333;
 
+    div {
+      background-size: 100%;
+    }
     .venue-list-name {
-      background-color: #333333;
+      background-color: #333;
       color: #999;
       padding: 0 15% 1% 5%;
       font-size: 1.5em;
