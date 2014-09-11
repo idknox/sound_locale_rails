@@ -4,7 +4,7 @@ function initialize() {
     return;
   }
   var id = $('.venue-info-container').data("id");
-  var promiseOfResult = $.getJSON("/venues/" + id);
+  var promiseOfResult = $.getJSON("/venues/" + id + ".json");
 
   var buildMap = function (venue) {
     var lat = venue.location.split(",")[0];
@@ -15,7 +15,7 @@ function initialize() {
     var mapOptions = {
       center: center,
       zoom: 12,
-      disableDefaultUI: false,
+      disableDefaultUI: true,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
@@ -39,7 +39,7 @@ function initialize() {
 initialize();
 
 var setHeight = function () {
-  var width = $('#venue-map-container').width();
+  var width = $('.venue-info-container').height();
   $('#venue-map-container').css({'height': width + 'px'});
 };
 
@@ -49,7 +49,7 @@ $(window).on('resize', function () {
   setHeight();
 });
 
-if ($('#venue-events').find('li').length == 0) {
+if ($('#venue-events').find('tr').length == 0) {
   $('#no-venue-events-container').show();
   $('.venue-events-container').hide();
 } else {

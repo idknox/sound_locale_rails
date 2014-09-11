@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/stubhub" => "stubhub#create", as: :stubhub
   delete "/events" => "events#destroy_all", as: :all_events
   get "/events/list" => "events#list"
+  get "/events/map" => "events#map"
   get "/venues/map" => "venues#map"
   get "/venues/list" => "venues#list"
 

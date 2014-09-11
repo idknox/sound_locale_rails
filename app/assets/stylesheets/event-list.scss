@@ -1,46 +1,47 @@
 
 .event-list-container {
-  @include span-columns(6);
-  @include shift(1);
+  @include span-columns(7);
+  @include shift(.5);
+  //  @include shift(1);
 
   .date-events-container {
 
-    h1 {
-      //    height: 1em;
-    }
-
     .date-event {
-      @include span-columns(7 of 7);
       background-color: #DADADA;
-      margin: 1em;
-      padding: .5em 0 .5em 1.5em;
+      margin: 1em 0 2em 2em;
+      padding: .5em .5em .5em 1.5em;
 
       .event-divider {
-        @include span-columns(2 of 7);
         background-color: #333;
         height: 1em;
-        margin: .5em 0 1em -1.5em;
+        width: 30%;
+        margin: .5em 0 .5em -1.5em;
       }
 
-      .date-event-info {
-        font-family: Arial;
-        font-size: 1em;
+      .name {
+        margin-bottom: .5em;
+      }
+      h5 {
+        font-family: 'fira_sansregular', Helvetica;
+        margin: 0;
+        padding: 0;
+        font-size: .75em;
       }
 
       .date-event-buttons {
-        @include span-columns(1 of 7);
       }
     }
   }
 }
 
 .no-events-container {
-  @include span-columns(6);
+  @include span-columns(7);
   @include shift(1);
 }
 
 .event-tools {
   @include span-columns(4);
+  //  @include shift(1);
 
   .search {
     border: 3px solid #333;
@@ -49,7 +50,7 @@
   .fixed {
     position: fixed;
     padding: .3em 1em 1em 1em;
-    //    margin-top: 2.5em;
+    margin-top: -1em;
   }
 
   .top {

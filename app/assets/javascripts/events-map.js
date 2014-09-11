@@ -9,7 +9,7 @@ var buildMap = function (music_events) {
   var mapOptions = {
     center: denver,
     zoom: 11,
-    disableDefaultUI: false,
+    disableDefaultUI: true,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
 
@@ -60,7 +60,7 @@ var buildMap = function (music_events) {
 
 };
 
-var promiseOfResult = $.getJSON("/");
+var promiseOfResult = $.getJSON("/events/map.json");
 promiseOfResult.success(buildMap);
 
 // DATE SWITCH
@@ -71,13 +71,13 @@ var calTrigger = $('#cal-date-trigger');
 var cal = $('#cal-date');
 
 today.on('click', function () {
-  var promiseOfResult = $.getJSON("/");
+  var promiseOfResult = $.getJSON("/events/map.json");
   promiseOfResult.success(buildMap);
 });
 
 tomorrow.on('click', function () {
-  dateData = {date: 'tomorrow'};
-  var promiseOfResult = $.getJSON("/", dateData);
+  var dateData = {date: 'tomorrow'};
+  var promiseOfResult = $.getJSON("/events/map.json", dateData);
   promiseOfResult.success(buildMap);
 });
 

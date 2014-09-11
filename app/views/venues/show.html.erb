@@ -1,44 +1,39 @@
 <% content_for :main do %>
   <section class="venue-info-map-container">
     <div class="venue-info-container" data-id="<%= @venue.id %>">
-      <ul>
-      <li class="venue-name-container">
-        <h1><%= @venue.name %></h1>
-      </li>
-      <li class="venue-address-container">
-        <%= @venue.address %>
-      </li>
-      <li class="venue-size-price-container">
-        <%= @venue.size %> - <%= @venue.price %>
-      </li>
-        </ul>
+      <h1><%= @venue.name %></h1>
+      <hr>
+      <div class="venue-details">
+        <h5><%= @venue.price %></h5>
+        <h5><%= @venue.size %></h5>
+        <h5><%= @venue.address %></h5>
+      </div>
+      <p class="venue-description"><%= @venue.description %></p>
     </div>
     <div id="venue-map-container">
     </div>
   </section>
-  <section class="venue-description-container">
-    <div>
-      <%= @venue.description %>
-    </div>
-  </section>
   <section class="venue-events-container">
-    <ul>
-      <li class="venue-event-header">
-        <div>Show</div>
-        <div>Date</div>
-      </li>
-      <div id="venue-events">
+    <table>
+      <tbody id="venue-events">
       <% @venue.events.select { |event| event.date >= Date.today }.each do |event| %>
-        <li>
-          <div>
+        <tr>
+          <td>
             <%= event.name %>
-          </div>
-          <div>
+          </td>
+          <td>
             <%= event.date.strftime("%A, %b %d") %>
-          </div>
-        </li>
+          </td>
+          <td class="event-price">
+            <%= event.price %>
+          </td>
+        </tr>
       <% end %>
-        </div>
+      </tbody>
+    </table>
+    </li>
+    <div id="venue-events">
+    </div>
     </ul>
   </section>
   <section id="no-venue-events-container">

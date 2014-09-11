@@ -9,7 +9,7 @@ function initialize() {
   var mapOptions = {
     center: denver,
     zoom: 11,
-    disableDefaultUI: false,
+    disableDefaultUI: true,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
 
@@ -32,7 +32,7 @@ function initialize() {
 
   var infowindow = new InfoBox(windowOptions);
 
-  var promiseOfResult = $.getJSON("/venues/map");
+  var promiseOfResult = $.getJSON("/venues/map.json");
 
   var generateMarkers = function (venues) {
     $.each(venues, function (i, venue) {

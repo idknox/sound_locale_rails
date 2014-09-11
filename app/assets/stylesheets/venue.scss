@@ -1,0 +1,52 @@
+.venue-info-map-container {
+  @include span-columns(10);
+  @include shift(1);
+  margin-bottom: 2em;
+
+  .venue-info-container {
+    @include span-columns(5 of 10);
+    margin-bottom: 3em;
+    @include media($mobile) {
+      @include span-columns(12);
+    }
+
+    hr {
+      height: 1em;
+      background-color: #333;
+      margin: 1em 0 1em 0;
+    }
+
+    .venue-details * {
+      margin-bottom: .2em;
+    }
+    .venue-description {
+      font-family: 'fira_sansregular', Helvetica;
+      margin-top: 1em;
+      text-align: justify;
+    }
+  }
+  #venue-map-container {
+    @include span-columns(5 of 10);
+    border: 3px solid #000;
+    box-shadow: -7px 7px 7px #636363;
+    @include media($mobile) {
+      @include span-columns(12);
+    }
+  }
+}
+
+.venue-events-container {
+  @include span-columns(10);
+  @include shift(1);
+  text-align: center;
+
+  tr {
+    border-bottom: 1px solid #333;
+  }
+}
+
+#no-venue-events-container {
+  @include span-columns(10);
+  @include shift(1);
+  text-align: center;
+}

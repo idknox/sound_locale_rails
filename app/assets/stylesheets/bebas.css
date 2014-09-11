@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'bebasregular';
+    src: asset-url('bebas___-webfont.woff2') format('woff2'),
+    asset-url('bebas___-webfont.woff') format('woff'),
+    asset-url('bebas___-webfont.ttf') format('truetype'),
+    asset-url('bebas___-webfont.svg#bebasregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
