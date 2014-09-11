@@ -8,7 +8,7 @@ var buildMap = function (music_events) {
 
   var mapOptions = {
     center: denver,
-    zoom: 12,
+    zoom: 11,
     disableDefaultUI: false,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
@@ -24,26 +24,9 @@ var buildMap = function (music_events) {
     arrowSize: 10,
     arrowPosition: 30,
     arrowStyle: 2,
-    closeBoxMargin: "10px 15px 2px 2px"
-//    closeBoxURL: 'http://iconizer.net/files/Brightmix/orig/monotone_close_exit_delete.png'
+    closeBoxMargin: "5px 5px 5px 5px",
+    closeBoxURL: 'http://i.imgur.com/UVVEq19.png'
   };
-
-//  disableAutoPan: false,
-//    maxWidth: 300,
-//    pixelOffset: new google.maps.Size(0, -150),
-//    zIndex: null,
-//    boxStyle: {
-//    background: "#1C3C5B",
-//      opacity: 1,
-//      width: "300px",
-//      height: "100px"
-//  },
-//  closeBoxMargin: "10px 2px 2px 2px",
-//    closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
-//    infoBoxClearance: new google.maps.Size(1, 1),
-//    isHidden: false,
-//    pane: "floatPane",
-//    enableEventPropagation: false
 
   var infowindow = new InfoBox(windowOptions);
 
@@ -62,7 +45,7 @@ var buildMap = function (music_events) {
     var eventInfo = '<div class="info-window">' +
       '<p class="title">' + music_event.name + '<br>' + music_event.venue.title + '</p>' +
       '<p class="info">' + music_event.venue.address + '<br>' + music_event.time +
-      '<a href="' + music_event.tickets + '</p>' + '">Tickets</a>' +
+      '<a href="' + music_event.tickets + '">Tickets</a></p>' +
       '<div class="triangle"></div>';
 
     google.maps.event.addListener(marker, 'click', function () {

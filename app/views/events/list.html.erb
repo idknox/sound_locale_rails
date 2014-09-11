@@ -2,9 +2,9 @@
   <div class="event-list-container">
     <ul>
       <% @events_by_date.keys.each do |date| %>
-        <li>
+        <li class="date-events-container" id="<%= date.strftime("%m%d%Y") %>">
           <div class="date-events-container" id="<%= date.strftime("%m%d%Y") %>">
-            <h2><%= date.strftime("%A, %b %d") %></h2>
+            <h1><%= date.strftime("%A, %b %d") %></h1>
 
             <div class="date-events">
               <ul>
@@ -12,16 +12,20 @@
                   <li class="date-event">
                     <ul>
                       <li><h4><%= event.headliner %></h4></li>
-                      <li>
-                        <div class="event-divider"></div>
+                      <li class="event-divider">
                       </li>
                       <li>
                         <h3><%= event.venue.name %></h3>
                       </li>
                       <li>
-                        <%= event.venue.address %>
+                        <ul class="date-event-info">
+                          <li><%= event.venue.address %></li>
+                          <% if event.time %>
+                            <li>Doors at <%= event.time.strftime("%l:%M") %></li>
+                          <% end %>
+                          <li><%= event.price %></li>
+                        </ul>
                       </li>
-                      <li><%= event.price %></li>
                     </ul>
                     <div class="date-event-buttons">
                     </div>

@@ -36,21 +36,24 @@ $('.search').on('keyup', function () {
 
 });
 
-//$('.top').hide();
+if (document.body.scrollTop < window.innerHeight) {
+  $('.top').hide();
+} else {
+  $('.top').show();
+}
 
 $(window).on('scroll', function () {
-  if ($(this).scrollTop != 0) {
-    $('.top').show();
-  } else {
+  if (document.body.scrollTop < window.innerHeight) {
     $('.top').hide();
+  } else {
+    $('.top').show();
   }
 });
 
 $('.top').on('click', function () {
   $('html,body').animate({
-    scrollTop: window
+    scrollTop: $('header').offset().top
   }, 500);
-//  $('.event-date-container').show();
 });
 
 $('.cal-date').datepicker({
@@ -59,8 +62,6 @@ $('.cal-date').datepicker({
     $('html,body').animate({
       scrollTop: $('#' + dateText + '').offset().top
     }, 500);
-//    dateText = dateText.toString().replace('/', '').replace('/', '');
-//    $('.event-date-container').hide();
-//    $('#' + dateText + '').show();
   }
+
 });

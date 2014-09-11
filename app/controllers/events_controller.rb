@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   def map
 
     @date = determine_date(params[:date])
-    @events = Event.where(:date => @date)
+    @events = Event.where(:date => @date).each {|event| event.time = event.time.strftime("%l:%M")}
     respond_to do |format|
       format.html
       format.json { render :json => @events.to_json(:include => [:venue]) }

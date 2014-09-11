@@ -1,6 +1,7 @@
 
 .event-list-container {
-  @include span-columns(7);
+  @include span-columns(6);
+  @include shift(1)
 }
 
 .date-events {
@@ -16,49 +17,47 @@
       background-color: #333;
       height: 1em;
       margin: .5em 0 1em -1.5em;
-      display: block;
     }
 
-    .date-event-name {
-      @include span-columns(7 of 7);
-
-    }
-    .date-event-venue {
-      font-weight: bold;
+    .date-event-info {
+      font-family: Arial;
+      font-size: 1em;
     }
 
-    .date-event-price {
-      float: right;
+    .date-event-buttons {
+      @include span-columns(1 of 7);
     }
-  }
-
-  .date-event-buttons {
-    @include span-columns(1 of 7);
   }
 }
 
 .no-events-container {
   @include span-columns(7);
-  @include omega();
 }
 
 .event-tools {
   @include span-columns(4);
-  @include shift(1);
-  margin-top: 4.5em;
+
+  .search {
+    border: 3px solid #333;
+  }
 
   .fixed {
     position: fixed;
+    padding: .3em 1em 1em 1em;
+//    margin-top: 2.5em;
   }
 
   .top {
     margin-top: 10px;
     width: 100%;
+    background-color: #999;
+    border: 3px solid #333;
   }
 }
 
 .event-date-selector {
   margin-bottom: 1em;
+
   h1 {
     display: inline-block;
     margin-right: 1em;

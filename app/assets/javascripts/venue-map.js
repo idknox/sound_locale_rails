@@ -14,7 +14,7 @@ function initialize() {
 
     var mapOptions = {
       center: center,
-      zoom: 13,
+      zoom: 12,
       disableDefaultUI: false,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
@@ -37,6 +37,25 @@ function initialize() {
 }
 
 initialize();
+
+var setHeight = function () {
+  var width = $('#venue-map-container').width();
+  $('#venue-map-container').css({'height': width + 'px'});
+};
+
+setHeight();
+
+$(window).on('resize', function () {
+  setHeight();
+});
+
+if ($('#venue-events').find('li').length == 0) {
+  $('#no-venue-events-container').show();
+  $('.venue-events-container').hide();
+} else {
+  $('#no-venue-events-container').hide();
+  $('.venue-events-container').show();
+}
 
 
 

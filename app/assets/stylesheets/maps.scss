@@ -1,4 +1,5 @@
 #event-date-selector {
+  @include shift(2);
 
   ul {
     padding: 0;
@@ -36,7 +37,8 @@
 }
 
 #events-map-container, #venues-map-container {
-  @include span-columns(12);
+  @include span-columns(8);
+  @include shift(2);
   height: 600px;
   border: 3px solid #000;
   margin-top: 1em;
@@ -55,6 +57,9 @@
   padding: 10px;
   width: 300px;
 
+  a {
+    color: #999;
+  }
   .title {
     font-size: 1.5em;
   }

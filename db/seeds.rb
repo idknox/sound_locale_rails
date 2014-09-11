@@ -29,7 +29,7 @@ Venue.create(
 Venue.create(
   title: "Bluebird",
   name: "Bluebird Theater",
-  address: "3317 E Colfax Ave, Denver, CO 80206å",
+  address: "3317 E Colfax Ave, Denver, CO 80206",
   location: "39.740154, -104.948561",
   background: "http://i.imgur.com/OZEJ01A.jpg",
   logo: "http://i.imgur.com/214WJLh.png",

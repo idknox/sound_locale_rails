@@ -16,22 +16,17 @@ function initialize() {
   var map = new google.maps.Map(mapCanvas, mapOptions);
 
   var windowOptions = {
-    boxClass: 'info-window',
     disableAutoPan: false,
-    maxWidth: 300,
-    maxHeight: 100,
     content: '',
-    pixelOffset: new google.maps.Size(0, -190),
+    pixelOffset: new google.maps.Size(-144, -195),
     shadowStyle: 1,
-    padding: 20,
-    boxStyle: {
-      background: "#1C3C5B"
-    },
     hideCloseButton: false,
     arrowSize: 10,
     arrowPosition: 30,
     arrowStyle: 2,
-    closeBoxMargin: "5px 5px 2px 2px"
+    closeBoxMargin: "5px 5px 5px 5px",
+    closeBoxURL: 'http://i.imgur.com/UVVEq19.png'
+
 //    closeBoxURL: 'http://iconizer.net/files/Brightmix/orig/monotone_close_exit_delete.png'
   };
 
@@ -53,10 +48,10 @@ function initialize() {
       });
 
       var venueInfo = '<div class="info-window">' +
-        '<div class="venue-logo"><img src="' + venue.logo + '"/></div>' +
-        '<p>'+ venue.address + '</p><p>' + venue.size + '</p><p>' + venue.price + '</p>' +
-        '<a href="' + venue.site + '" class="button">Tickets</a>' +
-        '</div>';
+        '<p class="title"><h3>' + venue.name + '</h3><br>' + venue.size + '</p>' +
+        '<p class="info">' + venue.address + '<br>' + venue.price +
+        '<a href="' + venue.site + '">Site</a></p>' +
+        '<div class="triangle"></div>';
 
       google.maps.event.addListener(marker, 'click', function () {
         infowindow.setContent(venueInfo);
