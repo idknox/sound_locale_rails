@@ -1,21 +1,24 @@
+.venue-grid {
+  margin-top: 1em;
 
-.venue-tile {
-  @include span-columns(4);
-  @include omega(3n);
-  @include media($mobile) {
-    @include span-columns(12);
-  }
+  .venue-tile {
+    @include span-columns(4);
+    @include omega(3n);
+//    @include media($mobile) {
+//      @include span-columns(12);
+//      font-size: 75%;
+//    }
 
-  .venue-list-name {
-    background-color: #333333;
-    color: #999;
-    padding: 0 15% 1% 5%;
-    font-size: 1.5em;
-    position: relative;
-    top: 70%;
-
-    @include media($squish-venue) {
-      font-size: 75%;
+    .venue-list-name {
+      background-color: #333333;
+      color: #999;
+      padding: 0 15% 1% 5%;
+      font-size: 1.5em;
+      position: relative;
+      top: 70%;
+      @include media($squish-venue) {
+        font-size: 75%;
+      }
     }
   }
 }

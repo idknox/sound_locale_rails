@@ -100,12 +100,15 @@ tomorrow.on('click', function () {
 
 calTrigger.on('click', function () {
   cal.show();
-  $('#cal-date').datepicker({
+  cal.datepicker({
+    dateFormat: "mm.dd.yy",
     onSelect: function (dateText) {
       cal.hide();
       calTrigger.addClass('active');
       calTrigger.parent().siblings().children().removeClass('active');
       var filteredDate = {date: dateText};
+      calTrigger.empty();
+      calTrigger.append(dateText);
       var promiseOfResult = $.getJSON("/", filteredDate);
       promiseOfResult.success(buildMap);
     }

@@ -1,5 +1,6 @@
 <% content_for :main do %>
   <h1>Venues</h1>
+  <div class="venue-grid">
     <ul>
       <% @venues.each do |venue| %>
        <li class="venue-tile">
@@ -11,6 +12,7 @@
         </li>
       <% end %>
     </ul>
+    </div>
 <% end %>
 
 <% content_for :script do %>
