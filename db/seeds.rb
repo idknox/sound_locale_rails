@@ -186,7 +186,7 @@ Venue.create(
   name: "The Church",
   address: "1160 Lincoln St, Denver, CO 80203",
   location: "39.735043, -104.985764",
-  background: "http://i.imgur.com/fZA6jMq.jpg?1",
+  background: "http://i.imgur.com/wLqHAZy.jpg?1",
   logo: "http://i.imgur.com/wLqHAZy.jpg?1",
   size: "Club",
   price: "$$",
