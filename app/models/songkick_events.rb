@@ -15,7 +15,7 @@ class SongkickEvents
     venue_names = Venue.all.to_a.map { |venue| venue.name }
 
     events.map do |event|
-      if event_venue_exists?(venue_names, event)
+      if event_venue_exists?(venue_names, event) && event.keys.all? { |key| key }
         rename_columns(event)
       end
     end
@@ -25,7 +25,7 @@ class SongkickEvents
 
   def get_url
     "http://api.songkick.com/api/3.0/events.json?apikey=hjxRZws4FWJcUa66" +
-    "&location=sk:6404&per_page=100"
+      "&location=sk:6404&per_page=100"
   end
 
   def get_events
@@ -53,12 +53,16 @@ class SongkickEvents
   end
 
   def rename_columns(event)
+    headliner = "NA"
+    headliner = event["series"]["displayName"] if event["series"]
+    headliner = event["performance"][0]["artist"]["displayName"] if event["performance"][0]
+
     {
-      :name => event["performance"][0]["artist"]["displayName"],
+      :name => headliner,
       :venue_id => Venue.find_by(:name => event["venue"]["displayName"]).id,
       :venue_name => event["venue"]["displayName"],
       :vendor_id => event["id"].to_i,
-      :headliner => event["performance"][0]["artist"]["displayName"],
+      :headliner => headliner,
       :date => Date.parse(event["start"]["date"]),
       :time => ensured_time(event),
       :tickets => "",
