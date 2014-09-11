@@ -76,13 +76,10 @@ body {
   padding: 0;
 }
 
-input[type=text], input[type=password], input[type=email], input[type=search] {
-  background-color: rgba(255, 255, 255, 0.7);
-}
-
-::-webkit-input-placeholder {
-  //  color: #2D628E;
-}
+//input:focus {
+//  border: 1px solid #333;
+//
+//}
 
 .main {
   @include outer-container;

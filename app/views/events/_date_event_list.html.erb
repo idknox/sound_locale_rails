@@ -1,0 +1,23 @@
+<ul>
+  <% events[date].each do |event| %>
+    <li class="date-event">
+      <ul>
+        <li><h4><%= event.headliner %></h4></li>
+        <li class="event-divider">
+        </li>
+        <li>
+          <h3><%= event.venue.name %></h3>
+        </li>
+        <li>
+          <ul class="date-event-info">
+            <li><%= event.venue.address %></li>
+            <% if event.time %><%= event.date %>
+              <li>Doors at <%= event.time.strftime("%l:%M") %></li>
+            <% end %>
+            <li><%= event.price %></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  <% end %>
+</ul>
