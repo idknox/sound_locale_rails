@@ -115,7 +115,7 @@ Venue.create(
   name: "Herman's Hideaway",
   address: "1578 S Broadway, Denver, CO 80210",
   location: "39.687908, -104.987114",
-  background: "http://i.imgur.com/ffULATm.jpg",
+  background: "http://i.imgur.com/cbeFJbw.jpg?1",
   logo: "http://i.imgur.com/4qJRTmD.jpg",
   size: "Small Venue",
   price: "$$",
@@ -391,6 +391,33 @@ Venue.create(
   description: "Located on 'The Hill', The Fox Theatre is the premier live music club in Boulder, Colorado. Recently voted 4th best music venue in the country by Rolling Stone Magazine, the Fox offers top-notch talent, a world-class sound system, and an intimate 625 capacity atmosphere."
 )
 
+Venue.create(
+  title: "Larimer Lounge",
+  name: "Larimer Lounge",
+  address: "2721 Larimer St, Denver, CO 80205",
+  location: "39.760044,-104.983940",
+  background: "http://i.imgur.com/tR1qNFp.jpg?1",
+  logo: "",
+  size: "Small Bar/Venue",
+  price: "$$",
+  map: "map",
+  site: "http://www.larimerlounge.com/",
+  description: "Larimer Lounge is located in the Ballpark / Upper Larimer Neighborhood near Coors Field. Coming from Boulder? Parking: There is plenty of free, on street parking around the club. Please do not park in the lot next door the club (the one that says 'no larimer lounge parking'), you will be ticketed. Larimer Lounge does not have a box office, we sell tickets on our web site and at the door night of show."
+)
+
+Venue.create(
+  title: "Lost Lake",
+  name: "Lost Lake",
+  address: "3602 E Colfax Ave, Denver, CO 80206",
+  location: "39.740148,-104.944862",
+  background: "http://i.imgur.com/If2cOlN.jpg",
+  logo: "",
+  size: "Small Bar/Venue",
+  price: "$",
+  map: "map",
+  site: "http://lost-lake.com/",
+  description: "Lost Lake is located at 3602 East Colfax Avenue in Denver, 2 blocks east of the Bluebird on Colfax. 2 blocks east of Bluebird Theater. Accross from the Sprouts, look for the 'Cocktails' sign. Cross Streets are Colfax and Monroe."
+)
 
 # Venue.create(
 #   title: "",
