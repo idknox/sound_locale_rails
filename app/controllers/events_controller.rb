@@ -8,7 +8,7 @@ class EventsController < ApplicationController
     end
   end
 
-  def list
+  def index
     @events_by_date = future_events_grouped_by_date
   end
 

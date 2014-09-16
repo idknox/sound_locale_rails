@@ -4,11 +4,10 @@
 Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( venues-map.js )
 Rails.application.config.assets.precompile += %w( events-map.js )
-Rails.application.config.assets.precompile += %w( calendar.js )
 Rails.application.config.assets.precompile += %w( venue-map.js )
-Rails.application.config.assets.precompile += %w( events-filter.js )
-Rails.application.config.assets.precompile += %w( form.js )
-Rails.application.config.assets.precompile += %w( venues-list.js )
+Rails.application.config.assets.precompile += %w( events-index.js )
+Rails.application.config.assets.precompile += %w( user-form.js )
+Rails.application.config.assets.precompile += %w( venues-index.js )
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.

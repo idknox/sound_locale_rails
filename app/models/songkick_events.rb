@@ -15,7 +15,7 @@ class SongkickEvents
     venue_names = Venue.all.to_a.map { |venue| venue.name }
 
     events.map do |event|
-      if event_venue_exists?(venue_names, event) && event.keys.all? { |key| key }
+      if event_venue_exists?(venue_names, event)
         rename_columns(event)
       end
     end

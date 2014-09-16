@@ -18,15 +18,6 @@
 
 $(document).ready(function () {
 
-  //  DROPDOWN MENU
-//  $('.dropdown-item').hide();
-
-//  $('.dropdown-container').on('mouseenter', function () {
-//    $(this).find('.dropdown-item').show();
-//  }).on('mouseleave', function () {
-//    $(this).find('.dropdown-item').hide();
-//  });
-
 //  --- FLASH ---
 
   var stopFlash = function () {

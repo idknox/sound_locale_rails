@@ -1,3 +1,16 @@
+//$(function () {
+//  $('.cal-date').datepicker({ dateFormat: "yy-mm-dd"});
+//});
+//
+//$('.cal-date').datepicker({
+//  onSelect: function (dateText) {
+//    dateText = dateText.toString().replace('/', '').replace('/', '');
+//    $('html,body').animate({
+//      scrollTop: $('#' + dateText + '').offset().top
+//    }, 500);
+//  }
+//});
+
 // Custom case-insensitive :contains
 $.expr[':'].containsCaseInsensitive = function (a, i, m) {
   return $(a).text().toUpperCase()

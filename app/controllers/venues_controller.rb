@@ -7,7 +7,7 @@ class VenuesController < ApplicationController
     end
   end
 
-  def list
+  def index
     @venues = Venue.all.order(:title)
   end
 

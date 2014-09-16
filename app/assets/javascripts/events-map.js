@@ -92,7 +92,7 @@ calTrigger.on('click', function () {
       var filteredDate = {date: dateText};
       calTrigger.empty();
       calTrigger.append(dateText);
-      var promiseOfResult = $.getJSON("/", filteredDate);
+      var promiseOfResult = $.getJSON("/events/map.json", filteredDate);
       promiseOfResult.success(buildMap);
     }
   });
