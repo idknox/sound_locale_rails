@@ -1,4 +1,3 @@
-require "JSON"
 require "open-uri"
 
 class KimonoEvents
