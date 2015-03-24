@@ -12,7 +12,7 @@ function initialize() {
 
     var center = new google.maps.LatLng(lat, lng);
 
-    var mapOptions = {`
+    var mapOptions = {
       center: center,
       zoom: 12,
       disableDefaultUI: true,
