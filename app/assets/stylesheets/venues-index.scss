@@ -8,6 +8,33 @@
   }
 }
 
+.info-window {
+  background: $dark-blue;
+  border: 2px solid $white;
+  color: $white;
+  padding: 10px;
+  width: 300px;
+
+  a {
+    color: inherit;
+    display: block;
+    margin-top: 1em;
+  }
+  .title {
+    font-size: 1.5em;
+  }
+
+  .info {
+    font-family: fira_sansregular;
+  }
+
+  .triangle {
+    position: relative;
+    top: 30px;
+    left: 40%;
+  }
+}
+
 //.venue-title {
 //  @include shift(2);
 //}

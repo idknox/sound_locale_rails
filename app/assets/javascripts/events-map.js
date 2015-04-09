@@ -18,7 +18,7 @@ var buildMap = function (music_events) {
   var windowOptions = {
     disableAutoPan: false,
     content: '',
-    pixelOffset: new google.maps.Size(-144, -225),
+    pixelOffset: new google.maps.Size(-144, -240),
     shadowStyle: 1,
     hideCloseButton: false,
     arrowSize: 10,

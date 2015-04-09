@@ -12,18 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require refills
 //= require jquery-ui
-
-
-$(document).ready(function () {
-
-//  --- FLASH ---
-
-  var stopFlash = function () {
-    $('.flash').slideUp()
-  };
-
-  window.setTimeout(stopFlash, 5000);
-
-});
+//= require_tree ../../../vendor/assets/javascripts/.

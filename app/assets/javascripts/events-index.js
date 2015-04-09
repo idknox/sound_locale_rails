@@ -1,4 +1,9 @@
-$(document).ready(function () {
+jQuery(function ($) {
+
+  function isHidden(el) {
+    var display = el.css('display');
+    return (display === 'none')
+  }
 
 // case-insensitive :contains
   $.expr[':'].containsCaseInsensitive = function (a, i, m) {
@@ -6,13 +11,13 @@ $(document).ready(function () {
       .indexOf(m[3].toUpperCase()) >= 0;
   };
 
-  function isHidden(el) {
-    var display = el.css('display');
-    return (display === 'none')
-  }
+// -- INIT --
 
-  $('.date-content').hide();
+//  $('.date-content').hide();
   $('#close-all').hide();
+  $('.map-container').hide();
+
+  // -- TOGGLE ALL --
 
   $('.toggle-all').on('click', function () {
     if (isHidden($('#close-all'))) {
@@ -25,6 +30,8 @@ $(document).ready(function () {
       $('#expand-all').show();
     }
   });
+
+  // -- TOGGLE DATE --
 
   $('.date-header').on('click', function () {
     var content = $(this).siblings('.date-content')
@@ -39,40 +46,125 @@ $(document).ready(function () {
     } else {
       content.slideUp();
     }
-  })
-});
+  });
 
-$('.search').on('keyup', function () {
-  var search = $(this).val();
-  var events = $('.event');
-  var results = $('.event:containsCaseInsensitive(' + search + ')');
+  // -- SEARCH --
 
-  events.hide().addClass('hidden');
-  $('.date-content').show();
-  results.show().removeClass('hidden');
+  $('.search').on('keyup', function () {
+    var search = $(this).val();
+    var events = $('.event');
+    var results = $('.event:containsCaseInsensitive(' + search + ')');
 
-  $('.date').each(function () {
-    if ($(this).find('.hidden').length == $(this).find('.event').length) {
-      $(this).hide()
-      $(this).addClass('hidden')
+    events.hide().addClass('hidden');
+    $('.date-content').show();
+    results.show().removeClass('hidden');
+
+    $('.date').each(function () {
+      if ($(this).find('.hidden').length == $(this).find('.event').length) {
+        $(this).hide()
+        $(this).addClass('hidden')
+      } else {
+        $(this).show()
+        $(this).removeClass('hidden')
+      }
+    });
+
+    if (search === '') {
+      $('.date-content').hide();
+    }
+
+    if ($('.date-events-container.hidden').length == $('.date-events-container').length) {
+      $('.event-list-container').hide();
+      $('.no-events-container').show();
     } else {
-      $(this).show()
-      $(this).removeClass('hidden')
+      $('.event-list-container').show();
+      $('.no-events-container').hide();
     }
   });
 
-  if (search === '') {
-    $('.date-content').hide();
+// -- MAP --
+
+  var buildMap = function (venue) {
+
+    var lat = venue.location.split(",")[0];
+    var lng = venue.location.split(",")[1];
+
+    var center = new google.maps.LatLng(lat, lng);
+    var mapCanvas = document.getElementById('map-container');
+
+    var mapOptions = {
+      center: center,
+      zoom: 14,
+      scrollwheel: false,
+      disableDefaultUI: true,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+
+    var windowOptions = {
+      disableAutoPan: false,
+      content: '',
+      pixelOffset: new google.maps.Size(-144, -225),
+      shadowStyle: 1,
+      hideCloseButton: false,
+      arrowSize: 10,
+      arrowPosition: 30,
+      arrowStyle: 2,
+      closeBoxMargin: "5px 5px 5px 5px",
+      closeBoxURL: 'http://i.imgur.com/UVVEq19.png'
+    };
+
+    var infowindow = new InfoBox(windowOptions);
+
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(lat, lng),
+      title: venue.name,
+      animation: google.maps.Animation.DROP,
+      map: map
+    });
+
+//    marker.setMap(map);
+
+    var venueInfo = '<div class="info-window">' +
+      '<p class="title"><h3>' + venue.name + '</h3><br>' + venue.size + '</p>' +
+      '<p class="info">' + venue.address + '<br>' + venue.price +
+      '<a href="' + venue.site + '">Site</a></p>' +
+      '<div class="triangle"></div>';
+
+    google.maps.event.addListener(marker, 'click', function () {
+      infowindow.setContent(venueInfo);
+      infowindow.open(map, marker);
+    });
+
+    google.maps.event.addDomListener(window, 'resize', function () {
+      map.setCenter(center);
+    });
+  };
+
+  function openMapModal(venue) {
+    buildMap(venue);
+    $('#map-container').modal({
+//      closeHTML: '<i class="fa fa-times"></i>',
+      overlayClose: true,
+      autoResize: true,
+      overlayCss: {
+        background: 'rgba(22, 56, 91, 0.8)'
+      },
+      dataCss: {
+        border: '2px solid #16385B'
+      }
+    })
   }
 
-  if ($('.date-events-container.hidden').length == $('.date-events-container').length) {
-    $('.event-list-container').hide();
-    $('.no-events-container').show();
-  } else {
-    $('.event-list-container').show();
-    $('.no-events-container').hide();
-  }
 
+  $('.map-icon').on('click', function () {
+    var id = $(this).data('venue-id');
+
+    var promiseOfResult = $.getJSON("/venues/" + id + ".json");
+
+    promiseOfResult.success(openMapModal);
+  })
 });
 
 //if (document.body.scrollTop < window.innerHeight) {
