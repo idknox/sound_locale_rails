@@ -4,6 +4,15 @@
       <div class="row">
         <div class="col-sm-10 col-sm-offset-1 events">
           <div class="row">
+            <div class="col-sm-12 instructions">
+              <div class="col-sm-2 expand">
+                Click day to Expand
+              </div>
+              <div class="col-sm-3 col-sm-offset-7 toggle-all">
+                <%= link_to 'Close All', '#', class: 'btn btn-default', id: 'close-all' %>
+                <%= link_to 'Expand All', '#', class: 'btn btn-default', id: 'expand-all' %>
+              </div>
+            </div>
             <% @events_by_date.each do |date, events| %>
               <div class="col-sm-12">
                 <div class="date">
@@ -11,22 +20,24 @@
                     <%= formatted_date(date) %>
                   </div>
                   <div class="date-content">
-                      <% events.each do |event| %>
-                          <div class="event">
-                            <div class="col-sm-12 col-md-6 title">
-                              <%= truncated_string(event.headliner) %>
-                            </div>
-                            <div class="col-sm-12 col-md-5 info">
-                              <%= formatted_time(event.time) %> @ <%= link_to event.venue.name, venue_path(event.venue.id), class: 'body-link' %>
-                              <div class="price">
-                              <%= event.price %>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-1">
-                              <%= link_to (fa_icon 'ticket'), event.tickets, class: 'tickets' %>
-                            </div>
+                    <% events.each do |event| %>
+                      <div class="event">
+                        <div class="col-sm-12 col-md-5 title">
+                          <%= truncated_string(event.headliner) %>
+                        </div>
+                        <div class="col-sm-12 col-md-5 info">
+                          <%= formatted_time(event.time) %>
+                          @ <%= link_to event.venue.name, venue_path(event.venue.id), class: 'body-link' %>
+                          <div class="price">
+                            <%= event.price %>
                           </div>
-                      <% end %>
+                        </div>
+                        <div class="col-sm-12 col-md-2 tickets">
+                          <%= link_to (fa_icon 'map-marker'), '#' %>
+                          <%= link_to (fa_icon 'ticket'), event.tickets %>
+                        </div>
+                      </div>
+                    <% end %>
                   </div>
                 </div>
               </div>

@@ -1,35 +1,44 @@
 .events {
   margin-top: 10%;
 
+  .toggle-all {
+    text-align: right;
+  }
+
   .date {
     color: $white;
     border: 2px solid $dark-blue;
-    margin: 10px;
+    margin: 5px;
 
     .date-header {
       background: $dark-blue;
       text-align: center;
-      padding: 20px;
+      padding: 10px;
       cursor: pointer;
-      font-size: 1.5em;
+      font-size: 1.3em;
 
     }
 
     .date-content {
       color: $dark-blue;
-      padding: 40px;
+      padding: 20px;
 
       .event {
-//        height: 60px;
-        padding: 20px 0 50px 0;
+        padding: 10px 0 50px 0;
         border-top: 1px solid $dark-blue;
 
-        .title {
-          font-size: 1.1em;
-        }
 
+        .title {
+          font-size: 1.2em;
+        }
         .info {
-         text-align: right;
+          text-align: right;
+          position: relative;
+          left: 70px;
+
+          .body-link {
+            font-weight: bold;
+          }
 
           .price {
             font-size: .75em;
@@ -39,6 +48,7 @@
 
         .tickets {
           font-size: 2em;
+          text-align: right;
         }
       }
     }
