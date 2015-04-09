@@ -13,9 +13,9 @@ jQuery(function ($) {
 
 // -- INIT --
 
-//  $('.date-content').hide();
+  $('.date-content').hide();
   $('#close-all').hide();
-  $('.map-container').hide();
+  $('#map-container').hide();
 
   // -- TOGGLE ALL --
 
@@ -55,8 +55,9 @@ jQuery(function ($) {
     var events = $('.event');
     var results = $('.event:containsCaseInsensitive(' + search + ')');
 
-    events.hide().addClass('hidden');
     $('.date-content').show();
+    $('.instructions').hide();
+    events.hide().addClass('hidden');
     results.show().removeClass('hidden');
 
     $('.date').each(function () {
@@ -71,15 +72,17 @@ jQuery(function ($) {
 
     if (search === '') {
       $('.date-content').hide();
-    }
+      $('.instructions').show();
 
-    if ($('.date-events-container.hidden').length == $('.date-events-container').length) {
-      $('.event-list-container').hide();
-      $('.no-events-container').show();
-    } else {
-      $('.event-list-container').show();
-      $('.no-events-container').hide();
     }
+//
+//    if ($('.date-events-container.hidden').length == $('.date-events-container').length) {
+//      $('.event-list-container').hide();
+//      $('.no-events-container').show();
+//    } else {
+//      $('.event-list-container').show();
+//      $('.no-events-container').hide();
+//    }
   });
 
 // -- MAP --
