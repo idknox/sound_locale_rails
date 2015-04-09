@@ -1,0 +1,17 @@
+#nav-custom {
+  margin: 0;
+  height: 11%;
+  background: $dark-blue;
+  width: 100%;
+  border-radius: 0;
+  border: 1px solid $dark-blue;
+  z-index: 999;
+
+  a {
+  color: $white;
+
+    &:hover {
+      background: $white;
+    }
+  }
+}

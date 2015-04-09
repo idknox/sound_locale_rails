@@ -1,81 +1,81 @@
-#event-date-selector {
-  @include shift(2);
-
-  ul {
-    padding: 0;
-    margin: 0;
-
-    li {
-      float: left;
-      cursor: pointer;
-      margin-right: 1em;
-
-      h1 {
-        padding: 3px 10px 5px 10px;
-
-      }
-    }
-
-    #cal-date {
-      position: absolute;
-      z-index: 9999;
-      box-shadow: -7px 7px 7px #636363;
-      margin-top: 5px;
-    }
-  }
-}
-
-.active {
-  background-color: #444;
-  color: #999;
-  padding: 3px 10px 5px 10px;
-  border-radius: 5px;
-  -moz-box-shadow: inset 0 0 10px #000;
-  -webkit-box-shadow: inset 0 0 10px #000;
-  box-shadow: inset -4px 4px 7px #000;
-  text-shadow: -2px 2px #000;
-}
-
-#events-map-container, #venues-map-container {
-  @include span-columns(8);
-  @include shift(2);
-  height: 600px;
-  border: 3px solid #000;
-  margin-top: 1em;
-  box-shadow: -7px 7px 7px #636363;
-
-
-  img {
-    max-width: none;
-  }
-}
-
-.info-window {
-  background: #333;
-  border: 3px solid #000;
-  color: #999;
-  padding: 10px;
-  width: 300px;
-
-  a {
-    color: #999;
-    display: block;
-    margin-top: 1em;
-  }
-  .title {
-    font-size: 1.5em;
-  }
-
-  .info {
-    font-family: fira_sansregular;
-  }
-
-  .triangle {
-    position: relative;
-    top: 30px;
-    left: 40%;
-    @include triangle(4em, #333, down);
-
-  }
-}
-
+//#event-date-selector {
+//  @include shift(2);
+//
+//  ul {
+//    padding: 0;
+//    margin: 0;
+//
+//    li {
+//      float: left;
+//      cursor: pointer;
+//      margin-right: 1em;
+//
+//      h1 {
+//        padding: 3px 10px 5px 10px;
+//
+//      }
+//    }
+//
+//    #cal-date {
+//      position: absolute;
+//      z-index: 9999;
+//      box-shadow: -7px 7px 7px #636363;
+//      margin-top: 5px;
+//    }
+//  }
+//}
+//
+//.active {
+//  background-color: #444;
+//  color: #999;
+//  padding: 3px 10px 5px 10px;
+//  border-radius: 5px;
+//  -moz-box-shadow: inset 0 0 10px #000;
+//  -webkit-box-shadow: inset 0 0 10px #000;
+//  box-shadow: inset -4px 4px 7px #000;
+//  text-shadow: -2px 2px #000;
+//}
+//
+//#events-map-container, #venues-map-container {
+//  @include span-columns(8);
+//  @include shift(2);
+//  height: 600px;
+//  border: 3px solid #000;
+//  margin-top: 1em;
+//  box-shadow: -7px 7px 7px #636363;
+//
+//
+//  img {
+//    max-width: none;
+//  }
+//}
+//
+//.info-window {
+//  background: #333;
+//  border: 3px solid #000;
+//  color: #999;
+//  padding: 10px;
+//  width: 300px;
+//
+//  a {
+//    color: #999;
+//    display: block;
+//    margin-top: 1em;
+//  }
+//  .title {
+//    font-size: 1.5em;
+//  }
+//
+//  .info {
+//    font-family: fira_sansregular;
+//  }
+//
+//  .triangle {
+//    position: relative;
+//    top: 30px;
+//    left: 40%;
+//    @include triangle(4em, #333, down);
+//
+//  }
+//}
+//

@@ -1,12 +1,11 @@
-@import 'bourbon/bourbon';
-@import "base/base";
-@import 'neat/neat';
-//@import 'refills';
 @import 'jquery-ui';
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
 @import 'bebas';
 @import 'firasans';
-@import 'mixins';
-@import 'header';
+@import 'variables';
+@import 'nav';
 @import 'users';
 @import 'maps';
 @import 'events-index';
