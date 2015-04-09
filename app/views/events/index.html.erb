@@ -1,22 +1,39 @@
 <% content_for :main do %>
-  <div class="event-list-container">
-      <%= render partial: 'date_list', locals: {events_by_date: @events_by_date} %>
-  </div>
-  <div class="no-events-container">
-    <h1>NO EVENTS MATCH YOUR SEARCH</h1>
-  </div>
-  <div class="event-tools">
-    <div class="fixed">
-      <div class="search-bar">
-        <div class="search-and-submit">
-          <input class="search" type="search" placeholder="Search Events"/>
+  <section>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1 events">
+          <div class="row">
+            <% @events_by_date.each do |date, events| %>
+              <div class="col-sm-4">
+                <div class="date">
+                  <div class="date-header header">
+                    <%= formatted_date(date) %>
+                  </div>
+                  <div class="date-content">
+                    <ul>
+                      <% events.each do |event| %>
+                        <li>
+                          <div class="event">
+                            <div class="col-sm-6">
+                              <%= event.headliner %>
+                            </div>
+                            <div class="col-sm-6">
+                              <%= event.venue.name %>
+                            </div>
+                          </div>
+                        </li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
-      <div class="cal-date"></div>
-      <button class="top">Back to top</button>
-      <!--<button class="top">Show All</button>-->
     </div>
-  </div>
+  </section>
 <% end %>
 
 <% content_for :script do %>

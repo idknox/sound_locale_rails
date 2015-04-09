@@ -1,7 +1,6 @@
 @import 'jquery-ui';
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
 @import 'bebas';
 @import 'firasans';
 @import 'variables';
@@ -11,3 +10,11 @@
 @import 'events-index';
 @import 'venue';
 @import 'venues-index';
+
+* {
+  font-family: 'fira_sansregular', Helvetica, sans-serif;
+}
+
+.header {
+  font-family: 'bebasregular', Helvetica, sans-serif;
+}

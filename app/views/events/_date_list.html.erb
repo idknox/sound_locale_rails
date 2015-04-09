@@ -1,8 +1,0 @@
-<ul>
-  <% events_by_date.keys.each do |date| %>
-    <li class="date-events-container" id="<%= date.strftime("%m%d%Y") %>">
-      <h1><%= date.strftime("%A, %b %d") %></h1>
-      <%= render partial: 'date_event_list', locals: {events: events_by_date, date: date} %>
-    </li>
-  <% end %>
-</ul>

@@ -1,71 +1,32 @@
-//
-//.event-list-container {
-//  @include span-columns(7);
-//  @include shift(.5);
-//  //  @include shift(1);
-//
-//  .date-events-container {
-//
-//    .date-event {
-//      background-color: #DADADA;
-//      margin: 1em 0 2em 2em;
-//      padding: .5em .5em .5em 1.5em;
-//
-//      .event-divider {
-//        background-color: #333;
-//        height: 1em;
-//        width: 30%;
-//        margin: .5em 0 .5em -1.5em;
-//      }
-//
-//      .name {
-//        margin-bottom: .5em;
-//      }
-//      h5 {
-//        font-family: 'fira_sansregular', Helvetica;
-//        margin: 0;
-//        padding: 0;
-//        font-size: .75em;
-//      }
-//
-//      .date-event-buttons {
-//      }
-//    }
-//  }
-//}
-//
-//.no-events-container {
-//  @include span-columns(7);
-//  @include shift(.5);
-//}
-//
-//.event-tools {
-//  @include span-columns(4);
-//  //  @include shift(1);
-//
-//  .search {
-//    border: 3px solid #333;
-//  }
-//
-//  .fixed {
-//    position: fixed;
-//    padding: .3em 1em 1em 1em;
-//    margin-top: -1em;
-//  }
-//
-//  .top {
-//    margin-top: 10px;
-//    width: 100%;
-//    background-color: #999;
-//    border: 3px solid #333;
-//  }
-//}
-//
-//.event-date-selector {
-//  margin-bottom: 1em;
-//
-//  h1 {
-//    display: inline-block;
-//    margin-right: 1em;
-//  }
-//}
+.events {
+  margin-top: 10%;
+
+  .date {
+    color: $white;
+    border: 2px solid $dark-blue;
+
+    .date-header {
+      background: $dark-blue;
+      text-align: center;
+      padding: 20px;
+      cursor: pointer;
+      font-size: 1.5em;
+
+    }
+
+    .date-content {
+      color: $dark-blue;
+      padding: 20px;
+
+      ul {
+        list-style: none;
+        padding: 0;
+
+        .event {
+          height: 20px;
+        }
+      }
+    }
+  }
+}
+
