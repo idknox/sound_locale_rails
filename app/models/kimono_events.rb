@@ -27,10 +27,10 @@ class KimonoEvents
       :venue_id => Venue.find_by(:name => venue_name).id,
       :venue_name => venue_name,
       :vendor_id => 0,
-      :headliner => event["name"]["text"].split("-")[0],
+      :headliner => event["name"].split("-")[0],
       :date => Date.parse(event["date"]),
       :time => "TBD",
-      :tickets => event["name"]["href"],
+      :tickets => "https://bigmarkstickets.com/index.php?&vmcchk=1&option=com_virtuemart&Itemid=54",
       :url => "",
       :twitter => "",
       :price => event["price"]

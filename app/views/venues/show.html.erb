@@ -16,13 +16,12 @@
   <section class="venue-events-container">
     <table>
       <tbody id="venue-events">
-      <% @venue.events.select { |event| event.date >= Date.today }.each do |event| %>
+      <% @venue.events.each do |event| %>
         <tr>
           <td>
             <%= event.headliner %>
           </td>
           <td>
-            <%= event.date.strftime("%A, %b %d") %>
           </td>
           <td class="event-price">
             <%= event.price %>

@@ -1,3 +1,7 @@
+/*
+ *= require font-awesome
+ */
+
 @import 'jquery-ui';
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -17,4 +21,14 @@
 
 .header {
   font-family: 'bebasregular', Helvetica, sans-serif;
+}
+
+.body-link, i {
+  color: $dark-blue;
+
+  &:hover {
+    color: $light-blue;
+    text-decoration: none;
+
+  }
 }

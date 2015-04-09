@@ -4,6 +4,7 @@
   .date {
     color: $white;
     border: 2px solid $dark-blue;
+    margin: 10px;
 
     .date-header {
       background: $dark-blue;
@@ -16,14 +17,28 @@
 
     .date-content {
       color: $dark-blue;
-      padding: 20px;
+      padding: 40px;
 
-      ul {
-        list-style: none;
-        padding: 0;
+      .event {
+//        height: 60px;
+        padding: 20px 0 50px 0;
+        border-top: 1px solid $dark-blue;
 
-        .event {
-          height: 20px;
+        .title {
+          font-size: 1.1em;
+        }
+
+        .info {
+         text-align: right;
+
+          .price {
+            font-size: .75em;
+            color: #2D628E;
+          }
+        }
+
+        .tickets {
+          font-size: 2em;
         }
       }
     }

@@ -15,6 +15,7 @@ function initialize() {
     var mapOptions = {
       center: center,
       zoom: 12,
+      scrollwheel: false,
       disableDefaultUI: true,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };

@@ -51,17 +51,18 @@ class TicketflyEvents
 
   def rename_columns(event)
     {
-      :name => event["name"],
-      :venue_id => Venue.find_by(:name => event["venue"]["name"]).id,
-      :venue_name => event["venue"]["name"],
-      :vendor_id => event["id"],
-      :headliner => event["headlinersName"],
-      :date => Date.parse(event["startDate"]).strftime("%Y-%m-%d"),
-      :time => Time.parse(event["startDate"]).strftime("%H:%M:%S"),
-      :tickets => event["ticketPurchaseUrl"],
-      :url => event["ticketPurchaseUrl"],
-      :twitter => event["urlTwitter"],
-      :price => event["ticketPrice"]
+      name: event["headliners"] ? event["headliners"].first["name"] : "NA",
+      venue_id: Venue.find_by(name: event["venue"]["name"]).id,
+      venue_name: event["venue"]["name"],
+      vendor_id: event["id"],
+      headliner: event["headlinersName"],
+      image: (event["image"] ? event["image"]["large"]["path"]: "NA"),
+      date: Date.parse(event["startDate"]),
+      time: Time.parse(event["startDate"]),
+      tickets: event["ticketPurchaseUrl"],
+      url: event["ticketPurchaseUrl"],
+      twitter: event["urlTwitter"],
+      price: event["ticketPrice"]
     }
   end
 end

@@ -5,7 +5,7 @@ namespace :events do
     count = 0
     TicketflyEvents.all.each { |event| count += 1 if Event.new(event).save }
     print_count(count, "PULLED")
-    EventsMailer.ticketfly_pull(count).deliver
+    EventsMailer.ticketfly_pull(count).deliver if Rails.env.production?
   end
 
   desc "Import events from Stubhub"
@@ -13,7 +13,7 @@ namespace :events do
     count = 0
     StubhubEvents.all.each { |event| count += 1 if Event.new(event).save }
     print_count(count, "PULLED")
-    EventsMailer.stubhub_pull(count).deliver
+    EventsMailer.stubhub_pull(count).deliver if Rails.env.production?
   end
 
   desc "Import events from Songkick"
@@ -21,7 +21,7 @@ namespace :events do
     count = 0
     SongkickEvents.all.each { |event| count += 1 if Event.new(event).save }
     print_count(count, "PULLED")
-    EventsMailer.songkick_pull(count).deliver
+    EventsMailer.songkick_pull(count).deliver if Rails.env.production?
   end
 
   desc "Import custom events"
@@ -37,11 +37,13 @@ namespace :events do
     WestwordEvents.all.each { |event| count += 1 if Event.new(event).save }
     print_count(count, "PULLED")
   end
+
   desc "Import all events"
   task :all => :environment do
     Rake::Task["events:tf"].invoke
     Rake::Task["events:sh"].invoke
     Rake::Task["events:sk"].invoke
+    Rake::Task["events:kimono"].invoke
   end
 
   desc "Destroy all events"
