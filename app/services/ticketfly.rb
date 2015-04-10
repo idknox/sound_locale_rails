@@ -1,11 +1,8 @@
 require "open-uri"
-require "json"
-require "time"
-require "net/http"
 
-class TicketflyEvents
+class Ticketfly
 
-  def self.all
+  def self.events
     new.all
   end
 

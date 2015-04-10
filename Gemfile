@@ -20,6 +20,7 @@ gem 'newrelic_rpm'
 gem 'sass-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'rspec-rails', '3.0.1'

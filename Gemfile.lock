@@ -61,6 +61,9 @@ GEM
     columnize (0.8.9)
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
+    dotenv (2.0.0)
+    dotenv-rails (2.0.0)
+      dotenv (= 2.0.0)
     erubis (2.7.0)
     execjs (2.2.1)
     font-awesome-rails (4.3.0.0)
@@ -189,6 +192,7 @@ DEPENDENCIES
   bourbon
   capybara (= 2.3.0)
   coffee-rails (~> 4.0.0)
+  dotenv-rails
   font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails

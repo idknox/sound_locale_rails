@@ -17,30 +17,19 @@ jQuery(function ($) {
 
   // -- TOGGLE ALL --
 
+  var scrollabe;
+
   $('.toggle-all').on('click', function () {
     if (isHidden($('#close-all'))) {
       $('.date-content').show();
       $('#close-all').show();
       $('#expand-all').hide();
-
-      $(window).scroll(function () {
-        $('.date').each(function () {
-          var t = $(this).offset().top;
-          var h = $('#nav-custom').height();
-          var d = $(this).height();
-          var w = $(window).scrollTop();
-
-          if (w > t - h - 5 && w < t + d - h) {
-            $(this).find('.date-header').addClass('stuck')
-          } else {
-            $(this).find('.date-header').removeClass('stuck')
-          }
-        })
-      })
+      scrollable = true;
     } else {
       $('.date-content').hide();
       $('#close-all').hide();
       $('#expand-all').show();
+      scrollable = false;
     }
   });
 
@@ -71,12 +60,30 @@ jQuery(function ($) {
     }, 500);
   });
 
+  // -- STICKY DATE --
+
+  $(window).scroll(function () {
+    $('.date').each(function () {
+      var t = $(this).offset().top;
+      var h = $('#nav-custom').height();
+      var d = $(this).height();
+      var w = $(window).scrollTop();
+
+      if (w > t - h - 5 && w < t - h + d && scrollable) {
+        $(this).find('.date-header').addClass('stuck')
+      } else {
+        $(this).find('.date-header').removeClass('stuck')
+      }
+    })
+  })
+
   // -- SEARCH --
 
   $('.search').on('keyup', function () {
     var search = $(this).val();
     var events = $('.event');
     var results = $('.event:containsCaseInsensitive(' + search + ')');
+    scrollable = false;
 
     $('.date-content').show();
     $('.months, .toggle-all').hide();

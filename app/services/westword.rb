@@ -1,8 +1,8 @@
 require "open-uri"
 
-class WestwordEvents
+class Westword
 
-  def self.all
+  def self.events
     new.all
   end
 

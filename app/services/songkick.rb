@@ -1,12 +1,8 @@
 require "open-uri"
-require "json"
-require "time"
-require "net/http"
-require "pp"
 
-class SongkickEvents
+class Songkick
 
-  def self.all
+  def self.events
     new.all
   end
 
