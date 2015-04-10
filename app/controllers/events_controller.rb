@@ -19,6 +19,7 @@ class EventsController < ApplicationController
   end
 
   def future_events_grouped_by_date
-    Event.where("date >= ?", Date.today).order(:date).order(:venue_name).group_by { |event| event.date }
+    events = params[:venue] ? Event.where("date >= ? AND venue_id = ?", Date.today, params[:venue]) : Event.where("date >= ?", Date.today)
+    events.order(:date).order(:venue_name).group_by { |event| event.date }
   end
 end

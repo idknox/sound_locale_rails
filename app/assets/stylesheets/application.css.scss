@@ -20,7 +20,7 @@
 }
 
 .header {
-  font-family: 'bebasregular', Helvetica, sans-serif;
+  font-family: bebasregular, Helvetica, sans-serif;
 }
 
 .body-link, i {
@@ -36,4 +36,13 @@
 .btn-default:hover {
   color: $white;
   background: $dark-blue;
+}
+
+a {
+  color: inherit;
+
+  &:hover {
+    color: $light-blue;
+    text-decoration: none;
+  }
 }

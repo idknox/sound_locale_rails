@@ -17,21 +17,52 @@ jQuery(function ($) {
 
   // -- TOGGLE ALL --
 
-  var scrollabe;
+  var stickyDate;
+
+  function displayAll() {
+    $('.date-content').show();
+    $('#close-all').show();
+    $('#expand-all').hide();
+    stickyDate = true;
+  }
+
+  function displayFiltered() {
+    $('.date-content').show();
+    $('.toggle-all').hide();
+    $('.expand').empty().append('\u00a0');
+    stickyDate = false;
+  }
+
+  function closeAll() {
+    $('.date-content').hide();
+    $('#close-all').hide();
+    $('#expand-all').show();
+    stickyDate = false;
+  }
+
+  function displayVenue() {
+    var id = window.location.search.split('=')[1];
+
+    $.getJSON("/venues/" + id + ".json").success(function (venue) {
+      $('.events-title').empty().append(venue.name).show()
+    })
+  }
+
 
   $('.toggle-all').on('click', function () {
     if (isHidden($('#close-all'))) {
-      $('.date-content').show();
-      $('#close-all').show();
-      $('#expand-all').hide();
-      scrollable = true;
+      displayAll()
     } else {
-      $('.date-content').hide();
-      $('#close-all').hide();
-      $('#expand-all').show();
-      scrollable = false;
+      closeAll()
     }
   });
+
+  // -- VENUE EVENTS --
+
+  if (window.location.search.indexOf('?venue=') > -1) {
+    displayFiltered()
+    displayVenue()
+  }
 
   // -- TOGGLE DATE --
 
@@ -69,7 +100,7 @@ jQuery(function ($) {
       var d = $(this).height();
       var w = $(window).scrollTop();
 
-      if (w > t - h - 5 && w < t - h + d && scrollable) {
+      if (w > t - h - 5 && w < t - h + d && stickyDate) {
         $(this).find('.date-header').addClass('stuck')
       } else {
         $(this).find('.date-header').removeClass('stuck')
@@ -83,11 +114,8 @@ jQuery(function ($) {
     var search = $(this).val();
     var events = $('.event');
     var results = $('.event:containsCaseInsensitive(' + search + ')');
-    scrollable = false;
 
-    $('.date-content').show();
-    $('.months, .toggle-all').hide();
-    $('.expand').empty().append('\u00a0');
+    displayFiltered()
 
     events.hide().addClass('hidden');
     results.show().removeClass('hidden');

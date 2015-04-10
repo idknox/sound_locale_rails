@@ -15,7 +15,6 @@
     .header {
       padding: 5px;
       text-align: center;
-      font-family: bebasregular;
       font-size: 2em;
       color: $white;
       background: $dark-blue;
@@ -38,11 +37,15 @@
 
     .title {
       font-size: 3em;
-      font-family: bebasregular, Helvetica, sans-serif;
+    }
+
+    .events {
+      margin-top: 30px;
+      font-size: 2em;
     }
 
     .info {
-      margin-top: 60px;
+      margin-top: 30px;
 
       div {
         padding: 10px 30px 10px 30px;
@@ -53,10 +56,6 @@
         border-right: 2px solid $white;
 
       }
-
-      a {
-        color: inherit;
-      }
     }
   }
 
@@ -65,36 +64,3 @@
     height: 50%;
   }
 }
-
-//.venue-title {
-//  @include shift(2);
-//}
-//
-//.venue-grid {
-//  margin-top: 1em;
-//
-//  .venue-tile {
-//    @include span-columns(4);
-//    @include omega(3n);
-//    border: 3px solid #333;
-//
-//    @include media($mobile) {
-//      @include span-columns(4);
-//    }
-//
-//    div {
-//      background-size: 100%;
-//    }
-//    .venue-list-name {
-//      background-color: #333;
-//      color: #999;
-//      padding: 0 15% 1% 5%;
-//      font-size: 1.5em;
-//      position: relative;
-//      top: 70%;
-//      @include media($squish-venue) {
-//        font-size: 75%;
-//      }
-//    }
-//  }
-//}

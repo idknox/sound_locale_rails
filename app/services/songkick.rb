@@ -20,7 +20,7 @@ class Songkick
   private
 
   def get_url
-    "http://api.songkick.com/api/3.0/events.json?apikey=hjxRZws4FWJcUa66" +
+    "http://api.songkick.com/api/3.0/events.json?apikey=#{ENV['SONGKICK_KEY']}" +
       "&location=sk:6404&per_page=100"
   end
 
