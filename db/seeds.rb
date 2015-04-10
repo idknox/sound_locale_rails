@@ -210,7 +210,7 @@ Venue.create(
 )
 
 Venue.create(
-  title: "Walnut Room - Broadway",
+  title: "Walnut Room",
   name: "The Walnut Room - Walnut Street Location",
   address: "3131 Walnut Street, Denver, Colorado 80205",
   location: "39.764209, -104.979771",
@@ -224,7 +224,7 @@ Venue.create(
 )
 
 Venue.create(
-  title: "Walnut Room - Walnut St",
+  title: "Walnut Room",
   name: "The Walnut Room Broadway Location",
   address: "2 Broadway Denver, Colorado 80203",
   location: "39.716751, -104.987122",

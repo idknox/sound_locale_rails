@@ -9,29 +9,45 @@
 }
 
 .info-window {
-  background: $dark-blue;
-  border: 2px solid $white;
+  background: rgba(22, 56, 91, 0.9);
   color: $white;
   padding: 10px;
-  width: 300px;
+  width: 400px;
+  position: relative;
+  top: 35px;
 
-  a {
-    color: inherit;
-    display: block;
-    margin-top: 1em;
-  }
-  .title {
-    font-size: 1.5em;
-  }
+  .content {
+    text-align: center;
 
-  .info {
-    font-family: fira_sansregular;
+    a {
+      color: inherit;
+      margin-top: 1em;
+    }
+
+    h2 {
+      margin: 0;
+      font-family: bebasregular;
+    }
+
+    div {
+      padding: 5px 15px 5px 15px;
+      display: inline;
+    }
+    .site, .size, .price {
+      border-right: 1px solid $white;
+    }
   }
 
   .triangle {
     position: relative;
     top: 30px;
-    left: 40%;
+    left: 30%;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+
+    border-top: 20px solid rgba(22, 56, 91, 0.9);
   }
 }
 
