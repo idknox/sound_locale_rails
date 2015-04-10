@@ -1,9 +1,7 @@
-== README
+== Sound Locale
 
-Sound Locale is a work-in-progress, the end-goal being a responsive app that displays local event information on a google map and list, fully filterable and sortable.
+## Denver Area Music Event Aggregator
 
-Plans are to eventually include social media sharing.
+The goal of this app is to aggregate ALL Denver area music events. Not just big venues and big bands, but all the $5 shows are dive bars as well.
 
-Currently implementing event data from Ticketfly and Stubhub.
-
-Currently using Ruby 2.1.1 and Rails 4.1.4
+It's a work in progress, send any feedback to knoxid@gmail.com
