@@ -22,6 +22,21 @@ jQuery(function ($) {
       $('.date-content').show();
       $('#close-all').show();
       $('#expand-all').hide();
+
+      $(window).scroll(function () {
+        $('.date').each(function () {
+          var t = $(this).offset().top;
+          var h = $('#nav-custom').height();
+          var d = $(this).height();
+          var w = $(window).scrollTop();
+
+          if (w > t - h - 5 && w < t + d - h) {
+            $(this).find('.date-header').addClass('stuck')
+          } else {
+            $(this).find('.date-header').removeClass('stuck')
+          }
+        })
+      })
     } else {
       $('.date-content').hide();
       $('#close-all').hide();
@@ -166,7 +181,6 @@ jQuery(function ($) {
       }
     })
   }
-
 
   $('.map-icon').on('click', function () {
     $('#map-container').empty();

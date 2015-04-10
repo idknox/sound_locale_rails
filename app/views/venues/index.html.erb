@@ -1,34 +1,48 @@
 <% content_for :main do %>
-<section>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-10 col-sm-offset-1 venues">
-        <div class="row">
-          <% @venues.each do |venue| %>
-            <div class="col-sm-4 venue style=background-image: url(<%= venue.background %>)">
-            <%= venue.name %>
-            </div>
-          <% end %>
+  <section>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1 venues">
+          <div class="row">
+            <% @venues.each do |venue| %>
+              <div class="col-sm-4">
+                <div class="venue" data-venue-id="<%= venue.id %>" style="background-image: url(<%= venue.background %>)">
+                  <div class="layer">
+
+                    <div class="header">
+                      <%= venue.title %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+    <div id="venue-modal-container">
+      <div id="content"></div>
+      <div id="map"></div>
+    </div>
+  </section>
 
   <!--<h1>Venues</h1>-->
   <!--<div class="venue-grid">-->
-    <!--<ul>-->
-      <!--<% @venues.each do |venue| %>-->
-       <!--<li class="venue-tile">-->
-        <!--<%= link_to venue_path(venue.id) do %>-->
-          <!--<div style="background-image: url(<%= venue.background %>)" id="<%= venue.id %>">-->
-            <!--<span class="venue-list-name"><%= venue.title %></span>-->
-          <!--</div>-->
-        <!--<% end %>-->
-        <!--</li>-->
-      <!--<% end %>-->
-    <!--</ul>-->
-    <!--</div>-->
+  <!--<ul>-->
+  <!--
+  <% @venues.each do |venue| %>-->
+    <!--<li class="venue-tile">-->
+    <!--<%= link_to venue_path(venue.id) do %>-->
+      <!--<div style="background-image: url(<%= venue.background %>)" id="<%= venue.id %>">-->
+      <!--<span class="venue-list-name"><%= venue.title %></span>-->
+      <!--</div>-->
+      <!--
+    <% end %>-->
+    <!--</li>-->
+    <!--
+  <% end %>-->
+  <!--</ul>-->
+  <!--</div>-->
 <% end %>
 
 <% content_for :script do %>

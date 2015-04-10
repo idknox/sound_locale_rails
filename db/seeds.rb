@@ -174,7 +174,7 @@ Venue.create(
   location: "39.740010, -104.978420",
   background: "http://i.imgur.com/5dTf1Y5.jpg?1",
   logo: "https://cdn.ticketfly.com/wp-content/themes/the-1up/images/logo-colfax.png",
-  size: "Arcade Bar/Venue",
+  size: "Arcade Bar",
   price: "$",
   map: "map",
   site: "http://www.the-1up.com/colfax/",

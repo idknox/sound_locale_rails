@@ -1,21 +1,102 @@
-var venue = $('.venue-tile');
+jQuery(function ($) {
 
-var setMargin = function () {
-  var marginRight = venue.css('margin-right');
-  venue.css('margin-bottom', marginRight);
-  venue.css('margin-bottom', marginRight);
-};
+  $('#venue-modal-container').hide();
 
-var setHeight = function () {
-  var width = venue.find('div').width();
-  var widthRatio = (parseFloat(width) * 0.56 ).toString();
-  venue.find('div').css({'height': widthRatio + 'px'});
-};
+  var buildMap = function (venue) {
 
-$(window).on('resize', function () {
-  setMargin();
-  setHeight();
+    var lat = venue.location.split(",")[0];
+    var lng = venue.location.split(",")[1];
+
+    var center = new google.maps.LatLng(lat, lng);
+    var mapCanvas = document.getElementById('map');
+
+    var mapOptions = {
+      center: center,
+      zoom: 13,
+      scrollwheel: false,
+      disableDefaultUI: true,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+
+
+    new google.maps.Marker({
+      position: new google.maps.LatLng(lat, lng),
+      title: venue.name,
+      animation: google.maps.Animation.DROP,
+      map: map
+    });
+
+
+//    var directionsUrl = 'https://maps.google.com/maps?f=d&daddr=' + venue.address + '&saddr=' + localStorage.getItem('userOrigin');
+
+//    var venueInfo = '<div class="info-window"><div class="row"><div class="col-sm-10 col-sm-offset-1 content">' +
+//      '<div class="title"><h2>' + venue.title + '</h2>' + venue.address + '</div><br><br><div class="size">' + venue.size + '</div><div class="price">' + venue.price +
+//      '</div><div class="site"><a href="' + venue.site + '">Website</a></div><div class="directions"><a href="' + directionsUrl + '">Directions</a></div></p>' +
+//      '</div></div><div class="triangle"></div></div>';
+
+
+    google.maps.event.addDomListener(window, 'resize', function () {
+      map.setCenter(center);
+    });
+  };
+
+  function openVenueModal(venue) {
+    buildMap(venue);
+
+    var directionsUrl = 'https://maps.google.com/maps?f=d&daddr=' + venue.address + '&saddr=' + localStorage.getItem('userOrigin');
+
+    $('#content').append(
+        '<div class="title">' + venue.name + '</div>' + venue.address +
+        '<div class="row"><div class="col-sm-8 col-sm-offset-2 info">' +
+        '<div class="size">' + venue.size + '</div><div class="price">' +
+        venue.price + '</div><div class="site"><a href="' + venue.site +
+        '">Website</a></div><div class="directions"><a href="' + directionsUrl +
+        '">Directions</a></div></div></div>'
+    );
+    $('#venue-modal-container').modal({
+      overlayClose: true,
+      autoResize: true,
+      overlayCss: {
+        background: 'rgba(22, 56, 91, 0.8)'
+      }
+    })
+  }
+
+  $('.venue').on('mouseenter', function () {
+    $(this).find('.layer').css('background', 'rgba(22, 56, 91, 0.4)')
+  }).on('mouseleave', function () {
+    $(this).find('.layer').css('background', 'none')
+  }).on('click', function () {
+    $('#content, #map').empty();
+    var id = $(this).data('venue-id');
+
+    var promiseOfResult = $.getJSON("/venues/" + id + ".json");
+
+    promiseOfResult.success(openVenueModal);
+  });
 });
 
-setMargin();
-setHeight();
+
+//var venue = $('.venue-tile');
+//
+//var setMargin = function () {
+//  var marginRight = venue.css('margin-right');
+//  venue.css('margin-bottom', marginRight);
+//  venue.css('margin-bottom', marginRight);
+//};
+//
+//var setHeight = function () {
+//  var width = venue.find('div').width();
+//  var widthRatio = (parseFloat(width) * 0.56 ).toString();
+//  venue.find('div').css({'height': widthRatio + 'px'});
+//};
+//
+//$(window).on('resize', function () {
+//  setMargin();
+//  setHeight();
+//});
+//
+//setMargin();
+//setHeight();
