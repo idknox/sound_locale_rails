@@ -1,110 +1,108 @@
 jQuery(function ($) {
 
-  // -- GET USER LOCATION --
-  var userOrigin;
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(getOrigin)
+  function isHidden(el) {
+    var display = el.css('display');
+    return (display === 'none')
   }
-  
+
+  // case-insensitive :contains
+  $.expr[':'].containsCaseInsensitive = function (a, i, m) {
+    return $(a).text().toUpperCase()
+      .indexOf(m[3].toUpperCase()) >= 0;
+  };
+
+  // -- INIT --
+
+  $('.date-content, #close-all, .no-events, #map-container').hide();
+
+  // -- TOGGLE ALL --
+
+  $('.toggle-all').on('click', function () {
+    if (isHidden($('#close-all'))) {
+      $('.date-content').show();
+      $('#close-all').show();
+      $('#expand-all').hide();
+    } else {
+      $('.date-content').hide();
+      $('#close-all').hide();
+      $('#expand-all').show();
+    }
+  });
+
+  // -- TOGGLE DATE --
+
+  $('.date-header').on('click', function () {
+    var content = $(this).siblings('.date-content')
+    var menuHeight = $('#nav-custom').height();
+
+    $('html,body').animate({
+      scrollTop: $(this).offset().top - menuHeight
+    }, 500);
+
+    if (isHidden(content)) {
+      content.slideDown();
+    } else {
+      content.slideUp();
+    }
+  });
+
+  // -- SCROLL TO MONTH --
+
+  $('.month').on('click', function () {
+    var month = $(this).data('month');
+
+    $('html,body').animate({
+      scrollTop: $('#' + month).offset().top - $('#nav-custom').height()
+    }, 500);
+  });
+
+  // -- SEARCH --
+
+  $('.search').on('keyup', function () {
+    var search = $(this).val();
+    var events = $('.event');
+    var results = $('.event:containsCaseInsensitive(' + search + ')');
+
+    $('.date-content').show();
+    $('.months, .toggle-all').hide();
+    $('.expand').empty().append('\u00a0');
+
+    events.hide().addClass('hidden');
+    results.show().removeClass('hidden');
+
+    $('.date').each(function () {
+      if ($(this).find('.hidden').length === $(this).find('.event').length) {
+        $(this).hide();
+        $(this).addClass('hidden')
+      } else {
+        $(this).show();
+        $(this).removeClass('hidden')
+      }
+    });
+
+    if ($('.events').find('.hidden').length === $('.events').find('.date').length) {
+      $('.events').hide();
+      $('.no-events').show();
+    }
+
+    if (search === '') {
+      $('.date-content').hide();
+      $('.months, .toggle-all').show();
+      $('.expand').empty().append('Click Date to Expand <i class="fa fa-caret-down"></i>')
+    }
+  });
+
+  // -- GET USER LOCATION --
+
+  var userOrigin;
+  navigator.geolocation.getCurrentPosition(getOrigin);
+
   function getOrigin(origin) {
 
     var originLat = origin.coords.latitude;
     var originLong = origin.coords.longitude;
 
     userOrigin = 'loc:' + originLat + '+' + originLong;
-
-    function isHidden(el) {
-      var display = el.css('display');
-      return (display === 'none')
-    }
-
-// case-insensitive :contains
-    $.expr[':'].containsCaseInsensitive = function (a, i, m) {
-      return $(a).text().toUpperCase()
-        .indexOf(m[3].toUpperCase()) >= 0;
-    };
-
-// -- INIT --
-
-//  $('.date-content, #close-all, .no-events, #map-container').hide();
-
-    // -- TOGGLE ALL --
-
-    $('.toggle-all').on('click', function () {
-      if (isHidden($('#close-all'))) {
-        $('.date-content').show();
-        $('#close-all').show();
-        $('#expand-all').hide();
-      } else {
-        $('.date-content').hide();
-        $('#close-all').hide();
-        $('#expand-all').show();
-      }
-    });
-
-    // -- TOGGLE DATE --
-
-    $('.date-header').on('click', function () {
-      var content = $(this).siblings('.date-content')
-      var menuHeight = $('#nav-custom').height();
-
-      $('html,body').animate({
-        scrollTop: $(this).offset().top - menuHeight
-      }, 500);
-
-      if (isHidden(content)) {
-        content.slideDown();
-      } else {
-        content.slideUp();
-      }
-    });
-
-    // -- SCROLL TO MONTH --
-
-    $('.month').on('click', function () {
-      var month = $(this).data('month');
-
-      $('html,body').animate({
-        scrollTop: $('#' + month).offset().top - $('#nav-custom').height()
-      }, 500);
-    });
-
-    // -- SEARCH --
-
-    $('.search').on('keyup', function () {
-      var search = $(this).val();
-      var events = $('.event');
-      var results = $('.event:containsCaseInsensitive(' + search + ')');
-
-      $('.date-content').show();
-      $('.months, .toggle-all').hide();
-      $('.expand').empty().append('\u00a0');
-
-      events.hide().addClass('hidden');
-      results.show().removeClass('hidden');
-
-      $('.date').each(function () {
-        if ($(this).find('.hidden').length === $(this).find('.event').length) {
-          $(this).hide();
-          $(this).addClass('hidden')
-        } else {
-          $(this).show();
-          $(this).removeClass('hidden')
-        }
-      });
-
-      if ($('.events').find('.hidden').length === $('.events').find('.date').length) {
-        $('.events').hide();
-        $('.no-events').show();
-      }
-
-      if (search === '') {
-        $('.date-content').hide();
-        $('.months, .toggle-all').show();
-        $('.expand').empty().append('Click Date to Expand <i class="fa fa-caret-down"></i>')
-      }
-    });
 
 // -- MAP --
 

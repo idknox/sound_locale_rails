@@ -35,7 +35,11 @@
                     <% events.each do |event| %>
                       <div class="event">
                         <div class="col-sm-12 col-md-5 title">
-                          <%= truncated_string(event.headliner) %>
+                          <div class="headliner"><%= truncated_string(event.headliner) %></div>
+
+                          <% if event.opener %>
+                            <div class="opener">with <%= event.opener %></div>
+                          <% end %>
                         </div>
                         <div class="col-sm-12 col-md-5 info">
                           <%= formatted_time(event.time) %>

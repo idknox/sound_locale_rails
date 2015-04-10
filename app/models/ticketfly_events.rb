@@ -56,6 +56,7 @@ class TicketflyEvents
       venue_name: event["venue"]["name"],
       vendor_id: event["id"],
       headliner: event["headlinersName"],
+      opener: event["supportsName"],
       image: (event["image"] ? event["image"]["large"]["path"]: "NA"),
       date: Date.parse(event["startDate"]),
       time: Time.parse(event["startDate"]),

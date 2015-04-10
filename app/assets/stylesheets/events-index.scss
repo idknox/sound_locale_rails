@@ -2,7 +2,7 @@
   margin-top: 10%;
 
   .instructions {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 
     .expand {
       position: relative;
@@ -52,9 +52,14 @@
           border-top: none;
         }
 
-        .title {
+        .headliner {
           font-size: 1.2em;
         }
+
+        .opener {
+          font-size: .75em;
+        }
+
         .info {
           text-align: right;
           position: relative;
