@@ -38,9 +38,17 @@ namespace :events do
     print_count(count, "PULLED")
   end
 
+  desc "Import AXS events"
+  task axs: :environment do
+    count = 0
+    Axs.events.each { |event| count += 1 if Event.new(event).save }
+    print_count(count, "PULLED")
+  end
+
   desc "Import events events"
   task all: :environment do
     Rake::Task["events:tf"].invoke
+    Rake::Task["events:axs"].invoke
     Rake::Task["events:sh"].invoke
     Rake::Task["events:sk"].invoke
     Rake::Task["events:kimono"].invoke

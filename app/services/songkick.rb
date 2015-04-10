@@ -69,11 +69,6 @@ class Songkick
   end
 
   def ensured_time(event)
-    if event["start"]["time"]
-      time = Time.parse(event["start"]["time"])
-    else
-      time = "TBD"
-    end
-    time
+    event["start"]["time"] ? Time.parse(event["start"]["time"]) : "TBD"
   end
 end

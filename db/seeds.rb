@@ -419,6 +419,50 @@ Venue.create(
   description: "Lost Lake is located at 3602 East Colfax Avenue in Denver, 2 blocks east of the Bluebird on Colfax. 2 blocks east of Bluebird Theater. Accross from the Sprouts, look for the 'Cocktails' sign. Cross Streets are Colfax and Monroe."
 )
 
+Venue.create(
+  title: "Dazzle Jazz",
+  name: "Dazzle Jazz",
+  address: "930 Lincoln Street, Denver, CO 80203",
+  location: "39.730966,-104.986150",
+  background: "http://i.imgur.com/wfFgqMI.jpg",
+  logo: "http://i.imgur.com/5zDFxbW.png",
+  size: "Jazz Club",
+  price: "$$",
+  map: "map",
+  site: "http://dazzlejazz.com/",
+  description: ""
+)
+
+Venue.create(
+  title: "Electric Soapbox",
+  name: "Ophelia's Electric Soapbox",
+  address: "1215 20th Street, Denver, CO 80202",
+  location: "39.752700,-104.991836",
+  background: "http://i.imgur.com/VJ4xzaM.jpg",
+  logo: "http://i.imgur.com/Qs4ANmM.png",
+  size: "Bar/Restaurant",
+  price: "$$",
+  map: "map",
+  site: "https://www.facebook.com/opheliasdenver",
+  description: "Ophelia’s will serve as a restaurant, bar, and live music venue, with a boudoir-style décor that honors the building’s past, and Ophelia, the muse."
+)
+
+Venue.create(
+  title: "Funky Buddha",
+  name: "Funky Buddha",
+  address: "776 Lincoln, Denver, CO 80203",
+  location: "39.728653,-104.985771",
+  background: "http://i.imgur.com/bXFr1CU.jpg",
+  logo: "http://i.imgur.com/SSkYx0n.png",
+  size: "Small Bar",
+  price: "$",
+  map: "map",
+  site: "http://www.coclubs.com/funky-buddha/",
+  description: "Serving Denver’s Best Appetizers. The Funky Buddha Lounge has two beautiful fung-shui rooftop patios. Its full service kitchen provides the perfect evening snacks and the bar has a long list of signature martinis. The flat-screen TVs and state-of-the-art sound system add to the swanky sophisticated experience."
+)
+
+
+
 # Venue.create(
 #   title: "",
 #   name: "",
