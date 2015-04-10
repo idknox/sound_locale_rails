@@ -8,7 +8,7 @@ function initialize() {
 
   var mapOptions = {
     center: denver,
-    zoom: 11,
+    zoom: 12,
     disableDefaultUI: true,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
@@ -47,15 +47,20 @@ function initialize() {
         map: map
       });
 
-      var venueInfo = '<div class="info-window">' +
-        '<p class="title"><h3>' + venue.name + '</h3><br>' + venue.size + '</p>' +
-        '<p class="info">' + venue.address + '<br>' + venue.price +
-        '<a href="' + venue.site + '">Site</a></p>' +
-        '<div class="triangle"></div>';
+      var directionsUrl = 'https://maps.google.com/maps?f=d&daddr=' + venue.address + '&saddr=' + localStorage.getItem('userOrigin');
+
+      var venueInfo = '<div class="info-window"><div class="row"><div class="col-sm-10 col-sm-offset-1 content">' +
+        '<div class="title"><h2>' + venue.title + '</h2>' + venue.address + '</div><br><br><div class="size">' + venue.size + '</div><div class="price">' + venue.price +
+        '</div><div class="site"><a href="' + venue.site + '">Website</a></div><div class="directions"><a href="' + directionsUrl + '">Directions</a></div></p>' +
+        '</div></div><div class="triangle"></div></div>';
 
       google.maps.event.addListener(marker, 'click', function () {
         infowindow.setContent(venueInfo);
         infowindow.open(map, marker);
+      });
+
+      google.maps.event.addDomListener(window, 'resize', function () {
+        map.setCenter(denver);
       });
     });
   };

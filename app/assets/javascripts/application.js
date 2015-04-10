@@ -14,3 +14,23 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require_tree ../../../vendor/assets/javascripts/.
+
+$(document).ready(function () {
+  if (localStorage.getItem('firstVisit') != 'true') {
+    localStorage.setItem('firstVisit', 'true');
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(getOrigin);
+    } else {
+      localStorage.setItem('userOrigin', '')
+    }
+
+    function getOrigin(origin) {
+
+      var originLat = origin.coords.latitude;
+      var originLong = origin.coords.longitude;
+
+      localStorage.setItem('userOrigin', 'loc:' + originLat + '+' + originLong);
+    }
+  }
+});

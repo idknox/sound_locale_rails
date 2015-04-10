@@ -92,104 +92,90 @@ jQuery(function ($) {
     }
   });
 
-  // -- GET USER LOCATION --
-
-  var userOrigin;
-  navigator.geolocation.getCurrentPosition(getOrigin);
-
-  function getOrigin(origin) {
-
-    var originLat = origin.coords.latitude;
-    var originLong = origin.coords.longitude;
-
-    userOrigin = 'loc:' + originLat + '+' + originLong;
-
 // -- MAP --
 
-    var buildMap = function (venue) {
+  var buildMap = function (venue) {
 
-      var lat = venue.location.split(",")[0];
-      var lng = venue.location.split(",")[1];
-      var centerLat = parseFloat(lat) + 0.005;
+    var lat = venue.location.split(",")[0];
+    var lng = venue.location.split(",")[1];
+    var centerLat = parseFloat(lat) + 0.005;
 
-      var center = new google.maps.LatLng(centerLat, lng);
-      var mapCanvas = document.getElementById('map-container');
+    var center = new google.maps.LatLng(centerLat, lng);
+    var mapCanvas = document.getElementById('map-container');
 
-      var mapOptions = {
-        center: center,
-        zoom: 14,
-        scrollwheel: false,
-        disableDefaultUI: true,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
+    var mapOptions = {
+      center: center,
+      zoom: 14,
+      scrollwheel: false,
+      disableDefaultUI: true,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
 
-      var map = new google.maps.Map(mapCanvas, mapOptions);
+    var map = new google.maps.Map(mapCanvas, mapOptions);
 
-      var windowOptions = {
-        disableAutoPan: false,
-        content: '',
-        pixelOffset: new google.maps.Size(-144, -225),
-        shadowStyle: 1,
-        hideCloseButton: false,
-        arrowSize: 10,
-        arrowPosition: 30,
-        arrowStyle: 2,
-        closeBoxMargin: "5px 5px 5px 5px",
-        closeBoxURL: 'http://i.imgur.com/UVVEq19.png'
-      };
+    var windowOptions = {
+      disableAutoPan: false,
+      content: '',
+      pixelOffset: new google.maps.Size(-144, -225),
+      shadowStyle: 1,
+      hideCloseButton: false,
+      arrowSize: 10,
+      arrowPosition: 30,
+      arrowStyle: 2,
+      closeBoxMargin: "5px 5px 5px 5px",
+      closeBoxURL: 'http://i.imgur.com/UVVEq19.png'
+    };
 
-      var infowindow = new InfoBox(windowOptions);
+    var infowindow = new InfoBox(windowOptions);
 
-      var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(lat, lng),
-        title: venue.name,
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(lat, lng),
+      title: venue.name,
 //      animation: google.maps.Animation.DROP,
-        map: map
-      });
+      map: map
+    });
 
 //    marker.setMap(map);
 
-      var directionsUrl = 'https://maps.google.com/maps?f=d&daddr=' + venue.address + '&saddr=' + userOrigin;
+    var directionsUrl = 'https://maps.google.com/maps?f=d&daddr=' + venue.address + '&saddr=' + localStorage.getItem('userOrigin');
 
-      var venueInfo = '<div class="info-window"><div class="row"><div class="col-sm-10 col-sm-offset-1 content">' +
-        '<div class="title"><h2>' + venue.title + '</h2>' + venue.address + '</div><br><br><div class="size">' + venue.size + '</div><div class="price">' + venue.price +
-        '</div><div class="site"><a href="' + venue.site + '">Website</a></div><div class="directions"><a href="' + directionsUrl + '">Directions</a></div></p>' +
-        '</div></div><div class="triangle"></div></div>';
+    var venueInfo = '<div class="info-window"><div class="row"><div class="col-sm-10 col-sm-offset-1 content">' +
+      '<div class="title"><h2>' + venue.title + '</h2>' + venue.address + '</div><br><br><div class="size">' + venue.size + '</div><div class="price">' + venue.price +
+      '</div><div class="site"><a href="' + venue.site + '">Website</a></div><div class="directions"><a href="' + directionsUrl + '">Directions</a></div></p>' +
+      '</div></div><div class="triangle"></div></div>';
 
-      infowindow.setContent(venueInfo);
-      infowindow.open(map, marker);
+    infowindow.setContent(venueInfo);
+    infowindow.open(map, marker);
 
-      google.maps.event.addDomListener(window, 'resize', function () {
-        map.setCenter(center);
-      });
-    };
-
-    function openMapModal(venue) {
-      buildMap(venue);
-      $('#map-container').modal({
-//      closeHTML: '<i class="fa fa-times"></i>',
-        overlayClose: true,
-        autoResize: true,
-        overlayCss: {
-          background: 'rgba(22, 56, 91, 0.8)'
-        },
-        dataCss: {
-          border: '2px solid #16385B'
-        }
-      })
-    }
-
-
-    $('.map-icon').on('click', function () {
-      $('#map-container').empty();
-      var id = $(this).data('venue-id');
-
-      var promiseOfResult = $.getJSON("/venues/" + id + ".json");
-
-      promiseOfResult.success(openMapModal);
+    google.maps.event.addDomListener(window, 'resize', function () {
+      map.setCenter(center);
     });
+  };
+
+  function openMapModal(venue) {
+    buildMap(venue);
+    $('#map-container').modal({
+//      closeHTML: '<i class="fa fa-times"></i>',
+      overlayClose: true,
+      autoResize: true,
+      overlayCss: {
+        background: 'rgba(22, 56, 91, 0.8)'
+      },
+      dataCss: {
+        border: '2px solid #16385B'
+      }
+    })
   }
 
+
+  $('.map-icon').on('click', function () {
+    $('#map-container').empty();
+    var id = $(this).data('venue-id');
+
+    var promiseOfResult = $.getJSON("/venues/" + id + ".json");
+
+    promiseOfResult.success(openMapModal);
+  });
 });
 
 //if (document.body.scrollTop < window.innerHeight) {
