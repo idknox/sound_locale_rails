@@ -2,6 +2,6 @@
 
 ## Denver Area Music Event Aggregator
 
-The goal of this app is to aggregate ALL Denver area music events. Not just big venues and big bands, but all the $5 shows are dive bars as well.
+The goal of this app is to aggregate ALL Denver area music events. Not just big venues and big bands, but $5 shows at dive bars as well.
 
-It's a work in progress, send any feedback to knoxid@gmail.com
+It's a work in progress, send any feedback to knoxid@gmail.com .

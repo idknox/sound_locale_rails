@@ -1,10 +1,10 @@
 class EventsController < ApplicationController
   def map
-    date = determine_date(params[:date])
-    @events = Event.where(:date => date)
+    date = determine_date
+    @events = Event.where(date: date)
     respond_to do |format|
       format.html
-      format.json { render :json => @events.to_json(:include => :venue)}
+      format.json { render :json => @events.to_json(:include => :venue) }
     end
   end
 
@@ -14,9 +14,8 @@ class EventsController < ApplicationController
 
   private
 
-  def determine_date(date)
-    Date.tomorrow if date == "tomorrow"
-    date || Date.today
+  def determine_date
+    params[:date] ||= params[:date] == "tomorrow" ? Date.tomorrow : Date.today
   end
 
   def future_events_grouped_by_date

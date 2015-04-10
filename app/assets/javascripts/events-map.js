@@ -65,59 +65,59 @@ promiseOfResult.success(buildMap);
 
 // DATE SWITCH
 
-var today = $('#today');
-var tomorrow = $('#tomorrow');
-var calTrigger = $('#cal-date-trigger');
-var cal = $('#cal-date');
-
-today.on('click', function () {
-  var promiseOfResult = $.getJSON("/events/map.json");
-  promiseOfResult.success(buildMap);
-});
-
-tomorrow.on('click', function () {
-  var dateData = {date: 'tomorrow'};
-  var promiseOfResult = $.getJSON("/events/map.json", dateData);
-  promiseOfResult.success(buildMap);
-});
-
-calTrigger.on('click', function () {
-  cal.show();
-  cal.datepicker({
-    dateFormat: "mm.dd.yy",
-    onSelect: function (dateText) {
-      cal.hide();
-      calTrigger.addClass('active');
-      calTrigger.parent().siblings().children().removeClass('active');
-      var filteredDate = {date: dateText};
-      calTrigger.empty();
-      calTrigger.append(dateText);
-      var promiseOfResult = $.getJSON("/events/map.json", filteredDate);
-      promiseOfResult.success(buildMap);
-    }
-  });
-});
-
-// ACTIVE BUTTONS
-
-today.on('click', function () {
-  cal.hide();
-  $(this).addClass('active');
-  $(this).parents().siblings().children().removeClass('active');
-});
-
-tomorrow.on('click', function () {
-  $('#cal-date').hide();
-  $(this).addClass('active');
-  $(this).parents().siblings().children().removeClass('active');
-});
-
-// HIDES CAL
-
-$('html').click(function () {
-  cal.hide();
-});
-
-calTrigger.click(function (event) {
-  event.stopPropagation();
-});
+//var today = $('#today');
+//var tomorrow = $('#tomorrow');
+//var calTrigger = $('#cal-date-trigger');
+//var cal = $('#cal-date');
+//
+//today.on('click', function () {
+//  var promiseOfResult = $.getJSON("/events/map.json");
+//  promiseOfResult.success(buildMap);
+//});
+//
+//tomorrow.on('click', function () {
+//  var dateData = {date: 'tomorrow'};
+//  var promiseOfResult = $.getJSON("/events/map.json", dateData);
+//  promiseOfResult.success(buildMap);
+//});
+//
+//calTrigger.on('click', function () {
+//  cal.show();
+//  cal.datepicker({
+//    dateFormat: "mm.dd.yy",
+//    onSelect: function (dateText) {
+//      cal.hide();
+//      calTrigger.addClass('active');
+//      calTrigger.parent().siblings().children().removeClass('active');
+//      var filteredDate = {date: dateText};
+//      calTrigger.empty();
+//      calTrigger.append(dateText);
+//      var promiseOfResult = $.getJSON("/events/map.json", filteredDate);
+//      promiseOfResult.success(buildMap);
+//    }
+//  });
+//});
+//
+//// ACTIVE BUTTONS
+//
+//today.on('click', function () {
+//  cal.hide();
+//  $(this).addClass('active');
+//  $(this).parents().siblings().children().removeClass('active');
+//});
+//
+//tomorrow.on('click', function () {
+//  $('#cal-date').hide();
+//  $(this).addClass('active');
+//  $(this).parents().siblings().children().removeClass('active');
+//});
+//
+//// HIDES CAL
+//
+//$('html').click(function () {
+//  cal.hide();
+//});
+//
+//calTrigger.click(function (event) {
+//  event.stopPropagation();
+//});

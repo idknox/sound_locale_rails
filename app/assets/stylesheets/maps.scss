@@ -1,6 +1,19 @@
 #venues-map-container {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+}
+
+section {
+ margin-top: 4%;
+
+  .date-select {
+    text-align: center;
+  }
+
+  #events-map-container {
+    width: 100%;
+    height: 80vh;
+  }
 }
 
 //#event-date-selector {

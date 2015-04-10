@@ -37,11 +37,7 @@ module EventHelper
     months[current_month..-1] + months[0...current_month]
   end
 
-  def months
-
-  end
-
-  def determine_year
-
+  def dates(events)
+    events.map {|event| formatted_date(event.date) }
   end
 end
