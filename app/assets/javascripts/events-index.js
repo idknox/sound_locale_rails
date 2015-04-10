@@ -48,6 +48,16 @@ jQuery(function ($) {
     }
   });
 
+  // -- SCROLL TO MONTH --
+
+  $('.month').on('click', function () {
+    var month = $(this).data('month');
+
+    $('html,body').animate({
+      scrollTop: $('#' + month).offset().top - $('#nav-custom').height()
+    }, 500);
+  });
+
   // -- SEARCH --
 
   $('.search').on('keyup', function () {
@@ -56,33 +66,32 @@ jQuery(function ($) {
     var results = $('.event:containsCaseInsensitive(' + search + ')');
 
     $('.date-content').show();
-    $('.instructions').hide();
+    $('.months, .toggle-all').hide();
+    $('.expand').empty().append('\u00a0');
+
     events.hide().addClass('hidden');
     results.show().removeClass('hidden');
 
     $('.date').each(function () {
-      if ($(this).find('.hidden').length == $(this).find('.event').length) {
-        $(this).hide()
+      if ($(this).find('.hidden').length === $(this).find('.event').length) {
+        $(this).hide();
         $(this).addClass('hidden')
       } else {
-        $(this).show()
+        $(this).show();
         $(this).removeClass('hidden')
       }
     });
 
+    if ($('.events').find('.hidden').length === $('.events').find('.date').length) {
+      $('.events').hide();
+      $('.no-events').show();
+    }
+
     if (search === '') {
       $('.date-content').hide();
-      $('.instructions').show();
-
+      $('.months, .toggle-all').show();
+      $('.expand').empty().append('Click Date to Expand <i class="fa fa-caret-down"></i>')
     }
-//
-//    if ($('.date-events-container.hidden').length == $('.date-events-container').length) {
-//      $('.event-list-container').hide();
-//      $('.no-events-container').show();
-//    } else {
-//      $('.event-list-container').show();
-//      $('.no-events-container').hide();
-//    }
   });
 
 // -- MAP --

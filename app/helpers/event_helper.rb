@@ -18,6 +18,30 @@ module EventHelper
   end
 
   def truncated_string(string)
-    string.length > 35 ? string[0,35]+'...' : string
+    string.length > 35 ? string[0, 35]+'...' : string
+  end
+
+  def next_12_months
+    current_month = Date.today.month
+    current_year = Date.today.year
+    names = %w(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec)
+
+    months = names.map.with_index do |name, i|
+      {
+        name: name,
+        index: i+1,
+        year: i+1 > current_month ? current_year : current_year+1
+      }
+    end
+
+    months[current_month..-1] + months[0...current_month]
+  end
+
+  def months
+
+  end
+
+  def determine_year
+
   end
 end

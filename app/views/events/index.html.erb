@@ -6,17 +6,29 @@
           <div class="row">
             <div class="col-sm-12 instructions">
               <div class="col-sm-2 expand">
-                Click day to Expand
+                Click Date to Expand <%= fa_icon 'caret-down' %>
               </div>
-              <div class="col-sm-3 col-sm-offset-7 toggle-all">
+              <div class="col-sm-4 col-sm-offset-2">
+                <%= text_field_tag 'search', nil, class: 'search', placeholder: 'Search Events' %>
+              </div>
+              <div class="col-sm-2 col-sm-offset-2 toggle-all">
                 <%= link_to 'Close All', '#', class: 'btn btn-default', id: 'close-all' %>
                 <%= link_to 'Expand All', '#', class: 'btn btn-default', id: 'expand-all' %>
+              </div>
+            </div>
+            <div class="col-sm-12 months">
+              <div class="row">
+                <% next_12_months.each do |month| %>
+                  <div class="col-sm-1">
+                    <%= link_to month[:name], '#', data: {month: "#{month[:index]}#{month[:year]}"}, class: 'month' %>
+                  </div>
+                <% end %>
               </div>
             </div>
             <% @events_by_date.each do |date, events| %>
               <div class="col-sm-12">
                 <div class="date">
-                  <div class="date-header header">
+                  <div class="date-header header" id="<%= "#{date.month}#{date.year}" %>">
                     <%= formatted_date(date) %>
                   </div>
                   <div class="date-content">
@@ -43,6 +55,9 @@
               </div>
             <% end %>
           </div>
+        </div>
+        <div class="col-sm-10 col-sm-offset-1 no-events">
+          <h1>No Events Match Your Search</h1>
         </div>
       </div>
     </div>
