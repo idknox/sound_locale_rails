@@ -13,6 +13,7 @@ Bundler.require(*Rails.groups)
 module SoundLocale
   class Application < Rails::Application
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
-    config.time_zone = 'Mountain Time (US & Canada)'
-    config.active_record.default_timezone = :local  end
+    config.time_zone = 'America/Denver'
+    config.active_record.default_timezone = :local
+  end
 end
