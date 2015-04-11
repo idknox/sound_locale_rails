@@ -44,11 +44,18 @@ $(document).ready(function () {
         map: map
       });
 
-      var eventInfo = '<div class="info-window">' +
-        '<p class="title">' + music_event.name + '<br>' + music_event.venue.title + '</p>' +
-        '<p class="info">' + music_event.venue.address + '<br>' + music_event.formatted_time +
-        '<a href="' + music_event.tickets + '">Tickets</a></p>' +
-        '<div class="triangle"></div>';
+      var directionsUrl = 'https://maps.google.com/maps?f=d&daddr=' +
+        music_event.venue.address + '&saddr=' + localStorage.getItem('userOrigin');
+
+      var eventInfo = '<div class="info-window"><div class="row">' +
+        '<div class="col-sm-10 col-sm-offset-1 content">' +
+        '<div class="title"><h2>' + music_event.name + '</h2>' +
+        music_event.opener + '<br></div><div class="venue">' + music_event.venue.name +
+        '</div><br><div class="event-price">' + music_event.price + '</div><br>' +
+        '<div class="price">' + (new Date(music_event.time)).format('h:MM TT') +
+        '</div><div class="site"><a href="' + music_event.tickets + '">Tickets' +
+        '</a></div><div class="directions"><a href="' + directionsUrl + '">' +
+        'Directions</a></div></p></div></div><div class="triangle"></div></div>';
 
       google.maps.event.addListener(marker, 'click', function () {
         infowindow.setContent(eventInfo);
@@ -65,20 +72,30 @@ $(document).ready(function () {
   var promiseOfResult = $.getJSON("/events/map.json");
   promiseOfResult.success(buildMap);
 
+
+  function activate(el) {
+    el.parents().siblings('.date-select').find('span, #date-select').removeClass('active')
+    el.find('span').addClass('active')
+  }
+
   $('#today').on('click', function () {
     var dateData = {date: new Date};
+    activate($(this))
     var promiseOfResult = $.getJSON("/events/map.json", dateData);
     promiseOfResult.success(buildMap);
   });
 
   $('#tomorrow').on('click', function () {
     var dateData = {date: 'tomorrow'};
+    activate($(this))
     var promiseOfResult = $.getJSON("/events/map.json", dateData);
     promiseOfResult.success(buildMap);
+
   });
 
   $('#date-select').on('change', function () {
     var dateData = {date: $(this).val()};
+    $(this).addClass('active').parents().siblings('.date-select').find('span').removeClass('active')
     var promiseOfResult = $.getJSON("/events/map.json", dateData);
     promiseOfResult.success(buildMap);
   })

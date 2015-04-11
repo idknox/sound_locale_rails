@@ -5,7 +5,7 @@ module EventHelper
     elsif date == Date.today
       'Today'
     else
-      date.strftime('%A, %B %e')
+      date.strftime('%A, %b %e')
     end
   end
 

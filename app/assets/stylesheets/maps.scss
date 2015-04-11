@@ -9,9 +9,42 @@ section {
   .date-select {
     text-align: center;
 
+    span {
+      font-family: bebasregular;
+      color: $dark-blue;
+      padding: 20px 10px 20px 10px;
+
+      &:hover {
+        color: $light-blue;
+      }
+    }
+
+    #today, #tomorrow {
+      cursor: pointer;
+    }
+
     #date-select {
-      height: 40px;
-      margin-top: 15px;
+      height: 80px;
+      width: 70%;
+      margin-top: -2px;
+      border: none;
+      border-radius: 0;
+      -webkit-appearance: none;
+      font-size: 2em;
+      font-family: bebasregular;
+      color: $dark-blue;
+
+      &:hover {
+        color: $light-blue;
+        background: $white;
+      }
+    }
+
+    .active {
+      background: $dark-blue;
+      color: $white !important;
+      padding: 20px 10px 20px 10px;
+
     }
   }
 
@@ -32,6 +65,11 @@ section {
   .content {
     text-align: center;
 
+    .venue {
+      font-size: 1.5em;
+      margin-top: 20px;
+    }
+
     a {
       color: inherit;
       margin-top: 1em;
@@ -48,6 +86,10 @@ section {
     }
     .site, .size, .price {
       border-right: 1px solid $white;
+    }
+
+    .event-price {
+      margin: 30px;
     }
   }
 
