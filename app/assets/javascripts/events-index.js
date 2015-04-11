@@ -121,6 +121,7 @@ jQuery(function ($) {
     events.hide().addClass('hidden');
     results.show().removeClass('hidden');
 
+
     $('.date').each(function () {
       if ($(this).find('.hidden').length === $(this).find('.event').length) {
         $(this).hide();
@@ -132,6 +133,8 @@ jQuery(function ($) {
     if ($('.events').find('.hidden').length === $('.events').find('.event').length) {
       $('.date, .months').hide();
       $('.no-events').show();
+    } else {
+      $('.no-events').hide();
     }
 
     if (search === '') {
