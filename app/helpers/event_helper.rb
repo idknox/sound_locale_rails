@@ -10,7 +10,7 @@ module EventHelper
   end
 
   def formatted_time(time)
-    time.in_time_zone('Mountain Time (US & Canada)').strftime('%l:%M %p') if time
+    time.strftime('%l:%M %p') if time
   end
 
   def doors(time)
