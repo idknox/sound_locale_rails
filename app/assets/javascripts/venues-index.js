@@ -39,7 +39,7 @@ jQuery(function ($) {
     var directionsUrl = 'https://maps.google.com/maps?f=d&daddr=' + venue.address + '&saddr=' + localStorage.getItem('userOrigin');
 
     $('#content').append(
-        '<div class="title header">' + venue.name + '</div>' + venue.address +
+        '<div class="title header">' + venue.title + '</div>' + venue.address +
         '<div class="row"><div class="col-sm-2 col-sm-offset-5 events">' +
         '<a class="header" href="/?venue=' + venue.id + '">Events</a></div><div class="col-sm-8 col-sm-offset-2 info">' +
         '<div class="size">' + venue.size + '</div><div class="price">' +

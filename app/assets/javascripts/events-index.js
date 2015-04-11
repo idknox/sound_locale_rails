@@ -14,6 +14,7 @@ jQuery(function ($) {
   // -- INIT --
 
   $('.date-content, #close-all, .no-events, #map-container').hide();
+  $('.date-content').first().show();
 
   // -- TOGGLE ALL --
 
@@ -115,7 +116,7 @@ jQuery(function ($) {
     var events = $('.event');
     var results = $('.event:containsCaseInsensitive(' + search + ')');
 
-    displayFiltered()
+    displayFiltered();
 
     events.hide().addClass('hidden');
     results.show().removeClass('hidden');
@@ -123,15 +124,13 @@ jQuery(function ($) {
     $('.date').each(function () {
       if ($(this).find('.hidden').length === $(this).find('.event').length) {
         $(this).hide();
-        $(this).addClass('hidden')
       } else {
         $(this).show();
-        $(this).removeClass('hidden')
       }
     });
 
-    if ($('.events').find('.hidden').length === $('.events').find('.date').length) {
-      $('.events').hide();
+    if ($('.events').find('.hidden').length === $('.events').find('.event').length) {
+      $('.date, .months').hide();
       $('.no-events').show();
     }
 
