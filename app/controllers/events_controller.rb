@@ -1,6 +1,10 @@
 class EventsController < ApplicationController
   def map
     date = determine_date
+    puts '*' * 80
+    puts params[:date]
+    puts date
+    puts '*' * 80
     @events = Event.where(date: date)
     respond_to do |format|
       format.html
@@ -15,7 +19,14 @@ class EventsController < ApplicationController
   private
 
   def determine_date
-    params[:date] ||= params[:date] == "tomorrow" ? Date.tomorrow : Date.today
+    # if params[:date] == 'tomorrow'
+    #   Date.tomorrow
+    # elsif params[:date]
+    #   Date.parse(params[:date])
+    # else
+    #   Date.today
+    # end
+    params[:date] == 'tomorrow' ? DateTime.now.tomorrow.to_date : params[:date] ? Date.parse(params[:date]) : Date.today
   end
 
   def future_events_grouped_by_date

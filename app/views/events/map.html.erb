@@ -9,19 +9,7 @@
           <h1 id="tomorrow">Tomorrow</h1>
         </div>
         <div class="col-sm-4 date-select">
-          <div class="btn-group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-              Action <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-              <% @events.each do |event| %>
-              <li>
-                <%= formatted_date(event.date) %>
-              </li>
-              <% end %>
-            </ul>
-          </div>
-
+          <%= select_tag 'date-select', options_for_select(next_months(6)), class: 'btn btn-default' %>
           <div id="cal-date"></div>
         </div>
       </div>

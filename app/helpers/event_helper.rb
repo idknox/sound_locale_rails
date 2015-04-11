@@ -38,6 +38,10 @@ module EventHelper
   end
 
   def dates(events)
-    events.map {|event| formatted_date(event.date) }
+    events.map { |event| formatted_date(event.date) }
+  end
+
+  def next_months(months)
+    (Date.today..Date.today.advance(months: +months)).inject({}) { |dates, date| dates.merge({formatted_date(date) => date}) }
   end
 end

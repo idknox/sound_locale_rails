@@ -1,67 +1,88 @@
-var buildMap = function (music_events) {
-  var mapCanvas = document.getElementById('events-map-container');
-  if (!mapCanvas) {
-    return;
-  }
+$(document).ready(function () {
 
-  var denver = new google.maps.LatLng(39.740009, -104.992302);
+  var buildMap = function (music_events) {
+    var mapCanvas = document.getElementById('events-map-container');
+    if (!mapCanvas) {
+      return;
+    }
 
-  var mapOptions = {
-    center: denver,
-    zoom: 11,
-    disableDefaultUI: true,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
+    var denver = new google.maps.LatLng(39.740009, -104.992302);
 
-  var map = new google.maps.Map(mapCanvas, mapOptions);
+    var mapOptions = {
+      center: denver,
+      zoom: 10,
+      disableDefaultUI: true,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
 
-  var windowOptions = {
-    disableAutoPan: false,
-    content: '',
-    pixelOffset: new google.maps.Size(-144, -240),
-    shadowStyle: 1,
-    hideCloseButton: false,
-    arrowSize: 10,
-    arrowPosition: 30,
-    arrowStyle: 2,
-    closeBoxMargin: "5px 5px 5px 5px",
-    closeBoxURL: 'http://i.imgur.com/UVVEq19.png'
-  };
+    var map = new google.maps.Map(mapCanvas, mapOptions);
 
-  var infowindow = new InfoBox(windowOptions);
+    var windowOptions = {
+      disableAutoPan: false,
+      content: '',
+      pixelOffset: new google.maps.Size(-144, -240),
+      shadowStyle: 1,
+      hideCloseButton: false,
+      arrowSize: 10,
+      arrowPosition: 30,
+      arrowStyle: 2,
+      closeBoxMargin: "5px 5px 5px 5px",
+      closeBoxURL: 'http://i.imgur.com/UVVEq19.png'
+    };
 
-  $.each(music_events, function (i, music_event) {
+    var infowindow = new InfoBox(windowOptions);
 
-    var lat = music_event.venue.location.split(",")[0];
-    var lng = music_event.venue.location.split(",")[1];
+    $.each(music_events, function (i, music_event) {
 
-    var marker = new google.maps.Marker({
-      position: new google.maps.LatLng(lat, lng),
-      title: music_event.name,
-      animation: google.maps.Animation.DROP,
-      map: map
+      var lat = music_event.venue.location.split(",")[0];
+      var lng = music_event.venue.location.split(",")[1];
+
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(lat, lng),
+        title: music_event.name,
+        animation: google.maps.Animation.DROP,
+        map: map
+      });
+
+      var eventInfo = '<div class="info-window">' +
+        '<p class="title">' + music_event.name + '<br>' + music_event.venue.title + '</p>' +
+        '<p class="info">' + music_event.venue.address + '<br>' + music_event.formatted_time +
+        '<a href="' + music_event.tickets + '">Tickets</a></p>' +
+        '<div class="triangle"></div>';
+
+      google.maps.event.addListener(marker, 'click', function () {
+        infowindow.setContent(eventInfo);
+        infowindow.open(map, marker);
+      });
     });
 
-    var eventInfo = '<div class="info-window">' +
-      '<p class="title">' + music_event.name + '<br>' + music_event.venue.title + '</p>' +
-      '<p class="info">' + music_event.venue.address + '<br>' + music_event.formatted_time +
-      '<a href="' + music_event.tickets + '">Tickets</a></p>' +
-      '<div class="triangle"></div>';
-
-    google.maps.event.addListener(marker, 'click', function () {
-      infowindow.setContent(eventInfo);
-      infowindow.open(map, marker);
+    google.maps.event.addDomListener(window, 'resize', function () {
+      map.setCenter(denver);
     });
+
+  };
+
+  var promiseOfResult = $.getJSON("/events/map.json");
+  promiseOfResult.success(buildMap);
+
+  $('#today').on('click', function () {
+    var dateData = {date: new Date};
+    var promiseOfResult = $.getJSON("/events/map.json", dateData);
+    promiseOfResult.success(buildMap);
   });
 
-  google.maps.event.addDomListener(window, 'resize', function () {
-    map.setCenter(lat, lng);
+  $('#tomorrow').on('click', function () {
+    var dateData = {date: 'tomorrow'};
+    var promiseOfResult = $.getJSON("/events/map.json", dateData);
+    promiseOfResult.success(buildMap);
   });
 
-};
-
-var promiseOfResult = $.getJSON("/events/map.json");
-promiseOfResult.success(buildMap);
+  $('#date-select').on('change', function () {
+    var dateData = {date: $(this).val()};
+    var promiseOfResult = $.getJSON("/events/map.json", dateData);
+    promiseOfResult.success(buildMap);
+  })
+});
 
 // DATE SWITCH
 
