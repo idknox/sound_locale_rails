@@ -61,7 +61,7 @@ jQuery(function ($) {
   // -- VENUE EVENTS --
 
   if (window.location.search.indexOf('?venue=') > -1) {
-    displayFiltered()
+    displayFiltered();
     displayVenue()
   }
 
@@ -107,7 +107,7 @@ jQuery(function ($) {
         $(this).find('.date-header').removeClass('stuck')
       }
     })
-  })
+  });
 
   // -- SEARCH --
 

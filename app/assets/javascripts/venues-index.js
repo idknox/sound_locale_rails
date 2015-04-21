@@ -1,7 +1,12 @@
 jQuery(function ($) {
 
-  $('#venue-modal-container').hide();
+  $('.venue, #venue-modal-container').hide();
 
+  // -- SLIDE DOWN --
+
+  $.each($('.venue'), function () {
+      $(this).slideDown();
+  });
   var buildMap = function (venue) {
 
     var lat = venue.location.split(",")[0];

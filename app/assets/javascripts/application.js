@@ -16,7 +16,7 @@
 //= require_tree ../../../vendor/assets/javascripts/.
 
 $(document).ready(function () {
-  if (localStorage.getItem('firstVisit') != 'true') {
+  if (localStorage.getItem('firstVisit') !== 'true') {
     localStorage.setItem('firstVisit', 'true');
 
     if (navigator.geolocation) {

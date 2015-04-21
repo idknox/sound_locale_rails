@@ -47,11 +47,11 @@ namespace :events do
 
   desc "Import events events"
   task all: :environment do
-    Rake::Task["events:tf"].invoke
     Rake::Task["events:axs"].invoke
+    Rake::Task["events:tf"].invoke
+    Rake::Task["events:kimono"].invoke
     Rake::Task["events:sh"].invoke
     Rake::Task["events:sk"].invoke
-    Rake::Task["events:kimono"].invoke
   end
 
   desc "Destroy events events"
