@@ -238,7 +238,13 @@ jQuery(function ($) {
     buildMap(venue);
     $('#map-container').modal({
       overlayClose: true,
+      closeHTML: '<i class="fa fa-times fa-2x"</i>',
+      closeClass: 'modal-close',
       autoResize: true,
+      containerCss: {
+        height: '90%',
+        width: '100%'
+      },
       overlayCss: {
         background: 'rgba(22, 56, 91, 0.8)'
       },
