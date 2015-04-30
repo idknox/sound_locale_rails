@@ -7,60 +7,22 @@
             <div class="col-xs-6 col-xs-offset-3 events-title header">Denver Shows</div>
             <div class="col-xs-12 instructions">
               <div class="col-xs-3 expand">
-                Click Dates to Expand <%= fa_icon 'hand-o-down' %>
+                <%= link_to (fa_icon 'th'), '#', data: {view: 'grid'}, class: 'fa-2x', id: 'grid-trigger' %>
+                <%= link_to (fa_icon 'list'), '#', data: {view: 'list'}, class: 'fa-2x', id: 'list-trigger' %>
+                <span id="grid">Grid View</span>
+                <span id="list">List View</span>
               </div>
               <div class="col-xs-4 col-xs-offset-1">
                 <%= text_field_tag 'search', nil, class: 'search', placeholder: 'Search Events' %>
               </div>
-              <div class="col-xs-2 col-xs-offset-2 toggle-all">
+              <div class="col-xs-4 toggle-all">
+                <div>Click Dates to Expand</div>
                 <%= link_to 'Close All', '#', class: 'btn btn-default', id: 'close-all' %>
                 <%= link_to 'Expand All', '#', class: 'btn btn-default', id: 'expand-all' %>
               </div>
             </div>
-            <div class="col-xs-12 months">
-              <div class="row">
-                <% next_12_months.each do |month| %>
-                  <div class="col-xs-1">
-                    <%= link_to month[:name], '#', data: {month: "#{month[:index]}#{month[:year]}"}, class: 'month' %>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-            <% @events_by_date.each do |date, events| %>
-              <div class="col-xs-12">
-                <div class="date">
-                  <div class="date-header header" id="<%= "#{date.month}#{date.year}" %>">
-                    <%= formatted_date(date) %>
-                  </div>
-                  <div class="date-content">
-                    <% events.each do |event| %>
-                      <div class="event">
-                        <div class="col-xs-12 col-md-5 title">
-                          <div class="headliner"><%= truncated_string(event.headliner) %></div>
-
-                          <% if event.opener %>
-                            <div class="opener"><%= event.opener %></div>
-                          <% end %>
-                        </div>
-                        <div class="col-xs-12 col-md-5 info">
-                          <%= formatted_time(event.time) %>
-                          @ <%= link_to event.venue.name, venue_path(event.venue.id), class: 'body-link' %>
-                          <div class="price">
-                            <%= event.price %>
-                          </div>
-                        </div>
-                        <div class="col-xs-12 col-md-2 tickets">
-                          <% if event.tickets != '' %>
-                            <%= link_to (fa_icon 'ticket'), event.tickets %>
-                          <% end %>
-                          <%= link_to (fa_icon 'map-marker'), '#', class: 'map-icon', data: {venue_id: event.venue.id} %>
-                        </div>
-                      </div>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
+              <%= render partial: 'events/list', locals: {events: @events[:list_events]} %>
+              <%= render partial: 'events/grid', locals: {events: @events[:grid_events]} %>
           </div>
         </div>
         <div class="col-xs-10 col-xs-offset-1 no-events">

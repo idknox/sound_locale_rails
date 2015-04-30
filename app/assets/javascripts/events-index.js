@@ -13,8 +13,28 @@ jQuery(function ($) {
 
   // -- INIT --
 
-  $('.date-content, #close-all, .no-events, #map-container').hide();
   $('.date-content').first().show();
+
+
+  // -- VIEWS --
+
+  $('.expand').find('a').on('mouseenter', function () {
+    var view = $(this).data('view');
+    $(this).siblings('#' + view).show()
+  }).on('mouseleave', function () {
+    var view = $(this).data('view');
+    $(this).siblings('#' + view).hide()
+  });
+
+  $('#grid-trigger').on('click', function () {
+    $('.events-list').hide();
+    $('.events-grid').show();
+  });
+
+  $('#list-trigger').on('click', function () {
+    $('.events-grid').hide();
+    $('.events-list').show();
+  });
 
   // -- TOGGLE ALL --
 

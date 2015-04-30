@@ -1,10 +1,6 @@
 class EventsController < ApplicationController
   def map
     date = determine_date
-    puts '*' * 80
-    puts params[:date]
-    puts date
-    puts '*' * 80
     @events = Event.where(date: date)
     respond_to do |format|
       format.html
@@ -13,19 +9,12 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events_by_date = future_events_grouped_by_date
+    @events = {list_events: future_events_grouped_by_date, grid_events: Event.where("date >= ?", Date.today).order(:date)}
   end
 
   private
 
   def determine_date
-    # if params[:date] == 'tomorrow'
-    #   Date.tomorrow
-    # elsif params[:date]
-    #   Date.parse(params[:date])
-    # else
-    #   Date.today
-    # end
     params[:date] == 'tomorrow' ? DateTime.now.tomorrow.to_date : params[:date] ? Date.parse(params[:date]) : Date.today
   end
 

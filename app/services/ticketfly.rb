@@ -19,7 +19,7 @@ class Ticketfly
       "maxResults=200&city=Denver" +
       "&fromDate=#{Date.today.strftime("%Y-%m-%d")}" +
       "&fields=id,name,venue.name,headlinersName,startDate," +
-      "ticketPurchaseUrl,ticketPrice,urlTwitter"
+      "ticketPurchaseUrl,ticketPrice,urlTwitter,image"
   end
 
   def all_event_pages
@@ -54,7 +54,7 @@ class Ticketfly
       vendor_id: event["id"],
       headliner: event["headlinersName"],
       opener: event["supportsName"],
-      image: (event["image"] ? event["image"]["large"]["path"]: "NA"),
+      image: event["image"] ? event["image"]["square"]["path"] : 'NA',
       date: Date.parse(event["startDate"]),
       time: Time.parse(event["startDate"]),
       tickets: event["ticketPurchaseUrl"],

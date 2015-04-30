@@ -13,8 +13,20 @@
 
     .expand {
       position: relative;
-      top: 15px;
+      top: 10px;
+      height: 50px;
 
+      a {
+        margin-right: 10px;
+      }
+
+      span {
+        margin-left: 20px;
+        font-size: 1.5em;
+        position: relative;
+        bottom: 3px;
+        display: none;
+      }
     }
 
     .search {
@@ -26,81 +38,99 @@
 
     .toggle-all {
       text-align: right;
+      height: 50px;
+      position: relative;
+      top: 10px;
+
+      div {
+        display: inline-block;
+        margin-right: 10px;
+      }
+
+      #close-all {
+        display: none;
+      }
     }
   }
 
-  .months {
-    text-align: center;
-    font-size: 1.2em;
-  }
+  .events-list {
+    padding: 0;
+    display: none;
 
-  .date {
-    color: $white;
-    border: 2px solid $dark-blue;
-
-    .date-header {
-      background: $dark-blue;
+    .months {
       text-align: center;
-      padding: 20px;
-      cursor: pointer;
-      font-size: 1.5em;
+      font-size: 1.2em;
     }
 
-    .stuck {
-      position: fixed;
-      z-index: 10001;
-      width: 80.8%;
-      top: 50px;
-      margin-bottom: 5px;
-    }
+    .date {
+      color: $white;
+      border: 2px solid $dark-blue;
 
-    .date-content {
-      color: $dark-blue;
-      padding: 10px 20px 20px 20px;
+      .date-header {
+        background: $dark-blue;
+        text-align: center;
+        padding: 20px;
+        cursor: pointer;
+        font-size: 1.5em;
+      }
 
-      .event {
-        padding: 10px 0 50px 0;
-        border-top: 1px solid $light-blue;
-        height: auto;
+      .stuck {
+        position: fixed;
+        z-index: 10001;
+        width: 80.8%;
+        top: 50px;
+        margin-bottom: 5px;
+      }
 
-        &:nth-child(1) {
-          border-top: none;
-        }
+      .date-content {
+        color: $dark-blue;
+        padding: 10px 20px 20px 20px;
+        display: none;
 
-        .headliner {
-          font-size: 1.2em;
-        }
+        .event {
+          padding: 10px 0 50px 0;
+          border-top: 1px solid $light-blue;
+          height: auto;
 
-        .opener {
-          font-size: .75em;
-        }
-
-        .info {
-          text-align: right;
-          position: relative;
-          left: 70px;
-
-          @media(max-width: $phone) {
-            text-align: center;
-            position: static;
+          &:nth-child(1) {
+            border-top: none;
           }
 
-          .body-link {
-            font-weight: bold;
+          .headliner {
+            font-size: 1.2em;
           }
 
-          .price {
+          .opener {
             font-size: .75em;
-            color: #2D628E;
           }
-        }
 
-        .tickets {
-          font-size: 2em;
-          text-align: right;
+          .info {
+            text-align: right;
+            position: relative;
+            left: 70px;
 
-          @media(max-width: $phone) {
-            text-align: center;
+            @media(max-width: $phone) {
+              text-align: center;
+              position: static;
+            }
+
+            .body-link {
+              font-weight: bold;
+            }
+
+            .price {
+              font-size: .75em;
+              color: #2D628E;
+            }
+          }
+
+          .tickets {
+            font-size: 2em;
+            text-align: right;
+
+            @media(max-width: $phone) {
+              text-align: center;
+            }
           }
         }
       }
@@ -110,10 +140,12 @@
 
 .no-events {
   text-align: center;
+  display: none;
 }
 
 #map-container {
   width: 700px;
   height: 500px;
+  display: none;
 }
 
