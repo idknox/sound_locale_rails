@@ -20,6 +20,9 @@
                 <%= link_to 'Close All', '#', class: 'btn btn-default', id: 'close-all' %>
                 <%= link_to 'Expand All', '#', class: 'btn btn-default', id: 'expand-all' %>
               </div>
+              <div class="col-xs-4 grid-instructions">
+                <!--<div>Hover on Hex for Info</div>-->
+              </div>
             </div>
               <%= render partial: 'events/list', locals: {events: @events[:list_events]} %>
               <%= render partial: 'events/grid', locals: {events: @events[:grid_events]} %>
@@ -36,4 +39,5 @@
 
 <% content_for :script do %>
   <%= javascript_include_tag 'events-index' %>
+  <%= javascript_include_tag 'events-grid' %>
 <% end %>

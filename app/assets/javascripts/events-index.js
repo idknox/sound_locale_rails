@@ -14,26 +14,24 @@ jQuery(function ($) {
 
   // -- INIT --
 
-
   function displayGrid() {
     $('.events-list, .toggle-all').hide();
-    $('.events-grid').show();
+    $('.events-grid, .grid-instructions').show();
     localStorage.setItem('eventView', 'grid');
   }
 
   function displayList() {
-    $('.events-grid').hide();
+    $('.events-grid, .grid-instructions').hide();
     $('.events-list, .toggle-all').show();
     $('.date-content').first().show();
     localStorage.setItem('eventView', 'list');
   }
 
-  if (localStorage.getItem('eventView') == 'grid') {
+  if (localStorage.getItem('eventView') == 'grid' && $(window).width() > 992) {
     displayGrid();
   } else {
     displayList();
   }
-
 
   // -- VIEWS --
 
@@ -58,8 +56,7 @@ jQuery(function ($) {
   var stickyDate;
 
   function displayAll() {
-    $('.date-content').show();
-    $('#close-all').show();
+    $('.date-content, #close-all').show();
     $('#expand-all').hide();
     stickyDate = true;
   }
@@ -72,8 +69,7 @@ jQuery(function ($) {
   }
 
   function closeAll() {
-    $('.date-content').hide();
-    $('#close-all').hide();
+    $('.date-content, #close-all').hide();
     $('#expand-all').show();
     stickyDate = false;
   }

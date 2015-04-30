@@ -9,7 +9,13 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = {list_events: future_events_grouped_by_date, grid_events: Event.where("date >= ?", Date.today).order(:date).limit(38)}
+    @events = {list_events: future_events_grouped_by_date, grid_events: Event.where("date >= ?", Date.today).order(:date).limit(50)}
+  end
+
+  def more
+    offset = params[:offset]
+    events = Event.where("date >= ?", Date.today).order(:date).limit(55).offset(offset)
+    render :json => events.to_json(:include => :venue)
   end
 
   private

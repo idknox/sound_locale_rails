@@ -1,9 +1,25 @@
 .events-grid {
-  margin-top: 20px;
-  text-align:center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  text-align: center;
   display: none;
+  padding-left: 50px;
+
+  .grid-event {
+  }
 }
 
+.events-more {
+  padding-top: 50px;
+  height: 200px;
+  width: 100%;
+
+  #events-wait {
+    text-align: center;
+    color: #333;
+    display: none;
+  }
+}
 
 .hex {
   width: 150px;
