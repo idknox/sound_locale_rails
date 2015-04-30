@@ -1,5 +1,5 @@
 <div class="col-xs-12 events-grid">
-  <% events[0..40].each_with_index do |event, i| %>
+  <% events.each_with_index do |event, i| %>
     <div class="hex event<%= ' hex-gap' if i % 11 == 0 %>"
          style="background-image: url(<%= event.image %>);"
     >

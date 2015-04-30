@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = {list_events: future_events_grouped_by_date, grid_events: Event.where("date >= ?", Date.today).order(:date)}
+    @events = {list_events: future_events_grouped_by_date, grid_events: Event.where("date >= ?", Date.today).order(:date).limit(38)}
   end
 
   private

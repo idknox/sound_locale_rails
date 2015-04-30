@@ -5,7 +5,8 @@ jQuery(function ($) {
     return (display === 'none')
   }
 
-  // case-insensitive :contains
+  // CASE-INSENSITIVE CONTAINS
+
   $.expr[':'].containsCaseInsensitive = function (a, i, m) {
     return $(a).text().toUpperCase()
       .indexOf(m[3].toUpperCase()) >= 0;
@@ -13,7 +14,25 @@ jQuery(function ($) {
 
   // -- INIT --
 
-  $('.date-content').first().show();
+
+  function displayGrid() {
+    $('.events-list, .toggle-all').hide();
+    $('.events-grid').show();
+    localStorage.setItem('eventView', 'grid');
+  }
+
+  function displayList() {
+    $('.events-grid').hide();
+    $('.events-list, .toggle-all').show();
+    $('.date-content').first().show();
+    localStorage.setItem('eventView', 'list');
+  }
+
+  if (localStorage.getItem('eventView') == 'grid') {
+    displayGrid();
+  } else {
+    displayList();
+  }
 
 
   // -- VIEWS --
@@ -27,16 +46,14 @@ jQuery(function ($) {
   });
 
   $('#grid-trigger').on('click', function () {
-    $('.events-list').hide();
-    $('.events-grid').show();
+    displayGrid();
   });
 
   $('#list-trigger').on('click', function () {
-    $('.events-grid').hide();
-    $('.events-list').show();
+    displayList();
   });
 
-  // -- TOGGLE ALL --
+  // -- TOGGLE DATES --
 
   var stickyDate;
 
@@ -203,11 +220,8 @@ jQuery(function ($) {
     var marker = new google.maps.Marker({
       position: new google.maps.LatLng(lat, lng),
       title: venue.name,
-//      animation: google.maps.Animation.DROP,
       map: map
     });
-
-//    marker.setMap(map);
 
     var directionsUrl = 'https://maps.google.com/maps?f=d&daddr=' + venue.address + '&saddr=' + localStorage.getItem('userOrigin');
 
@@ -227,7 +241,6 @@ jQuery(function ($) {
   function openMapModal(venue) {
     buildMap(venue);
     $('#map-container').modal({
-//      closeHTML: '<i class="fa fa-times"></i>',
       overlayClose: true,
       autoResize: true,
       overlayCss: {
@@ -248,33 +261,3 @@ jQuery(function ($) {
     promiseOfResult.success(openMapModal);
   });
 });
-
-//if (document.body.scrollTop < window.innerHeight) {
-//  $('.top').hide();
-//} else {
-//  $('.top').show();
-//}
-//
-//$(window).on('scroll', function () {
-//  if (document.body.scrollTop < window.innerHeight) {
-//    $('.top').hide();
-//  } else {
-//    $('.top').show();
-//  }
-//});
-//
-//$('.top').on('click', function () {
-//  $('html,body').animate({
-//    scrollTop: $('header').offset().top
-//  }, 500);
-//});
-//
-//$('.cal-date').datepicker({
-//  onSelect: function (dateText) {
-//    dateText = dateText.toString().replace('/', '').replace('/', '');
-//    $('html,body').animate({
-//      scrollTop: $('#' + dateText + '').offset().top
-//    }, 500);
-//  }
-//
-//});
