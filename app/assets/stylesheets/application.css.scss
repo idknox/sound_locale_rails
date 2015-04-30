@@ -47,3 +47,9 @@ a {
     text-decoration: none;
   }
 }
+
+.main {
+  @media(max-width: $phone) {
+    margin-top: 50px;
+  }
+}

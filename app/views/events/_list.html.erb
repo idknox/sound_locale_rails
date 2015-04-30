@@ -2,21 +2,21 @@
   <div class="col-xs-12 months">
     <div class="row">
       <% next_12_months.each do |month| %>
-        <div class="col-xs-1">
+        <div class="col-xs-2 col-sm-1">
           <%= link_to month[:name], '#', data: {month: "#{month[:index]}#{month[:year]}"}, class: 'month' %>
         </div>
       <% end %>
     </div>
   </div>
   <% events.each do |date, events| %>
-    <div class="col-xs-12">
-      <div class="date">
+    <div class="col-xs-12 clear">
+      <div class="date clear">
         <div class="date-header header" id="<%= "#{date.month}#{date.year}" %>">
           <%= formatted_date(date) %>
         </div>
-        <div class="date-content">
+        <div class="date-content clear">
           <% events.each do |event| %>
-            <div class="event">
+            <div class="event clear">
               <div class="col-xs-12 col-md-5 title">
                 <div class="headliner"><%= truncated_string(event.headliner) %></div>
 

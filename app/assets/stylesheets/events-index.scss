@@ -1,3 +1,7 @@
+.clear {
+  clear: both;
+}
+
 .events {
   margin-top: 5%;
 
@@ -15,6 +19,10 @@
       position: relative;
       top: 10px;
       height: 50px;
+
+      @media (max-width: $phone) {
+        display: none;
+      }
 
       a {
         margin-right: 10px;
@@ -92,6 +100,7 @@
         padding: 10px 20px 20px 20px;
         display: none;
 
+
         .event {
           padding: 10px 0 50px 0;
           border-top: 1px solid $light-blue;
@@ -115,7 +124,7 @@
             left: 70px;
 
             @media(max-width: $phone) {
-              text-align: center;
+              text-align: left;
               position: static;
             }
 
@@ -134,7 +143,7 @@
             text-align: right;
 
             @media(max-width: $phone) {
-              text-align: center;
+              text-align: left;
             }
           }
         }
