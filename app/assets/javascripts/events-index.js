@@ -16,12 +16,12 @@ jQuery(function ($) {
 
   function displayGrid() {
     $('.events-list, .toggle-all').hide();
-    $('.events-grid, .grid-instructions').show();
+    $('.grid-container, .grid-instructions').show();
     localStorage.setItem('eventView', 'grid');
   }
 
   function displayList() {
-    $('.events-grid, .grid-instructions').hide();
+    $('.grid-container, .grid-instructions').hide();
     $('.events-list, .toggle-all').show();
     $('.date-content').first().show();
     localStorage.setItem('eventView', 'list');

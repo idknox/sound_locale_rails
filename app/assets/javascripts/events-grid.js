@@ -1,26 +1,7 @@
 $(document).ready(function () {
 
-  // - GRID INDENT --
-  var lg = $(window).width() > 1200;
-//  var indented;
-//
-//  if (lg) {
-//    indented = 8;
-//  } else {
-//    indented = 6;
-//  }
-
-//  $.each($('.grid-event'), function (i, eventContainer) {
-//    if (i === indented) {
-//      $(this).addClass('hex-gap');
-//
-//      if (lg) {
-//        indented += 15;
-//      } else {
-//        indented += 11;
-//      }
-//    }
-//  });
+  // Check device size
+  var lg = $(window).width() > 1300;
 
   // - FETCH MORE EVENTS --
 
@@ -63,7 +44,7 @@ $(document).ready(function () {
     if (lg) {
       limit = 60;
     } else {
-      limit = 50;
+      limit = 55;
     }
 
     var promiseOfResult = $.getJSON('/events/more?offset=' + offset + '&limit=' + limit);
@@ -72,7 +53,7 @@ $(document).ready(function () {
 
   // Scroll trigger
   $(window).on('scroll', function () {
-    var trigger = $('.events-more').offset().top - $(window).height() + 100
+    var trigger = $('.events-more').offset().top - $(window).height() + 100;
     var w = $(window).scrollTop();
 
     if (w > trigger) {
