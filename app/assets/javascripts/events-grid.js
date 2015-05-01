@@ -1,27 +1,50 @@
 $(document).ready(function () {
 
   // - GRID INDENT --
+  var lg = $(window).width() > 1200;
+//  var indented;
+//
+//  if (lg) {
+//    indented = 8;
+//  } else {
+//    indented = 6;
+//  }
 
-  var indented = 6;
-  $.each($('.grid-event'), function (i, eventContainer) {
-    if (i === indented) {
-      $(this).addClass('hex-gap');
-      indented += 11;
-    }
-  });
+//  $.each($('.grid-event'), function (i, eventContainer) {
+//    if (i === indented) {
+//      $(this).addClass('hex-gap');
+//
+//      if (lg) {
+//        indented += 15;
+//      } else {
+//        indented += 11;
+//      }
+//    }
+//  });
 
   // - FETCH MORE EVENTS --
 
   // Add events to container
   function addGridEvents(events) {
     $('#events-wait').hide();
-    var indented = 0;
+    var indented;
+
+    if (lg) {
+      indented = 8;
+    } else {
+      indented = 6;
+    }
     $.each(events, function (i, event) {
       var indentClass = ' ';
 
       if (i === indented) {
         indentClass = 'hex-gap';
-        indented += 11;
+
+        if (lg) {
+          indented += 15;
+        } else {
+          indented += 11;
+        }
       }
 
       var newEvent = '<div class="hex grid-event ' + indentClass + '" style="background-image: url(' +
@@ -33,10 +56,17 @@ $(document).ready(function () {
   }
 
   // Get events from API
-  function fetchMoreEvents() {
+  function fetchEvents() {
     var offset = $('.grid-event').length;
+    var limit;
 
-    var promiseOfResult = $.getJSON("/events/more/" + offset + ".json");
+    if (lg) {
+      limit = 60;
+    } else {
+      limit = 50;
+    }
+
+    var promiseOfResult = $.getJSON('/events/more?offset=' + offset + '&limit=' + limit);
     promiseOfResult.success(addGridEvents);
   }
 
@@ -47,7 +77,9 @@ $(document).ready(function () {
 
     if (w > trigger) {
       $('#events-wait').show();
-      fetchMoreEvents();
+      fetchEvents();
     }
-  })
+  });
+
+  fetchEvents();
 });

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post "/signin" => "sessions#create"
   get "/events/map" => "events#map"
   get "/venues/map" => "venues#map"
-  get "/events/more/:offset" => "events#more"
+  get "/events/more" => "events#more"
   resources :venues
   resources :events
   resources :users
