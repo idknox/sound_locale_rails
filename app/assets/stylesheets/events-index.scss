@@ -192,23 +192,25 @@
 
 .video-container {
   position: fixed;
-  bottom: -5px;
+  bottom: 0;
   right: 0;
-  width: 332px;
-  background: #000;
+  width: 300px;
+  background: white;
   display: none;
 
-  #yt-close {
+  #yt-buttons {
     float: left;
     position: relative;
     top: 2px;
     left: 5px;
+    margin-right: 2px;
+
     i {
-      color: $white;
     }
   }
 
   #yt-video {
     float: right;
+    height: 28px;
   }
 }

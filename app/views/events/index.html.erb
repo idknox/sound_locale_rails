@@ -36,8 +36,9 @@
     <div id="map-container"></div>
     <div id="yt-player">
       <div class="video-container">
-        <div id="yt-close">
-          <%= fa_icon 'times', class: 'fa-2x body-link' %>
+        <div id="yt-buttons">
+          <%= fa_icon 'times', id: 'yt-close', class: 'fa-2x body-link' %>
+          <%= fa_icon 'video-camera', id: 'yt-video-expand', class: 'fa-2x body-link' %>
         </div>
         <iframe id="yt-video" type="text/html" width="300" height=200"
                 frameborder="0"></iframe>
