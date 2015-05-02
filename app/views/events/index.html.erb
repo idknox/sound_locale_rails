@@ -34,15 +34,23 @@
       </div>
     </div>
     <div id="map-container"></div>
-    <div id="yt-player">
-      <div class="video-container">
-        <div id="yt-buttons">
-          <%= fa_icon 'times', id: 'yt-close', class: 'fa-2x body-link' %>
-          <%= fa_icon 'video-camera', id: 'yt-video-expand', class: 'fa-2x body-link' %>
-        </div>
-        <iframe id="yt-video" type="text/html" width="300" height=200"
-                frameborder="0"></iframe>
+    <div class="player" id="yt-player">
+      <div class="buttons">
+        <%= fa_icon 'times', id: 'yt-close', class: 'fa-2x body-link' %>
+        <%= fa_icon 'video-camera', id: 'yt-video-expand', class: 'fa-2x body-link' %>
       </div>
+      <iframe id="yt-video"
+              type="text/html"
+              width="300"
+              height=200"
+              frameborder="0">
+      </iframe>
+    </div>
+    <div class="player" id="sc-player">
+      <div class="buttons">
+        <%= fa_icon 'times', id: 'sc-close', class: 'fa-2x body-link' %>
+      </div>
+      <div id="sc-widget"></div>
     </div>
   </section>
 <% end %>
@@ -51,4 +59,6 @@
   <%= javascript_include_tag 'events-index' %>
   <%= javascript_include_tag 'events-grid' %>
   <%= javascript_include_tag 'youtube' %>
+  <script src="http://connect.soundcloud.com/sdk.js"></script>
+  <%= javascript_include_tag 'soundcloud' %>
 <% end %>

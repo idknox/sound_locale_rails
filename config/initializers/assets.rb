@@ -9,6 +9,7 @@ Rails.application.config.assets.precompile += %w( venue-map.js )
 Rails.application.config.assets.precompile += %w( events-index.js )
 Rails.application.config.assets.precompile += %w( events-grid.js )
 Rails.application.config.assets.precompile += %w( youtube.js )
+Rails.application.config.assets.precompile += %w( soundcloud.js )
 Rails.application.config.assets.precompile += %w( user-form.js )
 Rails.application.config.assets.precompile += %w( venues-index.js )
 

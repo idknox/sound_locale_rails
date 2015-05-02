@@ -151,8 +151,12 @@
               }
             }
 
-            .sc-trigger:hover {
-              color: $sc;
+            .sc-trigger {
+              display: none;
+
+              &:hover {
+                color: $sc;
+              }
             }
 
             .map-trigger:hover {
@@ -190,7 +194,7 @@
   }
 }
 
-.video-container {
+.player {
   position: fixed;
   bottom: 0;
   right: 0;
@@ -198,19 +202,23 @@
   background: white;
   display: none;
 
-  #yt-buttons {
+  .buttons {
     float: left;
     position: relative;
     top: 2px;
     left: 5px;
-    margin-right: 2px;
+  }
 
-    i {
-    }
+  #yt-video, #sc-widget {
+    float: right;
   }
 
   #yt-video {
-    float: right;
     height: 28px;
+  }
+
+  #sc-widget {
+    position: relative;
+    top: 7px;
   }
 }
