@@ -31,11 +31,25 @@
                   <%= event.price %>
                 </div>
               </div>
-              <div class="col-xs-12 col-md-2 tickets">
-                <% if event.tickets != '' %>
-                  <%= link_to (fa_icon 'ticket'), event.tickets %>
-                <% end %>
-                <%= link_to (fa_icon 'map-marker'), '#', class: 'map-icon', data: {venue_id: event.venue.id} %>
+              <div class="col-xs-12 col-md-2 links">
+                <div class="row">
+                  <div class="col-xs-3">
+                    <% if event.tickets != '' %>
+                      <%= link_to (fa_icon 'ticket'), event.tickets, class: 'tickets-trigger' %>
+                    <% else %>
+                      &nbsp;
+                    <% end %>
+                  </div>
+                  <div class="col-xs-3">
+                    <%= fa_icon 'map-marker', class: 'map-trigger', data: {venue_id: event.venue.id} %>
+                  </div>
+                  <div class="col-xs-3">
+                    <%= fa_icon 'youtube-play', class: 'yt-trigger', data: {query: event.headliner + ' band'} %>
+                  </div>
+                  <div class="col-xs-3">
+                    <%= fa_icon 'soundcloud', class: 'sc-trigger', data: {query: event.headliner} %>
+                  </div>
+                </div>
               </div>
             </div>
           <% end %>

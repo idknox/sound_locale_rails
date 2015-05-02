@@ -1,10 +1,5 @@
 jQuery(function ($) {
 
-  function isHidden(el) {
-    var display = el.css('display');
-    return (display === 'none')
-  }
-
   // CASE-INSENSITIVE CONTAINS
 
   $.expr[':'].containsCaseInsensitive = function (a, i, m) {
@@ -84,7 +79,7 @@ jQuery(function ($) {
 
 
   $('.toggle-all').on('click', function () {
-    if (isHidden($('#close-all'))) {
+    if (utils.isHidden($('#close-all'))) {
       displayAll()
     } else {
       closeAll()
@@ -108,7 +103,7 @@ jQuery(function ($) {
       scrollTop: $(this).offset().top - menuHeight
     }, 500);
 
-    if (isHidden(content)) {
+    if (utils.isHidden(content)) {
       content.slideDown();
     } else {
       content.slideUp();
@@ -254,7 +249,7 @@ jQuery(function ($) {
     })
   }
 
-  $('.map-icon').on('click', function () {
+  $('.map-trigger').on('click', function () {
     $('#map-container').empty();
     var id = $(this).data('venue-id');
 

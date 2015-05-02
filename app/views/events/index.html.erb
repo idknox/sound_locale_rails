@@ -16,7 +16,7 @@
                 <%= text_field_tag 'search', nil, class: 'search', placeholder: 'Search Events' %>
               </div>
               <div class="col-xs-12 col-sm-4 toggle-all">
-                <div>Click Dates to Expand</div>
+                <div>Click Dates to Expand/Close</div>
                 <%= link_to 'Close All', '#', class: 'btn btn-default', id: 'close-all' %>
                 <%= link_to 'Expand All', '#', class: 'btn btn-default', id: 'expand-all' %>
               </div>
@@ -24,8 +24,8 @@
                 <!--<div>Hover on Hex for Info</div>-->
               </div>
             </div>
-              <%= render partial: 'events/list', locals: {events: @events[:list_events]} %>
-              <%= render partial: 'events/grid', locals: {events: @events[:grid_events]} %>
+            <%= render partial: 'events/list', locals: {events: @events[:list_events]} %>
+            <%= render partial: 'events/grid', locals: {events: @events[:grid_events]} %>
           </div>
         </div>
         <div class="col-xs-10 col-xs-offset-1 no-events">
@@ -34,10 +34,20 @@
       </div>
     </div>
     <div id="map-container"></div>
+    <div id="yt-player">
+      <div class="video-container">
+        <div id="yt-close">
+          <%= fa_icon 'times', class: 'fa-2x body-link' %>
+        </div>
+        <iframe id="yt-video" type="text/html" width="300" height=200"
+                frameborder="0"></iframe>
+      </div>
+    </div>
   </section>
 <% end %>
 
 <% content_for :script do %>
   <%= javascript_include_tag 'events-index' %>
   <%= javascript_include_tag 'events-grid' %>
+  <%= javascript_include_tag 'youtube' %>
 <% end %>

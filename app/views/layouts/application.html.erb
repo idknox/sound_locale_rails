@@ -59,8 +59,9 @@
 <div class="main">
   <%= yield :main %>
 </div>
+<%= javascript_include_tag 'utils' %>
 <%= yield :script %>
-
+<script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
 </body>
 </html>
 
