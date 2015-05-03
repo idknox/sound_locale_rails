@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get "/events/map" => "events#map"
   get "/venues/map" => "venues#map"
   get "/events/more" => "events#more"
+  get "/events/date/:date" => "events#by_date"
+
   resources :venues
   resources :events
   resources :users

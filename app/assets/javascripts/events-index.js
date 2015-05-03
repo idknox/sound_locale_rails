@@ -28,6 +28,7 @@ jQuery(function ($) {
     displayList();
   }
 
+
   // -- VIEWS --
 
   $('.expand').find('a').on('mouseenter', function () {
@@ -96,8 +97,21 @@ jQuery(function ($) {
   // -- TOGGLE DATE --
 
   $('.date-header').on('click', function () {
-    var content = $(this).siblings('.date-content')
+    var content = $(this).siblings('.date-content');
     var menuHeight = $('#nav-custom').height();
+
+    var timestamp = new Date($(this).data('date'));
+    var date = new Date(timestamp.getFullYear(), timestamp.getMonth(), timestamp.getDate());
+
+    var promise = $.getJSON('/events/date/' + date);
+    promise.success(insertEvents);
+
+    function insertEvents(events) {
+      console.log(events)
+
+
+
+    }
 
     $('html,body').animate({
       scrollTop: $(this).offset().top - menuHeight
