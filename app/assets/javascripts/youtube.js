@@ -2,7 +2,7 @@ function googleApiClientReady() {
   var apiKey = 'AIzaSyBRtL3pVPoD3YzPoEtd-b6bKB_SUpVsMgA';
   gapi.client.setApiKey(apiKey);
   gapi.client.load('youtube', 'v3').then(function () {
-    console.log('hi')
+    loadTodayEvents();
   });
 }
 
