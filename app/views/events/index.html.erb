@@ -56,9 +56,9 @@
 <% end %>
 
 <% content_for :script do %>
-  <%= javascript_include_tag 'events-index' %>
-  <%= javascript_include_tag 'events-grid' %>
-  <%= javascript_include_tag 'youtube' %>
   <script src="http://connect.soundcloud.com/sdk.js"></script>
   <%= javascript_include_tag 'soundcloud' %>
+  <%= javascript_include_tag 'events-index' %>
+  <%= javascript_include_tag 'youtube' %>
+  <%= javascript_include_tag 'events-grid' %>
 <% end %>

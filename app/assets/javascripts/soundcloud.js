@@ -4,21 +4,8 @@ SC.initialize({
 
 // Display SC button if there are enough tracks
 
-$('.sc-trigger').each(function (i, el) {
-  var trigger = $(this);
-  var query = trigger.data('query');
-
-  SC.get('/tracks', {q: query, limit: 5}, function (tracks) {
-    if (tracks.length === 5) {
-      trigger.show();
-      trigger.data('scUrl', tracks[0].permalink_url)
-    }
-  });
-});
-
-$('.sc-trigger').on('click', function () {
+$('body').on('click', '.sc-trigger', function () {
   utils.endYoutubePlayer();
-
   var trackUrl = $(this).data('scUrl');
 
   SC.oEmbed(trackUrl, {

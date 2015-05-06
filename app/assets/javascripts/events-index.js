@@ -78,7 +78,6 @@ jQuery(function ($) {
     })
   }
 
-
   $('.toggle-all').on('click', function () {
     if (utils.isHidden($('#close-all'))) {
       displayAll()
@@ -94,7 +93,17 @@ jQuery(function ($) {
     displayVenue()
   }
 
-  // -- TOGGLE DATE --
+  // -- INIT TODAY'S EVENTS --
+
+  var today = $('.date-header').first().siblings('.date-content');
+  var timestamp = new Date();
+  var date = new Date(timestamp.getFullYear(), timestamp.getMonth(), timestamp.getDate());
+
+  $.get('/events/date/' + date, {}, function (events) {
+    insertEvents(today, events);
+  });
+
+  // -- OPEN DATE --
 
   $('.date-header').on('click', function () {
     var content = $(this).siblings('.date-content');
@@ -103,26 +112,67 @@ jQuery(function ($) {
     var timestamp = new Date($(this).data('date'));
     var date = new Date(timestamp.getFullYear(), timestamp.getMonth(), timestamp.getDate());
 
-    var promise = $.getJSON('/events/date/' + date);
-    promise.success(insertEvents);
-
-    function insertEvents(events) {
-      console.log(events)
-
-
-
-    }
+    $.get('/events/date/' + date, {}, function (events) {
+      insertEvents(content, events);
+    });
 
     $('html,body').animate({
       scrollTop: $(this).offset().top - menuHeight
     }, 500);
 
-    if (utils.isHidden(content)) {
-      content.slideDown();
-    } else {
-      content.slideUp();
-    }
+    content.slideToggle();
   });
+
+
+  // -- INSERT EVENTS --
+  function insertEvents(container, events) {
+    $.each(events, function (i, event) {
+
+      var opener = event.opener || '';
+
+      var event = '<div class="event clear"><div class="col-xs-12 col-md-5 title">' +
+        '<div class="headliner">' + event.headliner + '</div>' +
+        '<div class="opener">' + opener + '</div></div><div class="col-xs-12 ' +
+        'col-md-5 info">' + 'Event time' + ' @ <a href="/venues/' + event.venue.id +
+        '" class="body-link">' + event.venue.name + '</a><div class="price">' +
+        event.price + '</div></div><div class="col-xs-12 col-md-2 links">' +
+        '<div class="row"><div class="col-xs-3"><a class="tickets-trigger" href="' + event.tickets + '"><i class="fa fa-ticket ' +
+        '"></i></a></div><div class="col-xs-3">' +
+        '<i class="fa fa-map-marker map-trigger" data-venue-id="' + event.venue.id +
+        '"></i></div><div class="col-xs-3"><i class="fa fa-youtube-play yt-trigger"' +
+        'data-query="' + event.headliner + ' band"></i></div><div class="col-xs-3">' +
+        '<i class="fa fa-soundcloud sc-trigger" data-query="' + event.headliner +
+        '"></i></div></div></div></div></div>';
+
+
+      showScButton(container);
+      container.append(event);
+    })
+  }
+
+  function showScButton(date) {
+    date.find('.sc-trigger').each(function (i, el) {
+      var trigger = $(this);
+      var storedDate = localStorage.getItem(date);
+
+      if (!storedDate) {
+        var query = trigger.data('query');
+
+        SC.get('/tracks', {q: query, limit: 5}, function (tracks) {
+          if (tracks.length === 5) {
+            localStorage.setItem(date, tracks[0].permalink_url)
+            trigger.show();
+            trigger.data('scUrl', tracks[0].permalink_url)
+          } else {
+            localStorage.setItem(date, 'false')
+          }
+        });
+      } else if (storedDate && storedDate !== 'false') {
+        trigger.show();
+        trigger.data('scUrl', storedDate)
+      }
+    });
+  }
 
   // -- SCROLL TO MONTH --
 

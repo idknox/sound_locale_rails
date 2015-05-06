@@ -2,14 +2,14 @@ function googleApiClientReady() {
   var apiKey = 'AIzaSyBRtL3pVPoD3YzPoEtd-b6bKB_SUpVsMgA';
   gapi.client.setApiKey(apiKey);
   gapi.client.load('youtube', 'v3').then(function () {
-    $('.yt-trigger').show()
+    console.log('hi')
   });
 }
 
 var videoIds = [];
 var player;
 
-$('.yt-trigger').on('click', function () {
+$('body').on('click', '.yt-trigger', function () {
   utils.endSoundcloudPlayer();
 
   var query = $(this).data('query');

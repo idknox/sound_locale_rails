@@ -143,12 +143,8 @@
               text-align: left;
             }
 
-            .yt-trigger {
-              display: none;
-
-              &:hover {
-                color: $yt;
-              }
+            .yt-trigger:hover {
+              color: $yt;
             }
 
             .sc-trigger {
