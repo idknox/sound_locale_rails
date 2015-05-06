@@ -9,7 +9,6 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = events_for_today
   end
 
   def more

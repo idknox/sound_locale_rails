@@ -17,8 +17,8 @@
               </div>
               <div class="col-xs-12 col-sm-4 toggle-all">
                 <div>Click Dates to Expand/Close</div>
-                <%= link_to 'Close All', '#', class: 'btn btn-default', id: 'close-all' %>
-                <%= link_to 'Expand All', '#', class: 'btn btn-default', id: 'expand-all' %>
+                <!--<%= link_to 'Close All', '#', class: 'btn btn-default', id: 'close-all' %>-->
+                <!--<%= link_to 'Expand All', '#', class: 'btn btn-default', id: 'expand-all' %>-->
               </div>
               <div class="col-xs-12 col-sm-4 grid-instructions">
                 <!--<div>Hover on Hex for Info</div>-->
@@ -58,6 +58,7 @@
 <% content_for :script do %>
   <script src="http://connect.soundcloud.com/sdk.js"></script>
   <%= javascript_include_tag 'soundcloud' %>
+  <%= javascript_include_tag 'event_ui' %>
   <%= javascript_include_tag 'events-index' %>
   <%= javascript_include_tag 'youtube' %>
   <%= javascript_include_tag 'events-grid' %>

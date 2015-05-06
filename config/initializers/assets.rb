@@ -3,6 +3,8 @@
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( utils.js )
+Rails.application.config.assets.precompile += %w( event_ui.js )
+Rails.application.config.assets.precompile += %w( google_map.js )
 Rails.application.config.assets.precompile += %w( venues-map.js )
 Rails.application.config.assets.precompile += %w( events-map.js )
 Rails.application.config.assets.precompile += %w( venue-map.js )

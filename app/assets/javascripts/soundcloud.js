@@ -1,10 +1,13 @@
-SC.initialize({
-  client_id: "27f71ecb6fb79ea3160d95d05b246693"
-});
-
 window.soundcloud = {
+  init: function () {
+    SC.initialize({
+      client_id: "27f71ecb6fb79ea3160d95d05b246693"
+    });
+  },
+
   startPlayer: function (trackUrl) {
     youtube.endPlayer();
+    this.endPlayer();
 
     SC.oEmbed(trackUrl, {
         auto_play: true,

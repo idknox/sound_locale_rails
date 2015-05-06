@@ -2,7 +2,8 @@ function googleApiClientReady() {
   var apiKey = 'AIzaSyBRtL3pVPoD3YzPoEtd-b6bKB_SUpVsMgA';
   gapi.client.setApiKey(apiKey);
   gapi.client.load('youtube', 'v3').then(function () {
-    loadTodayEvents();
+    soundcloud.init();
+    eventUi.loadTodayEvents();
   });
 }
 
@@ -21,7 +22,7 @@ window.youtube = {
   startPlayer: function (query) {
     var yt = this;
     var request = gapi.client.youtube.search.list({
-      q: query,
+      q: query + ' music band',
       part: 'snippet',
       type: 'video'
     });
