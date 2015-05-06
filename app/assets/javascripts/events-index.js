@@ -1,5 +1,30 @@
 //jQuery(function ($) {
 
+// -- PLAYERS --
+
+$('body').on('click', '.yt-trigger', function () {
+  var query = $(this).data('query');
+  youtube.initPlayer(query);
+});
+
+
+$('#yt-close').on('click', function () {
+  youtube.endPlayer();
+});
+
+$('#yt-video-expand').on('click', function () {
+  youtube.expandVideo(28, 200)
+});
+
+$('body').on('click', '.sc-trigger', function () {
+  var trackUrl = $(this).data('scUrl');
+  soundcloud.startPlayer(trackUrl);
+});
+
+$('#sc-close').on('click', function () {
+  soundcloud.endPlayer()
+});
+
 // CASE-INSENSITIVE CONTAINS
 
 $.expr[':'].containsCaseInsensitive = function (a, i, m) {
@@ -156,12 +181,14 @@ function showScButton(date) {
     var trigger = $(this);
     var query = trigger.data('query');
     var storedDate = localStorage.getItem(query);
+
     if (!storedDate) {
 
       SC.get('/users', {q: query, limit: 1}, function (users) {
 
         if (users.length > 0) {
           var userId = users[0].id;
+
           SC.get('/users/' + userId + '/tracks', {limit: 1}, function (tracks) {
             localStorage[query] = tracks[0].permalink_url;
             trigger.show();
