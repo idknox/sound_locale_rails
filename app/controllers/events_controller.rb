@@ -4,24 +4,29 @@ class EventsController < ApplicationController
     @events = Event.where(date: date)
     respond_to do |format|
       format.html
-      format.json { render :json => @events.to_json(:include => :venue) }
+      format.json { render :json => @events.to_json(include: :venue) }
     end
   end
 
   def index
   end
 
+  def show
+    event = Event.find(params[:id])
+    render :json => event.to_json(include: :venue)
+  end
+
   def more
     offset = params[:offset]
     limit = params[:limit]
     events = Event.where("date >= ?", Date.today).order(:date).limit(limit).offset(offset)
-    render :json => events.to_json(:include => :venue)
+    render :json => events.to_json(include: :venue)
   end
 
   def by_date
     date = Date.parse(params[:date])
     events = Event.where("date = ?", date).order(:venue_name)
-    render :json => events.to_json(:include => :venue)
+    render :json => events.to_json(include: :venue)
   end
 
   private

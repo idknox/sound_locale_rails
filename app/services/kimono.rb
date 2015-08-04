@@ -32,7 +32,8 @@ class Kimono
       tickets: event["name"]["href"],
       url: "",
       twitter: "",
-      price: event["price"]
+      price: event["price"],
+      soundcloud_url: SoundcloudService.new.get_first_track(event["name"]["text"].split("-")[0])
     }
   end
 

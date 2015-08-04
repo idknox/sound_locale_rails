@@ -31,86 +31,75 @@ window.eventUi = {
     this.stickyDate = false;
   },
 
-  loadTodayEvents: function () {
-    var today = $('.date-header').first().siblings('.date-content');
-    var timestamp = new Date();
-    var date = new Date(timestamp.getFullYear(), timestamp.getMonth(), timestamp.getDate());
-    $.get('/events/date/' + date).success(function (events) {
-      eventUi.insertEvents(today, events);
-      today.slideToggle();
+  loadAllEvents: function () {
+    var headers = $('.date-header');
+    localStorage.clear();
+    headers.each(function () {
+      var header = $(this)
+      eventUi.fillDate(header)
     });
+
+//    var today = $('.date-header').first().siblings('.date-content');
+//    eventUi.fillDate($('.date-header').first())
+//    today.slideToggle();
+    $('.date-content').slideToggle();
   },
-  expandAndFillDate: function (header) {
+
+  fillDate: function (header) {
     var content = header.siblings('.date-content');
     var headerDate = header.data('date');
-    var menuHeight = $('#nav-custom').height();
+    var storedEvents = localStorage.getItem(headerDate);
 
-    var timestamp = new Date(headerDate);
-    var date = new Date(timestamp.getFullYear(), timestamp.getMonth(), timestamp.getDate());
+    if (!storedEvents) {
+      $.get('/events/date/' + headerDate, {}, function (events) {
+        $.each(events, function (i, event) {
+          var opener = event.opener || '';
+          var time = moment(event.time);
+          var formatted_time = time.format('h:mma');
 
-    $.get('/events/date/' + date, {}, function (events) {
-      eventUi.insertEvents(content, events);
+          var event = '<div class="event clear"><div class="col-xs-12 col-md-5 title">' +
+            '<div class="headliner">' + event.headliner + '</div>' +
+            '<div class="opener">' + opener + '</div></div><div class="col-xs-12 ' +
+            'col-md-5 info">' + formatted_time + ' @ <a href="/venues/' + event.venue.id +
+            '" class="body-link">' + event.venue.name + '</a><div class="price">' +
+            event.price + '</div></div><div class="col-xs-12 col-md-2 links">' +
+            '<div class="row"><div class="col-xs-3"><a class="tickets-trigger" href="' + event.tickets + '"><i class="fa fa-ticket ' +
+            '"></i></a></div><div class="col-xs-3">' +
+            '<i class="fa fa-map-marker map-trigger" data-event-id="' + event.id +
+            '"></i></div><div class="col-xs-3"><i class="fa fa-youtube-play yt-trigger"' +
+            'data-query="' + event.headliner + '"></i></div><div class="col-xs-3"><i class="fa fa-soundcloud sc-trigger" ' +
+            'data-scUrl="' + event.soundcloud_url + '"></i></div></div></div></div></div>';
 
-      $('html,body').animate({
-        scrollTop: header.offset().top - menuHeight
-      }, 500);
-
-      content.slideToggle();
-
-    });
-  },
-
-  insertEvents: function (container, events) {
-    $.each(events, function (i, event) {
-
-      var opener = event.opener || '';
-
-      var event = '<div class="event clear"><div class="col-xs-12 col-md-5 title">' +
-        '<div class="headliner">' + event.headliner + '</div>' +
-        '<div class="opener">' + opener + '</div></div><div class="col-xs-12 ' +
-        'col-md-5 info">' + 'Event time' + ' @ <a href="/venues/' + event.venue.id +
-        '" class="body-link">' + event.venue.name + '</a><div class="price">' +
-        event.price + '</div></div><div class="col-xs-12 col-md-2 links">' +
-        '<div class="row"><div class="col-xs-3"><a class="tickets-trigger" href="' + event.tickets + '"><i class="fa fa-ticket ' +
-        '"></i></a></div><div class="col-xs-3">' +
-        '<i class="fa fa-map-marker map-trigger" data-venue-id="' + event.venue.id +
-        '"></i></div><div class="col-xs-3"><i class="fa fa-youtube-play yt-trigger"' +
-        'data-query="' + event.headliner + '"></i></div><div class="col-xs-3">' +
-        '<i class="fa fa-soundcloud sc-trigger" data-query="' + event.headliner +
-        '"></i></div></div></div></div></div>';
-
-      eventUi.showScButton(container);
-      container.append(event);
-    })
-  },
-
-  showScButton: function (date) {
-    date.find('.sc-trigger').each(function (i, el) {
-      var trigger = $(this);
-      var query = trigger.data('query');
-      var storedDate = localStorage.getItem(query);
-
-      if (!storedDate) {
-
-        SC.get('/users', {q: query, limit: 1}, function (users) {
-
-          if (users.length > 0) {
-            var userId = users[0].id;
-
-            SC.get('/users/' + userId + '/tracks', {limit: 1}, function (tracks) {
-              if (tracks.length > 0) {
-                localStorage[query] = tracks[0].permalink_url;
-                trigger.show();
-                trigger.data('scUrl', localStorage[query]);
-              }
-            })
-          } else {
-            localStorage[query] = 'false';
-          }
+          content.append(event);
         });
-      } else if (storedDate && storedDate !== 'false') {
+        var eventString = content.innerHTML;
+        localStorage.setItem(headerDate, eventString);
+        eventUi.showScButtons(content)
+      });
+    } else {
+      var eventString = localStorage.getItem(headerDate);
+      content.append(eventString);
+      eventUi.showScButtons(content)
+    }
+  },
+
+  expandDate: function (header) {
+
+    var menuHeight = $('#nav-custom').height();
+    var content = header.siblings('.date-content');
+
+    $('html,body').animate({
+      scrollTop: header.offset().top - menuHeight
+    }, 500);
+    content.slideToggle();
+  },
+
+  showScButtons: function (content) {
+    content.find('.sc-trigger').each(function () {
+      var trigger = $(this);
+      var url = trigger.data('scurl');
+      if (url !== '' && url !== 'null') {
         trigger.show();
-        trigger.data('scUrl', storedDate)
       }
     });
   },
@@ -119,5 +108,26 @@ window.eventUi = {
     $('html,body').animate({
       scrollTop: $('#' + month).offset().top - $('#nav-custom').height()
     }, 500);
+  },
+
+  displayVenueEvents: function () {
+    var venueId = window.location.search.split('=')[1];
+
+    $.getJSON("/venues/" + venueId + ".json").success(function (venue) {
+      $('.events-title').empty().append(venue.name).show();
+      var events = venue.events;
+      $.each(events, function (i, event) {
+        console.log(event.date)
+      })
+    })
+  },
+
+  loadEvents: function () {
+    if (window.location.search.indexOf('?venue=') > -1) {
+      this.displayFiltered();
+      this.displayVenueEvents()
+    } else {
+      this.loadAllEvents();
+    }
   }
 };

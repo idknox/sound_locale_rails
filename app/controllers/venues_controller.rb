@@ -15,7 +15,7 @@ class VenuesController < ApplicationController
     @venue = Venue.find(params[:id])
     respond_to do |format|
       format.html
-      format.json { render :json => @venue }
+      format.json { render :json => @venue.to_json(include: :events) }
     end
   end
 end

@@ -3,7 +3,10 @@ namespace :events do
   desc "Import events from Ticketfly"
   task tf: :environment do
     count = 0
-    Ticketfly.events.each { |event| count += 1 if Event.new(event).save }
+    Ticketfly.events.each do |event|
+      event = Event.new(event)
+      count += 1 if event.save
+    end
     print_count(count, "PULLED")
     EventsMailer.ticketfly_pull(count).deliver if Rails.env.production?
   end

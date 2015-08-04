@@ -60,7 +60,8 @@ class Ticketfly
       tickets: event["ticketPurchaseUrl"],
       url: event["ticketPurchaseUrl"],
       twitter: event["urlTwitter"],
-      price: event["ticketPrice"]
+      price: event["ticketPrice"],
+      soundcloud_url: SoundcloudService.new.get_first_track(event["headlinersName"])
     }
   end
 end

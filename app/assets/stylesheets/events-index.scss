@@ -85,6 +85,11 @@
         padding: 20px;
         cursor: pointer;
         font-size: 1.5em;
+        width: 100%;
+
+        &:hover {
+          color: $light-blue;
+        }
       }
 
       .stuck {
@@ -99,6 +104,7 @@
         color: $dark-blue;
         padding: 10px 20px 20px 20px;
         display: none;
+        overflow: auto;
 
         .event {
           padding: 10px 0 50px 0;

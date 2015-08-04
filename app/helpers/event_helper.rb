@@ -13,6 +13,11 @@ module EventHelper
     time.strftime('%l:%M %p') if time
   end
 
+  def date_id(date)
+    month = date.day == 1 ? " #{date.month}#{date.year.to_s[2..-1]}" : ''
+    "#{date.month}#{date.day}#{date.year}" + month
+  end
+
   def doors(time)
     formatted_time(time.advance(hours: -1))
   end
@@ -30,7 +35,7 @@ module EventHelper
       {
         name: name,
         index: i+1,
-        year: i+1 > current_month ? current_year : current_year+1
+        year: (i+1 > current_month ? current_year : current_year+1).to_s[2..-1]
       }
     end
 

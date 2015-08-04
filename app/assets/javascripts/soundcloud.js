@@ -3,6 +3,7 @@ window.soundcloud = {
     SC.initialize({
       client_id: "27f71ecb6fb79ea3160d95d05b246693"
     });
+    console.log('SOUNDCLOUD PLAYER LOADED')
   },
 
   startPlayer: function (trackUrl) {

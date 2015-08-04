@@ -54,17 +54,18 @@ class Songkick
     headliner = event["performance"][0]["artist"]["displayName"] if event["performance"][0]
 
     {
-      :name => headliner,
-      :venue_id => Venue.find_by(:name => event["venue"]["displayName"]).id,
-      :venue_name => event["venue"]["displayName"],
-      :vendor_id => event["id"].to_i,
-      :headliner => headliner,
-      :date => Date.parse(event["start"]["date"]),
-      :time => ensured_time(event),
-      :tickets => "",
-      :url => event["uri"],
-      :twitter => "",
-      :price => ""
+      name: headliner,
+      venue_id: Venue.find_by(name: event["venue"]["displayName"]).id,
+      venue_name: event["venue"]["displayName"],
+      vendor_id: event["id"].to_i,
+      headliner: headliner,
+      date: Date.parse(event["start"]["date"]),
+      time: ensured_time(event),
+      tickets: "",
+      url: event["uri"],
+      twitter: "",
+      price: "",
+      soundcloud_url: SoundcloudService.new.get_first_track(headliner)
     }
   end
 

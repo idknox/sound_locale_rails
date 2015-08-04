@@ -33,17 +33,18 @@ class Stubhub
 
   def rename_columns(event)
     {
-      :name => event["name_secondary"],
-      :venue_id => Venue.find_by(:name => event["venue_name"]).id,
-      :venue_name => event["venue_name"],
-      :vendor_id => event["id"].to_i,
-      :headliner => event["name_secondary"],
-      :date => Date.parse(event["date_confirm"]).strftime("%Y-%m-%d"),
-      :time => Time.parse(event["date_confirm"]).strftime("%H:%M:%S"),
-      :tickets => "",
-      :url => "",
-      :twitter => "",
-      :price => ""
+      name: event["name_secondary"],
+      venue_id: Venue.find_by(name: event["venue_name"]).id,
+      venue_name: event["venue_name"],
+      vendor_id: event["id"].to_i,
+      headliner: event["name_secondary"],
+      date: Date.parse(event["date_confirm"]).strftime("%Y-%m-%d"),
+      time: Time.parse(event["date_confirm"]).strftime("%H:%M:%S"),
+      tickets: "",
+      url: "",
+      twitter: "",
+      price: "",
+      soundcloud_url: SoundcloudService.new.get_first_track(event["name_secondary"])
     }
   end
 end

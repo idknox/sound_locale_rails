@@ -8,13 +8,13 @@
       <% end %>
     </div>
   </div>
-  <% next_months(6).each do |formatted, date| %>
-    <div class="col-xs-12 clear">
-      <div class="date clear">
-        <div class="date-header header" id="<%= "#{date.month}#{date.year}" %>" data-date="<%= date %>">
+  <% next_months(12).each do |formatted, date| %>
+    <div class="col-xs-12">
+      <div class="date">
+        <div class="date-header header" id="<%= date_id(date) %>" data-date="<%= date %>" data-filled="false">
           <%= formatted %>
         </div>
-        <div class="date-content clear"></div>
+        <div class="date-content"></div>
       </div>
     </div>
   <% end %>

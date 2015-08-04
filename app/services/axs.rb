@@ -31,18 +31,19 @@ class Axs
 
   def rename_columns(event)
     {
-      :name => event["title"]["eventTitleText"],
-      :venue_id => Venue.find_by(:name => event["venue"]["title"]).id,
-      :venue_name => event["venue"]["title"],
-      :vendor_id => event["eventId"].to_i,
-      :headliner => event["title"]["eventTitleText"],
-      :opener => event["title"]["supportingText"],
-      :date => Date.parse(event["eventDateTime"]),
-      :time => Time.parse(event["eventDateTime"]),
-      :tickets => event["ticketing"]["url"],
-      :url => event["ticketing"]["eventUrl"],
-      :twitter => "",
-      :price => price_breakout(event)
+      name: event["title"]["eventTitleText"],
+      venue_id: Venue.find_by(name: event["venue"]["title"]).id,
+      venue_name: event["venue"]["title"],
+      vendor_id: event["eventId"].to_i,
+      headliner: event["title"]["eventTitleText"],
+      opener: event["title"]["supportingText"],
+      date: Date.parse(event["eventDateTime"]),
+      time: Time.parse(event["eventDateTime"]),
+      tickets: event["ticketing"]["url"],
+      url: event["ticketing"]["eventUrl"],
+      twitter: "",
+      price: price_breakout(event),
+      soundcloud_url: SoundcloudService.new.get_first_track(event["title"]["eventTitleText"])
     }
   end
 
@@ -50,3 +51,9 @@ class Axs
     "#{ticket['ticketPrice']} advance / #{ticket['doorPrice']} door"
   end
 end
+
+
+
+
+
+

@@ -3,7 +3,7 @@ function googleApiClientReady() {
   gapi.client.setApiKey(apiKey);
   gapi.client.load('youtube', 'v3').then(function () {
     soundcloud.init();
-    eventUi.loadTodayEvents();
+    eventUi.loadEvents();
   });
 }
 

@@ -84,12 +84,17 @@ section {
       padding: 5px 15px 5px 15px;
       display: inline;
     }
+
     .site, .size, .price {
       border-right: 1px solid $white;
     }
 
     .event-price {
       margin: 30px;
+    }
+
+    .directions {
+      cursor: pointer;
     }
   }
 

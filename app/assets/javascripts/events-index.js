@@ -2,9 +2,9 @@
 
 $('body').on('click', '.map-trigger', function () {
   $('#map-container').empty();
-  var id = $(this).data('venue-id');
+  var id = $(this).data('event-id');
 
-  var promiseOfResult = $.getJSON("/venues/" + id + ".json");
+  var promiseOfResult = $.getJSON("/events/" + id + ".json");
   promiseOfResult.success(googleMap.openModal);
 });
 
@@ -14,7 +14,7 @@ $('body').on('click', '.yt-trigger', function () {
 });
 
 $('body').on('click', '.sc-trigger', function () {
-  var trackUrl = $(this).data('scUrl');
+  var trackUrl = $(this).data('scurl');
   soundcloud.startPlayer(trackUrl);
 });
 
@@ -66,25 +66,11 @@ $('#list-trigger').on('click', function () {
 
 // -- VENUE EVENTS --
 
-if (window.location.search.indexOf('?venue=') > -1) {
-  eventUi.displayFiltered();
-  displayVenue()
-}
-
-function displayVenue() {
-  var id = window.location.search.split('=')[1];
-
-  $.getJSON("/venues/" + id + ".json").success(function (venue) {
-    $('.events-title').empty().append(venue.name).show()
-
-  })
-}
-
 // -- OPEN DATE --
 
 $('.date-header').on('click', function () {
   var header = $(this);
-  eventUi.expandAndFillDate(header);
+  eventUi.expandDate(header);
 });
 
 // -- SCROLL TO MONTH --

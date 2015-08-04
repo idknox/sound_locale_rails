@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require moment
 //= require_tree ../../../vendor/assets/javascripts/.
 
 $(document).ready(function () {
@@ -29,8 +30,9 @@ $(document).ready(function () {
 
       var originLat = origin.coords.latitude;
       var originLong = origin.coords.longitude;
-
-      localStorage.setItem('userOrigin', 'loc:' + originLat + '+' + originLong);
+      localStorage['userLat'] = originLat;
+      localStorage['userLong'] = originLong;
+      localStorage['userOrigin'] = 'loc:' + originLat + '+' + originLong;
     }
   }
 });

@@ -15,6 +15,7 @@ $(document).ready(function () {
     } else {
       indented = 6;
     }
+
     $.each(events, function (i, event) {
       var indentClass = ' ';
 
