@@ -4,11 +4,11 @@ var buildMap = function (music_events) {
     return;
   }
 
-  var denver = new google.maps.LatLng(39.740009, -104.992302);
+  var center = new google.maps.LatLng(localStorage['userLat'], localStorage['userLong']);
 
   var mapOptions = {
-    center: denver,
-    zoom: 10,
+    center: center,
+    zoom: 14,
     disableDefaultUI: true,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
@@ -29,6 +29,14 @@ var buildMap = function (music_events) {
   };
 
   var infowindow = new InfoBox(windowOptions);
+
+  var userLoc = new google.maps.Marker({
+    position: center,
+    title: 'Home',
+    icon: '<i class="fa fa-user"></i>',
+    animation: google.maps.Animation.DROP,
+    map: map
+  });
 
   $.each(music_events, function (i, music_event) {
 
@@ -64,7 +72,7 @@ var buildMap = function (music_events) {
   });
 
   google.maps.event.addDomListener(window, 'resize', function () {
-    map.setCenter(denver);
+    map.setCenter(userLoc);
   });
 
 };

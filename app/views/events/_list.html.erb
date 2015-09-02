@@ -11,7 +11,7 @@
   <% next_months(12).each do |formatted, date| %>
     <div class="col-xs-12">
       <div class="date">
-        <div class="date-header header" id="<%= date_id(date) %>" data-date="<%= date %>" data-filled="false">
+        <div class="date-header header <%= date_id(date) %>" data-date="<%= date %>" data-filled="false">
           <%= formatted %>
         </div>
         <div class="date-content"></div>

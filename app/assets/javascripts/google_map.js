@@ -39,11 +39,11 @@ window.googleMap = {
       map: map
     });
 
-    var directionsUrl = 'https://maps.google.com/maps?f=d&daddr=' + event.venue.address + '&saddr=' + localStorage.getItem('userOrigin');
+    var directionsUrl = 'https://maps.google.com/maps?f=d&daddr=' + event.venue.address + '&saddr=' + localStorage['userOrigin'];
 
     var venueInfo = '<div class="info-window"><div class="row"><div class="col-sm-10 col-sm-offset-1 content">' +
       '<div class="title"><h2>' + event.venue.title + '</h2>' + event.venue.address + '</div><br><br><div class="size">' + event.venue.size + '</div><div class="price">' + event.venue.price +
-      '</div><div class="site"><a href="' + event.venue.site + '">Website</a></div><div class="directions" data-url="' + directionsUrl + '">Directions</div></p>' +
+      '</div><div class="site"><a href="' + event.venue.site + '">Website</a></div><div class="directions"><a href="' + directionsUrl + '">Directions</a></div></p>' +
       '</div></div><div class="triangle"></div></div>';
 
     infowindow.setContent(venueInfo);

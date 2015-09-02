@@ -152,3 +152,19 @@ $('.search').on('keyup', function () {
     $('.no-events').hide();
   }
 });
+
+$(window).on('scroll', function () {
+  var y = window.pageYOffset;
+  var trigger = 1000;
+
+  if (y > trigger) {
+    $('#back-to-top').show()
+  } else {
+    $('#back-to-top').hide()
+  }
+});
+
+$('#back-to-top').on('click', function () {
+  $('html, body').animate({ scrollTop: 0 }, 300);
+  return false;
+});

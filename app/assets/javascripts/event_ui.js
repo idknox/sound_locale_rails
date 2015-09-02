@@ -39,10 +39,9 @@ window.eventUi = {
       eventUi.fillDate(header)
     });
 
-//    var today = $('.date-header').first().siblings('.date-content');
+    var today = $('.date-header').first().siblings('.date-content');
 //    eventUi.fillDate($('.date-header').first())
-//    today.slideToggle();
-    $('.date-content').slideToggle();
+    today.slideToggle();
   },
 
   fillDate: function (header) {
@@ -105,8 +104,9 @@ window.eventUi = {
   },
 
   scrollToMonth: function (month) {
+    console.log(month)
     $('html,body').animate({
-      scrollTop: $('#' + month).offset().top - $('#nav-custom').height()
+      scrollTop: $('.' + month).offset().top - $('#nav-custom').height()
     }, 500);
   },
 

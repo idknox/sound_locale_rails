@@ -14,8 +14,7 @@ module EventHelper
   end
 
   def date_id(date)
-    month = date.day == 1 ? " #{date.month}#{date.year.to_s[2..-1]}" : ''
-    "#{date.month}#{date.day}#{date.year}" + month
+    "#{date.month}#{date.year.to_s[2..-1]}" if date.day == 1
   end
 
   def doors(time)
