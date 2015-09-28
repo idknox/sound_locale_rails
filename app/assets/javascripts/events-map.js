@@ -70,9 +70,9 @@ var buildMap = function (music_events) {
       infowindow.open(map, marker);
     });
   });
-
+  console.log(userLoc)
   google.maps.event.addDomListener(window, 'resize', function () {
-    map.setCenter(userLoc);
+    map.setCenter(userLoc.getPosition());
   });
 
 };
