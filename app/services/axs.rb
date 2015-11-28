@@ -38,7 +38,7 @@ class Axs
       headliner: event["title"]["eventTitleText"],
       opener: event["title"]["supportingText"],
       date: Date.parse(event["eventDateTime"]),
-      time: Time.parse(event["eventDateTime"]),
+      time: Time.zone.parse(event["eventDateTime"]),
       tickets: event["ticketing"]["url"],
       url: event["ticketing"]["eventUrl"],
       twitter: "",

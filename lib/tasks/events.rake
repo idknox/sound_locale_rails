@@ -6,6 +6,7 @@ namespace :events do
     Ticketfly.events.each do |event|
       event = event.select { |_, v| v.is_a?(String) ? v.length < 230 : true }
       event = Event.new(event)
+      event.time = event.time.utc
       count += 1 if event.save
     end
     print_count(count, "PULLED")

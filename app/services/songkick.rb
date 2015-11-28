@@ -70,6 +70,6 @@ class Songkick
   end
 
   def ensured_time(event)
-    event["start"]["time"] ? Time.parse(event["start"]["time"]) : "TBD"
+    event["start"]["time"] ? Time.zone.parse(event["start"]["time"]) : "TBD"
   end
 end

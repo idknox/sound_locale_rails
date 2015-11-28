@@ -62,7 +62,7 @@ var buildMap = function (music_events) {
       '</div><br><div class="event-price">' + music_event.price + '</div><br>' +
       '<div class="price">' + (new Date(music_event.time)).format('h:MM TT') +
       '</div><div class="site"><a href="' + music_event.tickets + '">Tickets' +
-      '</a></div><div class="directions"><a href="#" data-url="' + directionsUrl +'">' +
+      '</a></div><div class="directions"><a href="#" data-url="' + directionsUrl + '">' +
       'Directions</a></div></p></div></div><div class="triangle"></div></div>';
 
     google.maps.event.addListener(marker, 'click', function () {
@@ -70,7 +70,6 @@ var buildMap = function (music_events) {
       infowindow.open(map, marker);
     });
   });
-  console.log(userLoc)
   google.maps.event.addDomListener(window, 'resize', function () {
     map.setCenter(userLoc.getPosition());
   });

@@ -12,7 +12,6 @@ gem 'sdoc', '~> 0.4.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'rails_12factor'
 gem 'jquery-ui-rails'
-gem 'newrelic_rpm'
 
 gem 'sass-rails'
 gem 'bootstrap-sass'

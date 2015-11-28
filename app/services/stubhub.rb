@@ -39,7 +39,7 @@ class Stubhub
       vendor_id: event["id"].to_i,
       headliner: event["name_secondary"],
       date: Date.parse(event["date_confirm"]).strftime("%Y-%m-%d"),
-      time: Time.parse(event["date_confirm"]).strftime("%H:%M:%S"),
+      time: Time.zone.parse(event["date_confirm"]).strftime("%H:%M:%S"),
       tickets: "",
       url: "",
       twitter: "",

@@ -56,6 +56,10 @@ window.eventUi = {
           var time = moment(event.time);
           var formatted_time = time.format('h:mma');
 
+          if (i === 0) {
+            console.log(event)
+          }
+
           var event = '<div class="event clear"><div class="col-xs-12 col-md-5 title">' +
             '<div class="headliner">' + event.headliner + '</div>' +
             '<div class="opener">' + opener + '</div></div><div class="col-xs-12 ' +

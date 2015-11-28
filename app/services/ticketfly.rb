@@ -56,7 +56,7 @@ class Ticketfly
       opener: event["supportsName"],
       image: event["image"] ? event["image"]["square"]["path"] : 'NA',
       date: Date.parse(event["startDate"]),
-      time: Time.parse(event["startDate"]),
+      time: Time.zone.parse(event["startDate"]),
       tickets: event["ticketPurchaseUrl"],
       url: event["ticketPurchaseUrl"],
       twitter: event["urlTwitter"],
