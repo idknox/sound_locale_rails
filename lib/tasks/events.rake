@@ -45,9 +45,9 @@ namespace :events do
 
   desc "Import AXS events"
   task axs: :environment do
-    count = 0
-    Axs.events.each { |event| count += 1 if Event.new(event).save }
-    print_count(count, "PULLED")
+    a = Events::Axs.new
+    a.events.each { |event| Event.new(event).save}
+    print_count(a.event_count, "PULLED")
   end
 
   desc "Import events events"

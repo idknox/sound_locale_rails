@@ -20,6 +20,9 @@ gem 'dotenv-rails'
 gem 'momentjs-rails'
 gem 'soundcloud'
 
+gem 'httparty'
+gem 'hashie'
+
 group :development, :test do
   gem 'rspec-rails', '3.0.1'
   gem 'rspec-collection_matchers', '~> 1.0.0'
