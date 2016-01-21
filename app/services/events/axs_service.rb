@@ -1,5 +1,5 @@
 module Events
-  class Axs < Base
+  class AxsService < Base
 
     attr_accessor :events
 

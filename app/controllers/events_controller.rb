@@ -9,6 +9,8 @@ class EventsController < ApplicationController
   end
 
   def index
+    s = Events::SongkickService.new.events
+    s
   end
 
   def show

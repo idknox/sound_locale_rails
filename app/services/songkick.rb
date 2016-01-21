@@ -49,23 +49,22 @@ class Songkick
   end
 
   def rename_columns(event)
-    headliner = "NA"
-    headliner = event["series"]["displayName"] if event["series"]
-    headliner = event["performance"][0]["artist"]["displayName"] if event["performance"][0]
+    # headliner = event["series"]["displayName"] if event["series"]
+    headliner = event["performance"].first.present? ? event["performance"][0]["artist"]["displayName"] : 'NA'
 
     {
       name: headliner,
-      venue_id: Venue.find_by(name: event["venue"]["displayName"]).id,
-      venue_name: event["venue"]["displayName"],
-      vendor_id: event["id"].to_i,
+      venue_id: Venue.find_by(name: event.venue.displayName).id,
+      venue_name: event.venue.displayName,
+      vendor_id: event.id.to_i,
       headliner: headliner,
-      date: Date.parse(event["start"]["date"]),
-      time: ensured_time(event),
-      tickets: "",
-      url: event["uri"],
-      twitter: "",
-      price: "",
-      soundcloud_url: SoundcloudService.new.get_first_track(headliner)
+      show_start: event.start.time.present? ? Time.zone.parse(event.start.date) : 'TBD',
+      doors: '',
+      tickets: '',
+      url: event.uri,
+      twitter: '',
+      price: '',
+      soundcloud_url: ''
     }
   end
 
